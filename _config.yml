@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 魔王卷子的博客
 subtitle:
-description:
+description: 
 keywords:
-author: John Doe
-language:
-timezone:
+author: 魔王卷子
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.baoguoxiao.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
