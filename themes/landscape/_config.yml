@@ -2,7 +2,7 @@
 menu:
   Home: /
   Archives: /archives
-rss: /atom.xml
+#rss: /atom.xml
 
 # Content
 excerpt_link: Read More
@@ -25,10 +25,10 @@ index_widgets:
 
 # widget behavior
 archive_type: 'monthly'
-show_count: false
+show_count: true
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-131320191-1
 gauges_analytics:
 favicon: /favicon.png
 twitter:
