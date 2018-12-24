@@ -11,8 +11,13 @@ tags:
 
 我会将自己的一些学习和生活的点滴记录到这里。
 
-
 虽然没有什么开源项目，不过我现在还在努力中。。。
+
+## 关注博客
+
+本博客由Hexo生成。暂时不支持评论，如有问题可到Github提issue。
+
+Github地址：https://github.com/mowangjuanzi/blog
 
 ## 联系我
 
