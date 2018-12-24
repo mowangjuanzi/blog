@@ -11,7 +11,7 @@ tags:
 
 有一个不可见的字符，在编辑器中识别不出来，执行之后也看不到，但是查看上一条执行的命令的时候就可以看到一个红点。
 
-![](https://www.baoguoxiao.com/wp-content/uploads/2018/06/30bf6573ae356fbcebe10a74625c60ea.png)
+![](/images/30bf6573ae356fbcebe10a74625c60ea.png)
 
 然后使用unicode进行解析，发现unicode是\u2028。
 

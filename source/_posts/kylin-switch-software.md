@@ -37,7 +37,7 @@ sudo apt-get install sublime-text
 ```
 执行上面的一套组合拳，嗖嗖的就能安装上sublime了。
 
-sublime text 的 package control 安装可参考我这篇[文章](https://www.baoguoxiao.com/sublime-text-3-%e5%ae%89%e8%a3%85-package-control/)。
+sublime text 的 package control 安装可参考我 {% post_link sublime-text-3-install-package-control %i}。
 
 好了，零散记录一下，先记录这些。
 

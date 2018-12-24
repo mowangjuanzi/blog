@@ -9,9 +9,16 @@ tags:
 
 今天终于回答了。我来记录以下：
 
-首先是模板文件，我定义他为`index.html`，内容如下（**本来想放代码的，结果显示有问题**）:
+首先是模板文件，我定义他为`index.html`，内容如下:
 
-![](https://www.baoguoxiao.com/wp-content/uploads/2018/08/f853ba71e72bc20f4b4149b85f9c0edf.png)
+```php
+<h1><?=$title?></h1>
+<ul>
+    <?php foreach($list as $value): ?>
+        <li><?=$value?></li>
+    <?php endforeach; ?>
+</ul>
+```
 
 这里我们就不用自定义标签啊，之类的等等，我相信鸟哥的那句话，PHP本身就是一个非常好的模板引擎，我们没有必要再去造一个轮子。
 

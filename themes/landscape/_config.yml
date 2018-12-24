@@ -2,6 +2,8 @@
 menu:
   Home: /
   Archives: /archives
+  About: /readme.html
+  Books: /books.html
 #rss: /atom.xml
 
 # Content

@@ -3,7 +3,7 @@ title: ubuntu 16.10 设置固定ip
 date: 2017-11-17 16:31:57
 tags:
 ---
-> 最新版可参考：[UBUNTU17.10设置固态IP](https://www.baoguoxiao.com/ubuntu17-10%E8%AE%BE%E7%BD%AE%E5%9B%BA%E6%80%81ip/)
+> 最新版可参考：{% post_link ubuntu-set-static-ip %}
 
 首先我们打开网卡配置文件：
 
