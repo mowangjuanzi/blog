@@ -80,3 +80,9 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/mowangjuanzi/blog.git
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
