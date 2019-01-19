@@ -5,7 +5,7 @@
 # Site
 title: 魔王卷子的博客
 subtitle:
-description: 
+description: 记录我的工作中碰到的坑
 keywords:
 author: 魔王卷子
 language: zh-CN
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
