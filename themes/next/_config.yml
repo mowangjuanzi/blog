@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  #since: 2015
+  since: 2017
 
   # Icon between year and copyright info.
   icon:
@@ -519,8 +519,8 @@ baidu_analytics: 569d323c10cf83b1409b1e2228474415
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: www-baoguoxiao-com
   count: true
   lazyload: false
 
@@ -861,7 +861,7 @@ pace_theme: pace-theme-minimal
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
 canvas_nest:
-  enable: false
+  enable: true
   onmobile: true # display on mobile or not
   color: '0,0,255' # RGB values, use ',' to separate
   opacity: 0.5 # the opacity of line: 0~1
