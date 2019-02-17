@@ -9,6 +9,7 @@ tags:
 
 ## 读过的书
 
+- [李叔同说佛](https://book.douban.com/subject/25985871/)
 - [中国脂肪肝防治指南](https://book.douban.com/subject/30345093/)
 - [图解HTTP](https://book.douban.com/subject/25863515/)
 - [闯关东](https://book.douban.com/subject/2568082/)
