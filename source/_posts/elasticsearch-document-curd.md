@@ -2,6 +2,10 @@
 title: Elasticsearch 教程（3）文档CRUD操作
 date: 2017-11-17 16:32:54
 tags:
+- elasticsearch
+categories:
+- 工具
+- elasticsearch
 ---
 ## 简介
 Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。

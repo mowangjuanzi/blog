@@ -2,6 +2,10 @@
 title: bind9的初步使用（1）
 date: 2018-12-16 22:28:02
 tags:
+- bing9
+categories:
+- 工具
+- bind9
 ---
 ## 前言
 

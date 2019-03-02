@@ -2,6 +2,12 @@
 title: php-cli 改变输出的字体颜色
 date: 2017-11-17 16:33:01
 tags:
+- php
+- bash
+- cli
+categories:
+- 编程语言
+- php
 ---
 > 我只会用，不清楚原理。  
 >

@@ -2,6 +2,10 @@
 title: HTTP协议之URL语法
 date: 2018-07-04 17:49:06
 tags:
+- http
+categories:
+- 计算机基础
+- http
 ---
 URL提供了一种对任意的一种互联网资源定位的手段。但是这些资源是可以通过不同的方案来（比如，HTTP，FTP，SMTP）进行访问的，因此URL的语法会随着方案的不同而不同。
 

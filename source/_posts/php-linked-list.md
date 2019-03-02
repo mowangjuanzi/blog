@@ -2,6 +2,12 @@
 title: php版链表的实现
 date: 2018-04-24 15:56:22
 tags:
+- php
+- 链表
+- 算法
+categories:
+- 编程语言
+- php
 ---
 ```php
 <?php

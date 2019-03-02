@@ -2,6 +2,12 @@
 title: awk中执行mv命令
 date: 2018-02-03 09:40:30
 tags:
+- linux
+- thinkphp
+- awk
+categories:
+- 操作系统
+- ubuntu
 ---
 我现在有一个thinkphp文件夹，我需要将文件夹下面所有的**.class.php**修改为**.php**
 

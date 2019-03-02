@@ -2,6 +2,11 @@
 title: 记Python中一个编码的错误
 date: 2017-11-17 16:31:09
 tags:
+- python
+- linux
+categories:
+- 编程语言
+- python
 ---
 > 提示：这个应该仅仅是在Python2中出现这个问题。因为Python2的默认编码是`ascii`，Python3的默认编码已经编程了`utf-8`。
 

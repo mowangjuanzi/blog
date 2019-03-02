@@ -2,6 +2,11 @@
 title: uwsgi 命令管理
 date: 2017-11-17 16:30:00
 tags:
+- python
+- uwsgi
+categories:
+- 编程语言
+- python
 ---
 ## 启动命令
 

@@ -2,6 +2,14 @@
 title: laravel中DB_TIIMEZONE中的坑
 date: 2018-09-18 10:57:58
 tags:
+- php
+- laravel
+- mysql
+- orm
+categories:
+- 编程语言
+- php
+- laravel
 ---
 首先介绍一下环境。
 

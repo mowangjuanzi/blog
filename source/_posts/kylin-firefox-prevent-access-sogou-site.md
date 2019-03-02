@@ -2,6 +2,13 @@
 title: 我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题
 date: 2017-11-25 11:37:27
 tags:
+- ubuntu
+- firefox
+- nginx
+- hosts
+categories:
+- 操作系统
+- ubuntu
 ---
 我的火狐浏览器默认主页是123.sogou.com 但是，我希望把我的首页变成百度。
 

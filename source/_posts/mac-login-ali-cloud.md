@@ -2,6 +2,12 @@
 title: mac 登录阿里云
 date: 2018-11-15 11:03:51
 tags:
+- mac
+- 阿里云
+- ssh
+categories:
+- 操作系统
+- mac
 ---
 在windows环境中，我们都是可以通过xshell实现证书登录的。
 

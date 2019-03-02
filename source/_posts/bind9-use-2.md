@@ -1,7 +1,11 @@
 ---
 title: bind9的初步使用（2）
 date: 2018-12-17 00:22:00
-tags:
+tags: 
+- bind9
+categories:
+- 工具
+- bind9
 ---
 ## 设置局域网访问
 

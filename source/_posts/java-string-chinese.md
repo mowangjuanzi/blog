@@ -2,6 +2,11 @@
 title: Java中json字符串中文的处理
 date: 2018-04-19 17:37:52
 tags:
+- java
+- json
+categories:
+- 编程语言
+- java
 ---
 这两天让安卓将json转成字符串传递给我，结果在传递中文时，PHP不能正常解析。
 

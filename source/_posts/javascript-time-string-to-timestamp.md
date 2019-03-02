@@ -2,6 +2,10 @@
 title: 记一次js处理时间字符串转为时间戳的问题
 date: 2017-11-17 16:26:48
 tags:
+- javascript
+categories:
+- 编程语言
+- javascript
 ---
 今天朋友问我，js应该如何将时间字符串转为时间戳。
 

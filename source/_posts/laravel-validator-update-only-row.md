@@ -2,6 +2,13 @@
 title: Laravel Validator 更新时验证记录唯一的小技巧
 date: 2017-11-17 16:34:33
 tags:
+- laravel
+- php
+- validator
+categories:
+- 编程语言
+- php
+- laravel
 ---
 比如我们在新增一篇文章的时候，我们一般会写如下的表单验证。
 

@@ -2,7 +2,13 @@
 title: MongoDB副本集
 date: 2017-11-17 16:25:18
 tags:
+- mongodb
+- 复制
+categories:
+- 数据库
+- mongodb
 ---
+
 关于副本集的理论我就不介绍了。下面说下如何实现副本集的操作。
 
 ## 前提

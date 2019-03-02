@@ -2,6 +2,14 @@
 title: mac搭建web环境
 date: 2018-11-16 14:06:11
 tags:
+- mac
+- web
+- nginx
+- php
+- mysql
+categories:
+- 编程语言
+- mac
 ---
 ## homebrew
 

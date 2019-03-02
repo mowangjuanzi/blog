@@ -2,6 +2,11 @@
 title: CentOS修改语言包为中文
 date: 2017-11-17 16:29:20
 tags:
+- centos
+- linux
+categories:
+- 操作系统
+- centos
 ---
 ## 临时办法
 

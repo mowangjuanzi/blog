@@ -2,6 +2,10 @@
 title: mysql 重置密码
 date: 2017-11-17 16:25:49
 tags:
+- mysql
+categories:
+- 数据库
+- mysql
 ---
 当我们安装了mysql或者mariadb的时候，一不小心，就把密码给忘记了。这个时候，我们不管怎么尝试密码，都是错误的，都会显示如下错误：
 

@@ -2,6 +2,12 @@
 title: ubuntu 安装 elasticsearch
 date: 2018-06-03 09:31:48
 tags:
+- ubuntu
+- linux
+- elasticsearch
+categories:
+- 工具
+- elasticsearch
 ---
 ## 前置条件
 

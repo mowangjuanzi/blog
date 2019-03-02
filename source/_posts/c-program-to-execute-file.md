@@ -1,7 +1,11 @@
 ---
 title: C语言程序编译成可执行文件的过程
 date: 2018-02-03 00:24:13
-tags:
+tags: 
+- c
+categories:
+- 编程语言
+- C
 ---
 现在我们有一个C语言文件（hello.c）：
 

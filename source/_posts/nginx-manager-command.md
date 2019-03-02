@@ -2,6 +2,13 @@
 title: nginx 设置管理命令
 date: 2017-11-17 16:28:36
 tags:
+- nginx
+- chkconfig
+- service
+- ubuntu
+categories:
+- web服务器
+- nginx
 ---
 ## nginx管理命令：
 

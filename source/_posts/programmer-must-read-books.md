@@ -2,6 +2,8 @@
 title: 程序员必读书籍
 date: 2018-10-08 16:13:33
 tags:
+categories:
+- 随笔
 ---
 对于程序员来说，有哪些书籍是必读的呢？Stack Overflow 上有一个[问题](https://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read?page=1&tab=active#tab-top)，虽然被关闭了，但是这是设置一个热门的问题。我看到里面推荐的书都是英文的。所以对照着找了找国内的中文版。但是也是有一些翻译的名字我确实没有找到或者暂时还没有出中文版。所以在其中有什么错误的地方，请大家评论告诉我，我立即去更新。
 

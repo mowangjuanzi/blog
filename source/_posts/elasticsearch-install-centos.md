@@ -2,6 +2,12 @@
 title: Elasticsearch 教程（1）安装【CentOS版】
 date: 2017-11-17 16:27:54
 tags:
+- centos
+- elasticsearch
+- linux
+categories:
+- 工具
+- elasticsearch
 ---
 ## 前置条件
 

@@ -2,6 +2,12 @@
 title: django 报错 Error loading either pysqlite2 or sqlite3 modules
 date: 2017-11-17 16:29:43
 tags:
+- python
+- django
+- sqlite
+categories:
+- 编程语言
+- python
 ---
 我的使用环境是`Python-3.5.3`。Django版本是1.10.5.
 

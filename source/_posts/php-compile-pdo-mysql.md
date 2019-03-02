@@ -2,6 +2,13 @@
 title: php编译pdo_mysql扩展记录
 date: 2017-11-17 16:28:44
 tags:
+- php
+- centos
+- linux
+- pdo
+categories:
+- 操作系统
+- centos
 ---
 这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。
 

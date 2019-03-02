@@ -2,6 +2,11 @@
 title: docker学习笔记之一 安装
 date: 2018-02-07 21:47:40
 tags:
+- docker
+- 安装
+categories:
+- 工具
+- docker
 ---
 ## 系统要求
 

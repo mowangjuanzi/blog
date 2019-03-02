@@ -2,6 +2,13 @@
 title: django 报错：Error loading MySQLdb module：No module named 'MySQLdb'
 date: 2017-11-17 16:29:11
 tags:
+- python
+- diango
+- mysql
+categories:
+- 编程语言
+- python
+- django
 ---
 居然提示不存在mysql扩展。那我就安装呗。
 

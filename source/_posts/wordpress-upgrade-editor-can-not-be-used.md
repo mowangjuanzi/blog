@@ -2,6 +2,12 @@
 title: wordpress升级的编辑器不能用的问题
 date: 2018-12-16 16:19:28
 tags:
+- 编辑器
+- wordpress
+- php
+categories:
+- 编程语言
+- php
 ---
 之前看到wordpress升级出来5.0了，昨天就把我的博客给升级了，但是发现了一个问题。
 

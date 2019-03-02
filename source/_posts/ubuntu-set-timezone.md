@@ -2,6 +2,12 @@
 title: ubuntu18.04修改时区
 date: 2018-05-17 14:32:16
 tags:
+- ubuntu
+- linux
+- timezone
+categories:
+- 操作系统
+- ubuntu
 ---
 运行如下命令：
 

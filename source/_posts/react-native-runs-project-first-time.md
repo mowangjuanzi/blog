@@ -2,6 +2,13 @@
 title: react-native首次运行项目
 date: 2018-09-27 22:47:01
 tags:
+- javascript
+- react-native
+- android
+categories:
+- 编程语言
+- javascript
+- react-native
 ---
 这两天一直在看react。今天正好想着安装 react-native ，看看传说中的用JS写APP能用嘛。
 

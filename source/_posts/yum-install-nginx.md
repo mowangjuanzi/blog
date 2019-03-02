@@ -2,6 +2,13 @@
 title: yum 安装 nginx
 date: 2017-11-17 16:32:19
 tags:
+- nginx
+- yum
+- centos
+- linux
+categories:
+- web服务器
+- nginx
 ---
 > 以下操作都是在root账户下进行的。系统版本是CentOS7
 

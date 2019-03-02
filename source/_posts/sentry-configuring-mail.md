@@ -2,6 +2,11 @@
 title: sentry配置邮件
 date: 2018-10-30 09:57:20
 tags:
+- sentry
+- email
+categories:
+- 工具
+- sentry
 ---
 sentry一个最大的好处就是可以使用邮件通知功能，如果没有邮件通知，那么我们自己上去看的话就非常麻烦了。
 

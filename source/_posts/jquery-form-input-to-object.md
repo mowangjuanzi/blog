@@ -2,6 +2,12 @@
 title: jq将form 表单数据转为object
 date: 2017-11-17 16:26:22
 tags:
+- javascript
+- jquery
+categories:
+- 编程语言
+- javascript
+- jquery
 ---
 我平常上传数据都是使用`$(this).serialize()`，但是这次我需要使用上传数据的对象。结果这个方法给我转成了字符串。特别不方便。于是找到一个插件。就可以实现，获取的时候，获取到的是对象而不是字符串了。
 

@@ -2,6 +2,12 @@
 title: ubuntu安装lrzsz
 date: 2018-11-11 21:29:08
 tags:
+- lrzsz
+- ubuntu
+- linux
+categories:
+- 操作系统
+- ubuntu
 ---
 lrzsz命令是非常好用的一个命令。
 

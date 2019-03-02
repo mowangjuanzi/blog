@@ -2,6 +2,11 @@
 title: 安卓适配
 date: 2018-11-13 17:51:58
 tags:
+- android
+- sentry
+categories:
+- 编程语言
+- android
 ---
 今天下午一直在跟安卓调试sentry适配问题。发现了两个问题。现在记录如下：
 

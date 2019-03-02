@@ -1,7 +1,13 @@
 ---
 title: apt 安装 nginx
 date: 2018-12-17 00:09:38
-tags:
+tags: 
+- nginx
+- ubuntu
+- linux
+categories:
+- web服务器
+- nginx
 ---
 使用apt安装nginx，方便快捷，省去了编译失败的可能。
 

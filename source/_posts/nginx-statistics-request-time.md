@@ -2,6 +2,11 @@
 title: nginx 自定义日志记录请求时间
 date: 2019-02-17 23:33:39
 tags:
+- nginx
+- log
+categories:
+- web服务器
+- nginx
 ---
 ## 前言
 

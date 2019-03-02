@@ -2,6 +2,12 @@
 title: python3.6 安装scrapy
 date: 2017-11-17 16:30:32
 tags:
+- python
+- scrapy
+- centos
+categories:
+- 编程语言
+- python
 ---
 我首先执行pip安装命令：
 

@@ -2,6 +2,11 @@
 title: mysql 复制
 date: 2017-11-17 16:24:36
 tags:
+- mysql
+- 复制
+categories:
+- 数据库
+- mysql
 ---
 ## 概述
 

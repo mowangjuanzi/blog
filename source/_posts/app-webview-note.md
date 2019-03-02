@@ -1,7 +1,12 @@
 ---
 title: APP的webview碰到的一些坑
 date: 2018-06-30 21:31:26
-tags:
+tags: 
+- javascript
+- android
+categories:
+- 编程语言
+- android
 ---
 ## 前言
 公司APP的文章详情，之前是将所有的HTML内容全部从接口中返回，然后APP的webview将其载入到内中，然后渲染并展示出来。

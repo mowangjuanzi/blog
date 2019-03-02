@@ -2,6 +2,11 @@
 title: docker安装mysql
 date: 2018-09-19 10:53:16
 tags:
+- docker
+- mysql
+categories:
+- 工具
+- docker
 ---
 记录一下自己使用docker安装mysql的过程。
 

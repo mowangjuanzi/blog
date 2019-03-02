@@ -2,6 +2,11 @@
 title: sublime text 3 安装 package control
 date: 2017-11-17 16:26:17
 tags:
+- sublime text
+- package control
+categories:
+- 工具
+- sublime text
 ---
 我使用sublime，想要使用插件，还是得使用它的商店。
 

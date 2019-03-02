@@ -2,6 +2,13 @@
 title: 我的电脑系统换成了linux之WEB 环境搭建
 date: 2017-11-25 10:56:57
 tags:
+- ubuntu
+- nginx
+- mysql
+- php
+categories:
+- 操作系统
+- ubuntu
 ---
 我的系统使用的优麒麟。它跟ubuntu是一个派系的。
 

@@ -2,6 +2,12 @@
 title: sudo 免密码
 date: 2018-07-14 18:58:31
 tags:
+- ubuntu
+- sudo 
+- visudo
+categories:
+- 操作系统
+- ubuntu
 ---
 使用ubuntu时间长了经常会使用sodo，发现这样非常麻烦，那如何让sudo免密码呢？
 

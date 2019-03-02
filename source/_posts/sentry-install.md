@@ -2,6 +2,12 @@
 title: 安装sentry
 date: 2018-10-29 18:34:14
 tags:
+- docker
+- sentry
+- docker-compose
+categories:
+- 工具
+- sentry
 ---
 最近公司内部需要新增一个日志系统。目前可选择的就是sentry和阿里云日志系统。我通过两个对比之后，感觉sentry日志更加好用。所以在这里记录一下相关的笔记。首先这一篇就是安装系列了。
 

@@ -2,6 +2,12 @@
 title: yum 安装 mysql
 date: 2017-11-17 16:23:11
 tags:
+- yum
+- centos
+- mysql
+categories:
+- 数据库
+- mysql
 ---
 > 提示：以下命令都是在 `root` 账户下执行的命令。
 

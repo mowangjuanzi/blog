@@ -2,6 +2,11 @@
 title: 原生JS实现jQuery的链式调用
 date: 2018-07-07 22:37:52
 tags:
+- javascript
+- jquery
+categories:
+- 编程语言
+- javascript
 ---
 其实在我们学习使用jQuery的过程中，我们经常是这样使用的：
 

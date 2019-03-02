@@ -2,6 +2,13 @@
 title: yum 安装 php
 date: 2017-11-17 16:33:10
 tags:
+- php
+- yum
+- centos
+- yum
+categories:
+- 编程语言
+- php
 ---
 > 本教程是在CentOS7系统下执行的。
 

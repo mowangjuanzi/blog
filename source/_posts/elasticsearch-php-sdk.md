@@ -2,6 +2,11 @@
 title: Elasticsearch（2）PHP驱动
 date: 2017-11-17 16:27:19
 tags:
+- elasticsearch
+- php
+categories:
+- 工具
+- elasticsearch
 ---
 安装完成composer之后。我们需要安装php的类库来对Elasticsearch进行连接。
 

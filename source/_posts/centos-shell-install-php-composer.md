@@ -2,6 +2,13 @@
 title: shell 安装 composer
 date: 2017-11-17 16:27:26
 tags:
+- linux
+- centos
+- php
+- composer
+categories:
+- 操作系统
+- centos
 ---
 安装composer，最好需要有php的软连接。
 

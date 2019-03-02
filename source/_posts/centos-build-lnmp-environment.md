@@ -2,6 +2,14 @@
 title: 如何搭建LNMP环境【编译版】
 date: 2017-11-17 07:57:05
 tags:
+- linux
+- centos
+- php
+- nginx
+- mysql
+categories:
+- 操作系统
+- centos
 ---
 ## 使用的版本
 

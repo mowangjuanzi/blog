@@ -2,6 +2,12 @@
 title: ubuntu 16.10 支持ssh远程访问
 date: 2017-11-17 15:21:26
 tags:
+- ubuntu
+- linux
+- ssh
+categories:
+- 操作系统
+- ubuntu
 ---
 hell
 sudo apt-get install openssh-server

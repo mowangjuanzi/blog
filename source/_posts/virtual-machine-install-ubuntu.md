@@ -2,6 +2,12 @@
 title: 虚拟机安装ubuntu
 date: 2018-01-02 12:00:25
 tags:
+- ubuntu
+- openssh
+- apt
+categories:
+- 操作系统
+- ubuntu
 ---
 公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。
 

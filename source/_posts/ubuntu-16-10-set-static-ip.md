@@ -2,6 +2,12 @@
 title: ubuntu 16.10 设置固定ip
 date: 2017-11-17 16:31:57
 tags:
+- ubuntu
+- static ip
+- network
+categories:
+- 操作系统
+- ubuntu
 ---
 > 最新版可参考：{% post_link ubuntu-set-static-ip %}
 

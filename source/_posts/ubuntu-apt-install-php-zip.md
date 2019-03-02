@@ -2,6 +2,12 @@
 title: ubuntu安装php-zip扩展失败
 date: 2018-10-10 23:10:25
 tags:
+- ubuntu
+- php
+- php-zip
+categories:
+- 编程语言
+- php
 ---
 我在安装php-zip扩展的时候提示以下错误消息：
 

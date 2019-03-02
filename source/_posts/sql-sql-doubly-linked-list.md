@@ -2,6 +2,12 @@
 title: SPL标准库之SplDoublyLinkedList（双向链表）
 date: 2017-11-17 16:28:13
 tags:
+- php
+- sql
+- SplDoublyLinkedList
+categories:
+- 编程语言
+- php
 ---
 双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。
 

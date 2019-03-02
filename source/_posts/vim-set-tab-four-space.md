@@ -2,6 +2,10 @@
 title: vim设置tab为四个空格
 date: 2018-01-06 00:06:08
 tags:
+- vim
+categories:
+- 工具
+- vim
 ---
 其实非常简单。
 

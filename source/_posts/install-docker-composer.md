@@ -2,6 +2,11 @@
 title: docker-compose安装
 date: 2018-11-11 21:49:51
 tags:
+- docker-compose
+- docker
+categories:
+- 工具
+- docker
 ---
 在安装docker-compose之前必须先检查是否已经安装好了docker。具体安装教程可阅读 {% post_link docker-study-notes-1-install %}。
 

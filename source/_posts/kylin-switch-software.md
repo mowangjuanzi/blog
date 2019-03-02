@@ -2,6 +2,13 @@
 title: 我的电脑系统换成了linux之系统选择和软件安装篇
 date: 2017-11-25 09:41:21
 tags:
+- ubuntu
+- phpstorm
+- sublime text
+- simplenote
+categories:
+- 操作系统
+- ubuntu
 ---
 我在公司的时候，无意中安装的优麒麟，觉得UI还是比较不错的，而且字体的显示我还是比较喜欢的。正好我也想尝试将我的电脑系统换成了linux，朋友说我这种行为就是在作死，还说祝我好运。嘿嘿，死不了的。
 

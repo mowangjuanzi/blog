@@ -2,6 +2,11 @@
 title: centos修改文件的最大打开数量
 date: 2017-11-17 16:32:39
 tags:
+- centos
+- limit
+categories:
+- 操作系统
+- centos
 ---
 我的系统是`CentOS`。
 
