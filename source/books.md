@@ -5,10 +5,11 @@ tags:
 ---
 ## 正在读的书
 
-- 暂无
+- [C语言程序设计现代方法第二版](https://book.douban.com/subject/4279678/)
 
 ## 读过的书
 
+- [枪与玫瑰的使用方法](https://book.douban.com/subject/25775846/)
 - [李叔同说佛](https://book.douban.com/subject/25985871/)
 - [中国脂肪肝防治指南](https://book.douban.com/subject/30345093/)
 - [图解HTTP](https://book.douban.com/subject/25863515/)

@@ -138,7 +138,7 @@ exturl: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /readme.html || user
+  about: /about.html || user
   books: /books.html || book
   #tags: /tags/ || tags
   #categories: /categories/ || th
