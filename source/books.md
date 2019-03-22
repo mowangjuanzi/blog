@@ -9,6 +9,7 @@ tags:
 
 ## 读过的书
 
+- [活着](https://book.douban.com/subject/4913064/)
 - [枪与玫瑰的使用方法](https://book.douban.com/subject/25775846/)
 - [李叔同说佛](https://book.douban.com/subject/25985871/)
 - [中国脂肪肝防治指南](https://book.douban.com/subject/30345093/)
