@@ -6,15 +6,9 @@
   opacity: $b2t-opacity;
   cursor: pointer;
   text-align: center;
-  -webkit-transform: translateZ(0);
-    &:hover { opacity: 0.8; }
+  &:hover { opacity: $b2t-opacity-hover; }
 
-  +tablet() {
-    fixbutton() if hexo-config('sidebar.onmobile');
-    hide() if not hexo-config('sidebar.onmobile');
-  }
-  +mobile() {
-    fixbutton() if hexo-config('sidebar.onmobile');
+  +tablet-mobile() {
     hide() if not hexo-config('sidebar.onmobile');
   }
 

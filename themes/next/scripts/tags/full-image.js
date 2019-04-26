@@ -1,5 +1,5 @@
 /**
- * full-image.js | https://theme-next.org/docs/tag-plugins/full-image/
+ * full-image.js | https://theme-next.org/docs/tag-plugins/full-image
  */
 
 /* global hexo */
@@ -28,5 +28,5 @@ function fullImage(args) {
   return image.join(' ');
 }
 
-hexo.extend.tag.register('fullimage', fullImage, { ends: false });
-hexo.extend.tag.register('fi', fullImage, { ends: false });
+hexo.extend.tag.register('fullimage', fullImage, {ends: false});
+hexo.extend.tag.register('fi', fullImage, {ends: false});

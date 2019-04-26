@@ -1,5 +1,5 @@
 /**
- * button.js | https://theme-next.org/docs/tag-plugins/button/
+ * button.js | https://theme-next.org/docs/tag-plugins/button
  */
 
 /* global hexo */
@@ -31,5 +31,5 @@ function postButton(args) {
   return result.join('');
 }
 
-hexo.extend.tag.register('button', postButton, { ends: false });
-hexo.extend.tag.register('btn', postButton, { ends: false });
+hexo.extend.tag.register('button', postButton, {ends: false});
+hexo.extend.tag.register('btn', postButton, {ends: false});
