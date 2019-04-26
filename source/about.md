@@ -15,7 +15,7 @@ tags:
 
 ## 关注博客
 
-本博客由Hexo生成。暂时不支持评论，如有问题可到Github提issue。
+本博客由Hexo生成。评论由 Disqus 支持（如果不翻墙，可能看不到评论框），如有问题可到Github提issue。
 
 Github地址：https://github.com/mowangjuanzi/blog
 
@@ -25,4 +25,4 @@ SegmentFault: https://segmentfault.com/u/jzdmwjz
 
 GitHub: https://github.com/mowangjuanzi
 
-电子邮箱: baoguoxiao0538@hotmail.com
+电子邮箱: [baoguoxiao0538@hotmail.com](mailto:baoguoxiao0538@hotmail.com)
