@@ -9,6 +9,7 @@ tags:
 
 ## 读过的书
 
+- [局外人](https://book.douban.com/subject/30468519/)
 - [活着](https://book.douban.com/subject/4913064/)
 - [枪与玫瑰的使用方法](https://book.douban.com/subject/25775846/)
 - [李叔同说佛](https://book.douban.com/subject/25985871/)
