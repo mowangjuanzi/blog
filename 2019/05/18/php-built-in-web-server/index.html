@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言PHP从5.4开始，就提供了一个内置的web服务器。 这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。 基础应用首先我们假定项目目录是/home/baoguoxiao/www/php/demo，外界可访问的目录是/home/baoguoxiao/www/php/demo/public。然后访问的端口是8000，入口文件是index.php和index.htm">
+<meta name="keywords" content="php,web server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP之内置web服务器">
+<meta property="og:url" content="http://www.baoguoxiao.com/2019/05/18/php-built-in-web-server/index.html">
+<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:description" content="前言PHP从5.4开始，就提供了一个内置的web服务器。 这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。 基础应用首先我们假定项目目录是/home/baoguoxiao/www/php/demo，外界可访问的目录是/home/baoguoxiao/www/php/demo/public。然后访问的端口是8000，入口文件是index.php和index.htm">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-23T08:24:43.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP之内置web服务器">
+<meta name="twitter:description" content="前言PHP从5.4开始，就提供了一个内置的web服务器。 这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。 基础应用首先我们假定项目目录是/home/baoguoxiao/www/php/demo，外界可访问的目录是/home/baoguoxiao/www/php/demo/public。然后访问的端口是8000，入口文件是index.php和index.htm">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.baoguoxiao.com/2019/05/18/php-built-in-web-server/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PHP之内置web服务器 | 魔王卷子的博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魔王卷子的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books.html" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>books</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/05/18/php-built-in-web-server/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHP之内置web服务器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-18 16:20:49" itemprop="dateCreated datePublished" datetime="2019-05-18T16:20:49+08:00">2019-05-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-23 16:24:43" itemprop="dateModified" datetime="2019-05-23T16:24:43+08:00">2019-05-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/18/php-built-in-web-server/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/18/php-built-in-web-server/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP从5.4开始，就提供了一个内置的web服务器。</p>
+<p>这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。</p>
+<h2 id="基础应用"><a href="#基础应用" class="headerlink" title="基础应用"></a>基础应用</h2><p>首先我们假定项目目录是<code>/home/baoguoxiao/www/php/demo</code>，外界可访问的目录是<code>/home/baoguoxiao/www/php/demo/public</code>。然后访问的端口是<code>8000</code>，入口文件是<code>index.php</code>和<code>index.html</code>。那么我们可以执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo/public</span><br><span class="line">php -S localhost:8000</span><br></pre></td></tr></table></figure>
+<p>然后这个时候就可以正常访问了。</p>
+<p>那么现在有个问题，就是难道每次必须要进入<code>public</code>文件夹才能启动web服务器吗，其实我们可以指定根目录的，那么可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo</span><br><span class="line">php -S localhost:8000 -t public/</span><br></pre></td></tr></table></figure>
+<p>那么现在有一个问题就是说，如果我们使用了单入口，而且还是用了PATHINFO模式。那么上面的可能就有问题了。</p>
+<p>对此，我们可以使用如下方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo</span><br><span class="line">php -S localhost:8000 router.php</span><br></pre></td></tr></table></figure>
+<p>router.php 文件的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对URL进行解析，并获取请求的文件名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$uri = urldecode(parse_url($_SERVER[<span class="string">"REQUEST_URI"</span>], PHP_URL_PATH));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否存在该文件，如果不存在，则直接继续加载入口文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> ($uri !== <span class="string">"/"</span> &amp;&amp; file_exists(<span class="keyword">__DIR__</span> . <span class="string">"$uri"</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载入口文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"./index.php"</span>;</span><br></pre></td></tr></table></figure>
+<p>通过这个路由文件，我们就可以支持目前常用的开发情况了。</p>
+<h2 id="框架参考"><a href="#框架参考" class="headerlink" title="框架参考"></a>框架参考</h2><p>上面的方式是我们自己的实现，那么我们也可以看看相关知名框架的实现方法。</p>
+<p>比如 Laravel 和 Symfony。</p>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><p>在Laravel中的<a href="https://laravel.com/docs/5.8/installation#installing-laravel" target="_blank" rel="noopener">安装</a>一节中介绍了一个命令可以使用PHP内置web服务器实现外部访问的命令。实现的命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan serve</span><br></pre></td></tr></table></figure>
+<p>我们可以看一下相关代码：</p>
+<p>具体的文件路径为：vendor/laravel/framework/src/Illuminate/Foundation/Console/ServeCommand.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 执行命令.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> int</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> \Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 切换路径到 public 目录</span></span><br><span class="line">    chdir(public_path());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在命令台进行输出相关内容</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;line(<span class="string">"&lt;info&gt;Laravel development server started:&lt;/info&gt; &lt;http://&#123;$this-&gt;host()&#125;:&#123;$this-&gt;port()&#125;&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行外部程序，并且 $status 为系统的返回状态</span></span><br><span class="line">    passthru(<span class="keyword">$this</span>-&gt;serverCommand(), $status);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// $status 为0 表示执行正常, 为其他大于0的数字表示出现了错误，有可能是端口被抢占了，这个时候就会接着判断是否进行再次尝试</span></span><br><span class="line">    <span class="keyword">if</span> ($status &amp;&amp; <span class="keyword">$this</span>-&gt;canTryAnotherPort()) &#123;</span><br><span class="line">        <span class="comment">// 对绑定的端口号加1 默认是8000, 如果失败则重试端口号为8001，再次失败重试端口号为8002，以此类推。</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;portOffset += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 再次调用此程序</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;handle();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回状态值</span></span><br><span class="line">    <span class="keyword">return</span> $status;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取完整的 server 命令.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">serverCommand</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sprintf(<span class="string">'%s -S %s:%s %s'</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取PHP可执行命令的路径</span></span><br><span class="line">        ProcessUtils::escapeArgument((<span class="keyword">new</span> PhpExecutableFinder)-&gt;find(<span class="keyword">false</span>)),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取需要绑定的host</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;host(),</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取需要绑定的端口</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;port(),</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对需要执行的参数进行转义处理。这里的 server 就是我们之前说的路由文件，它在项目的根路径下</span></span><br><span class="line">        ProcessUtils::escapeArgument(base_path(<span class="string">'server.php'</span>))</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对上面的命令进行翻译一下，实际上就是执行的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./public</span><br><span class="line">php -S 0.0.0.0:8000 ../server.php</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>note:</p>
+<p>这里我们可以看到一个区别就是之前我自己写的代码，host 都是 localhost, 但是这里写的是 0.0.0.0。这两个有什么区别呢？</p>
+<p>其实区别很简单，比如我之前写的 localhost 绑定的ip 是 127.0.0.1, 这个相当于一个回环地址，那么我们就只允许本机的IP进行访问。而 0.0.0.0，则表示我们对ip不进行限制，所有的IP都可以进行访问。</p>
+</blockquote>
+<p>那我们接着再来看看项目根目录下面的<code>server.php</code>:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Laravel - A PHP Framework For Web Artisans</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@package</span>  Laravel</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>   Taylor Otwell &lt;taylor<span class="doctag">@laravel</span>.com&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">$uri = urldecode(</span><br><span class="line">    parse_url($_SERVER[<span class="string">'REQUEST_URI'</span>], PHP_URL_PATH)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个文件允许我们从内置 PHP web 服务器中模拟 Apache 的 "mod_rewrite" 功能.</span></span><br><span class="line"><span class="comment">// 这提供了一种测试 Laravel 应用程序的便捷方法,</span></span><br><span class="line"><span class="comment">// 而无需在此安装"真正的" web 服务器软件。</span></span><br><span class="line"><span class="keyword">if</span> ($uri !== <span class="string">'/'</span> &amp;&amp; file_exists(<span class="keyword">__DIR__</span>.<span class="string">'/public'</span>.$uri)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span>.<span class="string">'/public/index.php'</span>;</span><br></pre></td></tr></table></figure>
+<p>发现跟我之前写的路由文件相同。没错，我就是从这里抄过来的。</p>
+<p>基本上 Larvel 的实现方法就是这样了。</p>
+<h3 id="Symfony"><a href="#Symfony" class="headerlink" title="Symfony"></a>Symfony</h3><p>如果你在使用 Symfony 框架话，发现Symfony有一个组件叫做<a href="https://github.com/symfony/web-server-bundle" target="_blank" rel="noopener">web-server-bundle</a>，这个组件的作用跟Laravel相同，也是不借助web服务器，实现通过浏览器访问应用程序。</p>
+<p>基本的操作可以参考<a href="https://symfony.com/doc/current/setup/built_in_web_server.html" target="_blank" rel="noopener">该页面</a></p>
+<p>我在这里主要说一下Symfony是如何实现的.</p>
+<p>在Symfony中有一段代码是这样的:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span><span class="params">(WebServerConfig $config, $pidFile = null)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 获取默认的PID文件位置</span></span><br><span class="line">    $pidFile = $pidFile ?: <span class="keyword">$this</span>-&gt;getDefaultPidFile();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否在运行，如果运行则提示已经在监听了</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;isRunning($pidFile)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(sprintf(<span class="string">'A process is already listening on http://%s.'</span>, $config-&gt;getAddress()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fork了一个子进程，如果成功，会有两个进程进行同时执行下面的文件，父进程，也就是当前执行的进程会返回子进程的PID，而子进程则返回的PID为0，</span></span><br><span class="line">    <span class="comment">// 如果失败，则子进程不会创建，并且父进程会返回的pid为-1。更多内容可查看 https://www.php.net/manual/zh/function.pcntl-fork.php</span></span><br><span class="line">    $pid = pcntl_fork();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 表示fork进程失败</span></span><br><span class="line">    <span class="keyword">if</span> ($pid &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to start the server process.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 进入这个判断，表示执行的是父进程，表示不用继续向下执行</span></span><br><span class="line">    <span class="keyword">if</span> ($pid &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::STARTED;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从此往后是子进程运行，首先通过 posix_setsid 变为守护进程，意思是使其脱离终端的管理，自立门户，谁也没办法管理这个进程，除了PID。</span></span><br><span class="line">    <span class="keyword">if</span> (posix_setsid() &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to set the child process as session leader.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建命令，命令类似Laravel，不过这里的路由文件跟Laravel类似。也是处理加载规则，并加载入口文件。具体的router.php 路径为：</span></span><br><span class="line">    <span class="comment">// vendor\symfony\web-server-bundle/Resources/router.php</span></span><br><span class="line">    <span class="comment">// 下面是禁用输出并且开始运行</span></span><br><span class="line">    $process = <span class="keyword">$this</span>-&gt;createServerProcess($config);</span><br><span class="line">    $process-&gt;disableOutput();</span><br><span class="line">    $process-&gt;start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否运行成功</span></span><br><span class="line">    <span class="keyword">if</span> (!$process-&gt;isRunning()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to start the server process.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 写入PID文件</span></span><br><span class="line">    file_put_contents($pidFile, $config-&gt;getAddress());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检测PID文件，如果PID文件删除了，那么进程就立即退出。</span></span><br><span class="line">    <span class="keyword">while</span> ($process-&gt;isRunning()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!file_exists($pidFile)) &#123;</span><br><span class="line">            $process-&gt;stop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回停止的状态</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>::STOPPED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 启动PHP内置web服务器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> Process The process</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">createServerProcess</span><span class="params">(WebServerConfig $config)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 查找PHP的可执行程序</span></span><br><span class="line">    $finder = <span class="keyword">new</span> PhpExecutableFinder();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">false</span> === $binary = $finder-&gt;find(<span class="keyword">false</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to find the PHP binary.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $xdebugArgs = ini_get(<span class="string">'xdebug.profiler_enable_trigger'</span>) ? [<span class="string">'-dxdebug.profiler_enable_trigger=1'</span>] : [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 实例化PHP要执行的命令 php_path -dvariables_order=EGPCS -S 127.0.0.1:8000 vendor\symfony\web-server-bundle/Resources/router.php</span></span><br><span class="line">    $process = <span class="keyword">new</span> Process(array_merge([$binary], $finder-&gt;findArguments(), $xdebugArgs, [<span class="string">'-dvariables_order=EGPCS'</span>, <span class="string">'-S'</span>, $config-&gt;getAddress(), $config-&gt;getRouter()]));</span><br><span class="line">    <span class="comment">// 设置工作目录</span></span><br><span class="line">    $process-&gt;setWorkingDirectory($config-&gt;getDocumentRoot());</span><br><span class="line">    <span class="comment">// 设置超时时间</span></span><br><span class="line">    $process-&gt;setTimeout(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置环境变量</span></span><br><span class="line">    <span class="keyword">if</span> (\in_array(<span class="string">'APP_ENV'</span>, explode(<span class="string">','</span>, getenv(<span class="string">'SYMFONY_DOTENV_VARS'</span>)))) &#123;</span><br><span class="line">        $process-&gt;setEnv([<span class="string">'APP_ENV'</span> =&gt; <span class="keyword">false</span>]);</span><br><span class="line">        $process-&gt;inheritEnvironmentVariables();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回相关变量</span></span><br><span class="line">    <span class="keyword">return</span> $process;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我在上面的代码中进行了注释, 描述了Symfony是如何启动的.</p>
+<p>里面有一个问题就是使用<a href="https://www.php.net/manual/zh/function.pcntl-fork.php" target="_blank" rel="noopener"><code>pcntl_fork</code></a>, 该扩展在Windows中是不受支持的. 所以 Symfony框架会提示使用<code>php bin/console server:run</code>命令运行程序.</p>
+<h2 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h2><p>其实还有一个方式, 就是 Workman 是通过自身的实现的web服务器，它并没有借助<code>php -S</code>命令。这一块的代码我还没有吃透，并且我觉得这个也可以单独拎几章出来讲。希望以后有这个机会。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过我们学习 PHP 命令实现web服务器访问以及对 Laravel 和 Symfony 框架的分析, 让我了解到在Windows的开发过程中,我们完全可以借助该方式来摆脱对web服务器的依赖.既能方便我们在Windows环境进行开发并且学习了PHP一个技巧.感觉挺好的.</p>
+<p>大家如果对此有什么疑问可以评论进行交流.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.php.net/manual/zh/features.commandline.webserver.php" target="_blank" rel="noopener">PHP: 内置Web Server - Manual </a></li>
+<li><a href="https://laravel.com/" target="_blank" rel="noopener">Laravel</a></li>
+<li><a href="https://symfony.com/doc/current/setup/built_in_web_server.html" target="_blank" rel="noopener">How to Use PHP’s built-in Web Server</a></li>
+<li><a href="https://www.php.net/manual/zh/function.pcntl-fork.php" target="_blank" rel="noopener">PHP: pcntl_fork - Manual</a></li>
+<li><a href="https://www.php.net/manual/zh/function.posix-setsid.php" target="_blank" rel="noopener">PHP: posix_setsid - Manual</a></li>
+</ul>
+<h2 id="newest"><a href="#newest" class="headerlink" title="newest"></a>newest</h2><p>我的博客即将同步至腾讯云+社区，邀请大家一同入驻：<a href="https://cloud.tencent.com/developer/support-plan?invite_code=3bt9syk6vlics" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3bt9syk6vlics</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/web-server/" rel="tag"># web server</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/nginx-statistics-request-time/" rel="next" title="nginx 自定义日志记录请求时间">
+                <i class="fa fa-chevron-left"></i> nginx 自定义日志记录请求时间
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
+            
+              <p class="site-author-name" itemprop="name">魔王卷子</p>
+              <div class="site-description motion-element" itemprop="description">记录我的工作中碰到的坑</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础应用"><span class="nav-number">2.</span> <span class="nav-text">基础应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架参考"><span class="nav-number">3.</span> <span class="nav-text">框架参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laravel"><span class="nav-number">3.1.</span> <span class="nav-text">Laravel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symfony"><span class="nav-number">3.2.</span> <span class="nav-text">Symfony</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来展望"><span class="nav-number">4.</span> <span class="nav-text">未来展望</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newest"><span class="nav-number">7.</span> <span class="nav-text">newest</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://www-baoguoxiao-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://www.baoguoxiao.com/2019/05/18/php-built-in-web-server/";
+    this.page.identifier = "2019/05/18/php-built-in-web-server/";
+    this.page.title = 'PHP之内置web服务器';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

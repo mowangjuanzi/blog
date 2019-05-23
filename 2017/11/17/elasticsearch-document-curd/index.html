@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简介Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。 它存储的文档格式是JSON格式的。比如： 1234567891011&amp;#123;    &quot;email&quot;:      &quot;john@smith.com&quot;,    &quot;first_name&quot;: &quot;Jo">
+<meta name="keywords" content="elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch 教程（3）文档CRUD操作">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/elasticsearch-document-curd/index.html">
+<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:description" content="简介Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。 它存储的文档格式是JSON格式的。比如： 1234567891011&amp;#123;    &quot;email&quot;:      &quot;john@smith.com&quot;,    &quot;first_name&quot;: &quot;Jo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-21T06:57:23.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch 教程（3）文档CRUD操作">
+<meta name="twitter:description" content="简介Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。 它存储的文档格式是JSON格式的。比如： 1234567891011&amp;#123;    &quot;email&quot;:      &quot;john@smith.com&quot;,    &quot;first_name&quot;: &quot;Jo">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-document-curd/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Elasticsearch 教程（3）文档CRUD操作 | 魔王卷子的博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魔王卷子的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books.html" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>books</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-document-curd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Elasticsearch 教程（3）文档CRUD操作
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:32:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:54+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/elasticsearch-document-curd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-document-curd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。</p>
+<p>它存储的文档格式是JSON格式的。比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"email"</span>:      <span class="string">"john@smith.com"</span>,</span><br><span class="line">    <span class="attr">"first_name"</span>: <span class="string">"John"</span>,</span><br><span class="line">    <span class="attr">"last_name"</span>:  <span class="string">"Smith"</span>,</span><br><span class="line">    <span class="attr">"info"</span>: &#123;</span><br><span class="line">        <span class="attr">"bio"</span>:         <span class="string">"Eco-warrior and defender of the weak"</span>,</span><br><span class="line">        <span class="attr">"age"</span>:         <span class="number">25</span>,</span><br><span class="line">        <span class="attr">"interests"</span>: [ <span class="string">"dolphins"</span>, <span class="string">"whales"</span> ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"join_date"</span>: <span class="string">"2014/05/01"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在Elasticsearch中存储数据的行为就叫做<strong>索引</strong>（<strong>indexing</strong>）。文档属于一种<strong>类型</strong>（<strong>type</strong>），而这些类型存储在<strong>索引</strong>（<strong>index</strong>）中。</p>
+<p>我们可以使用下面这个图来简单解释一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MySQL           -&gt;  Database    -&gt;  Tables      -&gt; Row       -&gt; Columns</span><br><span class="line">MongoDB         -&gt;  Database    -&gt;  Collections -&gt; Documents -&gt; Fields</span><br><span class="line">Elasticsearch   -&gt;  Indices     -&gt;  Types       -&gt; Documents -&gt; Fields</span><br></pre></td></tr></table></figure>
+<p>Elasticsearch集群可以包含多个<strong>索引</strong>(<strong>indices</strong>)（数据库），每一个索引可以包含多个<strong>类型</strong>(<strong>types</strong>)（表），每一个类型包含多个<strong>文档</strong>(<strong>documents</strong>)（行），然后每个文档包含多个<strong>字</strong>段(<strong>Fields</strong>)（列）。</p>
+<blockquote>
+<h3 id="索引-含义的区分"><a href="#索引-含义的区分" class="headerlink" title="[索引]含义的区分"></a>[索引]含义的区分</h3><p>你可能已经注意到<strong>索引</strong>(<strong>index</strong>)这个词在Elasticsearch中有着不同的含义，所以有必要在此做一下区分:</p>
+<ul>
+<li>索引（名词） 如上文所述，一个<strong>索引</strong>(<strong>index</strong>)就像是传统关系数据库中的<strong>数据库</strong>，它是相关文档存储的地方，index的复数是<strong>indices</strong>或<strong>indexes</strong>。</li>
+<li>索引（动词） <strong>「索引一个文档」</strong>表示把一个文档存储到<strong>索引</strong>（<strong>名</strong>词）里，以便它可以被检索或者查询。这很像SQL中的<code>INSERT</code>关键字，差别是，如果文档已经存在，新的文档将覆盖旧的文档。</li>
+<li>倒排索引 传统数据库为特定列增加一个索引，例如B-Tree索引来加速检索。Elasticsearch和Lucene使用一种叫做<strong>倒排索引</strong>(<strong>inverted index</strong>)的数据结构来达到相同目的。</li>
+</ul>
+</blockquote>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h3><p>单个插入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line"></span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, <span class="comment">//索引</span></span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>, <span class="comment">//类型</span></span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">1</span>, <span class="comment">//ID 如果不加，则会自动生成</span></span><br><span class="line">	<span class="string">'body'</span> =&gt; [ <span class="comment">//要添加的数据</span></span><br><span class="line">		<span class="string">'first_name'</span> =&gt; <span class="string">'Join'</span>,</span><br><span class="line">		<span class="string">'last_name'</span> =&gt; <span class="string">'Smith'</span>,</span><br><span class="line">		<span class="string">'age'</span> =&gt; <span class="number">25</span>,</span><br><span class="line">		<span class="string">'about'</span> =&gt; <span class="string">'I love to go rock climbing'</span>,</span><br><span class="line">		<span class="string">'interests'</span> =&gt; [<span class="string">'sports'</span>, <span class="string">'music'</span>],</span><br><span class="line">	]</span><br><span class="line">];</span><br><span class="line">$response = $client-&gt;index($params);</span><br><span class="line">print_r($response);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">1</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [result] =&gt; created</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">    [created] =&gt; <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>就表示已经插入成功了。</p>
+<p>这里的插入的数组中有个字段为<code>id</code>，如果我们不对其进行填写的话，它会自动生成一个<code>id</code>。</p>
+<p>这个自动生成的<code>_id</code>会有22个字符长。我们把它称作<strong>UUIDs</strong>。</p>
+<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><p>下面我们接着插入。我们需要插入同时插入两个：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [];</span><br><span class="line">$params[<span class="string">'body'</span>] = [</span><br><span class="line">	[</span><br><span class="line">		<span class="string">'index'</span> =&gt; [</span><br><span class="line">			<span class="string">'_index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">			<span class="string">'_type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">			<span class="string">'_id'</span> =&gt; <span class="number">2</span></span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">"first_name"</span> =&gt; <span class="string">"Jane"</span>,</span><br><span class="line">	    <span class="string">"last_name"</span> =&gt; <span class="string">"Smith"</span>,</span><br><span class="line">	    <span class="string">"age"</span> =&gt; <span class="number">32</span>,</span><br><span class="line">	    <span class="string">"about"</span> =&gt; <span class="string">"I like to collect rock albums"</span>,</span><br><span class="line">	    <span class="string">"interests"</span> =&gt; [<span class="string">"music"</span>],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">'index'</span> =&gt; [</span><br><span class="line">			<span class="string">'_index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">			<span class="string">'_type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">			<span class="string">'_id'</span> =&gt; <span class="number">3</span></span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">"first_name"</span> =&gt; <span class="string">"Douglas"</span>,</span><br><span class="line">	    <span class="string">"last_name"</span> =&gt; <span class="string">"Fir"</span>,</span><br><span class="line">	    <span class="string">"age"</span> =&gt; <span class="number">35</span>,</span><br><span class="line">	    <span class="string">"about"</span> =&gt; <span class="string">"I like to build cabinets"</span>,</span><br><span class="line">	    <span class="string">"interests"</span> =&gt; [ <span class="string">"forestry"</span> ]</span><br><span class="line">	]</span><br><span class="line">];</span><br><span class="line">$responses = $client-&gt;bulk($params);</span><br><span class="line">print_r($responses);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>显示如下就表示插入成功了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [took] =&gt; <span class="number">217</span></span><br><span class="line">    [errors] =&gt; </span><br><span class="line">    [items] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [index] =&gt; <span class="keyword">Array</span></span><br><span class="line">                        (</span><br><span class="line">                            [_index] =&gt; megacorp</span><br><span class="line">                            [_type] =&gt; employee</span><br><span class="line">                            [_id] =&gt; <span class="number">2</span></span><br><span class="line">                            [_version] =&gt; <span class="number">1</span></span><br><span class="line">                            [result] =&gt; created</span><br><span class="line">                            [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">                                (</span><br><span class="line">                                    [total] =&gt; <span class="number">2</span></span><br><span class="line">                                    [successful] =&gt; <span class="number">1</span></span><br><span class="line">                                    [failed] =&gt; <span class="number">0</span></span><br><span class="line">                                )</span><br><span class="line">                            [created] =&gt; <span class="number">1</span></span><br><span class="line">                            [status] =&gt; <span class="number">201</span></span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [index] =&gt; <span class="keyword">Array</span></span><br><span class="line">                        (</span><br><span class="line">                            [_index] =&gt; megacorp</span><br><span class="line">                            [_type] =&gt; employee</span><br><span class="line">                            [_id] =&gt; <span class="number">3</span></span><br><span class="line">                            [_version] =&gt; <span class="number">1</span></span><br><span class="line">                            [result] =&gt; created</span><br><span class="line">                            [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">                                (</span><br><span class="line">                                    [total] =&gt; <span class="number">2</span></span><br><span class="line">                                    [successful] =&gt; <span class="number">1</span></span><br><span class="line">                                    [failed] =&gt; <span class="number">0</span></span><br><span class="line">                                )</span><br><span class="line">                            [created] =&gt; <span class="number">1</span></span><br><span class="line">                            [status] =&gt; <span class="number">201</span></span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="获取文档"><a href="#获取文档" class="headerlink" title="获取文档"></a>获取文档</h2><p>现在我们尝试获取文档。获取文档可以获取指定文档的全部字段或者指定字段。我们分开来讲解：</p>
+<h3 id="获取单个文档"><a href="#获取单个文档" class="headerlink" title="获取单个文档"></a>获取单个文档</h3><h4 id="获取全部字段"><a href="#获取全部字段" class="headerlink" title="获取全部字段"></a>获取全部字段</h4><p>比如我们现在要获取<code>id=2</code>的文档。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">print_r($client-&gt;get($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行之后输出的结果就是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>这里我们可以看到<code>_source</code>字段包含的就是我们插入的内容。而<code>found</code>字段为<strong>1</strong>表示文档已经找到，如果我们请求一个不存在的文档，也会返回一个json，只不过<code>found</code>就会变成<strong>0</strong>了。</p>
+<h4 id="获取指定字段"><a href="#获取指定字段" class="headerlink" title="获取指定字段"></a>获取指定字段</h4><p>比如我们这里用不到这么多的字段。我们仅仅需要<code>first_name</code>, <code>last_name</code>和<code>age</code>。我们可以这么请求：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'_source'</span> =&gt; [<span class="string">'first_name'</span>, <span class="string">'last_name'</span>, <span class="string">'age'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">print_r($client-&gt;get($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>返回的结果仅仅是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="检查文档是否存在"><a href="#检查文档是否存在" class="headerlink" title="检查文档是否存在"></a>检查文档是否存在</h3><p>如果我们不需要返回指定文档的内容，而仅仅是想知道文档是否存在，我们可以这样：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">var_dump($client-&gt;exists($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>返回的结果不是数组了。而是一个bool值：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(<span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="获取多个文档"><a href="#获取多个文档" class="headerlink" title="获取多个文档"></a>获取多个文档</h3><h4 id="获取全部的字段："><a href="#获取全部的字段：" class="headerlink" title="获取全部的字段："></a>获取全部的字段：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">暂无</span><br></pre></td></tr></table></figure>
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><h2 id="部分文档更新"><a href="#部分文档更新" class="headerlink" title="部分文档更新"></a>部分文档更新</h2><p>此处的更新只适合修改现有字段或者增加新的字段。我们需要在<code>body</code>字段中指定<code>doc</code>字段。<br>比如我说现在要修改<code>id</code>为2的员工。</p>
+<p>首先我们先看看2号员工的信息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>接下来我们要修改它的信息，我们要将他的年龄修改成33，并且增加一个信息，<code>mobile_phone</code>为<code>1234567890</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$response = $client-&gt;update([</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'doc'</span> =&gt; [</span><br><span class="line">			<span class="string">'age'</span> =&gt; <span class="number">33</span>,</span><br><span class="line">			<span class="string">'mobile_phone'</span> =&gt; <span class="string">'1234567890'</span></span><br><span class="line">		]</span><br><span class="line">	]</span><br><span class="line">]);</span><br><span class="line">print_r($response);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [result] =&gt; updated</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>我们再来看一下之前的员工的信息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">33</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">            [mobile_phone] =&gt; <span class="number">1234567890</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="脚本更新文档"><a href="#脚本更新文档" class="headerlink" title="脚本更新文档"></a>脚本更新文档</h3><p>有时候我们需要执行计数器更新，或者向数组中添加新值。我们就可以使用脚本式更新。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'script'</span> =&gt; <span class="string">'ctx._source.interests.add("sports")'</span>;</span><br><span class="line">	]</span><br><span class="line">]; <span class="comment">// 数组中添加新值</span></span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'script'</span> =&gt; <span class="string">'ctx._source.age += 2'</span>;</span><br><span class="line">	]</span><br><span class="line">]; <span class="comment">// 计数器更新</span></span><br></pre></td></tr></table></figure>
+<h3 id="upsert"><a href="#upsert" class="headerlink" title="upsert"></a>upsert</h3><p>upsert 其实是更新或者插入操作，这意味着upsert将尝试更新操作，如果文档不存在，那么将插入默认值。</p>
+<h3 id="更新和冲突"><a href="#更新和冲突" class="headerlink" title="更新和冲突"></a>更新和冲突</h3><p>为了避免更新数据，<code>update</code>API在解锁阶段检索文档当前的<code>_version</code>，然后在重建索引阶段通过<code>index</code>请求提交，如果其它进程在检索和重建索引阶段修改了文档，<code>_version</code>将不能被匹配，然后更新失败。</p>
+<p>对于这种情况，我们只需要重新尝试更新就好了，其实这些我们可以通过<code>retry_on_conflict</code>参数设置重试次数来自动完成，这样<code>update</code>操作将会在发生错误前重试——这个值默认为0。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实<code>update</code>这个操作似乎允许你修改文档的局部，但实际上还是遵循先查后改的过程，步骤如下：</p>
+<ol>
+<li>从旧文档中检索JSON</li>
+<li>修改它</li>
+<li>删除旧文档</li>
+<li>索引新文档</li>
+</ol>
+<p>唯一的不同是<code>update</code>这个操作只需要一个客户端请求就好，不需要<code>get</code>和<code>index</code>请求了。</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>比如我们要删除<code>id</code>为3的员工：</p>
+<p>我们先查询一下这个员工：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">3</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Douglas</span><br><span class="line">            [last_name] =&gt; Fir</span><br><span class="line">            [age] =&gt; <span class="number">35</span></span><br><span class="line">            [about] =&gt; I like to build cabinets</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; forestry</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>下面我们来执行操作：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print_r($client-&gt;delete([</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">3</span>,</span><br><span class="line">]));</span><br></pre></td></tr></table></figure>
+<p>返回结果为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">3</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [result] =&gt; deleted</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>注意看<code>found</code>为1，并且<code>_version</code>相比之前，已经变为2了。</p>
+<p>当我们再次执行一下之前的删除操作，我们再看一下返回结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"found"</span>:<span class="literal">false</span>,<span class="attr">"_index"</span>:<span class="string">"megacorp"</span>,<span class="attr">"_type"</span>:<span class="string">"employee"</span>,<span class="attr">"_id"</span>:<span class="string">"3"</span>,<span class="attr">"_version"</span>:<span class="number">1</span>,<span class="attr">"result"</span>:<span class="string">"not_found"</span>,<span class="attr">"_shards"</span>:&#123;<span class="attr">"total"</span>:<span class="number">2</span>,<span class="attr">"successful"</span>:<span class="number">1</span>,<span class="attr">"failed"</span>:<span class="number">0</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"found"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"_index"</span>: <span class="string">"megacorp"</span>,</span><br><span class="line">  <span class="attr">"_type"</span>: <span class="string">"employee"</span>,</span><br><span class="line">  <span class="attr">"_id"</span>: <span class="string">"3"</span>,</span><br><span class="line">  <span class="attr">"_version"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"result"</span>: <span class="string">"not_found"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span>: &#123;</span><br><span class="line">    <span class="attr">"total"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span>: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除不存在的文档的时候，抛出了一个错误。我们可以看到<code>found</code>的值是<code>false</code>，且<code>_version</code>也有记录值。这是内部记录的一部分，它确保再多节点不同操作可以有正确的顺序。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/17/centos-max-file-open-number/" rel="next" title="centos修改文件的最大打开数量">
+                <i class="fa fa-chevron-left"></i> centos修改文件的最大打开数量
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/17/php-cli-change-font-color/" rel="prev" title="php-cli 改变输出的字体颜色">
+                php-cli 改变输出的字体颜色 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
+            
+              <p class="site-author-name" itemprop="name">魔王卷子</p>
+              <div class="site-description motion-element" itemprop="description">记录我的工作中碰到的坑</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">2.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引-含义的区分"><span class="nav-number">2.1.</span> <span class="nav-text">[索引]含义的区分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入文档"><span class="nav-number">3.1.</span> <span class="nav-text">插入文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量插入"><span class="nav-number">3.2.</span> <span class="nav-text">批量插入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取文档"><span class="nav-number">4.</span> <span class="nav-text">获取文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取单个文档"><span class="nav-number">4.1.</span> <span class="nav-text">获取单个文档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取全部字段"><span class="nav-number">4.1.1.</span> <span class="nav-text">获取全部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取指定字段"><span class="nav-number">4.1.2.</span> <span class="nav-text">获取指定字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查文档是否存在"><span class="nav-number">4.2.</span> <span class="nav-text">检查文档是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取多个文档"><span class="nav-number">4.3.</span> <span class="nav-text">获取多个文档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取全部的字段："><span class="nav-number">4.3.1.</span> <span class="nav-text">获取全部的字段：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新文档"><span class="nav-number">5.</span> <span class="nav-text">更新文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部分文档更新"><span class="nav-number">6.</span> <span class="nav-text">部分文档更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本更新文档"><span class="nav-number">6.1.</span> <span class="nav-text">脚本更新文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upsert"><span class="nav-number">6.2.</span> <span class="nav-text">upsert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新和冲突"><span class="nav-number">6.3.</span> <span class="nav-text">更新和冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">7.</span> <span class="nav-text">删除</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://www-baoguoxiao-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://www.baoguoxiao.com/2017/11/17/elasticsearch-document-curd/";
+    this.page.identifier = "2017/11/17/elasticsearch-document-curd/";
+    this.page.title = 'Elasticsearch 教程（3）文档CRUD操作';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

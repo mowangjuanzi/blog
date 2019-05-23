@@ -1,0 +1,3168 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记录我的工作中碰到的坑">
+<meta property="og:type" content="website">
+<meta property="og:title" content="魔王卷子的博客">
+<meta property="og:url" content="http://www.baoguoxiao.com/page/8/index.html">
+<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:description" content="记录我的工作中碰到的坑">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="魔王卷子的博客">
+<meta name="twitter:description" content="记录我的工作中碰到的坑">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.baoguoxiao.com/page/8/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>魔王卷子的博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魔王卷子的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books.html" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>books</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/php-compile-pdo-mysql/" class="post-title-link" itemprop="url">php编译pdo_mysql扩展记录</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:28:44" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:44+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/php-compile-pdo-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-compile-pdo-mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。</p>
+<p>在编译到pdo_mysql扩展的时候，就搞不定了。</p>
+<p>在进行<code>make</code>操作的时候，出现了如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/mysqlnd.h：没有那个文件或目录</span><br><span class="line"> # include &quot;ext/mysqlnd/mysqlnd.h&quot;</span><br><span class="line">                                  ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<h2 id="这是走的弯路"><a href="#这是走的弯路" class="headerlink" title="这是走的弯路"></a>这是走的弯路</h2><p>我以为是mysqlnd没有编译，我接着去编译mysqlnd扩展了。</p>
+<p>然后在<code>./configure</code>的时候，结果又提示我：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL&apos;s &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+<p>我以为是openssl-devel没有安装，我接着安装openssl-devel:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# yum install openssl openssl-devel</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.bit.edu.cn</span><br><span class="line"> * epel: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * extras: mirror.bit.edu.cn</span><br><span class="line"> * updates: mirror.bit.edu.cn</span><br><span class="line">软件包 1:openssl-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">软件包 1:openssl-devel-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">无须任何处理</span><br></pre></td></tr></table></figure>
+<p>结果提示我已经安装了，那我强行指定路径吧：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# ./configure --with-openssl=/usr/include/openssl</span><br><span class="line">configure: WARNING: unrecognized options: --with-openssl</span><br><span class="line">checking for grep that handles long lines and -e... /usr/bin/grep</span><br><span class="line">checking for egrep... /usr/bin/grep -E</span><br><span class="line">checking for a sed that does not truncate output... /usr/bin/sed</span><br><span class="line">checking for cc... cc</span><br><span class="line">checking whether the C compiler works... yes</span><br><span class="line">checking for C compiler default output file name... a.out</span><br><span class="line">checking for suffix of executables... </span><br><span class="line">checking whether we are cross compiling... no</span><br><span class="line">checking for suffix of object files... o</span><br><span class="line">checking whether we are using the GNU C compiler... yes</span><br><span class="line">checking whether cc accepts -g... yes</span><br><span class="line">checking for cc option to accept ISO C89... none needed</span><br><span class="line">checking how to run the C preprocessor... cc -E</span><br><span class="line">checking for icc... no</span><br><span class="line">checking for suncc... no</span><br><span class="line">checking whether cc understands -c and -o together... yes</span><br><span class="line">checking for system library directory... lib</span><br><span class="line">checking if compiler supports -R... no</span><br><span class="line">checking if compiler supports -Wl,-rpath,... yes</span><br><span class="line">checking build system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking host system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking target system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking for PHP prefix... /usr/local/php</span><br><span class="line">checking for PHP includes... -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib</span><br><span class="line">checking for PHP extension directory... /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012</span><br><span class="line">checking for PHP installed headers prefix... /usr/local/php/include/php</span><br><span class="line">checking if debug is enabled... no</span><br><span class="line">checking if zts is enabled... no</span><br><span class="line">checking for re2c... no</span><br><span class="line">configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.</span><br><span class="line">checking for gawk... gawk</span><br><span class="line">checking whether to enable mysqlnd... yes, shared</span><br><span class="line">checking whether to disable compressed protocol support in mysqlnd... yes</span><br><span class="line">checking for the location of libz... no</span><br><span class="line">checking for DSA_get_default_method in -lssl... no</span><br><span class="line">checking for X509_free in -lcrypto... yes</span><br><span class="line">checking for pkg-config... /usr/bin/pkg-config</span><br><span class="line">configure: error: Cannot find OpenSSL's &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+<p>结果还是不行，这下两边路都走不通了，我就去网上查询了。结果还是查询不到什么有用的资料</p>
+<h2 id="转回正道"><a href="#转回正道" class="headerlink" title="转回正道"></a>转回正道</h2><p>我后来想，我直接改源码试试看呢，把<code>include</code>加载文件写成绝对目录。</p>
+<p>说干就干</p>
+<p>我先看看这个报错的地方。</p>
+<p>文件在<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34</strong></p>
+<p>我打开该文件，修改第27行的内容：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+<p>我的源代码的目录是<strong>/usr/local/src/php-7.0.14/</strong>，于是我就改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+<p>我再进行编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">In file included from /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:32:0:</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39: 致命错误：ext/mysqlnd/mysqlnd_debug.h：没有那个文件或目录</span><br><span class="line"><span class="meta"> #</span><span class="bash">include <span class="string">"ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br><span class="line">                                       ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<p>发现有效果，报错的地方变了，我接着改，这里提示报错的地方还是：<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39</strong>，但是行数编程69了，我把69行改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br></pre></td></tr></table></figure>
+<p>继续，发现报错信息又变了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45: 致命错误：ext/mysqlnd/mysqlnd_reverse_api.h：没有那个文件或目录</span><br><span class="line"> #include &quot;ext/mysqlnd/mysqlnd_reverse_api.h&quot;</span><br><span class="line">                                             ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<p>我将文件<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45</strong>改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_reverse_api.h"</span></span></span><br></pre></td></tr></table></figure>
+<p>继续编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/local/src/php-7.0.14/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo </span><br><span class="line">cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so</span><br><span class="line">creating pdo_mysql.la</span><br><span class="line">(cd .libs &amp;&amp; rm -f pdo_mysql.la &amp;&amp; ln -s ../pdo_mysql.la pdo_mysql.la)</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">cp ./.libs/pdo_mysql.so /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.so</span><br><span class="line">cp ./.libs/pdo_mysql.lai /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.la</span><br><span class="line">PATH="$PATH:/sbin" ldconfig -n /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the `-LLIBDIR'</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the `LD_RUN_PATH' environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to `/etc/ld.so.conf'</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don't forget to run 'make test'.</span><br></pre></td></tr></table></figure>
+<p>这样就成功了。接下来我们就可以继续<code>make install</code>进行安装了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make install</span><br><span class="line">Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/</span><br></pre></td></tr></table></figure>
+<p>我们修改一下配置文件，添加下面的内容到配置文件中：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=pdo_mysql.so</span><br></pre></td></tr></table></figure>
+<p>然后我们测试扩展是否安装成功了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# php -m</span><br><span class="line">PHP Warning:  Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br></pre></td></tr></table></figure>
+<p>报错了。看来我们还需要mysqlnd扩展：</p>
+<p>然后还是提示找不到openssl的错误。</p>
+<p>我接着去网上搜了一下。</p>
+<p>还是找不到答案，我查了一下，这个好像是一个bug，一直没有修复。</p>
+<p>解决办法只能是重装php来解决了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/nginx-manager-command/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/nginx-manager-command/" class="post-title-link" itemprop="url">nginx 设置管理命令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:28:36" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:36+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/" itemprop="url" rel="index"><span itemprop="name">web服务器</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/nginx-manager-command/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/nginx-manager-command/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="nginx管理命令："><a href="#nginx管理命令：" class="headerlink" title="nginx管理命令："></a>nginx管理命令：</h2><blockquote>
+<p>我不是生产者，我只是大自然的搬运工。<br>以下脚本来自<a href="https://lnmp.org" target="_blank" rel="noopener">LNMP一键安装包</a>中军哥的一键安装脚本。感谢军哥的辛勤劳动。</p>
+</blockquote>
+<p>首先我们先用<strong>vim</strong>或者<strong>vi</strong>打开<code>/etc/init.d/nginx</code>;</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
+<p>然后按<strong>i</strong>进入编辑模式，将以下内容复制到该文件里面：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> chkconfig: 2345 55 25</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Description: Startup script <span class="keyword">for</span> nginx webserver on Debian. Place <span class="keyword">in</span> /etc/init.d and</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> run <span class="string">'update-rc.d -f nginx defaults'</span>, or use the appropriate <span class="built_in">command</span> on your</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> distro. For CentOS/Redhat run: <span class="string">'chkconfig --add nginx'</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## BEGIN INIT INFO</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Provides:          nginx</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-Start:    <span class="variable">$all</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Required-Stop:     <span class="variable">$all</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Default-Stop:      0 1 6</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Short-Description: starts the nginx web server</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Description:       starts nginx using start-stop-daemon</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## END INIT INFO</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Author:   licess</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> website:  http://lnmp.org</span></span><br><span class="line"></span><br><span class="line">PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line">NAME=nginx</span><br><span class="line">NGINX_BIN=/usr/local/nginx/sbin/$NAME</span><br><span class="line">CONFIGFILE=/usr/local/nginx/conf/$NAME.conf</span><br><span class="line">PIDFILE=/usr/local/nginx/logs/$NAME.pid</span><br><span class="line"></span><br><span class="line">case "$1" in</span><br><span class="line">    start)</span><br><span class="line">        echo -n "Starting $NAME... "</span><br><span class="line"></span><br><span class="line">        if netstat -tnpl | grep -q nginx;then</span><br><span class="line">            echo "$NAME (pid `pidof $NAME`) already running."</span><br><span class="line">            exit 1</span><br><span class="line">        fi</span><br><span class="line"></span><br><span class="line">        $NGINX_BIN -c $CONFIGFILE</span><br><span class="line"></span><br><span class="line">        if [ "$?" != 0 ] ; then</span><br><span class="line">            echo " failed"</span><br><span class="line">            exit 1</span><br><span class="line">        else</span><br><span class="line">            echo " done"</span><br><span class="line">        fi</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    stop)</span><br><span class="line">        echo -n "Stoping $NAME... "</span><br><span class="line"></span><br><span class="line">        if ! netstat -tnpl | grep -q nginx; then</span><br><span class="line">            echo "$NAME is not running."</span><br><span class="line">            exit 1</span><br><span class="line">        fi</span><br><span class="line"></span><br><span class="line">        $NGINX_BIN -s stop</span><br><span class="line"></span><br><span class="line">        if [ "$?" != 0 ] ; then</span><br><span class="line">            echo " failed. Use force-quit"</span><br><span class="line">            exit 1</span><br><span class="line">        else</span><br><span class="line">            echo " done"</span><br><span class="line">        fi</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    status)</span><br><span class="line">        if netstat -tnpl | grep -q nginx; then</span><br><span class="line">            PID=`pidof nginx`</span><br><span class="line">            echo "$NAME (pid $PID) is running..."</span><br><span class="line">        else</span><br><span class="line">            echo "$NAME is stopped"</span><br><span class="line">            exit 0</span><br><span class="line">        fi</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    force-quit)</span><br><span class="line">        echo -n "Terminating $NAME... "</span><br><span class="line"></span><br><span class="line">        if ! netstat -tnpl | grep -q nginx; then</span><br><span class="line">            echo "$NAME is not running."</span><br><span class="line">            exit 1</span><br><span class="line">        fi</span><br><span class="line"></span><br><span class="line">        kill `pidof $NAME`</span><br><span class="line"></span><br><span class="line">        if [ "$?" != 0 ] ; then</span><br><span class="line">            echo " failed"</span><br><span class="line">            exit 1</span><br><span class="line">        else</span><br><span class="line">            echo " done"</span><br><span class="line">        fi</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    restart)</span><br><span class="line">        $0 stop</span><br><span class="line">        sleep 1</span><br><span class="line">        $0 start</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    reload)</span><br><span class="line">        echo -n "Reload service $NAME... "</span><br><span class="line"></span><br><span class="line">        if netstat -tnpl | grep -q nginx; then</span><br><span class="line">            $NGINX_BIN -s reload</span><br><span class="line">            echo " done"</span><br><span class="line">        else</span><br><span class="line">            echo "$NAME is not running, can't reload."</span><br><span class="line">            exit 1</span><br><span class="line">        fi</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    configtest)</span><br><span class="line">        echo -n "Test $NAME configure files... "</span><br><span class="line"></span><br><span class="line">        $NGINX_BIN -t</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    *)</span><br><span class="line">        echo "Usage: $0 &#123;start|stop|force-quit|restart|reload|status|configtest&#125;"</span><br><span class="line">        exit 1</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>然后保存退出。接着执行赋予执行权限命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以执行管理命令了。比如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service nginx start</span><br><span class="line">service nginx stop</span><br></pre></td></tr></table></figure>
+<p>具体我们可以执行<code>service nginx</code>查看。</p>
+<p>我们还可以设置开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig nginx on</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/sql-sql-doubly-linked-list/" class="post-title-link" itemprop="url">SPL标准库之SplDoublyLinkedList（双向链表）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:28:13" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:13+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/sql-sql-doubly-linked-list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/sql-sql-doubly-linked-list/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。</p>
+<p>我们现在就学习一下SPL内置的SplDoublyLinkedList类。</p>
+<p>首先介绍一下这个类都有哪些方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化方法</span></span><br><span class="line">$dll = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾部增加数据,类似array_push()方法</span></span><br><span class="line">$dll-&gt;push($value);</span><br><span class="line"><span class="comment">//开头插入数据,类似array_unshift()方法</span></span><br><span class="line">$dll-&gt;unshift($value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测指定位置是否存在值,类似array_key_exists()方法</span></span><br><span class="line">$dll-&gt;offsetExists($key);</span><br><span class="line"><span class="comment">//获取指定位置的值,类似$dll[$key]</span></span><br><span class="line">$dll-&gt;offsetGet($key);</span><br><span class="line"><span class="comment">//修改指定位置的值,类似$dll[$key] = $value</span></span><br><span class="line">$dll-&gt;offsetSet($key, $value);</span><br><span class="line"><span class="comment">//删除指定位置的值,类似unset($dll[$key])</span></span><br><span class="line">$dll-&gt;offsetUnset($key);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取双向链表中值的数量</span></span><br><span class="line">$dll-&gt;count();</span><br><span class="line"><span class="comment">//检测双向链表是否为空</span></span><br><span class="line">$dll-&gt;isEmpty();</span><br><span class="line"></span><br><span class="line"><span class="comment">//序列化存储,类似serialize()</span></span><br><span class="line">$dll-&gt;serialize();</span><br><span class="line"><span class="comment">//存储反序列化类似unserialize()</span></span><br><span class="line">$dll-&gt;unserialize($str);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置迭代器模式</span></span><br><span class="line">$dll-&gt;setIteratorMode($mode);</span><br><span class="line"><span class="comment">//获取迭代器模式</span></span><br><span class="line">$dll-&gt;getIteratorMode();</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化链表,只有先执行此方法，才能使用操作游标的方法</span></span><br><span class="line">$dll-&gt;rewind();</span><br><span class="line"><span class="comment">//获取当前游标的索引</span></span><br><span class="line">$dll-&gt;key();</span><br><span class="line"><span class="comment">//获取当前游标的值</span></span><br><span class="line">$dll-&gt;current();</span><br><span class="line"><span class="comment">//将游标移动到下一个节点</span></span><br><span class="line">$dll-&gt;next();</span><br><span class="line"><span class="comment">//将游标移动到上一个节点</span></span><br><span class="line">$dll-&gt;prev();</span><br><span class="line"><span class="comment">//检测当前游标后面是否还有节点</span></span><br><span class="line">$dll-&gt;valid();</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回第一个节点的值</span></span><br><span class="line">$dll-&gt;bottom();</span><br><span class="line"><span class="comment">//返回最后一个节点的值</span></span><br><span class="line">$dll-&gt;top();</span><br><span class="line"></span><br><span class="line"><span class="comment">//将双向链表中的最后一个节点弹出,类似array_pop()</span></span><br><span class="line">$dll-&gt;pop();</span><br><span class="line"><span class="comment">//将双向链表中的第一个节点弹出,类似array_shift()</span></span><br><span class="line">$dll-&gt;shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">//在双向链表的指定位置插入值</span></span><br><span class="line">$dll-&gt;add($index, $value);</span><br></pre></td></tr></table></figure>
+<h2 id="Iterator-模式"><a href="#Iterator-模式" class="headerlink" title="Iterator 模式"></a>Iterator 模式</h2><ul>
+<li>迭代的方向：<ul>
+<li><code>SplDoublyLinkedList::IT_MODE_LIFO</code> (堆栈 style)</li>
+<li><code>SplDoublyLinkedList::IT_MODE_FIFO</code> (队列 style)</li>
+</ul>
+</li>
+<li>迭代器的行为<ul>
+<li><code>SplDoublyLinkedList::IT_MODE_DELETE</code> (元素由迭代器删除)</li>
+<li><code>SplDoublyLinkedList::IT_MODE_KEEP</code> (元素由迭代器遍历)</li>
+</ul>
+</li>
+</ul>
+<p>默认模式是：<code>SplDoublyLinkedList::IT_MODE_FIFO | SplDoublyLinkedList::IT_MODE_KEEP</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/elasticsearch-install-centos/" class="post-title-link" itemprop="url">Elasticsearch 教程（1）安装【CentOS版】</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:27:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:54+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/elasticsearch-install-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-install-centos/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/zip-targz.html" target="_blank" rel="noopener">.zip或者.tar.gz安装Elasticsearch</a>。</p>
+<p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br></pre></td></tr></table></figure>
+<h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先编辑<code>/etc/yum.repos.d/elasticsearch.repo</code>文件：</p>
+<p>将以下内容放入到上面打开的文件中：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span><br><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span><br><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">type</span>=rpm-md</span><br></pre></td></tr></table></figure>
+<p><code>:wq</code>保存，然后执行以下安装命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span><br></pre></td></tr></table></figure>
+<p>这样安装就完成了。</p>
+<h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用两种命令方式进行Elasticsearch进行管理</p>
+<h3 id="SysV-init"><a href="#SysV-init" class="headerlink" title="SysV init"></a>SysV <code>init</code></h3><p>设置开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span><br><span class="line">chkconfig elasticsearch on</span><br></pre></td></tr></table></figure>
+<p>启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
+<p>关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span><br></pre></td></tr></table></figure>
+<h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable elasticsearch</span><br></pre></td></tr></table></figure>
+<p>启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
+<p>关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
+<h2 id="记录的日志"><a href="#记录的日志" class="headerlink" title="记录的日志"></a>记录的日志</h2><p>日志消息记录位置是：<strong>/var/log/elasticsearch/</strong>。</p>
+<h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
+<p>然后执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET '127.0.0.1:9200/?pretty'</span><br></pre></td></tr></table></figure>
+<p>如果返回的数据如下所示，即表示安装成功了：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"shcGs0R"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"k71Pk416RB6HTvdh9xuBFA"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"5.1.1"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"5395e21"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2016-12-06T12:36:15.409Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"6.3.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
+</blockquote>
+<h2 id="配置-Elasticsearch"><a href="#配置-Elasticsearch" class="headerlink" title="配置 Elasticsearch"></a>配置 Elasticsearch</h2><p>Elasticsearch 默认情况下从 <strong>/etc/elasticsearch/elasticsearch.yml</strong> 文件中加载它的配置。</p>
+<p>RPM也又一个系统配置文件（<strong>/etc/sysconfig/elasticsearch</strong>），它允许你设置以下参数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ES_USER</td>
+<td style="text-align:center">运行的用户，默认是<strong>elasticsearch</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">ES_GROUP</td>
+<td style="text-align:center">运行的组，默认是<strong>elasticsearch</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">JAVA_HOME</td>
+<td style="text-align:center">设置要使用的自定义Java路径</td>
+</tr>
+<tr>
+<td style="text-align:center">MAX_OPEN_FILES</td>
+<td style="text-align:center">打开文件的最大数量，默认<strong>65536</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">MAX_LOCKED_MEMORY</td>
+<td style="text-align:center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">MAX_MAP_COUNT</td>
+<td style="text-align:center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt" target="_blank" rel="noopener">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">LOG_DIR</td>
+<td style="text-align:center">日志目录，默认为：<strong>/var/log/elasticsearch</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">DATA_DIR</td>
+<td style="text-align:center">数据目录，默认为：<strong>/var/lib/elasticsearch</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">CONF_DIR</td>
+<td style="text-align:center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：<strong>/etc/elasticsearch</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">ES_JAVA_OPTS</td>
+<td style="text-align:center">Any additional JVM system properties you may want to apply.</td>
+</tr>
+<tr>
+<td style="text-align:center">RESTART_ON_UPGRADE</td>
+<td style="text-align:center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="RPM的目录布局"><a href="#RPM的目录布局" class="headerlink" title="RPM的目录布局"></a>RPM的目录布局</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">默认路径</th>
+<th style="text-align:center">设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">home</td>
+<td style="text-align:center">Elasticsearch家目录或者<strong>$ES_HOME</strong></td>
+<td style="text-align:center"><strong>/usr/share/elasticsearch</strong></td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">bin</td>
+<td style="text-align:center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
+<td style="text-align:center"><strong>/usr/share/elasticsearch/bin</strong></td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">conf</td>
+<td style="text-align:center">配置文件，包含<strong>elasticsearch.yml</strong></td>
+<td style="text-align:center"><strong>/etc/elasticsearch</strong></td>
+<td style="text-align:center"><strong>path.conf</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">conf</td>
+<td style="text-align:center">环境变量，包含 heap 大小，文件描述符。</td>
+<td style="text-align:center"><strong>/etc/sysconfig/elasticsearch</strong></td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">data</td>
+<td style="text-align:center">在节点上分配的每个索引/分片的数据文件的位置。可以容纳多个位置。</td>
+<td style="text-align:center"><strong>/var/lib/elasticsearch</strong></td>
+<td style="text-align:center"><strong>path.data</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">logs</td>
+<td style="text-align:center">日志文件位置。</td>
+<td style="text-align:center"><strong>/var/log/elasticsearch</strong></td>
+<td style="text-align:center"><strong>path.logs</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">plugins</td>
+<td style="text-align:center">插件文件位置. 每个插件将包含在一个子目录中.</td>
+<td style="text-align:center"><strong>/usr/share/elasticsearch/plugins</strong></td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">repo</td>
+<td style="text-align:center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
+<td style="text-align:center">Not configured</td>
+<td style="text-align:center"><strong>path.repo</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">script</td>
+<td style="text-align:center">脚本文件的位置。</td>
+<td style="text-align:center"><strong>/etc/elasticsearch/scripts</strong></td>
+<td style="text-align:center"><strong>path.scripts</strong></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-shell-install-php-composer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/centos-shell-install-php-composer/" class="post-title-link" itemprop="url">shell 安装 composer</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:27:26" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:26+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/centos-shell-install-php-composer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/centos-shell-install-php-composer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>安装composer，最好需要有php的软连接。</p>
+<p>先执行一下以下命令查看是否<code>php</code>命令已经软连接好了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@68 ~]# which php</span><br><span class="line">/usr/bin/which: no php in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br></pre></td></tr></table></figure>
+<p>如果是这样，表示并不能直接使用php。我们这个时候需要对<code>php</code>做软连接。</p>
+<p>我的<code>php</code>的路径在<strong>/usr/local/php/bin/php</strong>。所以命令就是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/local/php/bin/php /usr/local/bin/php</span><br></pre></td></tr></table></figure>
+<p>然后我再执行一下开头的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@68 bin]# which php</span><br><span class="line">/usr/local/bin/php</span><br></pre></td></tr></table></figure>
+<p>好了。这样就可以进行安装了。我们仅仅需要下面这一条命令就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer</span><br></pre></td></tr></table></figure>
+<p>当显示如下效果的时候，就表示安装完成了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">All settings correct for using Composer</span><br><span class="line">Downloading...</span><br><span class="line"></span><br><span class="line">Composer (version 1.3.0) successfully installed to: /usr/local/bin/composer</span><br><span class="line">Use it: php /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以使用composer进行类库安装了。</p>
+<h2 id="修改为国内镜像"><a href="#修改为国内镜像" class="headerlink" title="修改为国内镜像"></a>修改为国内镜像</h2><p>全局修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure>
+<h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><ul>
+<li><code>phar &quot;/usr/local/bin/composer&quot; has a broken signature</code> 错误:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PHP Fatal error:  Uncaught exception &apos;PharException&apos; with message &apos;phar &quot;/usr/local/bin/composer&quot; has a broken signature&apos; in /usr/local/bin/composer:23</span><br><span class="line">Stack trace:</span><br><span class="line">#0 /usr/local/bin/composer(23): Phar::mapPhar(&apos;composer.phar&apos;)</span><br><span class="line">#1 &#123;main&#125;</span><br><span class="line">  thrown in /usr/local/bin/composer on line 23</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法</strong>：删除文件包，重新安装。</p>
+<ul>
+<li>php缺失<code>openssl</code>扩展:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Some settings on your machine make Composer unable to work properly.</span><br><span class="line">Make sure that you fix the issues listed below and run this script again:</span><br><span class="line"></span><br><span class="line">The openssl extension is missing, which means that secure HTTPS transfers are impossible.</span><br><span class="line">If possible you should enable it or recompile php with --with-openssl</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法</strong>: PHP安装<code>openssl</code>扩展。</p>
+<ul>
+<li>php缺失<code>zlib</code>扩展:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The zlib extension is not loaded, this can slow down Composer a lot.</span><br><span class="line">If possible, install it or recompile php with --with-zlib</span><br><span class="line"></span><br><span class="line">The php.ini used by your command-line PHP is: /usr/local/php/etc/php.ini</span><br><span class="line">If you can not modify the ini file, you can also run `php -d option=value` to modify ini values on the fly. You can use -d multiple times.</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法</strong>: PHP安装<code>zlib</code>扩展。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-php-sdk/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/elasticsearch-php-sdk/" class="post-title-link" itemprop="url">Elasticsearch（2）PHP驱动</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:27:19" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:19+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/elasticsearch-php-sdk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-php-sdk/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>安装完成composer之后。我们需要安装php的类库来对Elasticsearch进行连接。</p>
+<p>我们现在需要使用的是<a href="https://packagist.org/packages/elasticsearch/elasticsearch" target="_blank" rel="noopener">elasticsearch/elasticsearch</a>。</p>
+<p>比如我们的项目目录在 <strong>/data/project/elastic</strong>。</p>
+<p>我们就可以在这个目录下执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require elasticsearch/elasticsearch</span><br></pre></td></tr></table></figure>
+<p>如果出现如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Using version ^5.0 for elasticsearch/elasticsearch</span><br><span class="line">./composer.json has been updated</span><br><span class="line">Loading composer repositories with package information</span><br><span class="line">Updating dependencies (including require-dev)</span><br><span class="line">Package operations: 5 installs, 0 updates, 0 removals</span><br><span class="line">  - Installing react/promise (v2.5.0) Downloading: 100%         </span><br><span class="line">  - Installing guzzlehttp/streams (3.0.0) Downloading: 100%         </span><br><span class="line">  - Installing guzzlehttp/ringphp (1.1.0) Downloading: 100%         </span><br><span class="line">  - Installing psr/log (1.0.2) Downloading: 100%         </span><br><span class="line">  - Installing elasticsearch/elasticsearch (v5.0.0) Downloading: 100%         </span><br><span class="line">elasticsearch/elasticsearch suggests installing monolog/monolog (Allows for client-level logging and tracing)</span><br><span class="line">Writing lock file</span><br><span class="line">Generating autoload files</span><br></pre></td></tr></table></figure>
+<p>就表示已经安装成功了。</p>
+<p>接下来我们编辑如下文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line"></span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line">$info = $client-&gt;info();</span><br><span class="line">var_dump($info);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后保存为<strong>index.php</strong>。我们可以通过访问该文件来确认是否请求成功了。</p>
+<p>然后我们执行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@68 elastic]# php index.php </span><br><span class="line">array(5) &#123;</span><br><span class="line">  ["name"]=&gt;</span><br><span class="line">  string(7) "ZQZ38Da"</span><br><span class="line">  ["cluster_name"]=&gt;</span><br><span class="line">  string(13) "elasticsearch"</span><br><span class="line">  ["cluster_uuid"]=&gt;</span><br><span class="line">  string(22) "FuPCyv2ZSimGYxAo_nLvpw"</span><br><span class="line">  ["version"]=&gt;</span><br><span class="line">  array(5) &#123;</span><br><span class="line">    ["number"]=&gt;</span><br><span class="line">    string(5) "5.1.1"</span><br><span class="line">    ["build_hash"]=&gt;</span><br><span class="line">    string(7) "5395e21"</span><br><span class="line">    ["build_date"]=&gt;</span><br><span class="line">    string(24) "2016-12-06T12:36:15.409Z"</span><br><span class="line">    ["build_snapshot"]=&gt;</span><br><span class="line">    bool(false)</span><br><span class="line">    ["lucene_version"]=&gt;</span><br><span class="line">    string(5) "6.3.0"</span><br><span class="line">  &#125;</span><br><span class="line">  ["tagline"]=&gt;</span><br><span class="line">  string(20) "You Know, for Search"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就表示我们的驱动已经安装并且连接完成了。</p>
+<blockquote>
+<p>具体的文档我们可点击：<a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/javascript-time-string-to-timestamp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/javascript-time-string-to-timestamp/" class="post-title-link" itemprop="url">记一次js处理时间字符串转为时间戳的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:26:48" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:48+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/javascript-time-string-to-timestamp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/javascript-time-string-to-timestamp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天朋友问我，js应该如何将时间字符串转为时间戳。</p>
+<p>我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    $.extend(&#123;</span><br><span class="line">        myTime: &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 当前时间戳</span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)  </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            CurTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>())/<span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 日期 转换为 Unix时间戳</span></span><br><span class="line"><span class="comment">             * @param &lt;string&gt; 2014-01-01 20:20:20  日期格式              </span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            DateToUnix: <span class="function"><span class="keyword">function</span>(<span class="params">string</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> f = string.split(<span class="string">' '</span>, <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">var</span> d = (f[<span class="number">0</span>] ? f[<span class="number">0</span>] : <span class="string">''</span>).split(<span class="string">'-'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">var</span> t = (f[<span class="number">1</span>] ? f[<span class="number">1</span>] : <span class="string">''</span>).split(<span class="string">':'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        (<span class="built_in">parseInt</span>(d[<span class="number">1</span>], <span class="number">10</span>) || <span class="number">1</span>) - <span class="number">1</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">1</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span></span><br><span class="line">                        )).getTime() / <span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 时间戳转换日期              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt; unixTime    待时间戳(秒)              </span></span><br><span class="line"><span class="comment">             * @param &lt;bool&gt; isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt;  timeZone   时区              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            UnixToDate: <span class="function"><span class="keyword">function</span>(<span class="params">unixTime, isFull, timeZone</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span> (timeZone) == <span class="string">'number'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    unixTime = <span class="built_in">parseInt</span>(unixTime) + <span class="built_in">parseInt</span>(timeZone) * <span class="number">60</span> * <span class="number">60</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(unixTime * <span class="number">1000</span>);</span><br><span class="line">                <span class="keyword">var</span> ymdhis = <span class="string">""</span>;</span><br><span class="line">                ymdhis += time.getUTCFullYear() + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += (time.getUTCMonth()+<span class="number">1</span>) + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += time.getUTCDate();</span><br><span class="line">                <span class="keyword">if</span> (isFull === <span class="literal">true</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ymdhis += <span class="string">" "</span> + time.getUTCHours() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCMinutes() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCSeconds();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ymdhis;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p>看起来就非常的麻烦。于是我想到去官方文档去了一下，还真让我找到了。于是写了这么一个demo，这里我们并不需要将时间戳转化为字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间字符串转化为时间戳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str2time</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (data.length == <span class="number">10</span>) &#123;</span><br><span class="line">		data += <span class="string">' 00:00:00'</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(data);</span><br><span class="line">	<span class="keyword">return</span> (date.getTime() / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这么一个简单的工作就完成了。</p>
+<p>在这里要注意的一个坑就是，注意服务器的时区是否跟浏览器的时区相同，如果不同，那么显示的时间跟服务器就会有几个小时的误差。具体的误差就看差着几个时区了。</p>
+<p>我这里对于这个也是抛砖引玉。</p>
+<p>具体复杂的，可以看看我列出的参考连接。就是在<code>new Date</code>注意看看传入的值就好了。</p>
+<blockquote>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime</a></li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/jquery-form-input-to-object/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/jquery-form-input-to-object/" class="post-title-link" itemprop="url">jq将form 表单数据转为object</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:26:22" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:22+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/jquery-form-input-to-object/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/jquery-form-input-to-object/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我平常上传数据都是使用<code>$(this).serialize()</code>，但是这次我需要使用上传数据的对象。结果这个方法给我转成了字符串。特别不方便。于是找到一个插件。就可以实现，获取的时候，获取到的是对象而不是字符串了。</p>
+<p>首先，我们先加载jquery;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在后面写一个js方法就好了：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">$.fn.serializeObject = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> o = &#123;&#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = <span class="keyword">this</span>.serializeArray();</span></span><br><span class="line"><span class="javascript">    $.each(a, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (o[<span class="keyword">this</span>.name] !== <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (!o[<span class="keyword">this</span>.name].push) &#123;</span></span><br><span class="line"><span class="javascript">                o[<span class="keyword">this</span>.name] = [o[<span class="keyword">this</span>.name]];</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            o[<span class="keyword">this</span>.name].push(<span class="keyword">this</span>.value || <span class="string">''</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            o[<span class="keyword">this</span>.name] = <span class="keyword">this</span>.value || <span class="string">''</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> o;</span></span><br><span class="line"><span class="undefined">&#125;;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样我们直接就可以获取对象了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(form).serializeObject();</span><br></pre></td></tr></table></figure>
+<p>这样我们获取到的数据直接就是对象了。</p>
+<blockquote>
+<p>参考资料：</p>
+</blockquote>
+<ul>
+<li><a href="http://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery" target="_blank" rel="noopener">http://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery</a></li>
+<li><a href="http://www.thinksaas.cn/topics/0/345/345610.html" target="_blank" rel="noopener">http://www.thinksaas.cn/topics/0/345/345610.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/sublime-text-3-install-package-control/" class="post-title-link" itemprop="url">sublime text 3 安装 package control</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:26:17" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:17+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/sublime-text/" itemprop="url" rel="index"><span itemprop="name">sublime text</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/sublime-text-3-install-package-control/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/sublime-text-3-install-package-control/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我使用sublime，想要使用插件，还是得使用它的商店。</p>
+<p>商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。</p>
+<p>我用的是这个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'2915d1851351e5ee549c20394736b442'</span> + <span class="string">'8bc59f460fa1548d1514676163dafc88'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
+<p>结果我执行之后，发现提示这个错误：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error validating download (got df21e130d211cfc94d9b0905775a7c0f1e3d39e33b79698005270310898eea76 instead of <span class="number">2915</span>d1851351e5ee549c20394736b4428bc59f460fa1548d1514676163dafc88), please <span class="keyword">try</span> manual install</span><br></pre></td></tr></table></figure>
+<p>顿时觉得不行了。我觉得我还是得找谷歌，于是我去外国网站，找了一个，嘿嘿，还真安装上了。现提供命令如下：</p>
+<p>sublime3：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
+<p>sublime2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="keyword">None</span>; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by) <span class="keyword">if</span> dh == h <span class="keyword">else</span> <span class="keyword">None</span>; print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
+<p>完毕，收工。</p>
+<p>参考网址：</p>
+<ul>
+<li><a href="https://packagecontrol.io/installation#st2" target="_blank" rel="noopener">https://packagecontrol.io/installation#st2</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/mysql-reset-password/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/mysql-reset-password/" class="post-title-link" itemprop="url">mysql 重置密码</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:25:49" itemprop="dateCreated datePublished" datetime="2017-11-17T16:25:49+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/mysql-reset-password/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/mysql-reset-password/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当我们安装了mysql或者mariadb的时候，一不小心，就把密码给忘记了。这个时候，我们不管怎么尝试密码，都是错误的，都会显示如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]<span class="comment"># mysql -uroot -p</span></span><br><span class="line">Enter password: </span><br><span class="line">ERROR 1045 (28000): Access denied <span class="keyword">for</span> user <span class="string">'root'</span>@<span class="string">'localhost'</span> (using password: YES)</span><br></pre></td></tr></table></figure>
+<p>这个问题特别的头疼。<br>但是如果我们用如下方法就可以迎刃而解了。<br>首先我们先修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<p>然后在<code>mysqld</code>节中增加下面一行代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line">skip-grant-tables # 这个是要加入的内容</span><br></pre></td></tr></table></figure>
+<p>然后重启mysql/mariadb之后，就可以不用密码而直接进去了。<br>这个时候我们就可以执行命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> mysql.user <span class="keyword">SET</span> <span class="keyword">Password</span>=<span class="keyword">PASSWORD</span>(&amp;<span class="comment">#039;your password&amp;#039;) WHERE User=&amp;#039;root&amp;#039;;</span></span><br></pre></td></tr></table></figure>
+<p>这样就把密码给修改了。修改之后。然后我们将<code>my.cnf</code>中的这行注释掉：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br></pre></td></tr></table></figure></p>
+<p>然后重启就可以了。<br>这样就实现了我们mysql/mariadb的重置密码功能了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
+            
+              <p class="site-author-name" itemprop="name">魔王卷子</p>
+              <div class="site-description motion-element" itemprop="description">记录我的工作中碰到的坑</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://www-baoguoxiao-com.disqus.com/count.js" async></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
