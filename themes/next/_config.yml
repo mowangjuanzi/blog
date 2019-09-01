@@ -160,7 +160,7 @@ menu:
   home: / || home
   archives: /archives/ || archive
   books: /books.html || book
-  about: /about.html || user
+  # about: /about.html || user
   #tags: /tags/ || tags
   #categories: /categories/ || th
   #schedule: /schedule/ || calendar
