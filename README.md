@@ -2,6 +2,7 @@
 
 ## 文章
 
+- [2019.10.29 并行请求测试](./posts/2019.10.29-parallel-request-testing.md)
 - [2019.08.07 纪录一次sentry升级历史](./posts/2019.08.07-sentry-upgrade.md)
 - [2019.07.12 Lumen 实现 SQL 监听](./posts/2019.07.12-lumen_listen_sql_logger.md)
 - [2019.05.18 PHP之内置web服务器](./posts/2019.05.18-php_built_in_web_server.md)
