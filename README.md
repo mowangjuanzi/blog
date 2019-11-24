@@ -2,6 +2,7 @@
 
 ## 文章
 
+- [2019.11.24 依托illuminate组件实现数据库迁移(后续)](./posts/2019.11.24-migrate-packagist.md)
 - [2019.11.07 依托illuminate组件实现数据库迁移](./posts/2019.11.07-use-migration-with-illuminate.md)
 - [2019.10.29 并行请求测试](./posts/2019.10.29-parallel-request-testing.md)
 - [2019.08.07 纪录一次sentry升级历史](./posts/2019.08.07-sentry-upgrade.md)
