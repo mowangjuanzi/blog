@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="今天晚上去看服务器，发现数据库的版本是5.7的，看起来挺新的。但是MySQL已经出了8.0了，受不了心中的渴望，所以就直接把源切到8.0新版本了。中国有一些坑，在此记录一下。 升级之后wordpress不能连接，提示Error establishing a database connection原因是mysql在更新之后，因为密码验证规则的修改，导致密码已经变成新版验证的密码了，但是PHP目前并不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.594Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库升级">
 <meta name="twitter:description" content="今天晚上去看服务器，发现数据库的版本是5.7的，看起来挺新的。但是MySQL已经出了8.0了，受不了心中的渴望，所以就直接把源切到8.0新版本了。中国有一些坑，在此记录一下。 升级之后wordpress不能连接，提示Error establishing a database connection原因是mysql在更新之后，因为密码验证规则的修改，导致密码已经变成新版验证的密码了，但是PHP目前并不">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/08/22/upgrade-mysql-to-8-0/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
 
                 
                 
@@ -471,10 +471,12 @@
         <p>今天晚上去看服务器，发现数据库的版本是5.7的，看起来挺新的。但是MySQL已经出了8.0了，受不了心中的渴望，所以就直接把源切到8.0新版本了。中国有一些坑，在此记录一下。</p>
 <h2 id="升级之后wordpress不能连接，提示Error-establishing-a-database-connection"><a href="#升级之后wordpress不能连接，提示Error-establishing-a-database-connection" class="headerlink" title="升级之后wordpress不能连接，提示Error establishing a database connection"></a>升级之后wordpress不能连接，提示Error establishing a database connection</h2><p>原因是mysql在更新之后，因为密码验证规则的修改，导致密码已经变成新版验证的密码了，但是PHP目前并不支持这个新版验证方式。所以解决办法就是使用指定的SQL进行修改密码。修改模式如下:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">'user'</span>@<span class="string">'host'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>这样就可以了，不过执行之后出现了另外一个错误。。。</p>
 <h2 id="执行设置密码SQL出现错误：ERROR-1146-42S02-Table-‘mysql-role-edges’-doesn’t-exist"><a href="#执行设置密码SQL出现错误：ERROR-1146-42S02-Table-‘mysql-role-edges’-doesn’t-exist" class="headerlink" title="执行设置密码SQL出现错误：ERROR 1146 (42S02): Table ‘mysql.role_edges’ doesn’t exist"></a>执行设置密码SQL出现错误：ERROR 1146 (42S02): Table ‘mysql.role_edges’ doesn’t exist</h2><p>原因就是升级数据库之后没有执行<code>mysql_upgrade</code>命令。</p>
 <p>按照如下命令执行一下即可：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_upgrade -uuser -p</span><br></pre></td></tr></table></figure>
+
 <p>执行完成之后，再次执行上面设置密码的命令，这样wordpress就可以正常访问了。</p>
 
       
@@ -491,6 +493,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -514,7 +549,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/19/laravel-run-npm-install-fail/" rel="next" title="Laravel执行npm install失败">
+              <a href="/2018/08/18/laravel-run-npm-install-fail/" rel="next" title="Laravel执行npm install失败">
                 <i class="fa fa-chevron-left"></i> Laravel执行npm install失败
               </a>
             
@@ -524,7 +559,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/08/laravel-input-empty-value-to-null/" rel="prev" title="laravel中表单提交获取字段会将空值转换为null的解决方案">
+              <a href="/2018/09/07/laravel-input-empty-value-to-null/" rel="prev" title="laravel中表单提交获取字段会将空值转换为null的解决方案">
                 laravel中表单提交获取字段会将空值转换为null的解决方案 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -589,7 +624,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -604,7 +639,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -914,9 +949,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -994,7 +1027,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

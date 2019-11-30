@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="前言最近想要统计项目中的请求时间，来判断那些请求响应时间来进行优化对应的代码。 传统办法是使用PHP在项目的入口文件和输出的分别计算时间，然后计算时间差值。但是这种的话，非常麻烦，而且需要修改项目文件，改动较大。如果你对nginx比较了解的话，你就会发现nginx也有统计请求时间的功能，而且配置一下就能实现该功能。 下面就介绍一下nginx统计请求时间的方式。 环境介绍 Linux环境：Ubunt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.572Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 自定义日志记录请求时间">
 <meta name="twitter:description" content="前言最近想要统计项目中的请求时间，来判断那些请求响应时间来进行优化对应的代码。 传统办法是使用PHP在项目的入口文件和输出的分别计算时间，然后计算时间差值。但是这种的话，非常麻烦，而且需要修改项目文件，改动较大。如果你对nginx比较了解的话，你就会发现nginx也有统计请求时间的功能，而且配置一下就能实现该功能。 下面就介绍一下nginx统计请求时间的方式。 环境介绍 Linux环境：Ubunt">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/02/17/nginx-statistics-request-time/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/" itemprop="url" rel="index"><span itemprop="name">web服务器</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web服务器/" itemprop="url" rel="index"><span itemprop="name">web服务器</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web服务器/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
 
                 
                 
@@ -480,6 +480,7 @@
 <h2 id="定义log格式"><a href="#定义log格式" class="headerlink" title="定义log格式"></a>定义log格式</h2><p>对于记录请求时间，那么我们需要定义个log格式，来记录请求的URL以及请求处理时间。</p>
 <p>该定义在<code>/etc/nginx/nginx.conf</code>中：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 注意这一行</span></span><br><span class="line">    <span class="attribute">log_format</span> statistics_time <span class="string">"<span class="variable">$request</span> <span class="variable">$request_time</span>"</span>;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>下面介绍一下这行配置的意义：</p>
 <ul>
 <li><code>log_format</code> 定义nginx log格式的指令</li>
@@ -489,6 +490,7 @@
 </ul>
 <h2 id="定义记录位置"><a href="#定义记录位置" class="headerlink" title="定义记录位置"></a>定义记录位置</h2><p>下面打开<code>/etc/nginx/sites-enabled/pma</code>.</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">root</span> /home/baoguoxiao/code/php/phpmyadmin;</span><br><span class="line">	<span class="attribute">index</span> index.php index.html;</span><br><span class="line">	<span class="attribute">server_name</span> pma.lvh.me;</span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/access_pma.log;</span><br><span class="line">    <span class="attribute">access_log</span> <span class="string">'/var/log/nginx/time_pma.log'</span> statistics_time; <span class="comment"># 注意这行</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">		<span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line">		<span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>下面解释一下这一行的指令：</p>
 <ul>
 <li><code>access_log</code> nginx 设置访客log路径的指令</li>
@@ -497,17 +499,22 @@
 </ul>
 <p>配置好之后，就可以重启nginx，查看效果了。下面就是我查看的日志的部分内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1 0.037</span><br><span class="line">POST /ajax.php HTTP/1.1 0.012</span><br><span class="line">POST /navigation.php?ajax_request=1 HTTP/1.1 0.018</span><br><span class="line">POST /ajax.php HTTP/1.1 0.019</span><br><span class="line">POST /ajax.php HTTP/1.1 0.011</span><br><span class="line">POST /version_check.php HTTP/1.1 0.008</span><br><span class="line">GET /favicon.ico HTTP/1.1 0.000</span><br><span class="line">GET /db_structure.php?server=1&amp;db=mysql&amp;ajax_request=true&amp;ajax_page_request=true&amp;_nocache=1550413689281586612&amp;token=%3B%24*%5DFp%7BVsh%40~8%5D9t HTTP/1.1 0.126</span><br></pre></td></tr></table></figure>
+
 <h2 id="实现按天区分"><a href="#实现按天区分" class="headerlink" title="实现按天区分"></a>实现按天区分</h2><p>如何实现按天分配，网上介绍的方式都太重了。我感觉应该nginx是可以自己实现分天记录日志的。在我的不懈搜索之下，真让我找到了。</p>
 <p>本次修改都是只需要修改一个文件就可以了：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/sites-enabled/pma</span></span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">    if ($time_iso8601 ~ "^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)") &#123;</span><br><span class="line">        <span class="attribute">set</span> <span class="variable">$date</span> <span class="variable">$1</span><span class="variable">$2</span><span class="variable">$3</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/time_pma_<span class="variable">$date</span>.log statistics_time;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>但是在实际运行中并不会出现对应的日志，通过查看<code>error.log</code>可以看到如下错误：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019/02/17 22:33:09 [crit] 54018#54018: *58 open() &quot;/var/log/nginx/time_pma_20190217.log&quot; failed (13: Permission denied) while logging request, client: 192.168.1.230, server: pma.lvh.me, request: &quot;POST /navigation.php?ajax_request=1 HTTP/1.1&quot;, upstream: &quot;fastcgi://unix:/var/run/php/php7.2-fpm.sock&quot;, host: &quot;pma.lvh.me&quot;</span><br></pre></td></tr></table></figure>
+
 <p>通过该日志可以明白是权限的问题导致的该情况。</p>
 <p>所以执行以下命令对文件夹进行赋予权限</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown www-data /var/<span class="built_in">log</span>/nginx -R</span><br></pre></td></tr></table></figure>
+
 <p>这里我的<code>nginx</code>运行的用户是<code>www-data</code>，如果你的<code>nginx</code>用户是<code>www</code>，那么你就要将上面命令中的<code>www-data</code>修改为<code>www</code>再执行。</p>
 <p>这样就可以看到生成的对应文件了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">access.log  access_pma.log  error.log  time_pma_20190217.log  time_pma.log</span><br></pre></td></tr></table></figure>
+
 <h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>下一步思考如何将nginx进行入库，然后实现各种查询和聚合查询。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上面的方式通过nginx的配置可以做很多的事情。今天要多多加强对于nginx配置的了解。这样通过一些简单的配置，可以做更多的事情，从而减轻自己的工作量。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
@@ -531,6 +538,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -629,7 +669,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -644,7 +684,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -954,9 +994,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1034,7 +1072,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

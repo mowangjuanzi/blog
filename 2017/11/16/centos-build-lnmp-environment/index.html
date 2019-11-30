@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -100,11 +100,11 @@
 <meta name="keywords" content="php,nginx,linux,centos,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何搭建LNMP环境【编译版】">
-<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/centos-build-lnmp-environment/index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/16/centos-build-lnmp-environment/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="使用的版本 centos-7.4 nginx-1.12.1 php-7.1.9 mysql-5.7.19   注意：MySQL5.7的安装需要1G的内存！！！否则会安装失败。  安装流程添加用户(添加用户和用户组 www 和 mysql，并且禁止登录)。 www用户主要是用来赋予nginx和php执行权限，mysql主要是赋予给mysql权限，禁止登录是为了防止用户有权限去操作www和mysql，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.559Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何搭建LNMP环境【编译版】">
 <meta name="twitter:description" content="使用的版本 centos-7.4 nginx-1.12.1 php-7.1.9 mysql-5.7.19   注意：MySQL5.7的安装需要1G的内存！！！否则会安装失败。  安装流程添加用户(添加用户和用户组 www 和 mysql，并且禁止登录)。 www用户主要是用来赋予nginx和php执行权限，mysql主要是赋予给mysql权限，禁止登录是为了防止用户有权限去操作www和mysql，">
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/centos-build-lnmp-environment/">
+  <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/16/centos-build-lnmp-environment/">
 
 
 
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-build-lnmp-environment/">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/16/centos-build-lnmp-environment/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
 
                 
                 
@@ -439,8 +439,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/17/centos-build-lnmp-environment/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/centos-build-lnmp-environment/" itemprop="commentCount"></span>
+                <a href="/2017/11/16/centos-build-lnmp-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/16/centos-build-lnmp-environment/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,57 +480,82 @@
 <h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><p>添加用户(添加用户和用户组 www 和 mysql，并且禁止登录)。</p>
 <p>www用户主要是用来赋予nginx和php执行权限，mysql主要是赋予给mysql权限，禁止登录是为了防止用户有权限去操作www和mysql，一切为了安全：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">groupadd www</span><br><span class="line">useradd -s /sbin/nologin -g www www</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -s /sbin/nologin -g mysql mysql</span><br></pre></td></tr></table></figure>
+
 <h3 id="添加预安装包"><a href="#添加预安装包" class="headerlink" title="添加预安装包"></a>添加预安装包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget gcc gcc-c++ pcre-devel openssl-devel libxml2-devel libcurl-devel libjpeg-devel libpng-devel freetype-devel ncurses-devel libicu-devel libxslt-devel autoconf cmake</span><br></pre></td></tr></table></figure>
+
 <p>我一般都会将安装包放到/usr/local/src目录中，所以先执行下面的命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br></pre></td></tr></table></figure>
+
 <p>首先我们先下载必需的安装包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://nginx.org/download/nginx-1.12.1.tar.gz</span><br><span class="line">wget -c http://cn2.php.net/distributions/php-7.1.9.tar.gz</span><br><span class="line">wget -c http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz</span><br></pre></td></tr></table></figure>
+
 <p>安装 nginx</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxf nginx-1.12.1.tar.gz</span><br><span class="line">cd nginx-1.12.1</span><br><span class="line">./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module --with-http_sub_module</span><br><span class="line">make &amp;&amp; make install </span><br><span class="line">cd ../</span><br></pre></td></tr></table></figure>
+
 <p>这样nginx就安装完成了，接下来我们安装PHP：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxf php-7.1.6.tar.gz</span><br><span class="line">cd php-7.1.6</span><br><span class="line">./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --with-config-file-scan-dir=/usr/local/php/conf.d --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/local/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --enable-intl --enable-pcntl --enable-ftp --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --with-gettext --disable-fileinfo --enable-opcache --with-xsl</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">cd ../</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>mcrypt</code>扩展已经过时了大约10年，并且用起来很复杂，所以将在PHP7.1中废弃，并且在PHP7.2中将被从核心代码中移除。所以本次并没有启用<code>mcrypt</code>扩展。</p>
 </blockquote>
 <p>这样php就安装完成了。然后接下来创建软连接：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/local/php/bin/php /usr/local/bin/php</span><br></pre></td></tr></table></figure>
+
 <p>复制php.ini配置文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/src/php-7.1.6/php.ini-production /usr/local/php/etc/php.ini</span><br></pre></td></tr></table></figure>
+
 <p>这时候php就已经安装完成了。接下来就是启用php-fpm服务了。</p>
 <p>首先生成配置文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</span><br><span class="line">mv /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf</span><br></pre></td></tr></table></figure>
+
 <p>启动php-fpm的准备工作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/src/php-7.1.6/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm</span><br><span class="line">chmod +x /etc/init.d/php-fpm</span><br><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
+
 <p>这个时候，使用如下命令就可以启动php-fpm了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm start</span><br></pre></td></tr></table></figure>
+
 <p>启动起来之后，编辑nginx配置文件，实现nginx的代理访问，找到如下代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#location ~ \.php$ &#123;</span></span><br><span class="line"><span class="comment">#   root           html;</span></span><br><span class="line"><span class="comment">#  fastcgi_pass   127.0.0.1:9000;</span></span><br><span class="line"><span class="comment">#  fastcgi_index  index.php;</span></span><br><span class="line"><span class="comment">#  fastcgi_param  SCRIPT_FILENAME  /script$fastcgi_script_name;</span></span><br><span class="line"><span class="comment">#  include        fastcgi_params;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br></pre></td></tr></table></figure>
+
 <p>把前面的#注释符号去掉，把script改成$document_root，第二行 html 改成你的项目路径，这里我设置的<code>/home/www/default</code>，你也可以设置自己喜欢的目录 最终代码如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root           /home/www/default;</span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  /$document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>修改完成之后，先执行nginx配置检测命令，如果没有错误就执行重新加载配置文件的命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -t #配置检测命令</span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload #动态加载配置命令</span><br></pre></td></tr></table></figure>
+
 <p>我们去<code>/home/www/default</code>目录下创建一个php文件。浏览一下是否正常：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>记得对<code>/home/www/default</code>进行赋予 <strong><a href="http://www.www" target="_blank" rel="noopener">www.www</a></strong> 权限:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown www.www /home/www/default -R</span><br></pre></td></tr></table></figure>
+
 <p>如果能正确的显示php的当前信息，就说明我们工作已经完成了一大半了。下面接下来安装mysql：</p>
 <p>mysql5.7.5之后版本都要安装boost包。所以我选择是下载已经自带boost安装包的mysql安装包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mysql-boost-5.7.18.tar.gz</span><br><span class="line">cd mysql-5.7.18/</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8mb4 -DDEFAULT_COLLATION=utf8mb4_general_ci -DWITH_EMBEDDED_SERVER=1 -DENABLED_LOCAL_INFILE=1 -DWITH_BOOST=boost -DENABLE_DOWNLOADS=1</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">chown -R mysql:mysql /usr/local/mysql #对mysql目录进行赋予权限</span><br><span class="line">cd ../</span><br></pre></td></tr></table></figure>
+
 <p>mysql configure 安装参数解释：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-DCMAKE_INSTALL_PREFIX=/usr/local/mysql #指定安装路径</span><br><span class="line">-DDEFAULT_CHARSET=utf8mb4 #默认使用utf8mb4字符</span><br><span class="line">-DDEFAULT_COLLATION=utf8mb4_general_ci #校验字符</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 #安装innodb引擎 </span><br><span class="line">-DWITH_BOOST=boost #指定boost的安装位置</span><br><span class="line">-DENABLE_DOWNLOADS #是否要下载可选的文件。例如，启用此选项（设置为1），cmake将下载谷歌所使用的测试套件运行单元测试。</span><br></pre></td></tr></table></figure>
+
 <p>生成mysql配置文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/mysql/support-files/my-default.cnf /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
 <p>对数据库进行初始化，这个时候初始化的时候，屏幕上会出现初始化的密码，记下来，如果错过了，可以通过查看<code>/root/.mysql_secret</code>来查看之前的初始化密码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/mysql/bin/mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
+
 <p>复制文件mysql.server 可以使用service 命令进行控制</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">service mysql start #启动mysql</span><br></pre></td></tr></table></figure>
+
 <p>登录数据库修改密码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+
 <p>输入密码回车。登录成功后，输入以下字符，来修改密码，比如我要修改密码为<code>root</code>：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> = <span class="keyword">password</span>(<span class="string">'root'</span>);</span><br></pre></td></tr></table></figure>
+
 <p>写一个php程序，来测试mysql是否能否正常连上MySQL：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"mysql:host=127.0.0.1;dbname=sys;port=3306"</span>, <span class="string">'root'</span>, <span class="string">'root'</span>, <span class="keyword">array</span>(PDO::MYSQL_ATTR_INIT_COMMAND =&gt; <span class="string">'set names utf8mb4'</span>, PDO::ATTR_TIMEOUT =&gt; <span class="number">1</span>));</span><br><span class="line">var_dump($pdo);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>如果连接正常。那就表示我们的环境已经搭建完成了。</p>
 
       
@@ -547,6 +572,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -647,7 +705,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -662,7 +720,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -972,9 +1030,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1052,7 +1108,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -1186,8 +1242,8 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://www.baoguoxiao.com/2017/11/17/centos-build-lnmp-environment/";
-    this.page.identifier = "2017/11/17/centos-build-lnmp-environment/";
+    this.page.url = "http://www.baoguoxiao.com/2017/11/16/centos-build-lnmp-environment/";
+    this.page.identifier = "2017/11/16/centos-build-lnmp-environment/";
     this.page.title = '如何搭建LNMP环境【编译版】';
     };
   function loadComments() {

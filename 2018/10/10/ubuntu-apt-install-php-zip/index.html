@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="我在安装php-zip扩展的时候提示以下错误消息： 12345678910111213$ sudo apt install php-zipReading package lists... DoneBuilding dependency tree       Reading state information... DoneSome packages could not be installed.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.591Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu安装php-zip扩展失败">
 <meta name="twitter:description" content="我在安装php-zip扩展的时候提示以下错误消息： 12345678910111213$ sudo apt install php-zipReading package lists... DoneBuilding dependency tree       Reading state information... DoneSome packages could not be installed.">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/10/10/ubuntu-apt-install-php-zip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
 
                 
                 
@@ -470,13 +470,17 @@
       
         <p>我在安装php-zip扩展的时候提示以下错误消息：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Some packages could not be installed. This may mean that you have</span><br><span class="line">requested an impossible situation or <span class="keyword">if</span> you are using the unstable</span><br><span class="line">distribution that some required packages have not yet been created</span><br><span class="line">or been moved out of Incoming.</span><br><span class="line">The following information may <span class="built_in">help</span> to resolve the situation:</span><br><span class="line"></span><br><span class="line">The following packages have unmet dependencies:</span><br><span class="line"> php-zip : Depends: php7.2-zip but it is not going to be installed</span><br><span class="line">E: Unable to correct problems, you have held broken packages.</span><br></pre></td></tr></table></figure>
+
 <p>通过谷歌，发现解决错误的方式很简单。</p>
 <p>首先打开<code>vi /etc/apt/sources.list</code>，然后修改里面的内容如下所示：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-security main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-updates main universe</span><br></pre></td></tr></table></figure>
+
 <p>执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
 <p>然后执行安装命令就好了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">The following additional packages will be installed:</span><br><span class="line">  libzip4 php7.2-zip</span><br><span class="line">The following NEW packages will be installed:</span><br><span class="line">  libzip4 php-zip php7.2-zip</span><br><span class="line">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span><br><span class="line">Need to get 63.9 kB of archives.</span><br><span class="line">After this operation, 204 kB of additional disk space will be used.</span><br><span class="line">Do you want to <span class="built_in">continue</span>? [Y/n] y</span><br><span class="line">Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libzip4 amd64 1.1.2-1.1 [37.8 kB]</span><br><span class="line">Get:2 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php7.2-zip amd64 7.2.10-1+ubuntu18.04.1+deb.sury.org+1 [20.3 kB]</span><br><span class="line">Get:3 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php-zip all 1:7.2+62+ubuntu18.04.1+deb.sury.org+3 [5,840 B]</span><br><span class="line">Fetched 63.9 kB <span class="keyword">in</span> 2s (39.4 kB/s)   </span><br><span class="line">Selecting previously unselected package libzip4:amd64.</span><br><span class="line">(Reading database ... 102709 files and directories currently installed.)</span><br><span class="line">Preparing to unpack .../libzip4_1.1.2-1.1_amd64.deb ...</span><br><span class="line">Unpacking libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Selecting previously unselected package php7.2-zip.</span><br><span class="line">Preparing to unpack .../php7.2-zip_7.2.10-1+ubuntu18.04.1+deb.sury.org+1_amd64.deb ...</span><br><span class="line">Unpacking php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Selecting previously unselected package php-zip.</span><br><span class="line">Preparing to unpack .../php-zip_1%3a7.2+62+ubuntu18.04.1+deb.sury.org+3_all.deb ...</span><br><span class="line">Unpacking php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Setting up libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span><br><span class="line">Setting up php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line"></span><br><span class="line">Creating config file /etc/php/7.2/mods-available/zip.ini with new version</span><br><span class="line">Setting up php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br></pre></td></tr></table></figure>
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring" target="_blank" rel="noopener">https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring</a></li>
 </ul>
@@ -495,6 +499,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -595,7 +632,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -610,7 +647,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -920,9 +957,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1000,7 +1035,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

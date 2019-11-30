@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="启动命令首先先看看我的mysite.ini文件内容: 1234567891011[uwsgi]chdir=/data/custom/mysitemodule=mysite.wsgi:applicationmaster=Truepidfile=/tmp/project-mysite.pidvacuum=Truemax-requests=5000#daemonize=/var/log/uwsgi/pr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.595Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="uwsgi 命令管理">
 <meta name="twitter:description" content="启动命令首先先看看我的mysite.ini文件内容: 1234567891011[uwsgi]chdir=/data/custom/mysitemodule=mysite.wsgi:applicationmaster=Truepidfile=/tmp/project-mysite.pidvacuum=Truemax-requests=5000#daemonize=/var/log/uwsgi/pr">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/uwsgi-command-manager/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -470,17 +470,21 @@
       
         <h2 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h2><p>首先先看看我的<code>mysite.ini</code>文件内容:</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/data/custom/mysite</span><br><span class="line"><span class="attr">module</span>=mysite.wsgi:application</span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">pidfile</span>=/tmp/project-mysite.pid</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">max-requests</span>=<span class="number">5000</span></span><br><span class="line"><span class="comment">#daemonize=/var/log/uwsgi/project-mysite.log</span></span><br><span class="line"><span class="attr">http</span>=<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8002</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8000</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
 <p>我们主要看<code>pidfile</code>，它指定的位置是：<strong>/tmp/project-mysite.pid</strong></p>
 <p>然后启动命令就是：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini mysite.ini</span><br></pre></td></tr></table></figure>
+
 <h2 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --reload /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
+
 <h2 id="停止命令"><a href="#停止命令" class="headerlink" title="停止命令"></a>停止命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --stop /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>参考：<a href="https://uwsgi-docs.readthedocs.io/en/latest/Management.html" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/Management.html</a></p>
 </blockquote>
@@ -499,6 +503,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -597,7 +634,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -612,7 +649,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -922,9 +959,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1002,7 +1037,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

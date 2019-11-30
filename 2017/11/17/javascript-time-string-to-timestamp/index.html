@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="今天朋友问我，js应该如何将时间字符串转为时间戳。 我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455(function($) &amp;#123;    $.extend(&amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.566Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次js处理时间字符串转为时间戳的问题">
 <meta name="twitter:description" content="今天朋友问我，js应该如何将时间字符串转为时间戳。 我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455(function($) &amp;#123;    $.extend(&amp;#123;">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/javascript-time-string-to-timestamp/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -471,19 +471,21 @@
         <p>今天朋友问我，js应该如何将时间字符串转为时间戳。</p>
 <p>我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    $.extend(&#123;</span><br><span class="line">        myTime: &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 当前时间戳</span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)  </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            CurTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>())/<span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 日期 转换为 Unix时间戳</span></span><br><span class="line"><span class="comment">             * @param &lt;string&gt; 2014-01-01 20:20:20  日期格式              </span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            DateToUnix: <span class="function"><span class="keyword">function</span>(<span class="params">string</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> f = string.split(<span class="string">' '</span>, <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">var</span> d = (f[<span class="number">0</span>] ? f[<span class="number">0</span>] : <span class="string">''</span>).split(<span class="string">'-'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">var</span> t = (f[<span class="number">1</span>] ? f[<span class="number">1</span>] : <span class="string">''</span>).split(<span class="string">':'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        (<span class="built_in">parseInt</span>(d[<span class="number">1</span>], <span class="number">10</span>) || <span class="number">1</span>) - <span class="number">1</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">1</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span></span><br><span class="line">                        )).getTime() / <span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 时间戳转换日期              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt; unixTime    待时间戳(秒)              </span></span><br><span class="line"><span class="comment">             * @param &lt;bool&gt; isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt;  timeZone   时区              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            UnixToDate: <span class="function"><span class="keyword">function</span>(<span class="params">unixTime, isFull, timeZone</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span> (timeZone) == <span class="string">'number'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    unixTime = <span class="built_in">parseInt</span>(unixTime) + <span class="built_in">parseInt</span>(timeZone) * <span class="number">60</span> * <span class="number">60</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(unixTime * <span class="number">1000</span>);</span><br><span class="line">                <span class="keyword">var</span> ymdhis = <span class="string">""</span>;</span><br><span class="line">                ymdhis += time.getUTCFullYear() + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += (time.getUTCMonth()+<span class="number">1</span>) + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += time.getUTCDate();</span><br><span class="line">                <span class="keyword">if</span> (isFull === <span class="literal">true</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ymdhis += <span class="string">" "</span> + time.getUTCHours() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCMinutes() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCSeconds();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ymdhis;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+
 <p>看起来就非常的麻烦。于是我想到去官方文档去了一下，还真让我找到了。于是写了这么一个demo，这里我们并不需要将时间戳转化为字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间字符串转化为时间戳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str2time</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (data.length == <span class="number">10</span>) &#123;</span><br><span class="line">		data += <span class="string">' 00:00:00'</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(data);</span><br><span class="line">	<span class="keyword">return</span> (date.getTime() / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>这么一个简单的工作就完成了。</p>
 <p>在这里要注意的一个坑就是，注意服务器的时区是否跟浏览器的时区相同，如果不同，那么显示的时间跟服务器就会有几个小时的误差。具体的误差就看差着几个时区了。</p>
 <p>我这里对于这个也是抛砖引玉。</p>
 <p>具体复杂的，可以看看我列出的参考连接。就是在<code>new Date</code>注意看看传入的值就好了。</p>
 <blockquote>
 <p>参考文档：</p>
+</blockquote>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime</a></li>
 </ul>
-</blockquote>
 
       
     </div>
@@ -499,6 +501,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -586,7 +621,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -601,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -911,9 +946,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -974,7 +1007,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

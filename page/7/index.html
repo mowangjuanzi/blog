@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -176,7 +176,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -187,7 +187,7 @@
   page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -283,7 +283,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -330,234 +330,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-nginx/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/17/yum-install-nginx/" class="post-title-link" itemprop="url">yum 安装 nginx</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-17 16:32:19" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:19+08:00">2017-11-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/" itemprop="url" rel="index"><span itemprop="name">web服务器</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web服务器/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/17/yum-install-nginx/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/yum-install-nginx/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>以下操作都是在root账户下进行的。系统版本是CentOS7</p>
-</blockquote>
-<p>我之前在nginx的官方文档中看到使用yum安装php方法。觉得如果有嫌编译麻烦的。可以尝试使用yum快速安装nginx。减少搭建环境之苦。</p>
-<h2 id="编辑yum源文件"><a href="#编辑yum源文件" class="headerlink" title="编辑yum源文件"></a>编辑yum源文件</h2><p>比如我的系统是CentOS7，那么将以下内容粘贴进入<code>/etc/yum.repos.d/nginx.repo</code>文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[nginx]</span></span><br><span class="line"><span class="attr">name</span>=nginx repo</span><br><span class="line"><span class="attr">baseurl</span>=http://nginx.org/packages/centos/<span class="number">7</span>/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">0</span></span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
-<h2 id="禁止更新"><a href="#禁止更新" class="headerlink" title="禁止更新"></a>禁止更新</h2><p>我们在安装之后，为了能够正常运行，我们一般会禁止Nginx进行更新。因为在yum更新了Nginx之后，Nginx会自动重启。这对于我们来说是没有必要的，所以我们可以屏蔽更新。我们可以这样，将下列指定放到你的<code>/etc/yum.conf</code>文件中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exclude=nginx</span><br></pre></td></tr></table></figure>
-<h2 id="更新Nginx"><a href="#更新Nginx" class="headerlink" title="更新Nginx"></a>更新Nginx</h2><p>一般在生产环境，我们都是禁用更新的。所以说，这里只是作为一个参考。<br>我们需要执行的命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update nginx</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意： 在使用 yum 更新之后，Nginx会自动重启。</p>
-</blockquote>
-<h2 id="命令管理："><a href="#命令管理：" class="headerlink" title="命令管理："></a>命令管理：</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
-<h3 id="测试配置文件语法是否正确"><a href="#测试配置文件语法是否正确" class="headerlink" title="测试配置文件语法是否正确"></a>测试配置文件语法是否正确</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
-<h3 id="重载配置文件"><a href="#重载配置文件" class="headerlink" title="重载配置文件"></a>重载配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload nginx</span><br></pre></td></tr></table></figure>
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop nginx</span><br></pre></td></tr></table></figure>
-<h3 id="启动开机启动"><a href="#启动开机启动" class="headerlink" title="启动开机启动"></a>启动开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
-<h3 id="禁止开机启动"><a href="#禁止开机启动" class="headerlink" title="禁止开机启动"></a>禁止开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl diasble nginx</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面实现了Nginx的安装，命令管理，屏蔽更新以及更新。希望能对大家有所帮助。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-static-ip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -611,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -628,14 +414,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a></span>
 
                 
                 
@@ -686,22 +472,29 @@
         
           
             <blockquote>
-<p>最新版可参考：<a href="/2018/01/02/ubuntu-set-static-ip/" title="ubuntu 17.10 设置固态IP">ubuntu 17.10 设置固态IP</a></p>
+<p>最新版可参考：</p>
 </blockquote>
 <p>首先我们打开网卡配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+
 <p>默认内容如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># and how to activate them. For more information, see interfaces(5).</span></span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># The loopback network interface</span></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"><span class="comment"># The primary network interface</span></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet dhcp</span><br></pre></td></tr></table></figure>
+
 <p>我们改成如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># and how to activate them. For more information, see interfaces(5).</span></span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># The loopback network interface</span></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"><span class="comment"># The primary network interface</span></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static # 将dhcp改为static</span><br><span class="line">address 10.0.0.101 # 静态ip</span><br><span class="line">netmask 255.255.255.0 # 网关地址</span><br><span class="line">network 10.0.0.1 # 子网掩码</span><br></pre></td></tr></table></figure>
+
 <p>然后重启网卡服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart networking</span><br></pre></td></tr></table></figure>
+
 <p>然后我们打开DNS文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/resolvconf/resolv.conf.d/base</span><br></pre></td></tr></table></figure>
+
 <p>添加如下内容：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nameserver 180.76.76.76</span><br></pre></td></tr></table></figure>
+
 <p>刷新DNS配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo resolvconf -u</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -753,20 +546,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/soft-skills/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -820,7 +613,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -837,7 +630,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
 
                 
                 
@@ -988,20 +781,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/python-coding-error/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1055,7 +848,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1072,14 +865,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -1134,12 +927,15 @@
 </blockquote>
 <p>我在Linux中使用make html的时候，提示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe5 in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+
 <p>一直不知道是什么原因，通过查阅一个资料，才知道，原来是编码问题。</p>
 <p>字符串在进行unicode的时候，要使用什么编码格式进行转换呢？utf-8？gb2312？utf-16？这个时候就要根据 <code>sys.getdefaultencoding()</code>来确定了。而<code>sys.getdefaultencoding()</code>是<code>ascii</code>编码，在ascii字符表中不存在0xe5这种大于128的字符存在。所以当然会报错。</p>
 <p>可以这样修改：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line">reload(sys) </span><br><span class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</span><br></pre></td></tr></table></figure>
+
 <p>而因为我是使用的make html，通过查找，发现是<code>/usr/bin/sphinx-build</code>这个文件在捣鬼。所以我修改这个文件就好了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys) <span class="comment">#新添加的</span></span><br><span class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>) <span class="comment">#新添加的</span></span><br><span class="line"><span class="keyword">from</span> sphinx <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sys.argv[<span class="number">0</span>] = re.sub(<span class="string">r'(-script\.pyw|\.exe)?$'</span>, <span class="string">''</span>, sys.argv[<span class="number">0</span>])</span><br><span class="line">    sys.exit(main())</span><br></pre></td></tr></table></figure>
+
 <p>这样就正常了。</p>
 <blockquote>
 <p><a href="http://my.oschina.net/leejun2005/blog/74430" target="_blank" rel="noopener">http://my.oschina.net/leejun2005/blog/74430</a></p>
@@ -1195,20 +991,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/python-3-6-install-scrapy/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1262,7 +1058,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1279,14 +1075,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -1338,34 +1134,48 @@
           
             <p>我首先执行pip安装命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy</span><br></pre></td></tr></table></figure>
+
 <p>结果提示以下错误：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  Could not find a version that satisfies the requirement Twisted&gt;=13.1.0 (from scrapy) (from versions: )</span><br><span class="line">No matching distribution found for Twisted&gt;=13.1.0 (from scrapy)</span><br></pre></td></tr></table></figure>
+
 <p>因为pip3 暂时还没有Twisted，所以我们需要手动安装：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br><span class="line">wget -c https://twistedmatrix.com/Releases/Twisted/16.6/Twisted-16.6.0.tar.bz2</span><br></pre></td></tr></table></figure>
+
 <p>这个包国内下载有些慢，我建议使用迅雷进行下载，然后通过<code>rz</code>命令进行上传。</p>
 <p>下面我们进行解压</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar jxf Twisted-16.6.0.tar.bz2</span><br></pre></td></tr></table></figure>
+
 <p>提示下列错误：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar (child): bzip2：无法 exec: 没有那个文件或目录</span><br><span class="line">tar (child): Error is not recoverable: exiting now</span><br><span class="line">tar: Child returned status 2</span><br><span class="line">tar: Error is not recoverable: exiting now</span><br></pre></td></tr></table></figure>
+
 <p>说明我们缺少bzip2这个类文件，我们需要进行安装类库：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install bzip2 -y</span><br></pre></td></tr></table></figure>
+
 <p>我们回过头去继续执行刚才的解压命令，解压成功后：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Twisted-16.6.0</span><br><span class="line">python3 setup.py install</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
 <p>提示：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Using /usr/local/python3/lib/python3.6/site-packages</span><br><span class="line">Finished processing dependencies for Twisted==16.6.0</span><br></pre></td></tr></table></figure>
+
 <p>这样就表示安装成功了。现在我们开始执行最开始安装<code>scrapy</code>的命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy</span><br></pre></td></tr></table></figure>
+
 <p>如果显示如下信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully installed PyDispatcher-2.0.5 attrs-16.3.0 cffi-1.9.1 cryptography-1.7.2 cssselect-1.0.1 idna-2.2 lxml-3.7.2 parsel-1.1.0 pyOpenSSL-16.2.0 pyasn1-0.1.9 pyasn1-modules-0.0.8 pycparser-2.17 queuelib-1.4.2 scrapy-1.3.0 service-identity-16.0.0 six-1.10.0 w3lib-1.16.0</span><br></pre></td></tr></table></figure>
+
 <p>则表示已经安装成功了。</p>
 <p>我们测试一下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]# scrapy version</span><br><span class="line">-bash: scrapy: 未找到命令</span><br></pre></td></tr></table></figure>
+
 <p>这个很奇怪，我们使用<code>find</code>命令找一下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ Twisted-16.6.0]# find / -name scrapy</span><br><span class="line">/usr/local/python3/bin/scrapy</span><br><span class="line">/usr/local/python3/lib/python3.6/site-packages/scrapy</span><br></pre></td></tr></table></figure>
+
 <p>我们创建一个软连接：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/local/python3/bin/scrapy /usr/local/bin/scrapy</span><br></pre></td></tr></table></figure>
+
 <p>然后我们继续执行一下刚才查看版本的命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]# scrapy version</span><br><span class="line">Scrapy 1.3.0</span><br></pre></td></tr></table></figure>
+
 <p>这样就表示安装成功了。</p>
 
           
@@ -1418,20 +1228,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/uwsgi-command-manager/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1485,7 +1295,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1502,14 +1312,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -1561,17 +1371,21 @@
           
             <h2 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h2><p>首先先看看我的<code>mysite.ini</code>文件内容:</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/data/custom/mysite</span><br><span class="line"><span class="attr">module</span>=mysite.wsgi:application</span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">pidfile</span>=/tmp/project-mysite.pid</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">max-requests</span>=<span class="number">5000</span></span><br><span class="line"><span class="comment">#daemonize=/var/log/uwsgi/project-mysite.log</span></span><br><span class="line"><span class="attr">http</span>=<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8002</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8000</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
 <p>我们主要看<code>pidfile</code>，它指定的位置是：<strong>/tmp/project-mysite.pid</strong></p>
 <p>然后启动命令就是：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini mysite.ini</span><br></pre></td></tr></table></figure>
+
 <h2 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --reload /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
+
 <h2 id="停止命令"><a href="#停止命令" class="headerlink" title="停止命令"></a>停止命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --stop /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>参考：<a href="https://uwsgi-docs.readthedocs.io/en/latest/Management.html" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/Management.html</a></p>
 </blockquote>
@@ -1626,20 +1440,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1693,7 +1507,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1710,14 +1524,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -1770,19 +1584,25 @@
             <p>我的使用环境是<code>Python-3.5.3</code>。Django版本是1.10.5.</p>
 <p>按照教程创建项目：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject blog_python</span><br></pre></td></tr></table></figure>
+
 <p>然后在启动的时候，结果报错了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver</span><br></pre></td></tr></table></figure>
+
 <p>结果报错信息如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">Unhandled exception <span class="keyword">in</span> thread started by &lt;function check_errors.&lt;locals&gt;.wrapper at <span class="number">0x7fdc67089f28</span>&gt;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">34</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> pysqlite2 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">ImportError: No module named <span class="string">'pysqlite2'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">36</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/__init__.py"</span>, line <span class="number">23</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3.dbapi2 <span class="keyword">import</span> *</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/dbapi2.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> _sqlite3 <span class="keyword">import</span> *</span><br><span class="line">ImportError: No module named <span class="string">'_sqlite3'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/core/management/commands/runserver.py"</span>, line <span class="number">113</span>, <span class="keyword">in</span> inner_run</span><br><span class="line">    autoreload.raise_last_exception()</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">249</span>, <span class="keyword">in</span> raise_last_exception</span><br><span class="line">    six.reraise(*_exception)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/six.py"</span>, line <span class="number">685</span>, <span class="keyword">in</span> reraise</span><br><span class="line">    <span class="keyword">raise</span> value.with_traceback(tb)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/__init__.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> setup</span><br><span class="line">    apps.populate(settings.INSTALLED_APPS)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/registry.py"</span>, line <span class="number">108</span>, <span class="keyword">in</span> populate</span><br><span class="line">    app_config.import_models(all_models)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/config.py"</span>, line <span class="number">199</span>, <span class="keyword">in</span> import_models</span><br><span class="line">    self.models_module = import_module(models_module_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">986</span>, <span class="keyword">in</span> _gcd_import</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">969</span>, <span class="keyword">in</span> _find_and_load</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">958</span>, <span class="keyword">in</span> _find_and_load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> _load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap_external&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> exec_module</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">222</span>, <span class="keyword">in</span> _call_with_frames_removed</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/models.py"</span>, line <span class="number">4</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.base_user <span class="keyword">import</span> AbstractBaseUser, BaseUserManager</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/base_user.py"</span>, line <span class="number">52</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">AbstractBaseUser</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">119</span>, <span class="keyword">in</span> __new__</span><br><span class="line">    new_class.add_to_class(<span class="string">'_meta'</span>, Options(meta, app_label))</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">316</span>, <span class="keyword">in</span> add_to_class</span><br><span class="line">    value.contribute_to_class(cls, name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/options.py"</span>, line <span class="number">214</span>, <span class="keyword">in</span> contribute_to_class</span><br><span class="line">    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/__init__.py"</span>, line <span class="number">33</span>, <span class="keyword">in</span> __getattr__</span><br><span class="line">    <span class="keyword">return</span> getattr(connections[DEFAULT_DB_ALIAS], item)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">211</span>, <span class="keyword">in</span> __getitem__</span><br><span class="line">    backend = load_backend(db[<span class="string">'ENGINE'</span>])</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">115</span>, <span class="keyword">in</span> load_backend</span><br><span class="line">    <span class="keyword">return</span> import_module(<span class="string">'%s.base'</span> % backend_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">39</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">raise</span> ImproperlyConfigured(<span class="string">"Error loading either pysqlite2 or sqlite3 modules (tried in that order): %s"</span> % exc)</span><br><span class="line">django.core.exceptions.ImproperlyConfigured: Error loading either pysqlite2 <span class="keyword">or</span> sqlite3 modules (tried <span class="keyword">in</span> that order): No module named <span class="string">'_sqlite3'</span></span><br></pre></td></tr></table></figure>
+
 <p>最后在这里查到了解决办法：</p>
 <p><a href="http://stackoverflow.com/questions/1210664/no-module-named-sqlite3" target="_blank" rel="noopener">http://stackoverflow.com/questions/1210664/no-module-named-sqlite3</a></p>
 <p>首先我们先执行一下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel</span><br></pre></td></tr></table></figure>
+
 <p>然后使用以下命令进行Python重装：</p>
 <p><code>./configure</code>如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/python3/ --enable-loadable-sqlite-extensions</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
 <p>这样重新执行前面的程序，就正常了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost blog_python]# python3 manage.py runserver</span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">Not checking migrations as it is not possible to access/create the django_migrations table.</span><br><span class="line">February 12, 2017 - 14:42:20</span><br><span class="line">Django version 1.10.5, using settings 'blog_python.settings'</span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -1834,20 +1654,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-change-language-to-chinese/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1901,7 +1721,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1918,14 +1738,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
 
                 
                 
@@ -1977,11 +1797,14 @@
           
             <h2 id="临时办法"><a href="#临时办法" class="headerlink" title="临时办法"></a>临时办法</h2><p>在命令行执行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LANG="zh_CN.UTF-8"</span><br></pre></td></tr></table></figure>
+
 <h2 id="开机生效的办法："><a href="#开机生效的办法：" class="headerlink" title="开机生效的办法："></a>开机生效的办法：</h2><p>修改配置文件<code>vim /etc/locale.conf</code>，</p>
 <p>将：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">LANG</span>=en_US.UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure>
+
 <p>修改为：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">LANG</span>=zh_CN.UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>参考：<a href="http://blog.csdn.net/ysm_sd/article/details/51144975" target="_blank" rel="noopener">http://blog.csdn.net/ysm_sd/article/details/51144975</a></p>
 </blockquote>
@@ -2036,20 +1859,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/django-error-loading-mysqldb-module/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -2103,7 +1926,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -2120,21 +1943,21 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/python/django/" itemprop="url" rel="index"><span itemprop="name">django</span></a></span>
 
                 
                 
@@ -2188,17 +2011,23 @@
 <p>我通过查阅<a href="https://docs.djangoproject.com/en/1.10/ref/databases/#mysql-db-api-drivers" target="_blank" rel="noopener">文档</a>，说python3需要安装的包已经不是<code>MySQLdb</code>了，而是<code>mysqlclient</code>。那我们就安装这个包了。</p>
 <p>执行下面的命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient</span><br></pre></td></tr></table></figure>
+
 <p>居然报错了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSError: mysql_config not found</span><br></pre></td></tr></table></figure>
+
 <p>因为我是使用<a href="http://baoguoxiao.com/detail/4" target="_blank" rel="noopener">Yum 安装 MySQL</a>的方式来安装MySQL的。所有我需要安装开发包。如果你是编译安装的，就不会出现这个问题。</p>
 <p>好了，现在安装开发包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-devel -y</span><br></pre></td></tr></table></figure>
+
 <p>好了。安装成功了。那么就反过头来继续安装之前的mysql包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient</span><br></pre></td></tr></table></figure>
+
 <p>好了，我们继续执行一下django，看看是否已经正常了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver 0.0.0.0:8001</span><br></pre></td></tr></table></figure>
+
 <p>显示信息如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Django version 1.10.5, using settings &apos;blog_python.settings&apos;</span><br><span class="line">Starting development server at http://0.0.0.0:8001/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
 <p>这样就表示已经正常了。我们可以继续往下开发了。</p>
 
           
@@ -2251,20 +2080,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/simple-template-separation/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -2318,7 +2147,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -2335,14 +2164,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
 
                 
                 
@@ -2397,11 +2226,260 @@
 <p>今天终于回答了。我来记录以下：</p>
 <p>首先是模板文件，我定义他为<code>index.html</code>，内容如下:</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;<span class="meta">&lt;?</span>=$title<span class="meta">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">foreach</span>($list <span class="keyword">as</span> $value): <span class="meta">?&gt;</span></span><br><span class="line">        &lt;li&gt;<span class="meta">&lt;?</span>=$value<span class="meta">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
 <p>这里我们就不用自定义标签啊，之类的等等，我相信鸟哥的那句话，PHP本身就是一个非常好的模板引擎，我们没有必要再去造一个轮子。</p>
 <p>所以，我们直接来写PHP的解析：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模板解析</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> $path;</span><br><span class="line">	<span class="keyword">protected</span> $vars;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($path, $vars = [])</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (is_file($path)) &#123;</span><br><span class="line">			<span class="keyword">$this</span>-&gt;path = $path;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;vars = $vars;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fetch</span><span class="params">()</span></span>&#123;</span><br><span class="line">		ob_start();</span><br><span class="line">		ob_implicit_flush(<span class="number">0</span>);</span><br><span class="line">		extract(<span class="keyword">$this</span>-&gt;vars, EXTR_OVERWRITE);</span><br><span class="line">		<span class="keyword">require_once</span> <span class="keyword">$this</span>-&gt;path;</span><br><span class="line">		<span class="keyword">return</span> ob_get_clean();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$view = <span class="keyword">new</span> View(<span class="string">'./index.html'</span>, [<span class="string">'title'</span> =&gt; <span class="string">'test'</span>, <span class="string">'list'</span> =&gt; [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]);</span><br><span class="line"><span class="keyword">echo</span> $view-&gt;fetch();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>好了。直接运行一下，就能看到结果了。</p>
 <p>不写了。太晚了。晚安。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/17/php-compile-pdo-mysql/" class="post-title-link" itemprop="url">php编译pdo_mysql扩展记录</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-17 16:28:44" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:44+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2017/11/17/php-compile-pdo-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-compile-pdo-mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。</p>
+<p>在编译到pdo_mysql扩展的时候，就搞不定了。</p>
+<p>在进行<code>make</code>操作的时候，出现了如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/mysqlnd.h：没有那个文件或目录</span><br><span class="line"> # include &quot;ext/mysqlnd/mysqlnd.h&quot;</span><br><span class="line">                                  ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="这是走的弯路"><a href="#这是走的弯路" class="headerlink" title="这是走的弯路"></a>这是走的弯路</h2><p>我以为是mysqlnd没有编译，我接着去编译mysqlnd扩展了。</p>
+<p>然后在<code>./configure</code>的时候，结果又提示我：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL&apos;s &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我以为是openssl-devel没有安装，我接着安装openssl-devel:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# yum install openssl openssl-devel</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.bit.edu.cn</span><br><span class="line"> * epel: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * extras: mirror.bit.edu.cn</span><br><span class="line"> * updates: mirror.bit.edu.cn</span><br><span class="line">软件包 1:openssl-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">软件包 1:openssl-devel-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">无须任何处理</span><br></pre></td></tr></table></figure>
+
+<p>结果提示我已经安装了，那我强行指定路径吧：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# ./configure --with-openssl=/usr/include/openssl</span><br><span class="line">configure: WARNING: unrecognized options: --with-openssl</span><br><span class="line">checking for grep that handles long lines and -e... /usr/bin/grep</span><br><span class="line">checking for egrep... /usr/bin/grep -E</span><br><span class="line">checking for a sed that does not truncate output... /usr/bin/sed</span><br><span class="line">checking for cc... cc</span><br><span class="line">checking whether the C compiler works... yes</span><br><span class="line">checking for C compiler default output file name... a.out</span><br><span class="line">checking for suffix of executables... </span><br><span class="line">checking whether we are cross compiling... no</span><br><span class="line">checking for suffix of object files... o</span><br><span class="line">checking whether we are using the GNU C compiler... yes</span><br><span class="line">checking whether cc accepts -g... yes</span><br><span class="line">checking for cc option to accept ISO C89... none needed</span><br><span class="line">checking how to run the C preprocessor... cc -E</span><br><span class="line">checking for icc... no</span><br><span class="line">checking for suncc... no</span><br><span class="line">checking whether cc understands -c and -o together... yes</span><br><span class="line">checking for system library directory... lib</span><br><span class="line">checking if compiler supports -R... no</span><br><span class="line">checking if compiler supports -Wl,-rpath,... yes</span><br><span class="line">checking build system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking host system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking target system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking for PHP prefix... /usr/local/php</span><br><span class="line">checking for PHP includes... -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib</span><br><span class="line">checking for PHP extension directory... /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012</span><br><span class="line">checking for PHP installed headers prefix... /usr/local/php/include/php</span><br><span class="line">checking if debug is enabled... no</span><br><span class="line">checking if zts is enabled... no</span><br><span class="line">checking for re2c... no</span><br><span class="line">configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.</span><br><span class="line">checking for gawk... gawk</span><br><span class="line">checking whether to enable mysqlnd... yes, shared</span><br><span class="line">checking whether to disable compressed protocol support in mysqlnd... yes</span><br><span class="line">checking for the location of libz... no</span><br><span class="line">checking for DSA_get_default_method in -lssl... no</span><br><span class="line">checking for X509_free in -lcrypto... yes</span><br><span class="line">checking for pkg-config... /usr/bin/pkg-config</span><br><span class="line">configure: error: Cannot find OpenSSL's &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结果还是不行，这下两边路都走不通了，我就去网上查询了。结果还是查询不到什么有用的资料</p>
+<h2 id="转回正道"><a href="#转回正道" class="headerlink" title="转回正道"></a>转回正道</h2><p>我后来想，我直接改源码试试看呢，把<code>include</code>加载文件写成绝对目录。</p>
+<p>说干就干</p>
+<p>我先看看这个报错的地方。</p>
+<p>文件在<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34</strong></p>
+<p>我打开该文件，修改第27行的内容：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>我的源代码的目录是<strong>/usr/local/src/php-7.0.14/</strong>，于是我就改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>我再进行编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">In file included from /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:32:0:</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39: 致命错误：ext/mysqlnd/mysqlnd_debug.h：没有那个文件或目录</span><br><span class="line"><span class="meta"> #</span><span class="bash">include <span class="string">"ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br><span class="line">                                       ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<p>发现有效果，报错的地方变了，我接着改，这里提示报错的地方还是：<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39</strong>，但是行数编程69了，我把69行改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>继续，发现报错信息又变了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45: 致命错误：ext/mysqlnd/mysqlnd_reverse_api.h：没有那个文件或目录</span><br><span class="line"> #include &quot;ext/mysqlnd/mysqlnd_reverse_api.h&quot;</span><br><span class="line">                                             ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<p>我将文件<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45</strong>改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_reverse_api.h"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>继续编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/local/src/php-7.0.14/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo </span><br><span class="line">cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so</span><br><span class="line">creating pdo_mysql.la</span><br><span class="line">(cd .libs &amp;&amp; rm -f pdo_mysql.la &amp;&amp; ln -s ../pdo_mysql.la pdo_mysql.la)</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">cp ./.libs/pdo_mysql.so /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.so</span><br><span class="line">cp ./.libs/pdo_mysql.lai /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.la</span><br><span class="line">PATH="$PATH:/sbin" ldconfig -n /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the `-LLIBDIR'</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the `LD_RUN_PATH' environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to `/etc/ld.so.conf'</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don't forget to run 'make test'.</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功了。接下来我们就可以继续<code>make install</code>进行安装了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make install</span><br><span class="line">Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/</span><br></pre></td></tr></table></figure>
+
+<p>我们修改一下配置文件，添加下面的内容到配置文件中：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=pdo_mysql.so</span><br></pre></td></tr></table></figure>
+
+<p>然后我们测试扩展是否安装成功了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# php -m</span><br><span class="line">PHP Warning:  Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br></pre></td></tr></table></figure>
+
+<p>报错了。看来我们还需要mysqlnd扩展：</p>
+<p>然后还是提示找不到openssl的错误。</p>
+<p>我接着去网上搜了一下。</p>
+<p>还是找不到答案，我查了一下，这个好像是一个bug，一直没有修复。</p>
+<p>解决办法只能是重装php来解决了。</p>
 
           
         
@@ -2476,7 +2554,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -2491,7 +2569,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2801,9 +2879,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2864,7 +2940,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

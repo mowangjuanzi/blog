@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -176,7 +176,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -187,7 +187,7 @@
   page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -283,7 +283,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -330,20 +330,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/07/js-implements-jquery-chained-calls/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -414,14 +414,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -473,10 +473,12 @@
           
             <p>其实在我们学习使用jQuery的过程中，我们经常是这样使用的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"html"</span>).css();</span><br><span class="line">$.get(<span class="string">"/abc"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>发现特别好用，而我在前段时间处理webview的时候，也多次使用到js，并且对于使用原生JS感到稍有不便。所以想到将其封装成类库，然后供以后进行重复使用或者优化。</p>
 <p>那么如何去实现如何jQuery的方法呢。</p>
 <p>其实代码很简单，我也是门外汉，记录下来也是为我自己做一个学习的方式，希望如果有更好的方式可以跟我说。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> gc.fn.abc();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gc.fn = gc.prototype = &#123;</span><br><span class="line">    abc: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.__proto__ = gc.fn;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    de: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'def'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">gc.aaa = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'aaa'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gc();</span><br><span class="line">gc().de();</span><br><span class="line">gc.aaa();</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -528,20 +530,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/04/http-protocol-url-syntax/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -595,7 +597,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -612,14 +614,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机基础/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机基础/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机基础/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机基础/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a></span>
 
                 
                 
@@ -673,63 +675,62 @@
 <p>实际上，大部分的URL都遵循通用的URL，而且不少的URL方案的风格和语法都有不少的重叠。</p>
 <p>大部分的URL方案的URL语法都建立在这个由9个部分构成的通用格式上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</span><br></pre></td></tr></table></figure>
+
 <p>URL最主要的三个部分是方案（scheme）、主机（host）和路径（path）。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">组件</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:center">默认值</th>
+<th align="center">组件</th>
+<th align="center">描述</th>
+<th align="center">默认值</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">方案</td>
-<td style="text-align:center">访问服务器以获取资源时要使用哪种协议</td>
-<td style="text-align:center">无</td>
+<tbody><tr>
+<td align="center">方案</td>
+<td align="center">访问服务器以获取资源时要使用哪种协议</td>
+<td align="center">无</td>
 </tr>
 <tr>
-<td style="text-align:center">用户</td>
-<td style="text-align:center">某些方案访问资源时需要用户名</td>
-<td style="text-align:center">匿名</td>
+<td align="center">用户</td>
+<td align="center">某些方案访问资源时需要用户名</td>
+<td align="center">匿名</td>
 </tr>
 <tr>
-<td style="text-align:center">密码</td>
-<td style="text-align:center">用户名后面可能要包含的密码，中间由冒号（:）分割</td>
-<td style="text-align:center">&lt;E-mail地址&gt;</td>
+<td align="center">密码</td>
+<td align="center">用户名后面可能要包含的密码，中间由冒号（:）分割</td>
+<td align="center">&lt;E-mail地址&gt;</td>
 </tr>
 <tr>
-<td style="text-align:center">主机</td>
-<td style="text-align:center">资源宿主服务器的主机名或点分IP地址</td>
-<td style="text-align:center">无</td>
+<td align="center">主机</td>
+<td align="center">资源宿主服务器的主机名或点分IP地址</td>
+<td align="center">无</td>
 </tr>
 <tr>
-<td style="text-align:center">端口</td>
-<td style="text-align:center">资源宿主服务器正在监听的端口号。很多方案都有默认端口号（HTTP默认端口号为80）</td>
-<td style="text-align:center">每个方案特有</td>
+<td align="center">端口</td>
+<td align="center">资源宿主服务器正在监听的端口号。很多方案都有默认端口号（HTTP默认端口号为80）</td>
+<td align="center">每个方案特有</td>
 </tr>
 <tr>
-<td style="text-align:center">路径</td>
-<td style="text-align:center">服务器资源的本地名，由一个斜杠（/）将其与前面的URL组件分隔开来，路径组件的语法是与服务器和方案有关的</td>
-<td style="text-align:center">无</td>
+<td align="center">路径</td>
+<td align="center">服务器资源的本地名，由一个斜杠（/）将其与前面的URL组件分隔开来，路径组件的语法是与服务器和方案有关的</td>
+<td align="center">无</td>
 </tr>
 <tr>
-<td style="text-align:center">参数</td>
-<td style="text-align:center">某些方案会有这个组件来指定输入参数。参数名为名/值对。URL中可以包含多个参数字段，它们相互之间以及与路径的其余部分之间用分号（;）分隔</td>
-<td style="text-align:center">无</td>
+<td align="center">参数</td>
+<td align="center">某些方案会有这个组件来指定输入参数。参数名为名/值对。URL中可以包含多个参数字段，它们相互之间以及与路径的其余部分之间用分号（;）分隔</td>
+<td align="center">无</td>
 </tr>
 <tr>
-<td style="text-align:center">查询</td>
-<td style="text-align:center">某些方案会用这个组件传递参数以激活应用程序（比如数据库、公告板、搜索引擎以及互联网网关）。查询组件的内容没有通用格式。用字符“?”将其与URL的其余部分分割开来。</td>
-<td style="text-align:center">无</td>
+<td align="center">查询</td>
+<td align="center">某些方案会用这个组件传递参数以激活应用程序（比如数据库、公告板、搜索引擎以及互联网网关）。查询组件的内容没有通用格式。用字符“?”将其与URL的其余部分分割开来。</td>
+<td align="center">无</td>
 </tr>
 <tr>
-<td style="text-align:center">片段</td>
-<td style="text-align:center">一小片或一部分资源的名称。引用对象时，不会讲frag字段传入服务器hegel字段是在客户端内部使用的。通过字符“#”来将其与URL的其余部分分割开来。</td>
-<td style="text-align:center">无</td>
+<td align="center">片段</td>
+<td align="center">一小片或一部分资源的名称。引用对象时，不会讲frag字段传入服务器hegel字段是在客户端内部使用的。通过字符“#”来将其与URL的其余部分分割开来。</td>
+<td align="center">无</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
           
         
@@ -781,20 +782,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/01/git-set-different-email-for-different-projects/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -848,7 +849,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -865,14 +866,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
 
                 
                 
@@ -925,9 +926,11 @@
             <p>在我们使用Git开发项目的时候，可能经常会碰到个人和公司开发的项目都在一台机器上的情况。不管你们有没有，反正我是碰到了。因为公司有公司自己分配的邮箱，而我自己喜欢用自己的邮箱开发自己的项目。这样可能会导致邮箱混用的情况。</p>
 <p>比如我们之前设置的命令是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &amp;quot;aaa&amp;quot;</span><br><span class="line">git config --global user.email &amp;quot;a@b.com&amp;quot;</span><br></pre></td></tr></table></figure>
+
 <p>这样的话，就会像是上面说的不同的项目使用一个邮箱。</p>
 <p>但是如果我应该如何为不同的项目设置不同的用户呢。其实很简单，就是把命令中的<code>--global</code>给去掉就好了。因为<code>--global</code>代表的就是全局化的意思。命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name &amp;quot;aaa&amp;quot;</span><br><span class="line">git config user.email &amp;quot;a@b.com&amp;quot;</span><br></pre></td></tr></table></figure>
+
 <p>是不是很简单？</p>
 
           
@@ -980,20 +983,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/30/app-webview-note/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1047,7 +1050,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1064,14 +1067,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
 
                 
                 
@@ -1136,8 +1139,10 @@
 <p>原因在于安卓调用js方法的方式。</p>
 <p>在安卓中，调用的方式为：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webview.loadUrl(&amp;quot;javascript:returnData(&amp;#039;&amp;quot;+content+&amp;quot;&amp;#039;)&amp;quot;)</span><br></pre></td></tr></table></figure>
+
 <p>比如content的值为<code>aa&#39;a</code>，那么替换值之后实际调用的代码为：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webview.loadUrl(&amp;quot;javascript:returnData(&amp;#039;aa&amp;#039;a&amp;#039;)&amp;quot;);</span><br></pre></td></tr></table></figure>
+
 <p>其实仔细一看，就是需要对单引号进行转义。所以我的解决方案是在服务器端对单引号转义成HTML实体。这样传值和显示都会是正常的。</p>
 <p><strong>渲染的文章只显示图片不显示文字</strong></p>
 <p>原因是JS端获取宽度是使用的是<code>clientWidth</code>，对于像是我们这种设计的，有时候获取到的宽度为0，所以这个时候我们只能使用<code>window.innerWidth</code>获取宽度更加靠谱。</p>
@@ -1201,20 +1206,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/29/javascript-string-exception/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1268,7 +1273,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1285,14 +1290,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
 
                 
                 
@@ -1346,11 +1351,12 @@
 <p>目前碰到一个问题，就是说安卓APP请求服务器返回的字符串，然后调用参数传递内容。</p>
 <p>但是在执行的时候，总是报错。</p>
 <p>有一个不可见的字符，在编辑器中识别不出来，执行之后也看不到，但是查看上一条执行的命令的时候就可以看到一个红点。</p>
-<p><img src="/images/30bf6573ae356fbcebe10a74625c60ea.png" alt=""></p>
+<p><img src="/images/30bf6573ae356fbcebe10a74625c60ea.png" alt></p>
 <p>然后使用unicode进行解析，发现unicode是\u2028。</p>
 <p>经过百度发现了解决办法。</p>
 <p>最后解决的办法很简单：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 替换字符串 处理Zp(\u2028)段落分隔符，Zl(\u2029)行分隔符</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterWord</span><span class="params">(&amp;amp;$value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (is_string($value)) &#123;</span><br><span class="line">        $value =  preg_replace(&amp;<span class="comment">#039;/[\p&#123;Zp&#125;\p&#123;Zl&#125;]+/u&amp;#039;,&amp;#039;&amp;#039;,$value);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>参考链接：</p>
 <ul>
 <li><a href="http://www.yongxiang.me/2017/03/05/201703/special-character/" target="_blank" rel="noopener">http://www.yongxiang.me/2017/03/05/201703/special-character/</a></li>
@@ -1406,20 +1412,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/03/ubuntu-install-elasticsearch/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1473,7 +1479,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1490,14 +1496,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
 
                 
                 
@@ -1553,26 +1559,36 @@
 </blockquote>
 <p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install default-jdk</span><br></pre></td></tr></table></figure>
+
 <h2 id="Elasticsearch-PGP公钥"><a href="#Elasticsearch-PGP公钥" class="headerlink" title="Elasticsearch PGP公钥"></a>Elasticsearch PGP公钥</h2><p>在安装之前我们需要下载和安装公钥，否则没有办法使用apt安装Elasticsearch。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先添加源：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb https://artifacts.elastic.co/packages/6.x/apt stable main"</span> | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list</span><br></pre></td></tr></table></figure>
+
 <p>接下来，我们就可以更新源毕竟切装Es了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install elasticsearch</span><br></pre></td></tr></table></figure>
+
 <p>这样就安装好了。</p>
 <h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用<code>systemd</code>方式进行Elasticsearch进行管理</p>
 <h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> elasticsearch</span><br></pre></td></tr></table></figure>
+
 <p>启动：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
+
 <p>关闭：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
+
 <h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
+
 <p>然后执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET <span class="string">'127.0.0.1:9200/?pretty'</span></span><br></pre></td></tr></table></figure>
+
 <p>如果返回的数据如下所示，即表示安装成功了：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"NLJug1O"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"hVZpdHvgT9CeE1ywsNt16w"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"6.2.4"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"ccec39f"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2018-04-12T20:37:28.497551Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"7.2.1"</span>,</span><br><span class="line">    <span class="attr">"minimum_wire_compatibility_version"</span> : <span class="string">"5.6.0"</span>,</span><br><span class="line">    <span class="attr">"minimum_index_compatibility_version"</span> : <span class="string">"5.0.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
 </blockquote>
@@ -1581,101 +1597,97 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">参数</th>
-<th style="text-align:center">解释</th>
+<th align="center">参数</th>
+<th align="center">解释</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">JAVA_HOME</td>
-<td style="text-align:center">设置要使用的自定义Java路径</td>
+<tbody><tr>
+<td align="center">JAVA_HOME</td>
+<td align="center">设置要使用的自定义Java路径</td>
 </tr>
 <tr>
-<td style="text-align:center">MAX_OPEN_FILES</td>
-<td style="text-align:center">打开文件的最大数量，默认<strong>65536</strong></td>
+<td align="center">MAX_OPEN_FILES</td>
+<td align="center">打开文件的最大数量，默认<strong>65536</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">MAX_LOCKED_MEMORY</td>
-<td style="text-align:center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
+<td align="center">MAX_LOCKED_MEMORY</td>
+<td align="center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">MAX_MAP_COUNT</td>
-<td style="text-align:center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt" target="_blank" rel="noopener">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
+<td align="center">MAX_MAP_COUNT</td>
+<td align="center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt" target="_blank" rel="noopener">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">ES_PATH_CONF</td>
-<td style="text-align:center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：<strong>/etc/elasticsearch</strong></td>
+<td align="center">ES_PATH_CONF</td>
+<td align="center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：<strong>/etc/elasticsearch</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">ES_JAVA_OPTS</td>
-<td style="text-align:center">Any additional JVM system properties you may want to apply.</td>
+<td align="center">ES_JAVA_OPTS</td>
+<td align="center">Any additional JVM system properties you may want to apply.</td>
 </tr>
 <tr>
-<td style="text-align:center">RESTART_ON_UPGRADE</td>
-<td style="text-align:center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
+<td align="center">RESTART_ON_UPGRADE</td>
+<td align="center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="包的目录布局"><a href="#包的目录布局" class="headerlink" title="包的目录布局"></a>包的目录布局</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">类型</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:center">默认路径</th>
-<th style="text-align:center">设置</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+<th align="center">默认路径</th>
+<th align="center">设置</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">home</td>
-<td style="text-align:center">Elasticsearch家目录或者<strong>$ES_HOME</strong></td>
-<td style="text-align:center"><strong>/usr/share/elasticsearch</strong></td>
-<td style="text-align:center">&nbsp;</td>
+<tbody><tr>
+<td align="center">home</td>
+<td align="center">Elasticsearch家目录或者<strong>$ES_HOME</strong></td>
+<td align="center"><strong>/usr/share/elasticsearch</strong></td>
+<td align="center">&nbsp;</td>
 </tr>
 <tr>
-<td style="text-align:center">bin</td>
-<td style="text-align:center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
-<td style="text-align:center"><strong>/usr/share/elasticsearch/bin</strong></td>
-<td style="text-align:center">&nbsp;</td>
+<td align="center">bin</td>
+<td align="center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
+<td align="center"><strong>/usr/share/elasticsearch/bin</strong></td>
+<td align="center">&nbsp;</td>
 </tr>
 <tr>
-<td style="text-align:center">conf</td>
-<td style="text-align:center">配置文件，包含<strong>elasticsearch.yml</strong></td>
-<td style="text-align:center"><strong>/etc/elasticsearch</strong></td>
-<td style="text-align:center"><strong>ES_PATH_CONF</strong></td>
+<td align="center">conf</td>
+<td align="center">配置文件，包含<strong>elasticsearch.yml</strong></td>
+<td align="center"><strong>/etc/elasticsearch</strong></td>
+<td align="center"><strong>ES_PATH_CONF</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">conf</td>
-<td style="text-align:center">环境变量，包含 heap 大小，文件描述符。</td>
-<td style="text-align:center"><strong>/etc/default/elasticsearch</strong></td>
-<td style="text-align:center">&nbsp;</td>
+<td align="center">conf</td>
+<td align="center">环境变量，包含 heap 大小，文件描述符。</td>
+<td align="center"><strong>/etc/default/elasticsearch</strong></td>
+<td align="center">&nbsp;</td>
 </tr>
 <tr>
-<td style="text-align:center">data</td>
-<td style="text-align:center">在节点上分配的每个索引/分片的数据文件的位置。可以容纳多个位置。</td>
-<td style="text-align:center"><strong>/var/lib/elasticsearch</strong></td>
-<td style="text-align:center"><strong>path.data</strong></td>
+<td align="center">data</td>
+<td align="center">在节点上分配的每个索引/分片的数据文件的位置。可以容纳多个位置。</td>
+<td align="center"><strong>/var/lib/elasticsearch</strong></td>
+<td align="center"><strong>path.data</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">logs</td>
-<td style="text-align:center">日志文件位置。</td>
-<td style="text-align:center"><strong>/var/log/elasticsearch</strong></td>
-<td style="text-align:center"><strong>path.logs</strong></td>
+<td align="center">logs</td>
+<td align="center">日志文件位置。</td>
+<td align="center"><strong>/var/log/elasticsearch</strong></td>
+<td align="center"><strong>path.logs</strong></td>
 </tr>
 <tr>
-<td style="text-align:center">plugins</td>
-<td style="text-align:center">插件文件位置. 每个插件将包含在一个子目录中.</td>
-<td style="text-align:center"><strong>/usr/share/elasticsearch/plugins</strong></td>
-<td style="text-align:center">&nbsp;</td>
+<td align="center">plugins</td>
+<td align="center">插件文件位置. 每个插件将包含在一个子目录中.</td>
+<td align="center"><strong>/usr/share/elasticsearch/plugins</strong></td>
+<td align="center">&nbsp;</td>
 </tr>
 <tr>
-<td style="text-align:center">repo</td>
-<td style="text-align:center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
-<td style="text-align:center">Not configured</td>
-<td style="text-align:center"><strong>path.repo</strong></td>
+<td align="center">repo</td>
+<td align="center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
+<td align="center">Not configured</td>
+<td align="center"><strong>path.repo</strong></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 
           
         
@@ -1727,20 +1739,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/05/17/ubuntu-set-timezone/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1794,7 +1806,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -1811,14 +1823,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/操作系统/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a></span>
 
                 
                 
@@ -1870,10 +1882,13 @@
           
             <p>运行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tzselect</span><br></pre></td></tr></table></figure>
+
 <p>然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@bogon:~/windows/lumen$ sudo tzselect</span><br><span class="line">Please identify a location so that time zone rules can be <span class="built_in">set</span> correctly.</span><br><span class="line">Please select a continent, ocean, <span class="string">"coord"</span>, or <span class="string">"TZ"</span>.</span><br><span class="line"> 1) Africa</span><br><span class="line"> 2) Americas</span><br><span class="line"> 3) Antarctica</span><br><span class="line"> 4) Asia</span><br><span class="line"> 5) Atlantic Ocean</span><br><span class="line"> 6) Australia</span><br><span class="line"> 7) Europe</span><br><span class="line"> 8) Indian Ocean</span><br><span class="line"> 9) Pacific Ocean</span><br><span class="line">10) coord - I want to use geographical coordinates.</span><br><span class="line">11) TZ - I want to specify the time zone using the Posix TZ format.</span><br><span class="line"><span class="comment">#? 4</span></span><br><span class="line">Please select a country whose clocks agree with yours.</span><br><span class="line"> 1) Afghanistan		  18) Israel		    35) Palestine</span><br><span class="line"> 2) Armenia		  19) Japan		    36) Philippines</span><br><span class="line"> 3) Azerbaijan		  20) Jordan		    37) Qatar</span><br><span class="line"> 4) Bahrain		  21) Kazakhstan	    38) Russia</span><br><span class="line"> 5) Bangladesh		  22) Korea (North)	    39) Saudi Arabia</span><br><span class="line"> 6) Bhutan		  23) Korea (South)	    40) Singapore</span><br><span class="line"> 7) Brunei		  24) Kuwait		    41) Sri Lanka</span><br><span class="line"> 8) Cambodia		  25) Kyrgyzstan	    42) Syria</span><br><span class="line"> 9) China		  26) Laos		    43) Taiwan</span><br><span class="line">10) Cyprus		  27) Lebanon		    44) Tajikistan</span><br><span class="line">11) East Timor		  28) Macau		    45) Thailand</span><br><span class="line">12) Georgia		  29) Malaysia		    46) Turkmenistan</span><br><span class="line">13) Hong Kong		  30) Mongolia		    47) United Arab Emirates</span><br><span class="line">14) India		  31) Myanmar (Burma)	    48) Uzbekistan</span><br><span class="line">15) Indonesia		  32) Nepal		    49) Vietnam</span><br><span class="line">16) Iran		  33) Oman		    50) Yemen</span><br><span class="line">17) Iraq		  34) Pakistan</span><br><span class="line"><span class="comment">#? 9</span></span><br><span class="line">Please select one of the following time zone regions.</span><br><span class="line">1) Beijing Time</span><br><span class="line">2) Xinjiang Time</span><br><span class="line"><span class="comment">#? 1</span></span><br><span class="line"></span><br><span class="line">The following information has been given:</span><br><span class="line"></span><br><span class="line">	China</span><br><span class="line">	Beijing Time</span><br><span class="line"></span><br><span class="line">Therefore TZ=<span class="string">'Asia/Shanghai'</span> will be used.</span><br><span class="line">Selected time is now:	Thu May 17 14:25:45 CST 2018.</span><br><span class="line">Universal Time is now:	Thu May 17 06:25:45 UTC 2018.</span><br><span class="line">Is the above information OK?</span><br><span class="line">1) Yes</span><br><span class="line">2) No</span><br><span class="line"><span class="comment">#? 1</span></span><br><span class="line"></span><br><span class="line">You can make this change permanent <span class="keyword">for</span> yourself by appending the line</span><br><span class="line">	TZ=<span class="string">'Asia/Shanghai'</span>; <span class="built_in">export</span> TZ</span><br><span class="line">to the file <span class="string">'.profile'</span> <span class="keyword">in</span> your home directory; <span class="keyword">then</span> <span class="built_in">log</span> out and <span class="built_in">log</span> <span class="keyword">in</span> again.</span><br><span class="line"></span><br><span class="line">Here is that TZ value again, this time on standard output so that you</span><br><span class="line">can use the /usr/bin/tzselect <span class="built_in">command</span> <span class="keyword">in</span> shell scripts:</span><br><span class="line">Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
 <p>然后创建时区软链</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+
 <p>现在看下时间，是不是已经正常了呢。</p>
 
           
@@ -1926,20 +1941,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/04/24/php-linked-list/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -1993,7 +2008,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -2010,14 +2025,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
 
                 
                 
@@ -2069,6 +2084,7 @@
           
             <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $data;</span><br><span class="line">    <span class="keyword">private</span> $next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setData</span><span class="params">($data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = $data;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setNext</span><span class="params">($next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;next = $next;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 链表类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> $first;</span><br><span class="line">    <span class="keyword">private</span> $last;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取链表长度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLength</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表中插入第一个元素的时候，头和尾部都是同一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">oneNode</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first = <span class="keyword">new</span> Node;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first-&gt;setData($element);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;last = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当只有一个元素的时候，删除$fist和$last</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first = <span class="keyword">$this</span>-&gt;last = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 头节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addHead</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;oneNode($element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $node = <span class="keyword">new</span> Node;</span><br><span class="line">            $node-&gt;setData($element);</span><br><span class="line">            $node-&gt;setNext(<span class="keyword">$this</span>-&gt;first);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 尾节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addTail</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;oneNode($element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $node = <span class="keyword">new</span> Node();</span><br><span class="line">            $node-&gt;setData($element);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;last-&gt;setNext($node);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;last = $node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 中间节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(int $index, string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($index &lt;= <span class="keyword">$this</span>-&gt;size) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">                oneNode($element);</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($index == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;addHead($element);</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($index == <span class="keyword">$this</span>-&gt;size) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;addTail($element);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $tmp = <span class="keyword">$this</span>-&gt;get($index - <span class="number">1</span>);</span><br><span class="line">                $node = <span class="keyword">new</span> Node;</span><br><span class="line">                $node-&gt;setData($element);</span><br><span class="line">                $node-&gt;setNext($tmp-&gt;getNext());</span><br><span class="line">                $tmp-&gt;setNext($node);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"插入位置无效或超出链表长度"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取指定位置的元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">(int $index)</span> </span>&#123;</span><br><span class="line">        $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">        <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $index - <span class="number">1</span>; $i++) &#123;</span><br><span class="line">            $tmp = $tmp-&gt;getNext();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $tmp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $tmp-&gt;getNext();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除尾节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;get(<span class="keyword">$this</span>-&gt;size - <span class="number">1</span>);</span><br><span class="line">            $tmp-&gt;setNext(<span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除指定节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteIndex</span><span class="params">(int $index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;get($index - <span class="number">1</span>);</span><br><span class="line">            $tmp-&gt;setNext($tmp-&gt;getNext()-&gt;getNext());</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反转节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">receve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">            $last = $tmp;</span><br><span class="line">            $next = <span class="keyword">$this</span>-&gt;first-&gt;getNext();</span><br><span class="line">            <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; <span class="keyword">$this</span>-&gt;size - <span class="number">1</span>; $i++) &#123;</span><br><span class="line">                $nextNext = $next-&gt;getNext();</span><br><span class="line">                $next-&gt;setNext($tmp);</span><br><span class="line">                $tmp = $next;</span><br><span class="line">                $next = $nextNext;</span><br><span class="line">            &#125;</span><br><span class="line">            $last-&gt;setNext(<span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $tmp;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打印现有的所有元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">printLink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">        <span class="keyword">if</span>(is_null($tmp)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">echo</span> $tmp-&gt;getData();</span><br><span class="line">        <span class="keyword">while</span>(!is_null($tmp-&gt;getNext())) &#123;</span><br><span class="line">            $tmp = $tmp-&gt;getNext();</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"-&gt;"</span> . $tmp-&gt;getData();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$link = <span class="keyword">new</span> Link();</span><br><span class="line">$link-&gt;addHead(<span class="string">"1"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addHead(<span class="string">"5"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addTail(<span class="string">"9"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addTail(<span class="string">"7"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9-&gt;7</span></span><br><span class="line"></span><br><span class="line">$link-&gt;add(<span class="number">3</span>, <span class="string">"8"</span>); </span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9-&gt;8-&gt;7</span></span><br><span class="line"></span><br><span class="line">print_r(<span class="string">"链表长度："</span> . $link-&gt;getLength() . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteFirst();</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteLast();</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteIndex(<span class="number">1</span>);</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">print_r(<span class="string">"链表长度："</span> . $link-&gt;getLength() . <span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 
+
           
         
       
@@ -2119,20 +2135,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/04/19/java-string-chinese/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -2186,7 +2202,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -2203,14 +2219,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
 
                 
                 
@@ -2306,8 +2322,7 @@
 
         <span class="keyword">return</span> sb.toString();
     }
-}
-</code></pre>
+}</code></pre>
 
           
         
@@ -2359,20 +2374,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/03/30/wechat-custom-share-title/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -2426,7 +2441,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -2443,14 +2458,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/微信/" itemprop="url" rel="index"><span itemprop="name">微信</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/微信/" itemprop="url" rel="index"><span itemprop="name">微信</span></a></span>
 
                 
                 
@@ -2501,17 +2516,20 @@
         
           
             <p>我们公司在微信认证服务号上开发一个小游戏。里面有个功能是用户分享到其他地方时使用自定义的标题和图标。我就这个功能记录一下中间遇到的坑。</p>
-<p>首先，我因为之前没有开发过微信分享的功能，这个时候首先要读取一下微信的<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">分享文档</a>。</p>
+<p>首先，我因为之前没有开发过微信分享的功能，这个时候首先要读取一下微信的<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115" target="_blank" rel="noopener">分享文档</a>。</p>
 <p>为了方便开发，我这边是使用的微信的公众测试号。具体的申请地址可点击这里：mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</p>
 <h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>JS-SDK使用权限需要签名，也就是wx.ready中的signature值，所以该值只能在服务器端实现签名的逻辑。我想了一个办法，就是该JS文件使用PHP生成，然后前端使用script元素引入该URL。这样就解决了签名需要在服务器端生成的问题。</p>
 <p>具体到了签名生成的时候。appid和timestamp和nonceStr都好说。直接填写或者生成就好了。但是生成的signature这个值我中间碰到三个坑。第一个坑文章中正确介绍的签名的字符串的格式是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&amp;noncestr=Wm3WZYTPz0wzccnW×tamp=1414587457&amp;url=http://mp.weixin.qq.com?params=value</span><br></pre></td></tr></table></figure>
+
 <p>但是我这边是使用的数组。然后先排序然后使用http_build_query方法生成的参与签名的字符串。这样就不对了。所以对于该参与校验的值只能进行赋值。类似这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=&#123;$ticker&#125;&amp;noncestr=&#123;$nonceStr&#125;&amp;timestamp=&#123;$timestamp&#125;&amp;url=&#123;$url&#125;</span><br></pre></td></tr></table></figure>
+
 <p>直接对其中的值进行赋值，进行签名即可。</p>
 <p>下面说第二个坑。比如我们的活动地址是<a href="https://m.abc.com/Activity/index" target="_blank" rel="noopener">https://m.abc.com/Activity/index</a> 但是在微信中访问的时候，会在后面自定义添加参数。比如有时候地址会变成这样：<a href="https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。" target="_blank" rel="noopener">https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。</a></p>
 <p>所以我想了这么一个办法。就是说把该JS文件携带URL地址请求我，我这边获取URL，并将URL加入到签名中。这样的话，前端将引入脚本写死就不好了。所以我和前端一块将加载js脚本给换成了下面这样:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> script =<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> url = <span class="built_in">window</span>.location.href;</span></span><br><span class="line"><span class="javascript">	script.src=<span class="string">"/Static/wxShare?url="</span> + <span class="built_in">encodeURIComponent</span>(url);</span></span><br><span class="line"><span class="undefined">	document.getElementsByTagName(&amp;#039;body&amp;#039;)[0].appendChild(script);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>第三个坑，获取jsapi_ticket票据的值是JAVA实现的。但是在获取的时候并不能获取成功，经过跟JAVA沟通，发现是之前开发设置的测试的appid已经过期了。所以，失效了，重新设置了一下，就正常了。</p>
 <p>至此，开发联调就结束了。下面就提测进行测试阶段了。</p>
 <h2 id="测试环境。"><a href="#测试环境。" class="headerlink" title="测试环境。"></a>测试环境。</h2><p>测试环境一直分享失败。然后开启debug模式。发现也是提示sign值不可用。排查这个问题，遇到了两个坑。</p>
@@ -2592,7 +2610,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -2607,7 +2625,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2917,9 +2935,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2980,7 +2996,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

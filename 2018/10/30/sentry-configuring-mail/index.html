@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="sentry一个最大的好处就是可以使用邮件通知功能，如果没有邮件通知，那么我们自己上去看的话就非常麻烦了。 进行邮件推送需要我们提供邮件服务器。这里的话，我就用的是腾讯企业邮箱。 好了，下面说具体配置。 首先接上一篇文章 安装sentry，我们将代码拉取到的目录是/data/sentry。 接下来我们就要里面这个文件夹里面的docker-compose.yml文件。 123456789101112">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.577Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sentry配置邮件">
 <meta name="twitter:description" content="sentry一个最大的好处就是可以使用邮件通知功能，如果没有邮件通知，那么我们自己上去看的话就非常麻烦了。 进行邮件推送需要我们提供邮件服务器。这里的话，我就用的是腾讯企业邮箱。 好了，下面说具体配置。 首先接上一篇文章 安装sentry，我们将代码拉取到的目录是/data/sentry。 接下来我们就要里面这个文件夹里面的docker-compose.yml文件。 123456789101112">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/10/30/sentry-configuring-mail/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/工具/sentry/" itemprop="url" rel="index"><span itemprop="name">sentry</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/sentry/" itemprop="url" rel="index"><span itemprop="name">sentry</span></a></span>
 
                 
                 
@@ -474,50 +474,50 @@
 <p>首先接上一篇文章 <a href="/2018/10/29/sentry-install/" title="安装sentry">安装sentry</a>，我们将代码拉取到的目录是<code>/data/sentry</code>。</p>
 <p>接下来我们就要里面这个文件夹里面的<code>docker-compose.yml</code>文件。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">x-defaults:</span> <span class="meta">&amp;defaults</span></span><br><span class="line"><span class="attr">  restart:</span> <span class="string">unless-stopped</span></span><br><span class="line"><span class="attr">  build:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">  depends_on:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">redis</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">postgres</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">memcached</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">smtp</span></span><br><span class="line"><span class="attr">  env_file:</span> <span class="string">.env</span></span><br><span class="line"><span class="attr">  environment:</span></span><br><span class="line"><span class="attr">    SENTRY_MEMCACHED_HOST:</span> <span class="string">memcached</span></span><br><span class="line"><span class="attr">    SENTRY_REDIS_HOST:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">    SENTRY_POSTGRES_HOST:</span> <span class="string">postgres</span></span><br><span class="line">    <span class="comment"># 从这里开始</span></span><br><span class="line"><span class="attr">    SENTRY_EMAIL_HOST:</span> <span class="string">smtp.exmail.qq.com</span></span><br><span class="line"><span class="attr">    SENTRY_EMAIL_USER:</span> <span class="string">example@mail.com</span></span><br><span class="line"><span class="attr">    SENTRY_SERVER_EMAIL:</span> <span class="string">example@mail.com</span></span><br><span class="line"><span class="attr">    SENTRY_EMAIL_PASSWORD:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">    SENTRY_EMAIL_USE_TLS:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    SENTRY_EMAIL_PORT:</span> <span class="number">587</span></span><br><span class="line">    <span class="comment"># 这里结束</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="attr">    - sentry-data:</span><span class="string">/var/lib/sentry/files</span></span><br></pre></td></tr></table></figure>
+
 <p>这里介绍一下每个配置项的作用：</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">配置项</th>
-<th style="text-align:center">作用</th>
-<th style="text-align:center">腾讯企业邮</th>
+<th align="center">配置项</th>
+<th align="center">作用</th>
+<th align="center">腾讯企业邮</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">SENTRY_EMAIL_HOST</td>
-<td style="text-align:center">SMTP服务器地址</td>
-<td style="text-align:center">smtp.exmail.qq.com</td>
+<tbody><tr>
+<td align="center">SENTRY_EMAIL_HOST</td>
+<td align="center">SMTP服务器地址</td>
+<td align="center">smtp.exmail.qq.com</td>
 </tr>
 <tr>
-<td style="text-align:center">SENTRY_EMAIL_USER</td>
-<td style="text-align:center">登录的邮箱账号</td>
-<td style="text-align:center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
+<td align="center">SENTRY_EMAIL_USER</td>
+<td align="center">登录的邮箱账号</td>
+<td align="center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
 </tr>
 <tr>
-<td style="text-align:center">SENTRY_EMAIL_PASSWORD</td>
-<td style="text-align:center">登录的邮箱密码</td>
-<td style="text-align:center">password</td>
+<td align="center">SENTRY_EMAIL_PASSWORD</td>
+<td align="center">登录的邮箱密码</td>
+<td align="center">password</td>
 </tr>
 <tr>
-<td style="text-align:center">SENTRY_EMAIL_PORT</td>
-<td style="text-align:center">登录的端口</td>
-<td style="text-align:center">587</td>
+<td align="center">SENTRY_EMAIL_PORT</td>
+<td align="center">登录的端口</td>
+<td align="center">587</td>
 </tr>
 <tr>
-<td style="text-align:center">SENTRY_EMAIL_USE_TLS</td>
-<td style="text-align:center">是否使用ssl连接</td>
-<td style="text-align:center">true</td>
+<td align="center">SENTRY_EMAIL_USE_TLS</td>
+<td align="center">是否使用ssl连接</td>
+<td align="center">true</td>
 </tr>
 <tr>
-<td style="text-align:center">SENTRY_SERVER_EMAIL</td>
-<td style="text-align:center">发送的账户，跟<strong>SENTRY_EMAIL_USER</strong>相同</td>
-<td style="text-align:center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
+<td align="center">SENTRY_SERVER_EMAIL</td>
+<td align="center">发送的账户，跟<strong>SENTRY_EMAIL_USER</strong>相同</td>
+<td align="center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>配置完成之后，需要重建服务。具体可以执行以下命令:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br><span class="line">docker-composer up -d</span><br></pre></td></tr></table></figure>
+
 <p>然后稍等一分钟就可以正常访问web页面了。</p>
 <p>现在来测试一下。</p>
 <p>进入页面，在左上角的你的昵称位置单击，选择Admin。</p>
@@ -540,6 +540,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -629,7 +662,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -644,7 +677,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -954,9 +987,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1017,7 +1048,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

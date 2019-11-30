@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-21T06:57:23.581Z">
+<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SPL标准库之SplDoublyLinkedList（双向链表）">
 <meta name="twitter:description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545">
@@ -178,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +188,7 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -284,7 +284,7 @@
 
     
 
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
 
   </li>
 
@@ -331,20 +331,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 14:57:23" itemprop="dateModified" datetime="2019-05-21T14:57:23+08:00">2019-05-21</time>
+                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
               
             
           </span>
@@ -413,14 +413,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
 
                 
                 
@@ -472,6 +472,7 @@
 <p>我们现在就学习一下SPL内置的SplDoublyLinkedList类。</p>
 <p>首先介绍一下这个类都有哪些方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化方法</span></span><br><span class="line">$dll = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾部增加数据,类似array_push()方法</span></span><br><span class="line">$dll-&gt;push($value);</span><br><span class="line"><span class="comment">//开头插入数据,类似array_unshift()方法</span></span><br><span class="line">$dll-&gt;unshift($value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测指定位置是否存在值,类似array_key_exists()方法</span></span><br><span class="line">$dll-&gt;offsetExists($key);</span><br><span class="line"><span class="comment">//获取指定位置的值,类似$dll[$key]</span></span><br><span class="line">$dll-&gt;offsetGet($key);</span><br><span class="line"><span class="comment">//修改指定位置的值,类似$dll[$key] = $value</span></span><br><span class="line">$dll-&gt;offsetSet($key, $value);</span><br><span class="line"><span class="comment">//删除指定位置的值,类似unset($dll[$key])</span></span><br><span class="line">$dll-&gt;offsetUnset($key);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取双向链表中值的数量</span></span><br><span class="line">$dll-&gt;count();</span><br><span class="line"><span class="comment">//检测双向链表是否为空</span></span><br><span class="line">$dll-&gt;isEmpty();</span><br><span class="line"></span><br><span class="line"><span class="comment">//序列化存储,类似serialize()</span></span><br><span class="line">$dll-&gt;serialize();</span><br><span class="line"><span class="comment">//存储反序列化类似unserialize()</span></span><br><span class="line">$dll-&gt;unserialize($str);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置迭代器模式</span></span><br><span class="line">$dll-&gt;setIteratorMode($mode);</span><br><span class="line"><span class="comment">//获取迭代器模式</span></span><br><span class="line">$dll-&gt;getIteratorMode();</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化链表,只有先执行此方法，才能使用操作游标的方法</span></span><br><span class="line">$dll-&gt;rewind();</span><br><span class="line"><span class="comment">//获取当前游标的索引</span></span><br><span class="line">$dll-&gt;key();</span><br><span class="line"><span class="comment">//获取当前游标的值</span></span><br><span class="line">$dll-&gt;current();</span><br><span class="line"><span class="comment">//将游标移动到下一个节点</span></span><br><span class="line">$dll-&gt;next();</span><br><span class="line"><span class="comment">//将游标移动到上一个节点</span></span><br><span class="line">$dll-&gt;prev();</span><br><span class="line"><span class="comment">//检测当前游标后面是否还有节点</span></span><br><span class="line">$dll-&gt;valid();</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回第一个节点的值</span></span><br><span class="line">$dll-&gt;bottom();</span><br><span class="line"><span class="comment">//返回最后一个节点的值</span></span><br><span class="line">$dll-&gt;top();</span><br><span class="line"></span><br><span class="line"><span class="comment">//将双向链表中的最后一个节点弹出,类似array_pop()</span></span><br><span class="line">$dll-&gt;pop();</span><br><span class="line"><span class="comment">//将双向链表中的第一个节点弹出,类似array_shift()</span></span><br><span class="line">$dll-&gt;shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">//在双向链表的指定位置插入值</span></span><br><span class="line">$dll-&gt;add($index, $value);</span><br></pre></td></tr></table></figure>
+
 <h2 id="Iterator-模式"><a href="#Iterator-模式" class="headerlink" title="Iterator 模式"></a>Iterator 模式</h2><ul>
 <li>迭代的方向：<ul>
 <li><code>SplDoublyLinkedList::IT_MODE_LIFO</code> (堆栈 style)</li>
@@ -500,6 +501,39 @@
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -600,7 +634,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
             
@@ -615,7 +649,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -925,9 +959,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1005,7 +1037,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
