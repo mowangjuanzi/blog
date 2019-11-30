@@ -160,6 +160,7 @@ menu:
   home: / || home
   archives: /archives/ || archive
   books: /books.html || book
+  about: /about.html || about
   # about: /about.html || user
   #tags: /tags/ || tags
   #categories: /categories/ || th
@@ -358,7 +359,7 @@ wechat_subscriber:
 reward_settings:
   # If true, reward would be displayed in every article by default.
   # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
-  enable: false
+  enable: true
   animation: false
   #comment: Donate comment here
 
