@@ -1,0 +1,30 @@
+footer:
+  since: 2015
+  beian:
+    enable: true
+    icp: '鲁ICP备13027795号-1'
+menu:
+  home: / || home
+  archives: /archives/ || archive
+  books: /books.html || book
+  about: /about.html || about
+scheme: Gemini
+avatar:
+  url: /images/avatar.png
+  rounded: true
+  rotated: true
+sidebar:
+  position: right
+reward_settings:
+  enable: true
+reward:
+  wechatpay: /images/wechatpay.jpg
+  alipay: /images/alipay.jpg
+tagcloud:
+  amount: 200
+disqus:
+  enable: true
+  shortname: www-baoguoxiao-com
+baidu_analytics: 569d323c10cf83b1409b1e2228474415
+canvas_nest:
+  enable: true
