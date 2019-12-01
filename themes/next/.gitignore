@@ -12,8 +12,8 @@ source/lib/*
 # Track internal libraries & Ignore unused verdors files
 source/lib/font-awesome/less/
 source/lib/font-awesome/scss/
-!source/lib/font-awesome/*
+!source/lib/font-awesome/
 
-!source/lib/jquery/
+!source/lib/anime.min.js
 
 !source/lib/velocity/

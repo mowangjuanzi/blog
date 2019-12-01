@@ -6,8 +6,8 @@ footer:
 menu:
   home: / || home
   archives: /archives/ || archive
-  books: /books.html || book
-  about: /about.html || about
+  书籍: /books.html || book
+  about: /about.html || user
 scheme: Gemini
 avatar:
   url: /images/avatar.png

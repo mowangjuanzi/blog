@@ -28,21 +28,13 @@ post:
   read_more: Weiterlesen
   untitled: Unbenannt
   sticky: Angepinnt
-  toc_empty: Dieser Artikel hat kein Inhaltsverzeichnis
   views: Aufrufe
-  comments_count: Kommentare
   related_posts: Ähnliche Beiträge
-  copy_button: Kopieren
-  copy_success: Kopiert
-  copy_failure: Kopieren fehlgeschlagen
   copyright:
     author: Beitragsautor
     link: Beitragslink
     license_title: Urheberrechtshinweis
     license_content: "Alle Artikel in diesem Blog sind unter %s lizenziert, außer es wird anders angegeben."
-page:
-  totally: Gesamt
-  tags: schlagwörter
 footer:
   powered: "Erstellt mit  %s"
   theme: Design
@@ -63,7 +55,6 @@ counter:
     other: "Insgesamt %d Artikel."
 state:
   posts: Artikel
-  pages: Seiten
   tags: schlagwörter
   categories: Kategorien
 search:
@@ -85,7 +76,6 @@ reward:
   wechatpay: WeChat Bezahlung
   alipay: Alipay
   bitcoin: Bitcoin
-gitmentbutton: Zeige Kommentare von Gitment
 accessibility:
   nav_toggle: Navigationsleiste an/ausschalten
   prev_page: Vorherige Seite
