@@ -1,138 +1,78 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.1.0',
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
   };
 </script>
 
-
-  
-
-
-
-
-  <meta name="description" content="这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。 在编译到pdo_mysql扩展的时候，就搞不定了。 在进行make操作的时候，出现了如下错误： 12345/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/m">
+  <meta name="description" content="这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。 在编译到pdo_mysql扩展的时候，就搞不定了。 在进行make操作的时候，出现了如下错误： 1&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;src&amp;#x2F;php-7.0.14&amp;#x2F;ext&amp;#x2F;pdo_mysql&amp;#x2F;php_pdo_mysql_">
 <meta name="keywords" content="php,linux,centos,pdo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php编译pdo_mysql扩展记录">
-<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;php-compile-pdo-mysql&#x2F;index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。 在编译到pdo_mysql扩展的时候，就搞不定了。 在进行make操作的时候，出现了如下错误： 12345/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/m">
+<meta property="og:description" content="这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。 在编译到pdo_mysql扩展的时候，就搞不定了。 在进行make操作的时候，出现了如下错误： 1&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;src&amp;#x2F;php-7.0.14&amp;#x2F;ext&amp;#x2F;pdo_mysql&amp;#x2F;php_pdo_mysql_">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-30T23:03:40.855Z">
+<meta property="og:updated_time" content="2019-12-01T02:43:39.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php编译pdo_mysql扩展记录">
-<meta name="twitter:description" content="这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。 在编译到pdo_mysql扩展的时候，就搞不定了。 在进行make操作的时候，出现了如下错误： 12345/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/m">
+
+<link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
 
 
-
-  <link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
-
-
-
-  
-  
-  <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>php编译pdo_mysql扩展记录 | 魔王卷子的博客</title>
   
-
-
-
-
 
 
   <script>
@@ -148,12 +88,8 @@
 
 
 
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -162,9 +98,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -176,288 +111,153 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">魔王卷子的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
-
 
 
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-books">
+        <li class="menu-item menu-item-书籍">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/books.html" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>books</a>
+    <a href="/books.html" rel="section"><i class="fa fa-fw fa-book"></i>书籍</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-about">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about.html" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
-
-  
 </nav>
-
-
-
-  
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
+
+          <div class="content">
             
 
-          
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
+  <div class="posts-expand">
+      
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
-      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">php编译pdo_mysql扩展记录
-
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          php编译pdo_mysql扩展记录
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-11-17 16:28:44" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:44+08:00">2017-11-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-01 07:03:40" itemprop="dateModified" datetime="2019-12-01T07:03:40+08:00">2019-12-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-01 10:43:39" itemprop="dateModified" datetime="2019-12-01T10:43:39+08:00">2019-12-01</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
                 </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/11/17/php-compile-pdo-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-compile-pdo-mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+            </span>
 
           
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/php-compile-pdo-mysql/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-compile-pdo-mysql/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
-    
 
     
     
@@ -465,23 +265,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。</p>
 <p>在编译到pdo_mysql扩展的时候，就搞不定了。</p>
 <p>在进行<code>make</code>操作的时候，出现了如下错误：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/mysqlnd.h：没有那个文件或目录</span><br><span class="line"> # include &quot;ext/mysqlnd/mysqlnd.h&quot;</span><br><span class="line">                                  ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;php_pdo_mysql_int.h:27:34: 致命错误：ext&#x2F;mysqlnd&#x2F;mysqlnd.h：没有那个文件或目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> # include &quot;ext&#x2F;mysqlnd&#x2F;mysqlnd.h&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                                  ^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">编译中断。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">make: *** [pdo_mysql.lo] 错误 1</span></pre></td></tr></table></figure>
 
 <h2 id="这是走的弯路"><a href="#这是走的弯路" class="headerlink" title="这是走的弯路"></a>这是走的弯路</h2><p>我以为是mysqlnd没有编译，我接着去编译mysqlnd扩展了。</p>
 <p>然后在<code>./configure</code>的时候，结果又提示我：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL&apos;s &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL&#39;s &lt;evp.h&gt;</span></pre></td></tr></table></figure>
 
 <p>我以为是openssl-devel没有安装，我接着安装openssl-devel:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# yum install openssl openssl-devel</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.bit.edu.cn</span><br><span class="line"> * epel: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * extras: mirror.bit.edu.cn</span><br><span class="line"> * updates: mirror.bit.edu.cn</span><br><span class="line">软件包 1:openssl-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">软件包 1:openssl-devel-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">无须任何处理</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# yum install openssl openssl-devel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">已加载插件：fastestmirror</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Loading mirror speeds from cached hostfile</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"> * base: mirror.bit.edu.cn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> * epel: mirrors.tuna.tsinghua.edu.cn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> * extras: mirror.bit.edu.cn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"> * updates: mirror.bit.edu.cn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">软件包 1:openssl-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">软件包 1:openssl-devel-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">无须任何处理</span></pre></td></tr></table></figure>
 
 <p>结果提示我已经安装了，那我强行指定路径吧：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# ./configure --with-openssl=/usr/include/openssl</span><br><span class="line">configure: WARNING: unrecognized options: --with-openssl</span><br><span class="line">checking for grep that handles long lines and -e... /usr/bin/grep</span><br><span class="line">checking for egrep... /usr/bin/grep -E</span><br><span class="line">checking for a sed that does not truncate output... /usr/bin/sed</span><br><span class="line">checking for cc... cc</span><br><span class="line">checking whether the C compiler works... yes</span><br><span class="line">checking for C compiler default output file name... a.out</span><br><span class="line">checking for suffix of executables... </span><br><span class="line">checking whether we are cross compiling... no</span><br><span class="line">checking for suffix of object files... o</span><br><span class="line">checking whether we are using the GNU C compiler... yes</span><br><span class="line">checking whether cc accepts -g... yes</span><br><span class="line">checking for cc option to accept ISO C89... none needed</span><br><span class="line">checking how to run the C preprocessor... cc -E</span><br><span class="line">checking for icc... no</span><br><span class="line">checking for suncc... no</span><br><span class="line">checking whether cc understands -c and -o together... yes</span><br><span class="line">checking for system library directory... lib</span><br><span class="line">checking if compiler supports -R... no</span><br><span class="line">checking if compiler supports -Wl,-rpath,... yes</span><br><span class="line">checking build system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking host system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking target system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking for PHP prefix... /usr/local/php</span><br><span class="line">checking for PHP includes... -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib</span><br><span class="line">checking for PHP extension directory... /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012</span><br><span class="line">checking for PHP installed headers prefix... /usr/local/php/include/php</span><br><span class="line">checking if debug is enabled... no</span><br><span class="line">checking if zts is enabled... no</span><br><span class="line">checking for re2c... no</span><br><span class="line">configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.</span><br><span class="line">checking for gawk... gawk</span><br><span class="line">checking whether to enable mysqlnd... yes, shared</span><br><span class="line">checking whether to disable compressed protocol support in mysqlnd... yes</span><br><span class="line">checking for the location of libz... no</span><br><span class="line">checking for DSA_get_default_method in -lssl... no</span><br><span class="line">checking for X509_free in -lcrypto... yes</span><br><span class="line">checking for pkg-config... /usr/bin/pkg-config</span><br><span class="line">configure: error: Cannot find OpenSSL's &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# ./configure --with-openssl=/usr/include/openssl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">configure: WARNING: unrecognized options: --with-openssl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">checking for grep that handles long lines and -e... /usr/bin/grep</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">checking for egrep... /usr/bin/grep -E</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">checking for a sed that does not truncate output... /usr/bin/sed</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">checking for cc... cc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">checking whether the C compiler works... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">checking for C compiler default output file name... a.out</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">checking for suffix of executables... </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">checking whether we are cross compiling... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">checking for suffix of object files... o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">checking whether we are using the GNU C compiler... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">checking whether cc accepts -g... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">checking for cc option to accept ISO C89... none needed</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">checking how to run the C preprocessor... cc -E</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">checking for icc... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">checking for suncc... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">checking whether cc understands -c and -o together... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">checking for system library directory... lib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">checking if compiler supports -R... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">checking if compiler supports -Wl,-rpath,... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">checking build system type... x86_64-unknown-linux-gnu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">checking host system type... x86_64-unknown-linux-gnu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">checking target system type... x86_64-unknown-linux-gnu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">checking for PHP prefix... /usr/local/php</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">checking for PHP includes... -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">checking for PHP extension directory... /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">checking for PHP installed headers prefix... /usr/local/php/include/php</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">checking if debug is enabled... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">checking if zts is enabled... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">checking for re2c... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">checking for gawk... gawk</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">checking whether to enable mysqlnd... yes, shared</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">checking whether to disable compressed protocol support in mysqlnd... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">checking for the location of libz... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">checking for DSA_get_default_method in -lssl... no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">checking for X509_free in -lcrypto... yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">checking for pkg-config... /usr/bin/pkg-config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL's &lt;evp.h&gt;</span></pre></td></tr></table></figure>
 
 <p>结果还是不行，这下两边路都走不通了，我就去网上查询了。结果还是查询不到什么有用的资料</p>
 <h2 id="转回正道"><a href="#转回正道" class="headerlink" title="转回正道"></a>转回正道</h2><p>我后来想，我直接改源码试试看呢，把<code>include</code>加载文件写成绝对目录。</p>
@@ -489,34 +286,34 @@
 <p>我先看看这个报错的地方。</p>
 <p>文件在<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34</strong></p>
 <p>我打开该文件，修改第27行的内容：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd.h"</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span></pre></td></tr></table></figure>
 
 <p>我的源代码的目录是<strong>/usr/local/src/php-7.0.14/</strong>，于是我就改成如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd.h"</span></span></span><br><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd.h"</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_libmysql_compat.h"</span></span></span></pre></td></tr></table></figure>
 
 <p>我再进行编译：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">In file included from /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:32:0:</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39: 致命错误：ext/mysqlnd/mysqlnd_debug.h：没有那个文件或目录</span><br><span class="line"><span class="meta"> #</span><span class="bash">include <span class="string">"ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br><span class="line">                                       ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">find . -name \*.so | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">find . -name .libs -a -type d|xargs rm -rf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">rm -f libphp.la       modules/* libs/*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">mkdir .libs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">In file included from /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:32:0:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39: 致命错误：ext/mysqlnd/mysqlnd_debug.h：没有那个文件或目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="meta"> #</span><span class="bash">include <span class="string">"ext/mysqlnd/mysqlnd_debug.h"</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                                       ^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">编译中断。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">make: *** [pdo_mysql.lo] 错误 1</span></pre></td></tr></table></figure>
 
 <p>发现有效果，报错的地方变了，我接着改，这里提示报错的地方还是：<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39</strong>，但是行数编程69了，我把69行改成如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_debug.h"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_debug.h"</span></span></span></pre></td></tr></table></figure>
 
 <p>继续，发现报错信息又变了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45: 致命错误：ext/mysqlnd/mysqlnd_reverse_api.h：没有那个文件或目录</span><br><span class="line"> #include &quot;ext/mysqlnd/mysqlnd_reverse_api.h&quot;</span><br><span class="line">                                             ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">find . -name \*.so | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">find . -name .libs -a -type d|xargs rm -rf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">rm -f libphp.la       modules&#x2F;* libs&#x2F;*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;bin&#x2F;sh &#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;libtool --mode&#x3D;compile cc -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE&#x3D;1 -I. -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql -DPHP_ATOM_INC -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;include -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;main -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;main -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;TSRM -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;Zend -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext&#x2F;date&#x2F;lib  -DHAVE_CONFIG_H  -g -O2   -c &#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;pdo_mysql.c -o pdo_mysql.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">mkdir .libs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"> cc -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE&#x3D;1 -I. -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql -DPHP_ATOM_INC -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;include -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;main -I&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;main -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;TSRM -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;Zend -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext -I&#x2F;usr&#x2F;local&#x2F;php&#x2F;include&#x2F;php&#x2F;ext&#x2F;date&#x2F;lib -DHAVE_CONFIG_H -g -O2 -c &#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;pdo_mysql.c  -fPIC -DPIC -o .libs&#x2F;pdo_mysql.o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;pdo_mysql.c:64:45: 致命错误：ext&#x2F;mysqlnd&#x2F;mysqlnd_reverse_api.h：没有那个文件或目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> #include &quot;ext&#x2F;mysqlnd&#x2F;mysqlnd_reverse_api.h&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                                             ^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">编译中断。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">make: *** [pdo_mysql.lo] 错误 1</span></pre></td></tr></table></figure>
 
 <p>我将文件<strong>/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45</strong>改成如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_reverse_api.h"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_reverse_api.h"</span></span></span></pre></td></tr></table></figure>
 
 <p>继续编译：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/local/src/php-7.0.14/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo </span><br><span class="line">cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so</span><br><span class="line">creating pdo_mysql.la</span><br><span class="line">(cd .libs &amp;&amp; rm -f pdo_mysql.la &amp;&amp; ln -s ../pdo_mysql.la pdo_mysql.la)</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">cp ./.libs/pdo_mysql.so /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.so</span><br><span class="line">cp ./.libs/pdo_mysql.lai /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.la</span><br><span class="line">PATH="$PATH:/sbin" ldconfig -n /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the `-LLIBDIR'</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the `LD_RUN_PATH' environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to `/etc/ld.so.conf'</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don't forget to run 'make test'.</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">find . -name \*.so | xargs rm -f</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">find . -name .libs -a -type d|xargs rm -rf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">rm -f libphp.la       modules/* libs/*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">mkdir .libs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/local/src/php-7.0.14/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">creating pdo_mysql.la</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">(cd .libs &amp;&amp; rm -f pdo_mysql.la &amp;&amp; ln -s ../pdo_mysql.la pdo_mysql.la)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">cp ./.libs/pdo_mysql.so /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.so</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">cp ./.libs/pdo_mysql.lai /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.la</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">PATH="$PATH:/sbin" ldconfig -n /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">Libraries have been installed in:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">   /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">If you ever happen to want to link against installed libraries</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">specify the full pathname of the library, or use the `-LLIBDIR'</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">flag during linking and do at least one of the following:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">     during execution</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">   - add LIBDIR to the `LD_RUN_PATH' environment variable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">     during linking</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">   - have your system administrator add LIBDIR to `/etc/ld.so.conf'</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">See any operating system documentation about shared libraries for</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">Build complete.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">Don't forget to run 'make test'.</span></pre></td></tr></table></figure>
 
 <p>这样就成功了。接下来我们就可以继续<code>make install</code>进行安装了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make install</span><br><span class="line">Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/</span></pre></td></tr></table></figure>
 
 <p>我们修改一下配置文件，添加下面的内容到配置文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=pdo_mysql.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=pdo_mysql.so</span></pre></td></tr></table></figure>
 
 <p>然后我们测试扩展是否安装成功了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# php -m</span><br><span class="line">PHP Warning:  Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module 'PDO' already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# php -m</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PHP Warning:  Module 'PDO' already loaded in Unknown on line 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Warning: Module 'PDO' already loaded in Unknown on line 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Warning: PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span></pre></td></tr></table></figure>
 
 <p>报错了。看来我们还需要mysqlnd扩展：</p>
 <p>然后还是提示找不到openssl的错误。</p>
@@ -524,570 +321,162 @@
 <p>还是找不到答案，我查了一下，这个好像是一个bug，一直没有修复。</p>
 <p>解决办法只能是重装php来解决了。</p>
 
-      
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-      <div>
-        <div id="reward-container">
+        <div class="reward-container">
   <div></div>
-  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
     打赏
   </button>
   <div id="qr" style="display: none;">
-
-    
       
-      
-        
-      
-      <div style="display: inline-block">
+      <div style="display: inline-block;">
         <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
         <p>微信支付</p>
       </div>
-    
       
-      
-        
-      
-      <div style="display: inline-block">
+      <div style="display: inline-block;">
         <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
         <p>支付宝</p>
       </div>
-    
 
   </div>
 </div>
 
-      </div>
-    
 
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/php/" rel="tag"># php</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/centos/" rel="tag"># centos</a>
-          
-            <a href="/tags/pdo/" rel="tag"># pdo</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/11/17/nginx-manager-command/" rel="next" title="nginx 设置管理命令">
-                <i class="fa fa-chevron-left"></i> nginx 设置管理命令
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php/" rel="tag"># php</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/pdo/" rel="tag"># pdo</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/17/simple-template-separation/" rel="prev" title="实现一个最简单的模板分离">
-                实现一个最简单的模板分离 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/17/nginx-manager-command/" rel="prev" title="nginx 设置管理命令">
+      <i class="fa fa-chevron-left"></i> nginx 设置管理命令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/17/simple-template-separation/" rel="next" title="实现一个最简单的模板分离">
+      实现一个最简单的模板分离 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是走的弯路"><span class="nav-number">1.</span> <span class="nav-text">这是走的弯路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转回正道"><span class="nav-number">2.</span> <span class="nav-text">转回正道</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="魔王卷子">
-            
-              <p class="site-author-name" itemprop="name">魔王卷子</p>
-              <div class="site-description motion-element" itemprop="description">记录我的工作中碰到的坑</div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">86</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">39</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">97</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魔王卷子"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
 
-            
-            
-            
-            
 
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是走的弯路"><span class="nav-number">1.</span> <span class="nav-text">这是走的弯路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转回正道"><span class="nav-number">2.</span> <span class="nav-text">转回正道</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
+      </div>
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>&copy; 2017 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
-
-
-
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
 
         
 
@@ -1101,169 +490,72 @@
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 <script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-    
-  
-  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.1.0"></script>
-
-  <script src="/js/motion.js?v=7.1.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.1.0"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
-
-
-
-
-  
-  <script src="/js/scrollspy.js?v=7.1.0"></script>
-<script src="/js/post-details.js?v=7.1.0"></script>
-
-
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.0"></script>
-
-
-  
-
-  
-
-  
-
-  
-  
-  <script id="dsq-count-scr" src="https://www-baoguoxiao-com.disqus.com/count.js" async></script>
-
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/";
-    this.page.identifier = "2017/11/17/php-compile-pdo-mysql/";
-    this.page.title = 'php编译pdo_mysql扩展记录';
-    };
-  function loadComments() {
+  function loadCount() {
     var d = document, s = d.createElement('script');
-    s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
+    s.src = 'https://www-baoguoxiao-com.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
     (d.head || d.body).appendChild(s);
   }
-  
-    loadComments();
-  
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
 </script>
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/",
+            identifier: "2017/11/17/php-compile-pdo-mysql/",
+            title: "php编译pdo_mysql扩展记录"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
 
 </body>
 </html>
