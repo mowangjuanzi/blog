@@ -6,8 +6,9 @@ footer:
 menu:
   home: / || home
   archives: /archives/ || archive
-  书籍: /books.html || book
+  书籍: https://book.douban.com/people/119869986/ || book
   about: /about.html || user
+  sitemap: /sitemap.xml || sitemap
 scheme: Gemini
 avatar:
   url: /images/avatar.png
