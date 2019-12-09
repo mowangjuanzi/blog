@@ -369,7 +369,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -519,7 +519,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -825,7 +825,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -886,7 +886,7 @@
 
 <p>这样直接将ip列表修改为any。就可以接收所有的ip了。</p>
 <p>这个时候我们将bind9再次重启。</p>
-<p>首先安装一个nginx。具体的安装教程可查看我的另外一篇文章 <a href="/2018/12/16/apt-install-nginx/" title="apt 安装 nginx">apt 安装 nginx</a></p>
+<p>首先安装一个nginx。具体的安装教程可查看我的另外一篇文章 <a href="/2018/12/16/apt-install-nginx/" title="ubuntu 中使用 apt 安装 nginx">ubuntu 中使用 apt 安装 nginx</a></p>
 <p>安装之后，如果访问192.168.1.231，就能看到默认的nginx页面了。</p>
 <h2 id="手机测试"><a href="#手机测试" class="headerlink" title="手机测试"></a>手机测试</h2><p>每个手机是设置是不同的。我这里是iphone，版本是12.1.1。</p>
 <p>进入设置-&gt;无线局域网-&gt;在已连接的WIFI右边点击带圈的感叹号-&gt;配置DNS-&gt;选择手动。</p>
@@ -937,7 +937,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/12/16/apt-install-nginx/" class="post-title-link" itemprop="url">apt 安装 nginx</a>
+            <a href="/2018/12/16/apt-install-nginx/" class="post-title-link" itemprop="url">ubuntu 中使用 apt 安装 nginx</a>
         </h1>
 
         <div class="post-meta">
@@ -954,7 +954,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-08 18:00:00" itemprop="dateModified" datetime="2019-12-08T18:00:00+08:00">2019-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -999,7 +999,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用apt安装nginx，方便快捷，省去了编译失败的可能。</p>
+          <p>使用 <code>apt</code> 安装 <code>nginx</code> ，方便快捷，省去了编译失败的可能。</p>
 <h2 id="支持平台"><a href="#支持平台" class="headerlink" title="支持平台"></a>支持平台</h2><table>
 <thead>
 <tr>
@@ -1009,11 +1009,6 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">14.04</td>
-<td align="center">trusty</td>
-<td align="center">x86_64, i386, aarch64/arm64</td>
-</tr>
-<tr>
 <td align="center">16.04</td>
 <td align="center">xenial</td>
 <td align="center">x86_64, i386, ppc64el, aarch64/arm64</td>
@@ -1024,42 +1019,63 @@
 <td align="center">x86_64, aarch64/arm64</td>
 </tr>
 <tr>
-<td align="center">18.10</td>
-<td align="center">cosmic</td>
+<td align="center">19.04</td>
+<td align="center">disco</td>
+<td align="center">x86_64</td>
+</tr>
+<tr>
+<td align="center">19.10</td>
+<td align="center">eoan</td>
 <td align="center">x86_64</td>
 </tr>
 </tbody></table>
-<p>我这里的ubuntu的环境是18.10。通过上面的表格可以了解到我这里是支持安装的。</p>
+<p>我这里的ubuntu的环境是 <code>19.10</code> 。通过上面的表格可以了解到我这里是支持安装的。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先，我们安装key</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -s http://nginx.org/keys/nginx_signing.key | sudo apt-key add -</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -</span></pre></td></tr></table></figure>
 
-<p>首先先看一下下面的内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;nginx.org&#x2F;packages&#x2F;ubuntu&#x2F; codename nginx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">deb-src http:&#x2F;&#x2F;nginx.org&#x2F;packages&#x2F;ubuntu&#x2F; codename nginx</span></pre></td></tr></table></figure>
+<p>接下来添加 apt repository:</p>
+<p>安装主线版本执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span></pre></td></tr></table></figure>
 
-<p>这里的codename需要替换，需要替换的值每个版本是不同的，具体可查看上面的表格，因为我的版本是18.10，所以我需要将codename替换为<code>cosmic</code>。替换完成的内容是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;nginx.org&#x2F;packages&#x2F;ubuntu&#x2F; cosmic nginx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">deb-src http:&#x2F;&#x2F;nginx.org&#x2F;packages&#x2F;ubuntu&#x2F; cosmic nginx</span></pre></td></tr></table></figure>
+<p>安装稳定版本执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span></pre></td></tr></table></figure>
 
-<p>现在将其追加到<code>/etc/apt/sources.list</code>文件的末尾：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cat /etc/apt/sources.list</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu cosmic-security multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb-src http://mirrors.aliyun.com/ubuntu cosmic-security multiverse</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里是重点</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">deb http://nginx.org/packages/ubuntu/ cosmic nginx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">deb-src http://nginx.org/packages/ubuntu/ cosmic nginx</span></pre></td></tr></table></figure>
-
-<p>好了。添加完成之后，执行如下命令：</p>
+<p>接下来执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
 
 <p>下面就可以进行安装了，只需执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
 
 <p>执行完成之后，这样就安装完成了，是不是非常方便呢。</p>
-<h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl start nginx</span></pre></td></tr></table></figure>
+<h2 id="相关目录"><a href="#相关目录" class="headerlink" title="相关目录"></a>相关目录</h2><p>下面看下配置文件夹的相关目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ tree /etc/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/etc/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── conf.d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">│   └── default.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">├── fastcgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">├── koi-utf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">├── koi-win</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">├── mime.types</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">├── modules -&gt; /usr/lib/nginx/modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">├── nginx.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">├── scgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">├── uwsgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">└── win-utf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">2 directories, 9 files</span></pre></td></tr></table></figure>
 
-<p>停止:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nginx</span></pre></td></tr></table></figure>
+<p>日志相关：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ tree /var/<span class="built_in">log</span>/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/var/<span class="built_in">log</span>/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── access.log</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">└── error.log</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">0 directories, 2 files</span></pre></td></tr></table></figure>
+
+<p>缓存相关：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo tree /var/cache/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/var/cache/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── client_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">├── fastcgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">├── proxy_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">├── scgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">└── uwsgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">5 directories, 0 files</span></pre></td></tr></table></figure>
+
+<h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>下面看看支持的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Usage: /etc/init.d/nginx &#123;start|stop|status|restart|reload|force-reload|upgrade|configtest|check-reload&#125;</span></pre></td></tr></table></figure>
+
+<p>这里介绍几个常用的</p>
+<p>启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Starting nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
 
 <p>重启：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx restart</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Restarting nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
 
 <p>状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl status nginx</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx status</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">● nginx.service - nginx - high performance web server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   Active: active (running) since Sun 2019-12-08 09:51:20 UTC; 18s ago</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     Docs: http://nginx.org/en/docs/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Process: 15032 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"> Main PID: 15033 (nginx)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Tasks: 2 (<span class="built_in">limit</span>: 4591)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">   Memory: 1.7M</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">   CGroup: /system.slice/nginx.service</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">           ├─15033 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">           └─15034 nginx: worker process</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Starting nginx - high performance web server...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Started nginx - high performance web server.</span></pre></td></tr></table></figure>
+
+<p>停止:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx stop</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Stopping nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
+
+<p>检测配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx configtest</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span></pre></td></tr></table></figure>
+
+<p>其他的我就不列举了。大家可以自己去试验。</p>
 
       
     </div>
@@ -1110,7 +1126,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1257,7 +1273,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1357,7 +1373,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1539,7 +1555,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1727,7 +1743,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:52:08" itemprop="dateModified" datetime="2019-12-01T11:52:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
