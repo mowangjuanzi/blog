@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
   <meta name="description" content="我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。 那么应该如何解决呢？ 其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。 PHP已经内置了对这个格式的处理。其中使用的函数就是：  fputcsv()  其实使用方法很简单我就不用写范例了。就把php的示例搬">
-<meta name="keywords" content="php,xls,csv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xls数据导出会内存溢出">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;08&#x2F;09&#x2F;xls-export-overflow&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/08/09/xls-export-overflow/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。 那么应该如何解决呢？ 其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。 PHP已经内置了对这个格式的处理。其中使用的函数就是：  fputcsv()  其实使用方法很简单我就不用写范例了。就把php的示例搬">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-09T02:54:48.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="xls">
+<meta property="article:tag" content="csv">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/08/09/xls-export-overflow/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,13 +280,13 @@
 <li><a href="http://php.net/manual/zh/function.fputcsv.php" target="_blank" rel="noopener">fputcsv()</a></li>
 </ul>
 <p>其实使用方法很简单我就不用写范例了。就把php的示例搬过来吧。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$list = <span class="keyword">array</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">array</span>(<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'ccc'</span>, <span class="string">'dddd'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">array</span>(<span class="string">'123'</span>, <span class="string">'456'</span>, <span class="string">'789'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">array</span>(<span class="string">'"aaa"'</span>, <span class="string">'"bbb"'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">$fp = fopen(<span class="string">'file.csv'</span>, <span class="string">'w'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> ($list <span class="keyword">as</span> $fields) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    fputcsv($fp, $fields);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">fclose($fp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$list = <span class="keyword">array</span> (</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'ccc'</span>, <span class="string">'dddd'</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'123'</span>, <span class="string">'456'</span>, <span class="string">'789'</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'"aaa"'</span>, <span class="string">'"bbb"'</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$fp = fopen(<span class="string">'file.csv'</span>, <span class="string">'w'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($list <span class="keyword">as</span> $fields) &#123;</span><br><span class="line">    fputcsv($fp, $fields);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fclose($fp);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>输出的内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">123,456,789</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span><br><span class="line">123,456,789</span><br><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
 
 <p>上面这种是写入文件的，评论第一的说的是如何直接进行输出。他的原理是写入到php的输出中。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$out = fopen(<span class="string">'php://output'</span>, <span class="string">'w'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">fputcsv($out, <span class="keyword">array</span>(<span class="string">'this'</span>,<span class="string">'is some'</span>, <span class="string">'csv "stuff", you know.'</span>));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">fclose($out);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$out = fopen(<span class="string">'php://output'</span>, <span class="string">'w'</span>);</span><br><span class="line">fputcsv($out, <span class="keyword">array</span>(<span class="string">'this'</span>,<span class="string">'is some'</span>, <span class="string">'csv "stuff", you know.'</span>));</span><br><span class="line">fclose($out);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这么一看的话，导出xls是不是就简单了很多呢。</p>
 
@@ -348,12 +350,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -437,10 +461,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -452,7 +476,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -463,14 +486,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -501,7 +531,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -518,8 +548,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

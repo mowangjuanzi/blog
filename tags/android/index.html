@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,18 +42,18 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
   <meta name="description" content="记录我的工作中碰到的坑">
 <meta property="og:type" content="website">
 <meta property="og:title" content="魔王卷子的博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;tags&#x2F;android&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/tags/android/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="记录我的工作中碰到的坑">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="魔王卷子">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/tags/android/">
@@ -63,9 +64,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isPost: false
   };
 </script>
 
@@ -297,6 +296,28 @@
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
           
   
@@ -379,10 +400,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -394,7 +415,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -405,14 +425,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 

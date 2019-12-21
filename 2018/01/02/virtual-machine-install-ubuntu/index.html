@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 1sudo s">
-<meta name="keywords" content="ubuntu,openssh,apt">
+  <meta name="description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 12sudo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机安装ubuntu">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;01&#x2F;02&#x2F;virtual-machine-install-ubuntu&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/01/02/virtual-machine-install-ubuntu/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 1sudo s">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 12sudo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-02T04:00:25.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="openssh">
+<meta property="article:tag" content="apt">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/01/02/virtual-machine-install-ubuntu/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,13 +275,13 @@
         <p>公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。</p>
 <p>好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。</p>
 <h2 id="开启ssh服务"><a href="#开启ssh服务" class="headerlink" title="开启ssh服务"></a>开启ssh服务</h2><p>首先执行以下命令安装openssh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span><br></pre></td></tr></table></figure>
 
 <p>启动服务并且设置开机启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
 
 <h2 id="查看IP，并使用xshell连接"><a href="#查看IP，并使用xshell连接" class="headerlink" title="查看IP，并使用xshell连接"></a>查看IP，并使用xshell连接</h2><p>查看ip</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ip addr</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
 
 <p>查看你的网卡信息，发现我的IP是192.168.110.128.</p>
 <p>因为直接使用虚拟机内部的终端并不好用，不能够进行复制粘贴啥的，所以我使用外部的终端程序。我在这里使用的是xshell。</p>
@@ -287,35 +289,35 @@
 <p>然后点击最下面的连接。会出现一个弹出框，选择“接口并保存”。</p>
 <h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><p>进入后第一件事就是修改<strong>apt</strong>源。</p>
 <p>在修改源之前，我们先安装VIM编辑器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span><br></pre></td></tr></table></figure>
 
 <p>安装完成之后，我们要编辑<strong>apt</strong>源文件去除cd源。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p>将第5行的配置进行注释：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="修改源为阿里源"><a href="#修改源为阿里源" class="headerlink" title="修改源为阿里源"></a>修改源为阿里源</h2><p>这是我从阿里云的帮助文件中复制到的源的内容。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
 <p>首先我们需要对该内容进行修改。</p>
 <p>我们查看版本信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">No LSB modules are available.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Distributor ID:	Ubuntu</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Description:	Ubuntu 17.10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Release:	17.10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Codename:	artful</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 17.10</span><br><span class="line">Release:	17.10</span><br><span class="line">Codename:	artful</span><br></pre></td></tr></table></figure>
 
 <p>可以看到<strong>codename</strong>的值是<strong>artful</strong></p>
 <p>我们可以把上面<strong>quantal</strong>全部替换为<strong>artful</strong>，替换完成如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
 <p>然后将替换好的内容添加到<strong>/etc/apt/sources.list</strong>开头。</p>
 <p>这样就可以<strong>:x</strong>进行保存了。</p>
 <h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><p>其实很简单。首先更新源：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 
 <p>在输出的消息的最后一行会输出以下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">'apt list --upgradable'</span> to see them.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">'apt list --upgradable'</span> to see them.</span><br></pre></td></tr></table></figure>
 
 <p>这就表示我有46个包需要更新。那么就执行运行以下命令进行更新吧：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
 
 <p>好了，最开始的安装环境就已经搭建完成了。</p>
 
@@ -379,12 +381,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -469,10 +493,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -484,7 +508,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -495,14 +518,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -533,7 +563,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -550,8 +580,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,21 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="设置局域网访问比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到&#x2F;etc&#x2F;bind&#x2F;named.conf.options文件中。 1listen-on &amp;#123;2    192.168.1.230;3    192.168.1.231;4&amp;#125;;  填写完成后打开&#x2F;etc&#x2F;bind&#x2F;named.conf.options内容如下： 1$ cat">
-<meta name="keywords" content="bind9">
+  <meta name="description" content="设置局域网访问比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到&#x2F;etc&#x2F;bind&#x2F;named.conf.options文件中。 1234listen-on &amp;#123;    192.168.1.230;    192.168.1.231;&amp;#125;;  填写完成后打开&#x2F;etc&#x2F;bind&#x2F;named.conf.options内容如下： 1234567">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bind9的初步使用（2）">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;12&#x2F;16&#x2F;bind9-use-2&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/12/16/bind9-use-2/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="设置局域网访问比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到&#x2F;etc&#x2F;bind&#x2F;named.conf.options文件中。 1listen-on &amp;#123;2    192.168.1.230;3    192.168.1.231;4&amp;#125;;  填写完成后打开&#x2F;etc&#x2F;bind&#x2F;named.conf.options内容如下： 1$ cat">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.809Z">
+<meta property="og:description" content="设置局域网访问比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到&#x2F;etc&#x2F;bind&#x2F;named.conf.options文件中。 1234listen-on &amp;#123;    192.168.1.230;    192.168.1.231;&amp;#125;;  填写完成后打开&#x2F;etc&#x2F;bind&#x2F;named.conf.options内容如下： 1234567">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-16T16:22:00.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.704Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="bind9">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/12/16/bind9-use-2/">
@@ -65,9 +67,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,18 +271,18 @@
 
       
         <h2 id="设置局域网访问"><a href="#设置局域网访问" class="headerlink" title="设置局域网访问"></a>设置局域网访问</h2><p>比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到<code>/etc/bind/named.conf.options</code>文件中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">listen-on &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    192.168.1.230;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    192.168.1.231;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">listen-on &#123;</span><br><span class="line">    192.168.1.230;</span><br><span class="line">    192.168.1.231;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>填写完成后打开<code>/etc/bind/named.conf.options</code>内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">options &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	// If there is a firewall between you and nameservers you want</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	// nameservers, you probably want to use them as forwarders.  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	// Uncomment the following block, and insert the addresses replacing </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">	// the all-0<span class="string">'s placeholder.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// forwarders &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">	//	114.114.114.114;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">	//========================================================================</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">	//========================================================================</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">	dnssec-validation auto;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">    </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">    listen-on &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">        192.168.1.230;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">        192.168.1.231;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;;</span></span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span><br><span class="line">options &#123;</span><br><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span><br><span class="line"></span><br><span class="line">	// If there is a firewall between you and nameservers you want</span><br><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span><br><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span><br><span class="line"></span><br><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span><br><span class="line">	// nameservers, you probably want to use them as forwarders.  </span><br><span class="line">	// Uncomment the following block, and insert the addresses replacing </span><br><span class="line">	// the all-0<span class="string">'s placeholder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	// forwarders &#123;</span></span><br><span class="line"><span class="string">	//	114.114.114.114;</span></span><br><span class="line"><span class="string">	// &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span><br><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	dnssec-validation auto;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    listen-on &#123;</span></span><br><span class="line"><span class="string">        192.168.1.230;</span></span><br><span class="line"><span class="string">        192.168.1.231;</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
 
 <p>重启bind9。</p>
 <p>然后在windows 10 上设置DNS为<code>192.168.1.231</code>和<code>114.114.114.114</code>。</p>
 <p>这样我们打开cmd，查看域名是否获取到了正确的ip。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">PS C:\Users\baogu&gt; ping www.baoguoxiao.pro</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">正在 Ping www.baoguoxiao.pro [192.168.1.231] 具有 32 字节的数据:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">来自 192.168.1.231 的回复: 字节=32 时间=1ms TTL=64</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">192.168.1.231 的 Ping 统计信息:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">往返行程的估计时间(以毫秒为单位):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    最短 = 0ms，最长 = 1ms，平均 = 0ms</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\baogu&gt; ping www.baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">正在 Ping www.baoguoxiao.pro [192.168.1.231] 具有 32 字节的数据:</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间=1ms TTL=64</span><br><span class="line"></span><br><span class="line">192.168.1.231 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 0ms，最长 = 1ms，平均 = 0ms</span><br></pre></td></tr></table></figure>
 
 <p>但是如果我们这边手机要连怎么办。不能每次都加ip吧。所以这里有个简单的办法。直接将上面的配置修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">options &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	// If there is a firewall between you and nameservers you want</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">	// nameservers, you probably want to use them as forwarders.  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	// Uncomment the following block, and insert the addresses replacing </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">	// the all-0<span class="string">'s placeholder.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// forwarders &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// 	0.0.0.0;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">	//========================================================================</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">	//========================================================================</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">	dnssec-validation auto;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">    listen-on &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">        any;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;;</span></span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span><br><span class="line">options &#123;</span><br><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span><br><span class="line"></span><br><span class="line">	// If there is a firewall between you and nameservers you want</span><br><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span><br><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span><br><span class="line"></span><br><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span><br><span class="line">	// nameservers, you probably want to use them as forwarders.  </span><br><span class="line">	// Uncomment the following block, and insert the addresses replacing </span><br><span class="line">	// the all-0<span class="string">'s placeholder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	// forwarders &#123;</span></span><br><span class="line"><span class="string">	// 	0.0.0.0;</span></span><br><span class="line"><span class="string">	// &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span><br><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	dnssec-validation auto;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    listen-on &#123;</span></span><br><span class="line"><span class="string">        any;</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
 
 <p>这样直接将ip列表修改为any。就可以接收所有的ip了。</p>
 <p>这个时候我们将bind9再次重启。</p>
@@ -295,11 +295,11 @@
 <p>这样我们就可以使用手机访问我们的电脑页面了。在调试某些情况的时候，是不是感觉会非常方便呢。</p>
 <h2 id="泛域名设置"><a href="#泛域名设置" class="headerlink" title="泛域名设置"></a>泛域名设置</h2><p>在开发的时候，可能会出现使用多个域名的情况，但是如果每次添加域名都要设置bind9，还要重启，非常麻烦，那么有没有简单的办法呢？有，就是使用泛域名设置。</p>
 <p>废话不多说，请看如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$TTL</span> 14400</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">201006601 ; Serial</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7200 ; Refresh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">120 ; Retry</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">2419200 ; Expire</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">604800) ; Default TTL</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">ns1 IN A 192.168.1.231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">www IN A 192.168.1.231</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span><br><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line"><span class="variable">$TTL</span> 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">www IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
 
 <p>这个是我们之前<a href="/2018/12/16/bind9-use-1/" title="bind9的初步使用（1）">bind9的初步使用（1）</a>对其的设置。那么如果要设置泛域名，只需要把最后一行的<code>www</code>更改为<code>*</code>就可以了。</p>
 <p>那么切换后的配置如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$TTL</span> 14400</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">201006601 ; Serial</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">7200 ; Refresh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">120 ; Retry</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">2419200 ; Expire</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">604800) ; Default TTL</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">ns1 IN A 192.168.1.231</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">* IN A 192.168.1.231</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span><br><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line"><span class="variable">$TTL</span> 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">* IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
 
 <p>最后重启一下，那么泛域名设置就成功了。</p>
 <p>不早了，要去睡觉了。</p>
@@ -363,12 +363,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -453,10 +475,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -468,7 +490,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -479,14 +500,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -517,7 +545,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -534,8 +562,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

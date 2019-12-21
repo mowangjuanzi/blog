@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
   <meta name="description" content="前置条件本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考.zip或者.tar.gz安装Elasticsearch。 我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合： 1yum install java  安装Elasticsearch首先编辑&#x2F;etc&#x2F;yum.repos.d&#x2F;elasticsearch.re">
-<meta name="keywords" content="linux,centos,elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elasticsearch 教程（1）安装【CentOS版】">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;elasticsearch-install-centos&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="前置条件本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考.zip或者.tar.gz安装Elasticsearch。 我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合： 1yum install java  安装Elasticsearch首先编辑&#x2F;etc&#x2F;yum.repos.d&#x2F;elasticsearch.re">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:27:54.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.704Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="elasticsearch">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,44 +274,44 @@
       
         <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/zip-targz.html" target="_blank" rel="noopener">.zip或者.tar.gz安装Elasticsearch</a>。</p>
 <p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum install java</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先编辑<code>/etc/yum.repos.d/elasticsearch.repo</code>文件：</p>
 <p>将以下内容放入到上面打开的文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="attr">type</span>=rpm-md</span></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span><br><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span><br><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">type</span>=rpm-md</span><br></pre></td></tr></table></figure>
 
 <p><code>:wq</code>保存，然后执行以下安装命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span><br></pre></td></tr></table></figure>
 
 <p>这样安装就完成了。</p>
 <h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用两种命令方式进行Elasticsearch进行管理</p>
 <h3 id="SysV-init"><a href="#SysV-init" class="headerlink" title="SysV init"></a>SysV <code>init</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chkconfig elasticsearch on</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span><br><span class="line">chkconfig elasticsearch on</span><br></pre></td></tr></table></figure>
 
 <p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
 
 <p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span><br></pre></td></tr></table></figure>
 
 <h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl enable elasticsearch</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable elasticsearch</span><br></pre></td></tr></table></figure>
 
 <p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
 
 <p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
 
 <h2 id="记录的日志"><a href="#记录的日志" class="headerlink" title="记录的日志"></a>记录的日志</h2><p>日志消息记录位置是：<strong>/var/log/elasticsearch/</strong>。</p>
 <h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
 
 <p>然后执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -XGET '127.0.0.1:9200/?pretty'</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET '127.0.0.1:9200/?pretty'</span><br></pre></td></tr></table></figure>
 
 <p>如果返回的数据如下所示，即表示安装成功了：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"name"</span> : <span class="string">"shcGs0R"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"k71Pk416RB6HTvdh9xuBFA"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"version"</span> : &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"number"</span> : <span class="string">"5.1.1"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"5395e21"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2016-12-06T12:36:15.409Z"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"6.3.0"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"shcGs0R"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"k71Pk416RB6HTvdh9xuBFA"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"5.1.1"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"5395e21"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2016-12-06T12:36:15.409Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"6.3.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
@@ -493,12 +495,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -583,10 +607,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -598,7 +622,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -609,14 +632,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -647,7 +677,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -664,8 +694,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

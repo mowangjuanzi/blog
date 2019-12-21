@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,24 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="首先介绍一下环境。 数据库：RDS(阿里云)-5.6PHP：PHP7.2 + Lumen系统：Ubuntu 1$time &#x3D; date(&amp;apos;Ymd&amp;apos;);2$pdo &#x3D; new PDO(&quot;dns&quot;, &quot;user&quot;, &quot;password&quot;);3$data &#x3D; $pdo-&amp;gt;query(&quot;select * from table where date_format(from_unixtime(addti">
-<meta name="keywords" content="php,mysql,laravel,orm">
+  <meta name="description" content="首先介绍一下环境。 数据库：RDS(阿里云)-5.6PHP：PHP7.2 + Lumen系统：Ubuntu 123456$time &#x3D; date(&#39;Ymd&#39;);$pdo &#x3D; new PDO(&quot;dns&quot;, &quot;user&quot;, &quot;password&quot;);$data &#x3D; $pdo-&gt;query(&quot;select * from table where date_format(from_unixtime(ad">
 <meta property="og:type" content="article">
 <meta property="og:title" content="laravel中DB_TIIMEZONE中的坑">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;09&#x2F;18&#x2F;laravel-db-timezone&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/09/18/laravel-db-timezone/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="首先介绍一下环境。 数据库：RDS(阿里云)-5.6PHP：PHP7.2 + Lumen系统：Ubuntu 1$time &#x3D; date(&amp;apos;Ymd&amp;apos;);2$pdo &#x3D; new PDO(&quot;dns&quot;, &quot;user&quot;, &quot;password&quot;);3$data &#x3D; $pdo-&amp;gt;query(&quot;select * from table where date_format(from_unixtime(addti">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.809Z">
+<meta property="og:description" content="首先介绍一下环境。 数据库：RDS(阿里云)-5.6PHP：PHP7.2 + Lumen系统：Ubuntu 123456$time &#x3D; date(&#39;Ymd&#39;);$pdo &#x3D; new PDO(&quot;dns&quot;, &quot;user&quot;, &quot;password&quot;);$data &#x3D; $pdo-&gt;query(&quot;select * from table where date_format(from_unixtime(ad">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-09-18T02:57:58.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.704Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="laravel">
+<meta property="article:tag" content="orm">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/09/18/laravel-db-timezone/">
@@ -65,9 +70,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +228,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,26 +281,26 @@
       
         <p>首先介绍一下环境。</p>
 <p>数据库：RDS(阿里云)-5.6<br>PHP：PHP7.2 + Lumen<br>系统：Ubuntu</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$data = $pdo-&gt;query(<span class="string">"select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    var_dump($data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;query(<span class="string">"select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们有一条上面的查询语句。在开发的时候没有任何问题，但是代码在上线后，突然爆出不能正确的查出相应的数据。但是数据确实存在。</p>
 <p>当时我们处理这个问题是凌晨1点，并且是在家里。考虑可能是时区问题，但是因为太晚了，所以我们使用了另外一种方式去避免这个问题。并没有追查这个事情的具体原因。</p>
 <p>正好白天有一点空闲，所以准备排查一下这个问题。</p>
 <p>我的第一考虑就是时区的问题，但是我自己执行以下的查询语句，却是发现没有问题。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$data = $pdo-&gt;queru(<span class="string">"select now()"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    var_dump($data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;queru(<span class="string">"select now()"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以我把目标转向了lumen这个框架，我通过查询源码，发现有这么一段源码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// file_path: vendor/illuminate/database/Connectors/MySqlConnector.php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * Set the timezone on the connection.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> *</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \PDO  $connection</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array  $config</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">configureTimezone</span><span class="params">($connection, array $config)</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($config[<span class="string">'timezone'</span>])) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        $connection-&gt;prepare(<span class="string">'set time_zone="'</span>.$config[<span class="string">'timezone'</span>].<span class="string">'"'</span>)-&gt;execute();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file_path: vendor/illuminate/database/Connectors/MySqlConnector.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Set the timezone on the connection.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \PDO  $connection</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array  $config</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">configureTimezone</span><span class="params">($connection, array $config)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($config[<span class="string">'timezone'</span>])) &#123;</span><br><span class="line">        $connection-&gt;prepare(<span class="string">'set time_zone="'</span>.$config[<span class="string">'timezone'</span>].<span class="string">'"'</span>)-&gt;execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后我就去看我的数据配置，找到这里：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// file path: config/database.php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">'mysql'</span> =&gt; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'driver'</span>    =&gt; <span class="string">'mysql'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'host'</span>      =&gt; env(<span class="string">'DB_HOST'</span>, <span class="string">'localhost'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'port'</span>      =&gt; env(<span class="string">'DB_PORT'</span>, <span class="number">3306</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'database'</span>  =&gt; env(<span class="string">'DB_DATABASE'</span>, <span class="string">'forge'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'username'</span>  =&gt; env(<span class="string">'DB_USERNAME'</span>, <span class="string">'forge'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'password'</span>  =&gt; env(<span class="string">'DB_PASSWORD'</span>, <span class="string">''</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'charset'</span>   =&gt; env(<span class="string">'DB_CHARSET'</span>, <span class="string">'utf8mb4'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'collation'</span> =&gt; env(<span class="string">'DB_COLLATION'</span>, <span class="string">'utf8mb4_unicode_ci'</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'prefix'</span>    =&gt; env(<span class="string">'DB_PREFIX'</span>, <span class="string">''</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'timezone'</span>  =&gt; env(<span class="string">'DB_TIMEZONE'</span>, <span class="string">'+00:00'</span>), <span class="comment">// 注意看这里</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'strict'</span>    =&gt; env(<span class="string">'DB_STRICT_MODE'</span>, <span class="keyword">false</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">],</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file path: config/database.php</span></span><br><span class="line"><span class="string">'mysql'</span> =&gt; [</span><br><span class="line">    <span class="string">'driver'</span>    =&gt; <span class="string">'mysql'</span>,</span><br><span class="line">    <span class="string">'host'</span>      =&gt; env(<span class="string">'DB_HOST'</span>, <span class="string">'localhost'</span>),</span><br><span class="line">    <span class="string">'port'</span>      =&gt; env(<span class="string">'DB_PORT'</span>, <span class="number">3306</span>),</span><br><span class="line">    <span class="string">'database'</span>  =&gt; env(<span class="string">'DB_DATABASE'</span>, <span class="string">'forge'</span>),</span><br><span class="line">    <span class="string">'username'</span>  =&gt; env(<span class="string">'DB_USERNAME'</span>, <span class="string">'forge'</span>),</span><br><span class="line">    <span class="string">'password'</span>  =&gt; env(<span class="string">'DB_PASSWORD'</span>, <span class="string">''</span>),</span><br><span class="line">    <span class="string">'charset'</span>   =&gt; env(<span class="string">'DB_CHARSET'</span>, <span class="string">'utf8mb4'</span>),</span><br><span class="line">    <span class="string">'collation'</span> =&gt; env(<span class="string">'DB_COLLATION'</span>, <span class="string">'utf8mb4_unicode_ci'</span>),</span><br><span class="line">    <span class="string">'prefix'</span>    =&gt; env(<span class="string">'DB_PREFIX'</span>, <span class="string">''</span>),</span><br><span class="line">    <span class="string">'timezone'</span>  =&gt; env(<span class="string">'DB_TIMEZONE'</span>, <span class="string">'+00:00'</span>), <span class="comment">// 注意看这里</span></span><br><span class="line">    <span class="string">'strict'</span>    =&gt; env(<span class="string">'DB_STRICT_MODE'</span>, <span class="keyword">false</span>),</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 
 <p>然后再次修改自己的SQL进行尝试：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$data = $pdo-&gt;query(<span class="string">"set time_zone= '+00:00'; select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    var_dump($data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;query(<span class="string">"set time_zone= '+00:00'; select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>发现时间就会变成CST时间了。</p>
 <p>这样在该框架的路由中增加了该方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">"/test"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> \DB::select(<span class="string">"select now()"</span>)-&gt;toArray();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">"/test"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> \DB::select(<span class="string">"select now()"</span>)-&gt;toArray();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>发现返回的时间也是CST时间了。所以真相大白了。</p>
 <p>我们上班的时间是白天十点以后，这样当天的时间减去八个小时候再去计算，最上面写的SQL中的where条件还是成立的，但是凌晨一点去计算的时候，却是查询的昨天的数据，所以where条件就不查询不到正确的数据了。</p>
@@ -364,12 +367,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -453,10 +478,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -468,7 +493,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -479,14 +503,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -517,7 +548,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -534,8 +565,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

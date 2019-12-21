@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,22 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="我使用sublime，想要使用插件，还是得使用它的商店。 商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。 我用的是这个： 1import urllib.request,os,hashlib; h &#x3D; &amp;apos;2915d1851351e5ee549c20394736b442&amp;apos; + &amp;apos;8bc59f460fa1548d1514676163dafc88&amp;apos;; pf &#x3D; &amp;apos;Package Control.">
-<meta name="keywords" content="sublime text,package control">
+  <meta name="description" content="我使用sublime，想要使用插件，还是得使用它的商店。 商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。 我用的是这个： 1import urllib.request,os,hashlib; h &#x3D; &#39;2915d1851351e5ee549c20394736b442&#39; + &#39;8bc59f460fa1548d1514676163dafc88&#39;; pf &#x3D; &#39;Package Control.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sublime text 3 安装 package control">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;sublime-text-3-install-package-control&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="我使用sublime，想要使用插件，还是得使用它的商店。 商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。 我用的是这个： 1import urllib.request,os,hashlib; h &#x3D; &amp;apos;2915d1851351e5ee549c20394736b442&amp;apos; + &amp;apos;8bc59f460fa1548d1514676163dafc88&amp;apos;; pf &#x3D; &amp;apos;Package Control.">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:description" content="我使用sublime，想要使用插件，还是得使用它的商店。 商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。 我用的是这个： 1import urllib.request,os,hashlib; h &#x3D; &#39;2915d1851351e5ee549c20394736b442&#39; + &#39;8bc59f460fa1548d1514676163dafc88&#39;; pf &#x3D; &#39;Package Control.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:26:17.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="sublime text">
+<meta property="article:tag" content="package control">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/">
@@ -65,9 +68,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,17 +274,17 @@
         <p>我使用sublime，想要使用插件，还是得使用它的商店。</p>
 <p>商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。</p>
 <p>我用的是这个：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'2915d1851351e5ee549c20394736b442'</span> + <span class="string">'8bc59f460fa1548d1514676163dafc88'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'2915d1851351e5ee549c20394736b442'</span> + <span class="string">'8bc59f460fa1548d1514676163dafc88'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
 
 <p>结果我执行之后，发现提示这个错误：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Error validating download (got df21e130d211cfc94d9b0905775a7c0f1e3d39e33b79698005270310898eea76 instead of <span class="number">2915</span>d1851351e5ee549c20394736b4428bc59f460fa1548d1514676163dafc88), please <span class="keyword">try</span> manual install</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error validating download (got df21e130d211cfc94d9b0905775a7c0f1e3d39e33b79698005270310898eea76 instead of <span class="number">2915</span>d1851351e5ee549c20394736b4428bc59f460fa1548d1514676163dafc88), please <span class="keyword">try</span> manual install</span><br></pre></td></tr></table></figure>
 
 <p>顿时觉得不行了。我觉得我还是得找谷歌，于是我去外国网站，找了一个，嘿嘿，还真安装上了。现提供命令如下：</p>
 <p>sublime3：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
 
 <p>sublime2：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="literal">None</span>; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by) <span class="keyword">if</span> dh == h <span class="keyword">else</span> <span class="literal">None</span>; print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="string">'Please restart Sublime Text to finish installation'</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="literal">None</span>; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by) <span class="keyword">if</span> dh == h <span class="keyword">else</span> <span class="literal">None</span>; print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
 
 <p>完毕，收工。</p>
 <p>参考网址：</p>
@@ -350,12 +351,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -439,10 +462,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -454,7 +477,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -465,14 +487,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -503,7 +532,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -520,8 +549,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

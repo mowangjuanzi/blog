@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1&#x2F;&#x2F; 实例化方法2$dll &#x3D; new SplDoublyLinkedList();34&#x2F;&#x2F;尾部增加数据,类似array_push()方法5$dll-&amp;gt;push($value);6&#x2F;&#x2F;开头插入">
-<meta name="keywords" content="php,sql,SplDoublyLinkedList">
+  <meta name="description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SPL标准库之SplDoublyLinkedList（双向链表）">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;sql-sql-doubly-linked-list&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1&#x2F;&#x2F; 实例化方法2$dll &#x3D; new SplDoublyLinkedList();34&#x2F;&#x2F;尾部增加数据,类似array_push()方法5$dll-&amp;gt;push($value);6&#x2F;&#x2F;开头插入">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:description" content="双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。 我们现在就学习一下SPL内置的SplDoublyLinkedList类。 首先介绍一下这个类都有哪些方法： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:28:13.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="SplDoublyLinkedList">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +275,7 @@
         <p>双向链表其实就是数据本身具备了左边和右边的双向指针。类似Redis的列表，它就是双向链表。</p>
 <p>我们现在就学习一下SPL内置的SplDoublyLinkedList类。</p>
 <p>首先介绍一下这个类都有哪些方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$dll = <span class="keyword">new</span> SplDoublyLinkedList();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//尾部增加数据,类似array_push()方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;push($value);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//开头插入数据,类似array_unshift()方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;unshift($value);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测指定位置是否存在值,类似array_key_exists()方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;offsetExists($key);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取指定位置的值,类似$dll[$key]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;offsetGet($key);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改指定位置的值,类似$dll[$key] = $value</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;offsetSet($key, $value);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除指定位置的值,类似unset($dll[$key])</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;offsetUnset($key);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取双向链表中值的数量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;count();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测双向链表是否为空</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;isEmpty();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化存储,类似serialize()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;serialize();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//存储反序列化类似unserialize()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;unserialize($str);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置迭代器模式</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;setIteratorMode($mode);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取迭代器模式</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;getIteratorMode();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化链表,只有先执行此方法，才能使用操作游标的方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;rewind();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前游标的索引</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;key();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前游标的值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;current();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//将游标移动到下一个节点</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//将游标移动到上一个节点</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;prev();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测当前游标后面是否还有节点</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;valid();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回第一个节点的值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;bottom();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回最后一个节点的值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;top();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//将双向链表中的最后一个节点弹出,类似array_pop()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;pop();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//将双向链表中的第一个节点弹出,类似array_shift()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;shift();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//在双向链表的指定位置插入值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">$dll-&gt;add($index, $value);</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化方法</span></span><br><span class="line">$dll = <span class="keyword">new</span> SplDoublyLinkedList();</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾部增加数据,类似array_push()方法</span></span><br><span class="line">$dll-&gt;push($value);</span><br><span class="line"><span class="comment">//开头插入数据,类似array_unshift()方法</span></span><br><span class="line">$dll-&gt;unshift($value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测指定位置是否存在值,类似array_key_exists()方法</span></span><br><span class="line">$dll-&gt;offsetExists($key);</span><br><span class="line"><span class="comment">//获取指定位置的值,类似$dll[$key]</span></span><br><span class="line">$dll-&gt;offsetGet($key);</span><br><span class="line"><span class="comment">//修改指定位置的值,类似$dll[$key] = $value</span></span><br><span class="line">$dll-&gt;offsetSet($key, $value);</span><br><span class="line"><span class="comment">//删除指定位置的值,类似unset($dll[$key])</span></span><br><span class="line">$dll-&gt;offsetUnset($key);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取双向链表中值的数量</span></span><br><span class="line">$dll-&gt;count();</span><br><span class="line"><span class="comment">//检测双向链表是否为空</span></span><br><span class="line">$dll-&gt;isEmpty();</span><br><span class="line"></span><br><span class="line"><span class="comment">//序列化存储,类似serialize()</span></span><br><span class="line">$dll-&gt;serialize();</span><br><span class="line"><span class="comment">//存储反序列化类似unserialize()</span></span><br><span class="line">$dll-&gt;unserialize($str);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置迭代器模式</span></span><br><span class="line">$dll-&gt;setIteratorMode($mode);</span><br><span class="line"><span class="comment">//获取迭代器模式</span></span><br><span class="line">$dll-&gt;getIteratorMode();</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化链表,只有先执行此方法，才能使用操作游标的方法</span></span><br><span class="line">$dll-&gt;rewind();</span><br><span class="line"><span class="comment">//获取当前游标的索引</span></span><br><span class="line">$dll-&gt;key();</span><br><span class="line"><span class="comment">//获取当前游标的值</span></span><br><span class="line">$dll-&gt;current();</span><br><span class="line"><span class="comment">//将游标移动到下一个节点</span></span><br><span class="line">$dll-&gt;next();</span><br><span class="line"><span class="comment">//将游标移动到上一个节点</span></span><br><span class="line">$dll-&gt;prev();</span><br><span class="line"><span class="comment">//检测当前游标后面是否还有节点</span></span><br><span class="line">$dll-&gt;valid();</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回第一个节点的值</span></span><br><span class="line">$dll-&gt;bottom();</span><br><span class="line"><span class="comment">//返回最后一个节点的值</span></span><br><span class="line">$dll-&gt;top();</span><br><span class="line"></span><br><span class="line"><span class="comment">//将双向链表中的最后一个节点弹出,类似array_pop()</span></span><br><span class="line">$dll-&gt;pop();</span><br><span class="line"><span class="comment">//将双向链表中的第一个节点弹出,类似array_shift()</span></span><br><span class="line">$dll-&gt;shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">//在双向链表的指定位置插入值</span></span><br><span class="line">$dll-&gt;add($index, $value);</span><br></pre></td></tr></table></figure>
 
 <h2 id="Iterator-模式"><a href="#Iterator-模式" class="headerlink" title="Iterator 模式"></a>Iterator 模式</h2><ul>
 <li>迭代的方向：<ul>
@@ -349,12 +351,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -439,10 +463,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -454,7 +478,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -465,14 +488,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -503,7 +533,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -520,8 +550,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

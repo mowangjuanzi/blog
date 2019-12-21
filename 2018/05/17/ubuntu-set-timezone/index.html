@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="运行如下命令： 1sudo tzselect  然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。 1baoguoxiao@bogon:~&#x2F;windows&#x2F;lumen$ sudo tzselect2Please identify a location so that time zone rules can be set correctly.3Please select a">
-<meta name="keywords" content="ubuntu,linux,timezone">
+  <meta name="description" content="运行如下命令： 1sudo tzselect  然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859baoguoxiao@bogon:~&#x2F;windows&#x2F;lu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu18.04修改时区">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;05&#x2F;17&#x2F;ubuntu-set-timezone&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/05/17/ubuntu-set-timezone/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="运行如下命令： 1sudo tzselect  然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。 1baoguoxiao@bogon:~&#x2F;windows&#x2F;lumen$ sudo tzselect2Please identify a location so that time zone rules can be set correctly.3Please select a">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:description" content="运行如下命令： 1sudo tzselect  然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859baoguoxiao@bogon:~&#x2F;windows&#x2F;lu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-17T06:32:16.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="timezone">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/05/17/ubuntu-set-timezone/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,13 +273,13 @@
 
       
         <p>运行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo tzselect</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tzselect</span><br></pre></td></tr></table></figure>
 
 <p>然后选择亚洲Asia，继续选择中国China，最后选择北京Beijing。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">baoguoxiao@bogon:~/windows/lumen$ sudo tzselect</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Please identify a location so that time zone rules can be <span class="built_in">set</span> correctly.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Please select a continent, ocean, <span class="string">"coord"</span>, or <span class="string">"TZ"</span>.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"> 1) Africa</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> 2) Americas</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> 3) Antarctica</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"> 4) Asia</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"> 5) Atlantic Ocean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"> 6) Australia</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"> 7) Europe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"> 8) Indian Ocean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"> 9) Pacific Ocean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">10) coord - I want to use geographical coordinates.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">11) TZ - I want to specify the time zone using the Posix TZ format.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#? 4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">Please select a country whose clocks agree with yours.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"> 1) Afghanistan		  18) Israel		    35) Palestine</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"> 2) Armenia		  19) Japan		    36) Philippines</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"> 3) Azerbaijan		  20) Jordan		    37) Qatar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"> 4) Bahrain		  21) Kazakhstan	    38) Russia</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"> 5) Bangladesh		  22) Korea (North)	    39) Saudi Arabia</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"> 6) Bhutan		  23) Korea (South)	    40) Singapore</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"> 7) Brunei		  24) Kuwait		    41) Sri Lanka</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"> 8) Cambodia		  25) Kyrgyzstan	    42) Syria</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"> 9) China		  26) Laos		    43) Taiwan</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">10) Cyprus		  27) Lebanon		    44) Tajikistan</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">11) East Timor		  28) Macau		    45) Thailand</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">12) Georgia		  29) Malaysia		    46) Turkmenistan</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">13) Hong Kong		  30) Mongolia		    47) United Arab Emirates</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">14) India		  31) Myanmar (Burma)	    48) Uzbekistan</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">15) Indonesia		  32) Nepal		    49) Vietnam</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">16) Iran		  33) Oman		    50) Yemen</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">17) Iraq		  34) Pakistan</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#? 9</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">Please select one of the following time zone regions.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">1) Beijing Time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">2) Xinjiang Time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#? 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">The following information has been given:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">	China</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">	Beijing Time</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">Therefore TZ=<span class="string">'Asia/Shanghai'</span> will be used.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">Selected time is now:	Thu May 17 14:25:45 CST 2018.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">Universal Time is now:	Thu May 17 06:25:45 UTC 2018.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">Is the above information OK?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">1) Yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">2) No</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#? 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">You can make this change permanent <span class="keyword">for</span> yourself by appending the line</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">	TZ=<span class="string">'Asia/Shanghai'</span>; <span class="built_in">export</span> TZ</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">to the file <span class="string">'.profile'</span> <span class="keyword">in</span> your home directory; <span class="keyword">then</span> <span class="built_in">log</span> out and <span class="built_in">log</span> <span class="keyword">in</span> again.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">Here is that TZ value again, this time on standard output so that you</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">can use the /usr/bin/tzselect <span class="built_in">command</span> <span class="keyword">in</span> shell scripts:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">Asia/Shanghai</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@bogon:~/windows/lumen$ sudo tzselect</span><br><span class="line">Please identify a location so that time zone rules can be <span class="built_in">set</span> correctly.</span><br><span class="line">Please select a continent, ocean, <span class="string">"coord"</span>, or <span class="string">"TZ"</span>.</span><br><span class="line"> 1) Africa</span><br><span class="line"> 2) Americas</span><br><span class="line"> 3) Antarctica</span><br><span class="line"> 4) Asia</span><br><span class="line"> 5) Atlantic Ocean</span><br><span class="line"> 6) Australia</span><br><span class="line"> 7) Europe</span><br><span class="line"> 8) Indian Ocean</span><br><span class="line"> 9) Pacific Ocean</span><br><span class="line">10) coord - I want to use geographical coordinates.</span><br><span class="line">11) TZ - I want to specify the time zone using the Posix TZ format.</span><br><span class="line"><span class="comment">#? 4</span></span><br><span class="line">Please select a country whose clocks agree with yours.</span><br><span class="line"> 1) Afghanistan		  18) Israel		    35) Palestine</span><br><span class="line"> 2) Armenia		  19) Japan		    36) Philippines</span><br><span class="line"> 3) Azerbaijan		  20) Jordan		    37) Qatar</span><br><span class="line"> 4) Bahrain		  21) Kazakhstan	    38) Russia</span><br><span class="line"> 5) Bangladesh		  22) Korea (North)	    39) Saudi Arabia</span><br><span class="line"> 6) Bhutan		  23) Korea (South)	    40) Singapore</span><br><span class="line"> 7) Brunei		  24) Kuwait		    41) Sri Lanka</span><br><span class="line"> 8) Cambodia		  25) Kyrgyzstan	    42) Syria</span><br><span class="line"> 9) China		  26) Laos		    43) Taiwan</span><br><span class="line">10) Cyprus		  27) Lebanon		    44) Tajikistan</span><br><span class="line">11) East Timor		  28) Macau		    45) Thailand</span><br><span class="line">12) Georgia		  29) Malaysia		    46) Turkmenistan</span><br><span class="line">13) Hong Kong		  30) Mongolia		    47) United Arab Emirates</span><br><span class="line">14) India		  31) Myanmar (Burma)	    48) Uzbekistan</span><br><span class="line">15) Indonesia		  32) Nepal		    49) Vietnam</span><br><span class="line">16) Iran		  33) Oman		    50) Yemen</span><br><span class="line">17) Iraq		  34) Pakistan</span><br><span class="line"><span class="comment">#? 9</span></span><br><span class="line">Please select one of the following time zone regions.</span><br><span class="line">1) Beijing Time</span><br><span class="line">2) Xinjiang Time</span><br><span class="line"><span class="comment">#? 1</span></span><br><span class="line"></span><br><span class="line">The following information has been given:</span><br><span class="line"></span><br><span class="line">	China</span><br><span class="line">	Beijing Time</span><br><span class="line"></span><br><span class="line">Therefore TZ=<span class="string">'Asia/Shanghai'</span> will be used.</span><br><span class="line">Selected time is now:	Thu May 17 14:25:45 CST 2018.</span><br><span class="line">Universal Time is now:	Thu May 17 06:25:45 UTC 2018.</span><br><span class="line">Is the above information OK?</span><br><span class="line">1) Yes</span><br><span class="line">2) No</span><br><span class="line"><span class="comment">#? 1</span></span><br><span class="line"></span><br><span class="line">You can make this change permanent <span class="keyword">for</span> yourself by appending the line</span><br><span class="line">	TZ=<span class="string">'Asia/Shanghai'</span>; <span class="built_in">export</span> TZ</span><br><span class="line">to the file <span class="string">'.profile'</span> <span class="keyword">in</span> your home directory; <span class="keyword">then</span> <span class="built_in">log</span> out and <span class="built_in">log</span> <span class="keyword">in</span> again.</span><br><span class="line"></span><br><span class="line">Here is that TZ value again, this time on standard output so that you</span><br><span class="line">can use the /usr/bin/tzselect <span class="built_in">command</span> <span class="keyword">in</span> shell scripts:</span><br><span class="line">Asia/Shanghai</span><br></pre></td></tr></table></figure>
 
 <p>然后创建时区软链</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
 
 <p>现在看下时间，是不是已经正常了呢。</p>
 
@@ -341,12 +343,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -430,10 +454,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -445,7 +469,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -456,14 +479,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -494,7 +524,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -511,8 +541,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

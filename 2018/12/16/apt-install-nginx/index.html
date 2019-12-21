@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
   <meta name="description" content="使用 apt 安装 nginx ，方便快捷，省去了编译失败的可能。 支持平台   Version Codename Supported Platforms    16.04 xenial x86_64, i386, ppc64el, aarch64&#x2F;arm64   18.04 bionic x86_64, aarch64&#x2F;arm64   19.04 disco x86_64   19.10 eoa">
-<meta name="keywords" content="nginx,ubuntu,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu 中使用 apt 安装 nginx">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;12&#x2F;16&#x2F;apt-install-nginx&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/12/16/apt-install-nginx/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="使用 apt 安装 nginx ，方便快捷，省去了编译失败的可能。 支持平台   Version Codename Supported Platforms    16.04 xenial x86_64, i386, ppc64el, aarch64&#x2F;arm64   18.04 bionic x86_64, aarch64&#x2F;arm64   19.04 disco x86_64   19.10 eoa">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T10:00:00.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-16T16:09:38.000Z">
+<meta property="article:modified_time" content="2019-12-08T10:00:00.000Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/12/16/apt-install-nginx/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -302,49 +304,49 @@
 </tbody></table>
 <p>我这里的ubuntu的环境是 <code>19.10</code> 。通过上面的表格可以了解到我这里是支持安装的。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先，我们安装key</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
 
 <p>接下来添加 apt repository:</p>
 <p>安装主线版本执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span><br></pre></td></tr></table></figure>
 
 <p>安装稳定版本执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span><br></pre></td></tr></table></figure>
 
 <p>接下来执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 
 <p>下面就可以进行安装了，只需执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
 
 <p>执行完成之后，这样就安装完成了，是不是非常方便呢。</p>
 <h2 id="相关目录"><a href="#相关目录" class="headerlink" title="相关目录"></a>相关目录</h2><p>下面看下配置文件夹的相关目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ tree /etc/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/etc/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── conf.d</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">│   └── default.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">├── fastcgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">├── koi-utf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">├── koi-win</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">├── mime.types</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">├── modules -&gt; /usr/lib/nginx/modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">├── nginx.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">├── scgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">├── uwsgi_params</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">└── win-utf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">2 directories, 9 files</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ tree /etc/nginx/</span><br><span class="line">/etc/nginx/</span><br><span class="line">├── conf.d</span><br><span class="line">│   └── default.conf</span><br><span class="line">├── fastcgi_params</span><br><span class="line">├── koi-utf</span><br><span class="line">├── koi-win</span><br><span class="line">├── mime.types</span><br><span class="line">├── modules -&gt; /usr/lib/nginx/modules</span><br><span class="line">├── nginx.conf</span><br><span class="line">├── scgi_params</span><br><span class="line">├── uwsgi_params</span><br><span class="line">└── win-utf</span><br><span class="line"></span><br><span class="line">2 directories, 9 files</span><br></pre></td></tr></table></figure>
 
 <p>日志相关：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ tree /var/<span class="built_in">log</span>/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/var/<span class="built_in">log</span>/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── access.log</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">└── error.log</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">0 directories, 2 files</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ tree /var/<span class="built_in">log</span>/nginx/</span><br><span class="line">/var/<span class="built_in">log</span>/nginx/</span><br><span class="line">├── access.log</span><br><span class="line">└── error.log</span><br><span class="line"></span><br><span class="line">0 directories, 2 files</span><br></pre></td></tr></table></figure>
 
 <p>缓存相关：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo tree /var/cache/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/var/cache/nginx/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── client_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">├── fastcgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">├── proxy_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">├── scgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">└── uwsgi_temp</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">5 directories, 0 files</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tree /var/cache/nginx/</span><br><span class="line">/var/cache/nginx/</span><br><span class="line">├── client_temp</span><br><span class="line">├── fastcgi_temp</span><br><span class="line">├── proxy_temp</span><br><span class="line">├── scgi_temp</span><br><span class="line">└── uwsgi_temp</span><br><span class="line"></span><br><span class="line">5 directories, 0 files</span><br></pre></td></tr></table></figure>
 
 <h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>下面看看支持的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Usage: /etc/init.d/nginx &#123;start|stop|status|restart|reload|force-reload|upgrade|configtest|check-reload&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx</span><br><span class="line">Usage: /etc/init.d/nginx &#123;start|stop|status|restart|reload|force-reload|upgrade|configtest|check-reload&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里介绍几个常用的</p>
 <p>启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Starting nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx start</span><br><span class="line">[ ok ] Starting nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
 
 <p>重启：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx restart</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Restarting nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx restart</span><br><span class="line">[ ok ] Restarting nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
 
 <p>状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx status</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">● nginx.service - nginx - high performance web server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   Active: active (running) since Sun 2019-12-08 09:51:20 UTC; 18s ago</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     Docs: http://nginx.org/en/docs/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Process: 15032 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"> Main PID: 15033 (nginx)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Tasks: 2 (<span class="built_in">limit</span>: 4591)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">   Memory: 1.7M</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">   CGroup: /system.slice/nginx.service</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">           ├─15033 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">           └─15034 nginx: worker process</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Starting nginx - high performance web server...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Started nginx - high performance web server.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx status</span><br><span class="line">● nginx.service - nginx - high performance web server</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Sun 2019-12-08 09:51:20 UTC; 18s ago</span><br><span class="line">     Docs: http://nginx.org/en/docs/</span><br><span class="line">  Process: 15032 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 15033 (nginx)</span><br><span class="line">    Tasks: 2 (<span class="built_in">limit</span>: 4591)</span><br><span class="line">   Memory: 1.7M</span><br><span class="line">   CGroup: /system.slice/nginx.service</span><br><span class="line">           ├─15033 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf</span><br><span class="line">           └─15034 nginx: worker process</span><br><span class="line"></span><br><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Starting nginx - high performance web server...</span><br><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Started nginx - high performance web server.</span><br></pre></td></tr></table></figure>
 
 <p>停止:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx stop</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[ ok ] Stopping nginx (via systemctl): nginx.service.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx stop</span><br><span class="line">[ ok ] Stopping nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
 
 <p>检测配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx configtest</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx configtest</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
 
 <p>其他的我就不列举了。大家可以自己去试验。</p>
 
@@ -408,12 +410,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -498,10 +522,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -513,7 +537,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -524,14 +547,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -562,7 +592,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -579,8 +609,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,18 +42,18 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
   <meta name="description" content="记录我的工作中碰到的坑">
 <meta property="og:type" content="website">
 <meta property="og:title" content="魔王卷子的博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;page&#x2F;2&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/page/2/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
 <meta property="og:description" content="记录我的工作中碰到的坑">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="魔王卷子">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/page/2/">
@@ -63,9 +64,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isPost: false
   };
 </script>
 
@@ -224,7 +223,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,14 +274,14 @@
 <p>比如我的是aliyun.pem.</p>
 <p>我将其存放在<code>/home/baoguoxiao/aliyun.pem</code>。</p>
 <p>登录的命令则是如下这条:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh -i /home/baoguoxiao/aliyun.pem root@ip</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i /home/baoguoxiao/aliyun.pem root@ip</span><br></pre></td></tr></table></figure>
 
 <p>执行该命令的时候可能会提示如下错误:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Permissions 0755 <span class="keyword">for</span> <span class="string">'/home/baoguoxiao/aliyun.pem'</span> are too open.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Permissions 0755 <span class="keyword">for</span> <span class="string">'/home/baoguoxiao/aliyun.pem'</span> are too open.</span><br></pre></td></tr></table></figure>
 
 <p>这个表示我们给与这个文件的权限太大了，所以需要对其设置只读权限。</p>
 <p>执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod 400 /home/baoguoxiao/aliyun.pem</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 400 /home/baoguoxiao/aliyun.pem</span><br></pre></td></tr></table></figure>
 
 <p>然后再次使用如上的<code>ssh</code>命令，就可以顺利的登录阿里云服务器了。</p>
 <p>这样真的好棒。妈妈再也不用担心我的学习。</p>
@@ -339,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -385,18 +384,18 @@
 
       
           <p>有时候我们可能需要向html中传递html代码。但是因为我们的后台框架使用了laravel。所以我们在赋值的时候就会变成:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;&#123;$username&#125;&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;$username&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>虽然我们使用自带的非转义的赋值方法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;!! $username !!&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;!! $username !!&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是我的需求却是不能使用后面的这类方法。</p>
 <p>通过谷歌，我了解到一种完美的办法，可以将转义后的代码再次转回来。</p>
 <p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlDecode</span>(<span class="params">input</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> e = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    e.innerHTML = input;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> e.childNodes.length === <span class="number">0</span> ? <span class="string">""</span> : e.childNodes[<span class="number">0</span>].nodeValue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlDecode</span>(<span class="params">input</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    e.innerHTML = input;</span><br><span class="line">    <span class="keyword">return</span> e.childNodes.length === <span class="number">0</span> ? <span class="string">""</span> : e.childNodes[<span class="number">0</span>].nodeValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们只需要调用该方法就可以完美执行反转义了：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">htmlDecode(<span class="string">"&amp;lt;img src='myimage.jpg'&amp;gt;"</span>); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns "&lt;img src='myimage.jpg'&gt;"</span></span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">htmlDecode(<span class="string">"&amp;lt;img src='myimage.jpg'&amp;gt;"</span>); </span><br><span class="line"><span class="comment">// returns "&lt;img src='myimage.jpg'&gt;"</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://css-tricks.com/snippets/javascript/unescape-html-in-js/" target="_blank" rel="noopener">https://css-tricks.com/snippets/javascript/unescape-html-in-js/</a></li>
@@ -451,7 +450,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -504,16 +503,16 @@
 <h2 id="官网提供的SDK不可用"><a href="#官网提供的SDK不可用" class="headerlink" title="官网提供的SDK不可用"></a>官网提供的SDK不可用</h2><p>这个问题就非常坑了。官网提供的SDK根本不可用，最后我们各种谷歌之后，终于发现了问题，原来该SDK已经在2013年就不维护了，必须转而使用raven-java。</p>
 <p>现在粘贴相关代码：</p>
 <p>Gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">compile &#39;com.getsentry.raven:raven-android:8.0.1&#39; # 实测compile不可用，必须替换为 api</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;com.getsentry.raven:raven-android:8.0.1&#39; # 实测compile不可用，必须替换为 api</span><br></pre></td></tr></table></figure>
 
 <p>Permissions</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>实例化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.getsentry.raven.android.Raven;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Context ctx = <span class="keyword">this</span>.getApplicationContext();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Raven.init(ctx, <span class="string">"YOUR-SENTRY-DSN"</span>);</span></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.getsentry.raven.android.Raven;</span><br><span class="line"></span><br><span class="line">Context ctx = <span class="keyword">this</span>.getApplicationContext();</span><br><span class="line">Raven.init(ctx, <span class="string">"YOUR-SENTRY-DSN"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>捕获错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    String json = <span class="string">"['a']"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    JSONObject jsonObject = <span class="keyword">new</span> JSONObject(json); <span class="comment">// 示例错误</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    Sentry.capture(e);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String json = <span class="string">"['a']"</span>;</span><br><span class="line">    JSONObject jsonObject = <span class="keyword">new</span> JSONObject(json); <span class="comment">// 示例错误</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    Sentry.capture(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在测试过程中发现，接收到的错误信息有时候很及时，有时候就非常慢。推测可能是因为APP崩溃退出了，导致错误信息没有及时发出，所以会在下一次APP启动的时候，将相关的错误数据送出， 这样导致sentry接收到错误消息的时间较晚。</p>
 <h2 id="参考URL"><a href="#参考URL" class="headerlink" title="参考URL"></a>参考URL</h2><ul>
@@ -570,7 +569,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -617,15 +616,15 @@
       
           <p>在安装docker-compose之前必须先检查是否已经安装好了docker。具体安装教程可阅读 <a href="/2018/02/07/docker-study-notes-1-install/" title="docker学习笔记之一 安装">docker学习笔记之一 安装</a>。</p>
 <p>运行此命令下载最新版本的docker-compose</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
 <p>可以看到我们上面下载的版本是1.23.1。这个可能很快就过期了，这个时候可以查看<a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">Releases</a>页面了解最新发布的版本，然后将最新发布的版本号替换上面命令中已知的版本号进行下载。</p>
 <p>接下来我们对其设置执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
 <p>好了，这样就安装完成了。是不是非常简单。</p>
 <p>最后我们检查看版本。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ docker-compose --version</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker-compose version 1.23.1, build b02f1306</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose --version</span><br><span class="line">docker-compose version 1.23.1, build b02f1306</span><br></pre></td></tr></table></figure>
 
 <p>end.</p>
 
@@ -678,7 +677,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -726,14 +725,14 @@
           <p>lrzsz命令是非常好用的一个命令。</p>
 <p>这个命令可以支持我们在xshell中进行文件的上传和下载操作。</p>
 <p>但是默认执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo apt install lrzsz </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Reading package lists... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Building dependency tree       </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Reading state information... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">E: Unable to locate package lrzsz</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install lrzsz </span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">E: Unable to locate package lrzsz</span><br></pre></td></tr></table></figure>
 
 <p>出现了找不到包的错误。</p>
 <p>发现解决的办法很简单。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
 
 <p>新增了这个源之后，我们重新执行安装命令之后就可以了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt install lrzsz</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lrzsz</span><br></pre></td></tr></table></figure>
 
 <p>end.</p>
 
@@ -786,7 +785,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1020,7 +1019,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1070,7 +1069,7 @@
 <p>好了，下面说具体配置。</p>
 <p>首先接上一篇文章 <a href="/2018/10/29/sentry-install/" title="安装sentry">安装sentry</a>，我们将代码拉取到的目录是<code>/data/sentry</code>。</p>
 <p>接下来我们就要里面这个文件夹里面的<code>docker-compose.yml</code>文件。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">x-defaults:</span> <span class="meta">&amp;defaults</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">restart:</span> <span class="string">unless-stopped</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">build:</span> <span class="string">.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">depends_on:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">redis</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">memcached</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">smtp</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">env_file:</span> <span class="string">.env</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">environment:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_MEMCACHED_HOST:</span> <span class="string">memcached</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_REDIS_HOST:</span> <span class="string">redis</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_POSTGRES_HOST:</span> <span class="string">postgres</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 从这里开始</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_EMAIL_HOST:</span> <span class="string">smtp.exmail.qq.com</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_EMAIL_USER:</span> <span class="string">example@mail.com</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_SERVER_EMAIL:</span> <span class="string">example@mail.com</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_EMAIL_PASSWORD:</span> <span class="string">password</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_EMAIL_USE_TLS:</span> <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">SENTRY_EMAIL_PORT:</span> <span class="number">587</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 这里结束</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">volumes:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="bullet">-</span> <span class="string">sentry-data:/var/lib/sentry/files</span></span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">x-defaults:</span> <span class="meta">&amp;defaults</span></span><br><span class="line">  <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">  <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">depends_on:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">redis</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">postgres</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">memcached</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">smtp</span></span><br><span class="line">  <span class="attr">env_file:</span> <span class="string">.env</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">SENTRY_MEMCACHED_HOST:</span> <span class="string">memcached</span></span><br><span class="line">    <span class="attr">SENTRY_REDIS_HOST:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">SENTRY_POSTGRES_HOST:</span> <span class="string">postgres</span></span><br><span class="line">    <span class="comment"># 从这里开始</span></span><br><span class="line">    <span class="attr">SENTRY_EMAIL_HOST:</span> <span class="string">smtp.exmail.qq.com</span></span><br><span class="line">    <span class="attr">SENTRY_EMAIL_USER:</span> <span class="string">example@mail.com</span></span><br><span class="line">    <span class="attr">SENTRY_SERVER_EMAIL:</span> <span class="string">example@mail.com</span></span><br><span class="line">    <span class="attr">SENTRY_EMAIL_PASSWORD:</span> <span class="string">password</span></span><br><span class="line">    <span class="attr">SENTRY_EMAIL_USE_TLS:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">SENTRY_EMAIL_PORT:</span> <span class="number">587</span></span><br><span class="line">    <span class="comment"># 这里结束</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">sentry-data:/var/lib/sentry/files</span></span><br></pre></td></tr></table></figure>
 
 <p>这里介绍一下每个配置项的作用：</p>
 <table>
@@ -1089,7 +1088,7 @@
 <tr>
 <td align="center">SENTRY_EMAIL_USER</td>
 <td align="center">登录的邮箱账号</td>
-<td align="center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
+<td align="center"><a href="mailto:example@mail.com">example@mail.com</a></td>
 </tr>
 <tr>
 <td align="center">SENTRY_EMAIL_PASSWORD</td>
@@ -1109,16 +1108,16 @@
 <tr>
 <td align="center">SENTRY_SERVER_EMAIL</td>
 <td align="center">发送的账户，跟<strong>SENTRY_EMAIL_USER</strong>相同</td>
-<td align="center"><a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a></td>
+<td align="center"><a href="mailto:example@mail.com">example@mail.com</a></td>
 </tr>
 </tbody></table>
 <p>配置完成之后，需要重建服务。具体可以执行以下命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker-compose down</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker-composer up -d</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br><span class="line">docker-composer up -d</span><br></pre></td></tr></table></figure>
 
 <p>然后稍等一分钟就可以正常访问web页面了。</p>
 <p>现在来测试一下。</p>
 <p>进入页面，在左上角的你的昵称位置单击，选择Admin。</p>
-<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:example@mail.com" target="_blank" rel="noopener">example@mail.com</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
+<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:example@mail.com">example@mail.com</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
 <p>在配置问题中，如果有什么问题，可以过来跟我留言。</p>
 <p>毕竟这个邮件通知我折腾了一下午才搞定。</p>
 <p>哈哈</p>
@@ -1172,7 +1171,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1225,42 +1224,42 @@
 </ul>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>接下来的安装命令就非常简单了。</p>
 <p>首先我们先创建目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir /data</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data</span><br></pre></td></tr></table></figure>
 
 <p>然后拉取命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/getsentry/onpremise sentry</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/getsentry/onpremise sentry</span><br></pre></td></tr></table></figure>
 
 <p>然后进入目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> sentry</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> sentry</span><br></pre></td></tr></table></figure>
 
 <p>首先我们修改一下映射端口。因为默认绑定端口是9000，因为我这台电脑启动了php-fpm服务绑定了9000端口，所以我这里需要将9000改成10000。具体相关配置如下：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">web:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="string">&lt;&lt;:</span> <span class="meta">*defaults</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">ports:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      <span class="bullet">-</span> <span class="string">'10000:9000'</span> <span class="comment"># 修改位置</span></span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="string">&lt;&lt;:</span> <span class="meta">*defaults</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">'10000:9000'</span> <span class="comment"># 修改位置</span></span><br></pre></td></tr></table></figure>
 
 <p>好了，接下来就是创建volumn。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker volume create --name=sentry-data &amp;&amp; docker volume create --name=sentry-postgres</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume create --name=sentry-data &amp;&amp; docker volume create --name=sentry-postgres</span><br></pre></td></tr></table></figure>
 
 <p>生成配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cp -n  .env.example .env</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -n  .env.example .env</span><br></pre></td></tr></table></figure>
 
 <p>创建服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker-compose build</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build</span><br></pre></td></tr></table></figure>
 
 <p>生成秘钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker-compose run --rm web config generate-secret-key</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose run --rm web config generate-secret-key</span><br></pre></td></tr></table></figure>
 
 <p>将生成的秘钥添加到<code>.env</code>中的<code>SENTRY_SECRET_KEY</code>项。</p>
 <p>构建数据库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker-compose run --rm web upgrade</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose run --rm web upgrade</span><br></pre></td></tr></table></figure>
 
 <p>启动所有服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 <p>好了，这样sentry就安装完成了。</p>
-<h2 id="Nginx转发"><a href="#Nginx转发" class="headerlink" title="Nginx转发"></a>Nginx转发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    listen 80;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    server_name abc.example.com;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    location &#x2F; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">          proxy_set_header X-Real-IP  $remote_addr;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">          proxy_set_header Host-Real-IP  $http_host;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">          proxy_set_header X-Real-Pcol http;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">          proxy_pass http:&#x2F;&#x2F;localhost:10000;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">   &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h2 id="Nginx转发"><a href="#Nginx转发" class="headerlink" title="Nginx转发"></a>Nginx转发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name abc.example.com;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">          proxy_set_header X-Real-IP  $remote_addr;</span><br><span class="line">          proxy_set_header Host-Real-IP  $http_host;</span><br><span class="line">          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">          proxy_set_header X-Real-Pcol http;</span><br><span class="line">          proxy_pass http:&#x2F;&#x2F;localhost:10000;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样我们就可以使用绑定的域名进行访问了。</p>
 <h2 id="端口安全"><a href="#端口安全" class="headerlink" title="端口安全"></a>端口安全</h2><p>使用netstat命令查询端口状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># netstat -ntlp | grep 10000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tcp6       0      0 :::10000                :::*                    LISTEN      22354/docker-proxy</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># netstat -ntlp | grep 10000</span></span><br><span class="line">tcp6       0      0 :::10000                :::*                    LISTEN      22354/docker-proxy</span><br></pre></td></tr></table></figure>
 
 <p>发现这个并没有绑定127.0.0.1。这里我并没有研究好如何绑定127.0.0.1。这里可以通过防火墙进行端口控制。比如阿里云的入网端口管理，或者centos的firewalld命令都可以进行控制。具体就不展开了。</p>
 <p>PS：明天具体写如何配置邮件发送。</p>
@@ -1314,7 +1313,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1360,17 +1359,17 @@
 
       
           <p>我在安装php-zip扩展的时候提示以下错误消息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Reading package lists... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Building dependency tree       </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Reading state information... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Some packages could not be installed. This may mean that you have</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">requested an impossible situation or <span class="keyword">if</span> you are using the unstable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">distribution that some required packages have not yet been created</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">or been moved out of Incoming.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">The following information may <span class="built_in">help</span> to resolve the situation:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">The following packages have unmet dependencies:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"> php-zip : Depends: php7.2-zip but it is not going to be installed</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">E: Unable to correct problems, you have held broken packages.</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Some packages could not be installed. This may mean that you have</span><br><span class="line">requested an impossible situation or <span class="keyword">if</span> you are using the unstable</span><br><span class="line">distribution that some required packages have not yet been created</span><br><span class="line">or been moved out of Incoming.</span><br><span class="line">The following information may <span class="built_in">help</span> to resolve the situation:</span><br><span class="line"></span><br><span class="line">The following packages have unmet dependencies:</span><br><span class="line"> php-zip : Depends: php7.2-zip but it is not going to be installed</span><br><span class="line">E: Unable to correct problems, you have held broken packages.</span><br></pre></td></tr></table></figure>
 
 <p>通过谷歌，发现解决错误的方式很简单。</p>
 <p>首先打开<code>vi /etc/apt/sources.list</code>，然后修改里面的内容如下所示：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic main universe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-security main universe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-updates main universe</span></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-security main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-updates main universe</span><br></pre></td></tr></table></figure>
 
 <p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 
 <p>然后执行安装命令就好了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Reading package lists... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Building dependency tree       </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Reading state information... Done</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">The following additional packages will be installed:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  libzip4 php7.2-zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">The following NEW packages will be installed:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  libzip4 php-zip php7.2-zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Need to get 63.9 kB of archives.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">After this operation, 204 kB of additional disk space will be used.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Do you want to <span class="built_in">continue</span>? [Y/n] y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libzip4 amd64 1.1.2-1.1 [37.8 kB]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">Get:2 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php7.2-zip amd64 7.2.10-1+ubuntu18.04.1+deb.sury.org+1 [20.3 kB]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">Get:3 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php-zip all 1:7.2+62+ubuntu18.04.1+deb.sury.org+3 [5,840 B]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">Fetched 63.9 kB <span class="keyword">in</span> 2s (39.4 kB/s)   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">Selecting previously unselected package libzip4:amd64.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">(Reading database ... 102709 files and directories currently installed.)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">Preparing to unpack .../libzip4_1.1.2-1.1_amd64.deb ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">Unpacking libzip4:amd64 (1.1.2-1.1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">Selecting previously unselected package php7.2-zip.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">Preparing to unpack .../php7.2-zip_7.2.10-1+ubuntu18.04.1+deb.sury.org+1_amd64.deb ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">Unpacking php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">Selecting previously unselected package php-zip.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">Preparing to unpack .../php-zip_1%3a7.2+62+ubuntu18.04.1+deb.sury.org+3_all.deb ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">Unpacking php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">Setting up libzip4:amd64 (1.1.2-1.1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">Setting up php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">Creating config file /etc/php/7.2/mods-available/zip.ini with new version</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">Setting up php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">The following additional packages will be installed:</span><br><span class="line">  libzip4 php7.2-zip</span><br><span class="line">The following NEW packages will be installed:</span><br><span class="line">  libzip4 php-zip php7.2-zip</span><br><span class="line">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span><br><span class="line">Need to get 63.9 kB of archives.</span><br><span class="line">After this operation, 204 kB of additional disk space will be used.</span><br><span class="line">Do you want to <span class="built_in">continue</span>? [Y/n] y</span><br><span class="line">Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libzip4 amd64 1.1.2-1.1 [37.8 kB]</span><br><span class="line">Get:2 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php7.2-zip amd64 7.2.10-1+ubuntu18.04.1+deb.sury.org+1 [20.3 kB]</span><br><span class="line">Get:3 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php-zip all 1:7.2+62+ubuntu18.04.1+deb.sury.org+3 [5,840 B]</span><br><span class="line">Fetched 63.9 kB <span class="keyword">in</span> 2s (39.4 kB/s)   </span><br><span class="line">Selecting previously unselected package libzip4:amd64.</span><br><span class="line">(Reading database ... 102709 files and directories currently installed.)</span><br><span class="line">Preparing to unpack .../libzip4_1.1.2-1.1_amd64.deb ...</span><br><span class="line">Unpacking libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Selecting previously unselected package php7.2-zip.</span><br><span class="line">Preparing to unpack .../php7.2-zip_7.2.10-1+ubuntu18.04.1+deb.sury.org+1_amd64.deb ...</span><br><span class="line">Unpacking php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Selecting previously unselected package php-zip.</span><br><span class="line">Preparing to unpack .../php-zip_1%3a7.2+62+ubuntu18.04.1+deb.sury.org+3_all.deb ...</span><br><span class="line">Unpacking php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Setting up libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span><br><span class="line">Setting up php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line"></span><br><span class="line">Creating config file /etc/php/7.2/mods-available/zip.ini with new version</span><br><span class="line">Setting up php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring" target="_blank" rel="noopener">https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring</a></li>
@@ -1425,7 +1424,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1585,6 +1584,28 @@
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
           
   
@@ -1667,10 +1688,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -1682,7 +1703,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -1693,14 +1713,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 

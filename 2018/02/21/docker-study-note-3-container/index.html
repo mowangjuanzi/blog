@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,22 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="docker学习笔记之三 容器 现在我们根据教程创建一个容器。 使用Dockerfile定义一个容器首先我们先创建一个文件夹。我创建的文件夹的路径如下： 1$ pwd2&#x2F;home&#x2F;baoguoxiao&#x2F;docker  我们使用cd命令进入到该文件夹。然后我们创建一个叫做Dockerfile的文件。把以下内容复制并粘贴到刚才创建的文件中并保存。 1# 使用官方的python作为父镜像2FROM py">
-<meta name="keywords" content="docker,容器">
+  <meta name="description" content="docker学习笔记之三 容器 现在我们根据教程创建一个容器。 使用Dockerfile定义一个容器首先我们先创建一个文件夹。我创建的文件夹的路径如下： 12$ pwd&#x2F;home&#x2F;baoguoxiao&#x2F;docker  我们使用cd命令进入到该文件夹。然后我们创建一个叫做Dockerfile的文件。把以下内容复制并粘贴到刚才创建的文件中并保存。 123456789101112131415161718">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker学习笔记之三 容器">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2018&#x2F;02&#x2F;21&#x2F;docker-study-note-3-container&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2018/02/21/docker-study-note-3-container/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="docker学习笔记之三 容器 现在我们根据教程创建一个容器。 使用Dockerfile定义一个容器首先我们先创建一个文件夹。我创建的文件夹的路径如下： 1$ pwd2&#x2F;home&#x2F;baoguoxiao&#x2F;docker  我们使用cd命令进入到该文件夹。然后我们创建一个叫做Dockerfile的文件。把以下内容复制并粘贴到刚才创建的文件中并保存。 1# 使用官方的python作为父镜像2FROM py">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.809Z">
+<meta property="og:description" content="docker学习笔记之三 容器 现在我们根据教程创建一个容器。 使用Dockerfile定义一个容器首先我们先创建一个文件夹。我创建的文件夹的路径如下： 12$ pwd&#x2F;home&#x2F;baoguoxiao&#x2F;docker  我们使用cd命令进入到该文件夹。然后我们创建一个叫做Dockerfile的文件。把以下内容复制并粘贴到刚才创建的文件中并保存。 123456789101112131415161718">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-21T12:20:10.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.704Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="容器">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2018/02/21/docker-study-note-3-container/">
@@ -65,9 +68,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,54 +274,54 @@
         <p>docker学习笔记之三 容器</p>
 <p>现在我们根据教程创建一个容器。</p>
 <h2 id="使用Dockerfile定义一个容器"><a href="#使用Dockerfile定义一个容器" class="headerlink" title="使用Dockerfile定义一个容器"></a>使用<strong>Dockerfile</strong>定义一个容器</h2><p>首先我们先创建一个文件夹。我创建的文件夹的路径如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">/home/baoguoxiao/docker</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/home/baoguoxiao/docker</span><br></pre></td></tr></table></figure>
 
 <p>我们使用<strong>cd</strong>命令进入到该文件夹。然后我们创建一个叫做<strong>Dockerfile</strong>的文件。把以下内容复制并粘贴到刚才创建的文件中并保存。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用官方的python作为父镜像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">FROM python:2.7-slim</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置工作目录为 /app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">WORKDIR /app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制当前文件夹的内容到容器的 /app目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">ADD . /app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装在requirements.txt中指定的所必须的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">RUN pip install --trusted-host pypi.python.org -r requirements.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义80端口对容器外可用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">EXPOSE 80</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义环境变量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">ENV NAME World</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当容器启动时运行 app.py</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">CMD ["python", "app.py"]</span></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用官方的python作为父镜像</span></span><br><span class="line">FROM python:2.7-slim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录为 /app</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制当前文件夹的内容到容器的 /app目录</span></span><br><span class="line">ADD . /app</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装在requirements.txt中指定的所必须的包</span></span><br><span class="line">RUN pip install --trusted-host pypi.python.org -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义80端口对容器外可用</span></span><br><span class="line">EXPOSE 80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义环境变量</span></span><br><span class="line">ENV NAME World</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当容器启动时运行 app.py</span></span><br><span class="line">CMD ["python", "app.py"]</span><br></pre></td></tr></table></figure>
 
 <p>这个文件提到了我们两个没有创建的文件，<strong>requirements.txt</strong>和<strong>app.py</strong>，下面我将会给出两个文件的内容，将以下内容复制并粘贴到相应的文件中，并且这两个文件和<strong>Dockerfile</strong>一样，属于同级目录。</p>
 <p><strong>requirements.txt</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Flask</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Redis</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flask</span><br><span class="line">Redis</span><br></pre></td></tr></table></figure>
 
 <p><strong>app.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis, RedisError</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Connect to Redis</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">redis = Redis(host=<span class="string">"redis"</span>, db=<span class="number">0</span>, socket_connect_timeout=<span class="number">2</span>, socket_timeout=<span class="number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">app = Flask(__name__)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route("/")</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">try</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        visits = redis.incr(<span class="string">"counter"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">except</span> RedisError:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        visits = <span class="string">"&lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    html = <span class="string">"&lt;h3&gt;Hello &#123;name&#125;!&lt;/h3&gt;"</span> \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">           <span class="string">"&lt;b&gt;Hostname:&lt;/b&gt; &#123;hostname&#125;&lt;br/&gt;"</span> \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">           <span class="string">"&lt;b&gt;Visits:&lt;/b&gt; &#123;visits&#125;"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> html.format(name=os.getenv(<span class="string">"NAME"</span>, <span class="string">"world"</span>), hostname=socket.gethostname(), visits=visits)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    app.run(host=<span class="string">'0.0.0.0'</span>, port=<span class="number">80</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> redis <span class="keyword">import</span> Redis, RedisError</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># Connect to Redis</span></span><br><span class="line">redis = Redis(host=<span class="string">"redis"</span>, db=<span class="number">0</span>, socket_connect_timeout=<span class="number">2</span>, socket_timeout=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        visits = redis.incr(<span class="string">"counter"</span>)</span><br><span class="line">    <span class="keyword">except</span> RedisError:</span><br><span class="line">        visits = <span class="string">"&lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;"</span></span><br><span class="line"></span><br><span class="line">    html = <span class="string">"&lt;h3&gt;Hello &#123;name&#125;!&lt;/h3&gt;"</span> \</span><br><span class="line">           <span class="string">"&lt;b&gt;Hostname:&lt;/b&gt; &#123;hostname&#125;&lt;br/&gt;"</span> \</span><br><span class="line">           <span class="string">"&lt;b&gt;Visits:&lt;/b&gt; &#123;visits&#125;"</span></span><br><span class="line">    <span class="keyword">return</span> html.format(name=os.getenv(<span class="string">"NAME"</span>, <span class="string">"world"</span>), hostname=socket.gethostname(), visits=visits)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app.run(host=<span class="string">'0.0.0.0'</span>, port=<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
 <p>可以看到我们安装了Flask和Redis库，但是我们并没有安装Redis数据库，所以我们期望在完成的时候能够提示错误信息。</p>
 <h2 id="构建应用程序"><a href="#构建应用程序" class="headerlink" title="构建应用程序"></a>构建应用程序</h2><p>我们准备要构建我们的程序了，首先我们要保证我们处于原来的目录。现在我们看下我们目前的目录的内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ ls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">app.py  Dockerfile  requirements.txt</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">app.py  Dockerfile  requirements.txt</span><br></pre></td></tr></table></figure>
 
 <p>现在我们执行命令，它会创建一个镜像。使用<strong>-t</strong>设定一个更加友好的名字：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker build -t friendlyhello .</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t friendlyhello .</span><br></pre></td></tr></table></figure>
 
 <p>现在我们查看一下我们的镜像列表：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ docker image ls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">friendlyhello       latest              bc24eaee5b6d        10 minutes ago      148MB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">python              2.7-slim            4fd30fc83117        8 weeks ago         138MB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">hello-world         latest              f2a91732366c        2 months ago        1.85kB</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">friendlyhello       latest              bc24eaee5b6d        10 minutes ago      148MB</span><br><span class="line">python              2.7-slim            4fd30fc83117        8 weeks ago         138MB</span><br><span class="line">hello-world         latest              f2a91732366c        2 months ago        1.85kB</span><br></pre></td></tr></table></figure>
 
 <h2 id="运行APP"><a href="#运行APP" class="headerlink" title="运行APP"></a>运行APP</h2><p>运行APP，我们使用机器的4000端口跟发布的容器的80端口进行映射：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -p 4000:80 friendlyhello</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 4000:80 friendlyhello</span><br></pre></td></tr></table></figure>
 
 <p>启动之后，我们就可以访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 来访问了。</p>
 <p>我们这里是使用真实系统的4000端口来映射到我们生成的镜像的80端口。</p>
 <p>按<kbd>Ctrl+C</kbd>强制退出。</p>
 <p>现在我们用后台守护进程运行程序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -d -p 4000:80 friendlyhello</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4000:80 friendlyhello</span><br></pre></td></tr></table></figure>
 
 <p>现在我们使用以下命令查看目前正在运行的容器。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ docker container ls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">27d94a4c5481        friendlyhello       <span class="string">"python app.py"</span>     7 minutes ago       Up 7 minutes        0.0.0.0:4000-&gt;80/tcp   vigilant_easley</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker container ls</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">27d94a4c5481        friendlyhello       <span class="string">"python app.py"</span>     7 minutes ago       Up 7 minutes        0.0.0.0:4000-&gt;80/tcp   vigilant_easley</span><br></pre></td></tr></table></figure>
 
 <p>现在我们将我们运行的docker停止。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker container stop 27d94a4c5481</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container stop 27d94a4c5481</span><br></pre></td></tr></table></figure>
 
 <p><strong>27d94a4c5481</strong>是我运行的容器ID。每台机器的容器ID是不同，在运行此命令时请自主替换相关容器ID。</p>
 <h2 id="分享镜像"><a href="#分享镜像" class="headerlink" title="分享镜像"></a>分享镜像</h2><p>首先我们需要执行以下命令进行登陆，期间会要求输入docker ID以及密码，如果没有账号，可点击<a href="https://cloud.docker.com/" target="_blank" rel="noopener">此处</a>进行账号注册。</p>
 <p>首先我们推荐设定一个tag，这样才能方便对镜像进行管理。首先我们先看看语法格式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker tag image username/repository:tag</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag image username/repository:tag</span><br></pre></td></tr></table></figure>
 
 <p>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker tag mowangjuanzi/get-started:part2</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag mowangjuanzi/get-started:part2</span><br></pre></td></tr></table></figure>
 
 <p>然后我们将这个镜像进行上传：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker push mowangjuanzi/get-started:part2</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push mowangjuanzi/get-started:part2</span><br></pre></td></tr></table></figure>
 
-<h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker build -t friendlyhello .  <span class="comment"># 使用目录的Dockerfile文件创建镜像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker run -p 4000:80 friendlyhello  <span class="comment"># 运行"friendlyname"映射端口4000到80</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker run -d -p 4000:80 friendlyhello         <span class="comment"># 同上，但是是后台运行模式</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">docker container ls                                <span class="comment"># 列出所有运行的容器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">docker container ls -a             <span class="comment"># 列出所有容器，甚至那些不运行的</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">docker container stop &lt;<span class="built_in">hash</span>&gt;           <span class="comment"># 优雅的停止指定容器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">docker container <span class="built_in">kill</span> &lt;<span class="built_in">hash</span>&gt;         <span class="comment"># 强制关闭指定容器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">docker container rm &lt;<span class="built_in">hash</span>&gt;        <span class="comment"># 从这个机器中移除指定容器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">docker container rm $(docker container ls -a -q)         <span class="comment"># 移除全部容器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">docker image ls -a                             <span class="comment"># 列出这个机器中所有的镜像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">docker image rm &lt;image id&gt;            <span class="comment"># 从这个机器中移除指定镜像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">docker image rm $(docker image ls -a -q)   <span class="comment"># 从这个机器中移除所有镜像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">docker login             <span class="comment"># 使用你的docker证书进行登陆</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">docker tag &lt;image&gt; username/repository:tag  <span class="comment"># tag要上传到存储库的&lt;image&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">docker push username/repository:tag            <span class="comment"># 上传标记的镜像到docker光放存储库</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">docker run username/repository:tag                   <span class="comment"># 从存储库运行镜像</span></span></pre></td></tr></table></figure>
+<h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">docker build -t friendlyhello .  <span class="comment"># 使用目录的Dockerfile文件创建镜像</span></span><br><span class="line">docker run -p 4000:80 friendlyhello  <span class="comment"># 运行"friendlyname"映射端口4000到80</span></span><br><span class="line">docker run -d -p 4000:80 friendlyhello         <span class="comment"># 同上，但是是后台运行模式</span></span><br><span class="line">docker container ls                                <span class="comment"># 列出所有运行的容器</span></span><br><span class="line">docker container ls -a             <span class="comment"># 列出所有容器，甚至那些不运行的</span></span><br><span class="line">docker container stop &lt;<span class="built_in">hash</span>&gt;           <span class="comment"># 优雅的停止指定容器</span></span><br><span class="line">docker container <span class="built_in">kill</span> &lt;<span class="built_in">hash</span>&gt;         <span class="comment"># 强制关闭指定容器</span></span><br><span class="line">docker container rm &lt;<span class="built_in">hash</span>&gt;        <span class="comment"># 从这个机器中移除指定容器</span></span><br><span class="line">docker container rm $(docker container ls -a -q)         <span class="comment"># 移除全部容器</span></span><br><span class="line">docker image ls -a                             <span class="comment"># 列出这个机器中所有的镜像</span></span><br><span class="line">docker image rm &lt;image id&gt;            <span class="comment"># 从这个机器中移除指定镜像</span></span><br><span class="line">docker image rm $(docker image ls -a -q)   <span class="comment"># 从这个机器中移除所有镜像</span></span><br><span class="line">docker login             <span class="comment"># 使用你的docker证书进行登陆</span></span><br><span class="line">docker tag &lt;image&gt; username/repository:tag  <span class="comment"># tag要上传到存储库的&lt;image&gt;</span></span><br><span class="line">docker push username/repository:tag            <span class="comment"># 上传标记的镜像到docker光放存储库</span></span><br><span class="line">docker run username/repository:tag                   <span class="comment"># 从存储库运行镜像</span></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -381,12 +382,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -471,10 +494,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -486,7 +509,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -497,14 +519,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -535,7 +564,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -552,8 +581,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

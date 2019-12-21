@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,23 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="我的使用环境是Python-3.5.3。Django版本是1.10.5. 按照教程创建项目： 1django-admin startproject blog_python  然后在启动的时候，结果报错了： 1python3 manage.py runserver  结果报错信息如下： 1Unhandled exception in thread started by &amp;lt;function ch">
-<meta name="keywords" content="python,django,sqlite">
+  <meta name="description" content="我的使用环境是Python-3.5.3。Django版本是1.10.5. 按照教程创建项目： 1django-admin startproject blog_python  然后在启动的时候，结果报错了： 1python3 manage.py runserver  结果报错信息如下： 123456789101112131415161718192021222324252627282930313233">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django 报错 Error loading either pysqlite2 or sqlite3 modules">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;error-loading-either-pysqlite2-or-sqlite3-module&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="我的使用环境是Python-3.5.3。Django版本是1.10.5. 按照教程创建项目： 1django-admin startproject blog_python  然后在启动的时候，结果报错了： 1python3 manage.py runserver  结果报错信息如下： 1Unhandled exception in thread started by &amp;lt;function ch">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.809Z">
+<meta property="og:description" content="我的使用环境是Python-3.5.3。Django版本是1.10.5. 按照教程创建项目： 1django-admin startproject blog_python  然后在启动的时候，结果报错了： 1python3 manage.py runserver  结果报错信息如下： 123456789101112131415161718192021222324252627282930313233">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:29:43.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.704Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="django">
+<meta property="article:tag" content="sqlite">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/">
@@ -65,9 +69,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +227,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,25 +274,25 @@
       
         <p>我的使用环境是<code>Python-3.5.3</code>。Django版本是1.10.5.</p>
 <p>按照教程创建项目：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">django-admin startproject blog_python</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject blog_python</span><br></pre></td></tr></table></figure>
 
 <p>然后在启动的时候，结果报错了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver</span><br></pre></td></tr></table></figure>
 
 <p>结果报错信息如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Unhandled exception <span class="keyword">in</span> thread started by &lt;function check_errors.&lt;locals&gt;.wrapper at <span class="number">0x7fdc67089f28</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">34</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> pysqlite2 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">ImportError: No module named <span class="string">'pysqlite2'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">During handling of the above exception, another exception occurred:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">36</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> sqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/__init__.py"</span>, line <span class="number">23</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> sqlite3.dbapi2 <span class="keyword">import</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/dbapi2.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> _sqlite3 <span class="keyword">import</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">ImportError: No module named <span class="string">'_sqlite3'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">During handling of the above exception, another exception occurred:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    fn(*args, **kwargs)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/core/management/commands/runserver.py"</span>, line <span class="number">113</span>, <span class="keyword">in</span> inner_run</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    autoreload.raise_last_exception()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">249</span>, <span class="keyword">in</span> raise_last_exception</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    six.reraise(*_exception)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/six.py"</span>, line <span class="number">685</span>, <span class="keyword">in</span> reraise</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">raise</span> value.with_traceback(tb)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    fn(*args, **kwargs)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/__init__.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> setup</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    apps.populate(settings.INSTALLED_APPS)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/registry.py"</span>, line <span class="number">108</span>, <span class="keyword">in</span> populate</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    app_config.import_models(all_models)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/config.py"</span>, line <span class="number">199</span>, <span class="keyword">in</span> import_models</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    self.models_module = import_module(models_module_name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">986</span>, <span class="keyword">in</span> _gcd_import</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">969</span>, <span class="keyword">in</span> _find_and_load</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">958</span>, <span class="keyword">in</span> _find_and_load_unlocked</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> _load_unlocked</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap_external&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> exec_module</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">222</span>, <span class="keyword">in</span> _call_with_frames_removed</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/models.py"</span>, line <span class="number">4</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> django.contrib.auth.base_user <span class="keyword">import</span> AbstractBaseUser, BaseUserManager</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/base_user.py"</span>, line <span class="number">52</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">AbstractBaseUser</span><span class="params">(models.Model)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">119</span>, <span class="keyword">in</span> __new__</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">    new_class.add_to_class(<span class="string">'_meta'</span>, Options(meta, app_label))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">316</span>, <span class="keyword">in</span> add_to_class</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">    value.contribute_to_class(cls, name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/options.py"</span>, line <span class="number">214</span>, <span class="keyword">in</span> contribute_to_class</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/__init__.py"</span>, line <span class="number">33</span>, <span class="keyword">in</span> __getattr__</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> getattr(connections[DEFAULT_DB_ALIAS], item)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">211</span>, <span class="keyword">in</span> __getitem__</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">    backend = load_backend(db[<span class="string">'ENGINE'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">115</span>, <span class="keyword">in</span> load_backend</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> import_module(<span class="string">'%s.base'</span> % backend_name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">39</span>, <span class="keyword">in</span> &lt;module&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">raise</span> ImproperlyConfigured(<span class="string">"Error loading either pysqlite2 or sqlite3 modules (tried in that order): %s"</span> % exc)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">django.core.exceptions.ImproperlyConfigured: Error loading either pysqlite2 <span class="keyword">or</span> sqlite3 modules (tried <span class="keyword">in</span> that order): No module named <span class="string">'_sqlite3'</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">Unhandled exception <span class="keyword">in</span> thread started by &lt;function check_errors.&lt;locals&gt;.wrapper at <span class="number">0x7fdc67089f28</span>&gt;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">34</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> pysqlite2 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">ImportError: No module named <span class="string">'pysqlite2'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">36</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/__init__.py"</span>, line <span class="number">23</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3.dbapi2 <span class="keyword">import</span> *</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/dbapi2.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> _sqlite3 <span class="keyword">import</span> *</span><br><span class="line">ImportError: No module named <span class="string">'_sqlite3'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/core/management/commands/runserver.py"</span>, line <span class="number">113</span>, <span class="keyword">in</span> inner_run</span><br><span class="line">    autoreload.raise_last_exception()</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">249</span>, <span class="keyword">in</span> raise_last_exception</span><br><span class="line">    six.reraise(*_exception)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/six.py"</span>, line <span class="number">685</span>, <span class="keyword">in</span> reraise</span><br><span class="line">    <span class="keyword">raise</span> value.with_traceback(tb)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/__init__.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> setup</span><br><span class="line">    apps.populate(settings.INSTALLED_APPS)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/registry.py"</span>, line <span class="number">108</span>, <span class="keyword">in</span> populate</span><br><span class="line">    app_config.import_models(all_models)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/config.py"</span>, line <span class="number">199</span>, <span class="keyword">in</span> import_models</span><br><span class="line">    self.models_module = import_module(models_module_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">986</span>, <span class="keyword">in</span> _gcd_import</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">969</span>, <span class="keyword">in</span> _find_and_load</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">958</span>, <span class="keyword">in</span> _find_and_load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> _load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap_external&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> exec_module</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">222</span>, <span class="keyword">in</span> _call_with_frames_removed</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/models.py"</span>, line <span class="number">4</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.base_user <span class="keyword">import</span> AbstractBaseUser, BaseUserManager</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/base_user.py"</span>, line <span class="number">52</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">AbstractBaseUser</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">119</span>, <span class="keyword">in</span> __new__</span><br><span class="line">    new_class.add_to_class(<span class="string">'_meta'</span>, Options(meta, app_label))</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">316</span>, <span class="keyword">in</span> add_to_class</span><br><span class="line">    value.contribute_to_class(cls, name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/options.py"</span>, line <span class="number">214</span>, <span class="keyword">in</span> contribute_to_class</span><br><span class="line">    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/__init__.py"</span>, line <span class="number">33</span>, <span class="keyword">in</span> __getattr__</span><br><span class="line">    <span class="keyword">return</span> getattr(connections[DEFAULT_DB_ALIAS], item)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">211</span>, <span class="keyword">in</span> __getitem__</span><br><span class="line">    backend = load_backend(db[<span class="string">'ENGINE'</span>])</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">115</span>, <span class="keyword">in</span> load_backend</span><br><span class="line">    <span class="keyword">return</span> import_module(<span class="string">'%s.base'</span> % backend_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">39</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">raise</span> ImproperlyConfigured(<span class="string">"Error loading either pysqlite2 or sqlite3 modules (tried in that order): %s"</span> % exc)</span><br><span class="line">django.core.exceptions.ImproperlyConfigured: Error loading either pysqlite2 <span class="keyword">or</span> sqlite3 modules (tried <span class="keyword">in</span> that order): No module named <span class="string">'_sqlite3'</span></span><br></pre></td></tr></table></figure>
 
 <p>最后在这里查到了解决办法：</p>
 <p><a href="http://stackoverflow.com/questions/1210664/no-module-named-sqlite3" target="_blank" rel="noopener">http://stackoverflow.com/questions/1210664/no-module-named-sqlite3</a></p>
 <p>首先我们先执行一下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel</span><br></pre></td></tr></table></figure>
 
 <p>然后使用以下命令进行Python重装：</p>
 <p><code>./configure</code>如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/python3/ --enable-loadable-sqlite-extensions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/python3/ --enable-loadable-sqlite-extensions</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
 <p>这样重新执行前面的程序，就正常了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@localhost blog_python]# python3 manage.py runserver</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Performing system checks...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">System check identified no issues (0 silenced).</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Not checking migrations as it is not possible to access/create the django_migrations table.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">February 12, 2017 - 14:42:20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Django version 1.10.5, using settings 'blog_python.settings'</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">Starting development server at http://127.0.0.1:8000/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Quit the server with CONTROL-C.</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost blog_python]# python3 manage.py runserver</span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">Not checking migrations as it is not possible to access/create the django_migrations table.</span><br><span class="line">February 12, 2017 - 14:42:20</span><br><span class="line">Django version 1.10.5, using settings 'blog_python.settings'</span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -352,12 +354,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -441,10 +465,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -456,7 +480,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -467,14 +490,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -505,7 +535,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -522,8 +552,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -22,9 +22,9 @@
     hostname: new URL('http://www.baoguoxiao.com').hostname,
     root: '/',
     scheme: 'Gemini',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -32,6 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -41,20 +42,22 @@
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="启动命令首先先看看我的mysite.ini文件内容: 1[uwsgi]2chdir&#x3D;&#x2F;data&#x2F;custom&#x2F;mysite3module&#x3D;mysite.wsgi:application4master&#x3D;True5pidfile&#x3D;&#x2F;tmp&#x2F;project-mysite.pid6vacuum&#x3D;True7max-requests&#x3D;50008#daemonize&#x3D;&#x2F;var&#x2F;log&#x2F;uwsgi&#x2F;project">
-<meta name="keywords" content="python,uwsgi">
+  <meta name="description" content="启动命令首先先看看我的mysite.ini文件内容: 1234567891011[uwsgi]chdir&#x3D;&#x2F;data&#x2F;custom&#x2F;mysitemodule&#x3D;mysite.wsgi:applicationmaster&#x3D;Truepidfile&#x3D;&#x2F;tmp&#x2F;project-mysite.pidvacuum&#x3D;Truemax-requests&#x3D;5000#daemonize&#x3D;&#x2F;var&#x2F;log&#x2F;uwsgi&#x2F;pr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="uwsgi 命令管理">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.baoguoxiao.com&#x2F;2017&#x2F;11&#x2F;17&#x2F;uwsgi-command-manager&#x2F;index.html">
+<meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/uwsgi-command-manager/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="启动命令首先先看看我的mysite.ini文件内容: 1[uwsgi]2chdir&#x3D;&#x2F;data&#x2F;custom&#x2F;mysite3module&#x3D;mysite.wsgi:application4master&#x3D;True5pidfile&#x3D;&#x2F;tmp&#x2F;project-mysite.pid6vacuum&#x3D;True7max-requests&#x3D;50008#daemonize&#x3D;&#x2F;var&#x2F;log&#x2F;uwsgi&#x2F;project">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T13:31:16.813Z">
+<meta property="og:description" content="启动命令首先先看看我的mysite.ini文件内容: 1234567891011[uwsgi]chdir&#x3D;&#x2F;data&#x2F;custom&#x2F;mysitemodule&#x3D;mysite.wsgi:applicationmaster&#x3D;Truepidfile&#x3D;&#x2F;tmp&#x2F;project-mysite.pidvacuum&#x3D;Truemax-requests&#x3D;5000#daemonize&#x3D;&#x2F;var&#x2F;log&#x2F;uwsgi&#x2F;pr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:30:00.000Z">
+<meta property="article:modified_time" content="2019-12-21T11:23:29.708Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="uwsgi">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/uwsgi-command-manager/">
@@ -65,9 +68,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 
@@ -225,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-09 21:31:16" itemprop="dateModified" datetime="2019-12-09T21:31:16+08:00">2019-12-09</time>
+                <time title="修改时间：2019-12-21 19:23:29" itemprop="dateModified" datetime="2019-12-21T19:23:29+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,21 +272,21 @@
 
       
         <h2 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h2><p>首先先看看我的<code>mysite.ini</code>文件内容:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">chdir</span>=/data/custom/mysite</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">module</span>=mysite.wsgi:application</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">pidfile</span>=/tmp/project-mysite.pid</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="attr">max-requests</span>=<span class="number">5000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#daemonize=/var/log/uwsgi/project-mysite.log</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="attr">http</span>=<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8002</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="attr">processes</span>=<span class="number">1</span></span></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/data/custom/mysite</span><br><span class="line"><span class="attr">module</span>=mysite.wsgi:application</span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">pidfile</span>=/tmp/project-mysite.pid</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">max-requests</span>=<span class="number">5000</span></span><br><span class="line"><span class="comment">#daemonize=/var/log/uwsgi/project-mysite.log</span></span><br><span class="line"><span class="attr">http</span>=<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8002</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8000</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 <p>我们主要看<code>pidfile</code>，它指定的位置是：<strong>/tmp/project-mysite.pid</strong></p>
 <p>然后启动命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">uwsgi --ini mysite.ini</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini mysite.ini</span><br></pre></td></tr></table></figure>
 
 <h2 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">uwsgi --reload /tmp/project-mysite.pid</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --reload /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
 
 <h2 id="停止命令"><a href="#停止命令" class="headerlink" title="停止命令"></a>停止命令</h2><blockquote>
 <p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">uwsgi --stop /tmp/project-mysite.pid</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --stop /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>参考：<a href="https://uwsgi-docs.readthedocs.io/en/latest/Management.html" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/Management.html</a></p>
@@ -350,12 +351,34 @@
           </div>
           
     
-  <div class="comments" id="comments">
+  <div class="comments">
     <div id="disqus_thread">
       <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
     </div>
   </div>
   
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -440,10 +463,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.1
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
 
         
@@ -455,7 +478,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -466,14 +488,21 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
-  
 
+  
 
 
 
@@ -504,7 +533,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  function loadComments() {
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
       DISQUS.reset({
         reload: true,
@@ -521,8 +550,7 @@
       s.setAttribute('data-timestamp', '' + +new Date());
       (d.head || d.body).appendChild(s);
     }
-  }
-    window.addEventListener('load', loadComments, false);
+  });
 </script>
 
 </body>
