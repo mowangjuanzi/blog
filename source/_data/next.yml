@@ -29,3 +29,10 @@ disqus:
 baidu_analytics: 569d323c10cf83b1409b1e2228474415
 canvas_nest:
   enable: true
+github_banner:
+  enable: true
+  permalink: https://github.com/mowangjuanzi/blog
+  title: Follow me on GitHub
+social:
+  GitHub: https://github.com/mowangjuanzi || github
+  E-Mail: mailto:baoguoxiao0538@hotmail.com || envelope
