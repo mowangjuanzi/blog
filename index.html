@@ -194,6 +194,190 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/12/29/control-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/29/control-nginx/" class="post-title-link" itemprop="url">控制 nginx【译】</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-29 09:00:00 / 修改时间：21:00:00" itemprop="dateCreated datePublished" datetime="2019-12-29T09:00:00+08:00">2019-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">web服务器</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/29/control-nginx/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/29/control-nginx/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>原文地址：<a href="http://nginx.org/en/docs/control.html" target="_blank" rel="noopener">Controlling nginx</a></p>
+</blockquote>
+<p>nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 <code>/usr/local/nginx/logs/nginx.pid</code> 文件. 这个文件名称可以在配置时更改, 或者在 <code>nginx.conf</code> 使用 <a href="http://nginx.org/en/docs/ngx_core_module.html#pid" target="_blank" rel="noopener">pid</a> 指令更改. master 进程支持以下信号:</p>
+<table>
+<thead>
+<tr>
+<th align="center">信号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TERM, INT</td>
+<td align="center">快速关闭</td>
+</tr>
+<tr>
+<td align="center">QUIT</td>
+<td align="center">平滑关闭</td>
+</tr>
+<tr>
+<td align="center">HUP</td>
+<td align="center">更改配置, 保持已改变的时区 (仅限于 FreeBSD 和 Linux), 使用新配置启动新的 worker 进程, 合理的关闭旧的 worker 进程</td>
+</tr>
+<tr>
+<td align="center">USR1</td>
+<td align="center">重新打开日志文件</td>
+</tr>
+<tr>
+<td align="center">USR2</td>
+<td align="center">升级可执行文件</td>
+</tr>
+<tr>
+<td align="center">WINCH</td>
+<td align="center">平滑关闭 worker 进程</td>
+</tr>
+</tbody></table>
+<p>个别 worker 进程也可以用信号来控制, 尽管这不是必须的. 支持的信号有:</p>
+<table>
+<thead>
+<tr>
+<th align="center">信号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TERM, INT</td>
+<td align="center">快速关闭</td>
+</tr>
+<tr>
+<td align="center">QUIT</td>
+<td align="center">平滑关闭</td>
+</tr>
+<tr>
+<td align="center">USR1</td>
+<td align="center">重新打开日志文件</td>
+</tr>
+<tr>
+<td align="center">WINCH</td>
+<td align="center">调试异常终止 (需要启用 <a href="http://nginx.org/en/docs/ngx_core_module.html#debug_points" target="_blank" rel="noopener">debug_points</a> )</td>
+</tr>
+</tbody></table>
+<p><a name="971bdd34"></a></p>
+<h2 id="改变配置文件"><a href="#改变配置文件" class="headerlink" title="改变配置文件"></a>改变配置文件</h2><p>为了让 nginx 重新读取配置文件, 应将 <code>HUP</code> 信号发送到 master 进程. master 进程首先检查语法的有效性, 然后尝试应用新配置, 即打开日志文件和新的 listen 套接字. 如果失败, 将回滚更改并继续使用旧配置. 如果成功, 它开始新的 worker 进程, 并发消息到旧的 worker 进程, 要求它们正常关闭. 旧的 worker 进程关闭 listen 套接字和继续服务老的客户端. 为所有的客户端提供服务后, 旧的 worker 进程将会关闭.</p>
+<p>让我们举例说明. 想象一下 nginx 在 FreeBSD 上运行，并且执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps axw -o pid,ppid,user,%cpu,vsz,wchan,<span class="built_in">command</span> | egrep <span class="string">'(nginx|PID)'</span></span><br></pre></td></tr></table></figure>
+
+<p>生成以下输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33127 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33128 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">33129 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>HUP</code> 发送到 master 进程, 输出则变为:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33129 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>一个 PID 为 33129 的 worker 进程仍然可以继续工作. 一段时间后, 它将会退出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p><a name="6bd59ffc"></a></p>
+<h2 id="切换日志文件"><a href="#切换日志文件" class="headerlink" title="切换日志文件"></a>切换日志文件</h2><p>为了切换日志文件, 首先需要将其重命名. 之后,  <code>USR1</code> 信号应发送到 master 进程. master 进程将重新打开所有当前打开的日志文件, 并将这些文件分配给非特权用户, 该用户作为所有者运行工作进程. 成功重新打开后, master 进程将关闭所有打开的文件并发送消息给 worker 进程, 要求它们重新打开文件. worker 进程会立即重新打开新文件并关闭旧文件. 最后, 旧的日志文件几乎可以立即用于压缩等后期处理.</p>
+<p><a name="5d87d4bd"></a></p>
+<h2 id="云升级可执行文件"><a href="#云升级可执行文件" class="headerlink" title="云升级可执行文件"></a>云升级可执行文件</h2><p>为了升级服务器的可执行文件, 新的可执行文件应该首先取代旧的文件. 然后发送 <code>USR2</code> 信号到 master 进程. master 进程首先用进程 ID 将文件重命名为后缀名是 <code>.oldbin</code> 的新文件, 例如 <code>/usr/local/nginx/logs/nginx.pid.oldbin</code>, 然后启动一个新的可执行文件, 该文件又启动新的 worker 进程:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>之后所有的 worker 进程 (旧的和新的) 继续接受请求. 如果 <code>WINCH</code> 信号发送到第一个 master 进程, 它将会向其 worker 进程发送消息, 请求它们优雅的关闭, 然后他们开始退出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>一段时间后, 只有新的 worker 进程将会处理请求:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是, 旧的 master 进程没有关闭它的 listen 套接字, 如果需要, 它会重新启动它的 worker 进程. 如果由于某种原因, 新的可执行文件 工作不能接受, 可以选择下面之一进行操作:</p>
+<ul>
+<li>发送 <code>HUP</code> 信号给旧的 master 进行. 旧的 master 进程将会启动新的 worker 进程而无需重新读取配置. 然后, 发送 <code>QUIT</code> 信号到新的 master 进程, 可以优雅的关闭所有的新进程.</li>
+<li>向新 master 进程发送 <code>TERM</code>. 它将向 worker 进程发送一条消息, 请求它们立即退出, 随即他们将会全部退出. (如果新的进程因为某种原因不能退出, <code>KILL</code> 将会发送给它们并强制退出.) 当新的 master 进程退出时, 旧的 master 进程将会自动启动新的 worker 进程.</li>
+</ul>
+<p>如果新的 master 进程退出然后旧的 master 进程会从带有进程 ID 的文件名中丢弃 <code>.oldbin</code> 后缀.</p>
+<p>如果升级成功, 然后 <code>QUIT</code> 信号则发送到旧的 master 进程, 只有新的进程将会保留:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">36264     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/05/18/php-built-in-web-server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,7 +554,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -520,7 +704,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -826,7 +1010,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1127,7 +1311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1274,7 +1458,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1374,7 +1558,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1556,7 +1740,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1709,101 +1893,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/11/15/view-local-ip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/15/view-local-ip/" class="post-title-link" itemprop="url">查看本机IP</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-11-15 11:08:12" itemprop="dateCreated datePublished" datetime="2018-11-15T11:08:12+08:00">2018-11-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/11/15/view-local-ip/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/15/view-local-ip/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有时候，在登录到云服务器之后，可能需要在终端查询该服务器的ip。</p>
-<p>之前我都是用的 ip.cn ，但是感觉不行了。</p>
-<p>现在提供一些其他的可选择项：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ curl ipinfo.io</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"ip"</span>: <span class="string">"60.205.205.243"</span>,</span><br><span class="line">  <span class="string">"city"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"region"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"country"</span>: <span class="string">"CN"</span>,</span><br><span class="line">  <span class="string">"loc"</span>: <span class="string">"34.7725,113.7270"</span>,</span><br><span class="line">  <span class="string">"org"</span>: <span class="string">"AS37963 Hangzhou Alibaba Advertising Co.,Ltd."</span></span><br><span class="line">&#125;</span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 60.205.205.243</span><br><span class="line">地址	: 中国  北京</span><br><span class="line">运营商	: 阿里云/电信/联通/移动/铁通/教育网</span><br><span class="line"></span><br><span class="line">数据二	: 北京市 | 阿里云BGP服务器</span><br><span class="line"></span><br><span class="line">数据三	: 中国北京北京市 | 阿里云</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/60.205.205.243</span><br><span class="line">$ curl myip.ipip.net</span><br><span class="line">当前 IP：60.205.205.243  来自于：中国 北京 北京  阿里云/电信/联通/移动/铁通/教育网</span><br><span class="line"><span class="comment"># curl ifconfig.me</span></span><br><span class="line">60.205.205.243</span><br><span class="line">$ curl http://members.3322.org/dyndns/getip</span><br><span class="line">60.205.205.243</span><br></pre></td></tr></table></figure>
-
-<p>相信还有这么多的URL。估计哪一个不行了，都能找到可替代的了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1876,7 +1965,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1887,7 +1976,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -194,6 +194,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/14/sudo-password-free/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/14/sudo-password-free/" class="post-title-link" itemprop="url">sudo 免密码</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-14 18:58:31" itemprop="dateCreated datePublished" datetime="2018-07-14T18:58:31+08:00">2018-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/07/14/sudo-password-free/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/14/sudo-password-free/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用ubuntu时间长了经常会使用sodo，发现这样非常麻烦，那如何让sudo免密码呢？</p>
+<p>其实方法很简单。首先执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure>
+
+<p>我这边是使用nano打开了一个配置文件，然后找到下面这行：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<p>在最后ALL的前面加上<code>NOPASSWD:</code>就可以了。i加入是这样的：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+
+<p>然后同时按住<code>Ctrl+X</code>，退出保存就好了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/07/js-implements-jquery-chained-calls/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +331,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,7 +433,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -482,7 +588,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -586,7 +692,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -712,7 +818,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -821,7 +927,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1051,7 +1157,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1156,7 +1262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1252,7 +1358,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
+                <time title="修改时间：2019-12-30 09:55:11" itemprop="dateModified" datetime="2019-12-30T09:55:11+08:00">2019-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1359,122 +1465,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/03/30/wechat-custom-share-title/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/30/wechat-custom-share-title/" class="post-title-link" itemprop="url">微信公众号自定义分享标题遇到的坑</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-30 15:28:26" itemprop="dateCreated datePublished" datetime="2018-03-30T15:28:26+08:00">2018-03-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 07:32:11" itemprop="dateModified" datetime="2019-12-27T07:32:11+08:00">2019-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/%E5%BE%AE%E4%BF%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">微信</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/03/30/wechat-custom-share-title/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/30/wechat-custom-share-title/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我们公司在微信认证服务号上开发一个小游戏。里面有个功能是用户分享到其他地方时使用自定义的标题和图标。我就这个功能记录一下中间遇到的坑。</p>
-<p>首先，我因为之前没有开发过微信分享的功能，这个时候首先要读取一下微信的<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115" target="_blank" rel="noopener">分享文档</a>。</p>
-<p>为了方便开发，我这边是使用的微信的公众测试号。具体的申请地址可点击这里：mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>JS-SDK使用权限需要签名，也就是wx.ready中的signature值，所以该值只能在服务器端实现签名的逻辑。我想了一个办法，就是该JS文件使用PHP生成，然后前端使用script元素引入该URL。这样就解决了签名需要在服务器端生成的问题。</p>
-<p>具体到了签名生成的时候。appid和timestamp和nonceStr都好说。直接填写或者生成就好了。但是生成的signature这个值我中间碰到三个坑。第一个坑文章中正确介绍的签名的字符串的格式是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket&#x3D;sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&amp;noncestr&#x3D;Wm3WZYTPz0wzccnW×tamp&#x3D;1414587457&amp;url&#x3D;http:&#x2F;&#x2F;mp.weixin.qq.com?params&#x3D;value</span><br></pre></td></tr></table></figure>
-
-<p>但是我这边是使用的数组。然后先排序然后使用http_build_query方法生成的参与签名的字符串。这样就不对了。所以对于该参与校验的值只能进行赋值。类似这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket&#x3D;&#123;$ticker&#125;&amp;noncestr&#x3D;&#123;$nonceStr&#125;&amp;timestamp&#x3D;&#123;$timestamp&#125;&amp;url&#x3D;&#123;$url&#125;</span><br></pre></td></tr></table></figure>
-
-<p>直接对其中的值进行赋值，进行签名即可。</p>
-<p>下面说第二个坑。比如我们的活动地址是<a href="https://m.abc.com/Activity/index" target="_blank" rel="noopener">https://m.abc.com/Activity/index</a> 但是在微信中访问的时候，会在后面自定义添加参数。比如有时候地址会变成这样：<a href="https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。" target="_blank" rel="noopener">https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。</a></p>
-<p>所以我想了这么一个办法。就是说把该JS文件携带URL地址请求我，我这边获取URL，并将URL加入到签名中。这样的话，前端将引入脚本写死就不好了。所以我和前端一块将加载js脚本给换成了下面这样:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> script =<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> url = <span class="built_in">window</span>.location.href;</span></span><br><span class="line"><span class="javascript">	script.src=<span class="string">"/Static/wxShare?url="</span> + <span class="built_in">encodeURIComponent</span>(url);</span></span><br><span class="line">	document.getElementsByTagName(&amp;#039;body&amp;#039;)[0].appendChild(script);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>第三个坑，获取jsapi_ticket票据的值是JAVA实现的。但是在获取的时候并不能获取成功，经过跟JAVA沟通，发现是之前开发设置的测试的appid已经过期了。所以，失效了，重新设置了一下，就正常了。</p>
-<p>至此，开发联调就结束了。下面就提测进行测试阶段了。</p>
-<h2 id="测试环境。"><a href="#测试环境。" class="headerlink" title="测试环境。"></a>测试环境。</h2><p>测试环境一直分享失败。然后开启debug模式。发现也是提示sign值不可用。排查这个问题，遇到了两个坑。</p>
-<p>第一个坑，是请求JAVA的服务器获取jsapi_ticket票据，提示操作失败。经过JAVA排查，发现是少设置了一个参数。好了，经过修改，能够正常获取jsapi_ticket了。</p>
-<p>第二个坑，则是测试这边换了JAVA配置中的appid的值的配置，结果access_token因为缓存起来了，结果还是存的之前的appid的access_token。接着获取的jsapi_ticket也是根据之前的access_token进行获取的。所以一直不成功，后来经过清除缓存。然后测试就ok了。</p>
-<p>好了。其实这个并没有按照教程的形式来介绍一下我的开发工作。主要是把我中间遇到的坑给解释一下。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1547,7 +1537,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1558,7 +1548,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

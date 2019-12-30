@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.baoguoxiao.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:    信号 描述    TERM, INT 快速关闭   QUIT 平滑关闭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制 nginx【译】">
+<meta property="og:url" content="http://www.baoguoxiao.com/2019/12/29/control-nginx/index.html">
+<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:    信号 描述    TERM, INT 快速关闭   QUIT 平滑关闭">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-29T01:00:00.000Z">
+<meta property="article:modified_time" content="2019-12-29T13:00:00.000Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="信号">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.baoguoxiao.com/2019/12/29/control-nginx/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>控制 nginx【译】 | 魔王卷子的博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">魔王卷子的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-书籍">
+
+    <a href="https://book.douban.com/people/119869986/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>书籍</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/mowangjuanzi/blog" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/12/29/control-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          控制 nginx【译】
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-29 09:00:00 / 修改时间：21:00:00" itemprop="dateCreated datePublished" datetime="2019-12-29T09:00:00+08:00">2019-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">web服务器</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/29/control-nginx/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/29/control-nginx/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>原文地址：<a href="http://nginx.org/en/docs/control.html" target="_blank" rel="noopener">Controlling nginx</a></p>
+</blockquote>
+<p>nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 <code>/usr/local/nginx/logs/nginx.pid</code> 文件. 这个文件名称可以在配置时更改, 或者在 <code>nginx.conf</code> 使用 <a href="http://nginx.org/en/docs/ngx_core_module.html#pid" target="_blank" rel="noopener">pid</a> 指令更改. master 进程支持以下信号:</p>
+<table>
+<thead>
+<tr>
+<th align="center">信号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TERM, INT</td>
+<td align="center">快速关闭</td>
+</tr>
+<tr>
+<td align="center">QUIT</td>
+<td align="center">平滑关闭</td>
+</tr>
+<tr>
+<td align="center">HUP</td>
+<td align="center">更改配置, 保持已改变的时区 (仅限于 FreeBSD 和 Linux), 使用新配置启动新的 worker 进程, 合理的关闭旧的 worker 进程</td>
+</tr>
+<tr>
+<td align="center">USR1</td>
+<td align="center">重新打开日志文件</td>
+</tr>
+<tr>
+<td align="center">USR2</td>
+<td align="center">升级可执行文件</td>
+</tr>
+<tr>
+<td align="center">WINCH</td>
+<td align="center">平滑关闭 worker 进程</td>
+</tr>
+</tbody></table>
+<p>个别 worker 进程也可以用信号来控制, 尽管这不是必须的. 支持的信号有:</p>
+<table>
+<thead>
+<tr>
+<th align="center">信号</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TERM, INT</td>
+<td align="center">快速关闭</td>
+</tr>
+<tr>
+<td align="center">QUIT</td>
+<td align="center">平滑关闭</td>
+</tr>
+<tr>
+<td align="center">USR1</td>
+<td align="center">重新打开日志文件</td>
+</tr>
+<tr>
+<td align="center">WINCH</td>
+<td align="center">调试异常终止 (需要启用 <a href="http://nginx.org/en/docs/ngx_core_module.html#debug_points" target="_blank" rel="noopener">debug_points</a> )</td>
+</tr>
+</tbody></table>
+<p><a name="971bdd34"></a></p>
+<h2 id="改变配置文件"><a href="#改变配置文件" class="headerlink" title="改变配置文件"></a>改变配置文件</h2><p>为了让 nginx 重新读取配置文件, 应将 <code>HUP</code> 信号发送到 master 进程. master 进程首先检查语法的有效性, 然后尝试应用新配置, 即打开日志文件和新的 listen 套接字. 如果失败, 将回滚更改并继续使用旧配置. 如果成功, 它开始新的 worker 进程, 并发消息到旧的 worker 进程, 要求它们正常关闭. 旧的 worker 进程关闭 listen 套接字和继续服务老的客户端. 为所有的客户端提供服务后, 旧的 worker 进程将会关闭.</p>
+<p>让我们举例说明. 想象一下 nginx 在 FreeBSD 上运行，并且执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps axw -o pid,ppid,user,%cpu,vsz,wchan,<span class="built_in">command</span> | egrep <span class="string">'(nginx|PID)'</span></span><br></pre></td></tr></table></figure>
+
+<p>生成以下输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33127 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33128 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">33129 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>HUP</code> 发送到 master 进程, 输出则变为:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33129 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>一个 PID 为 33129 的 worker 进程仍然可以继续工作. 一段时间后, 它将会退出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p><a name="6bd59ffc"></a></p>
+<h2 id="切换日志文件"><a href="#切换日志文件" class="headerlink" title="切换日志文件"></a>切换日志文件</h2><p>为了切换日志文件, 首先需要将其重命名. 之后,  <code>USR1</code> 信号应发送到 master 进程. master 进程将重新打开所有当前打开的日志文件, 并将这些文件分配给非特权用户, 该用户作为所有者运行工作进程. 成功重新打开后, master 进程将关闭所有打开的文件并发送消息给 worker 进程, 要求它们重新打开文件. worker 进程会立即重新打开新文件并关闭旧文件. 最后, 旧的日志文件几乎可以立即用于压缩等后期处理.</p>
+<p><a name="5d87d4bd"></a></p>
+<h2 id="云升级可执行文件"><a href="#云升级可执行文件" class="headerlink" title="云升级可执行文件"></a>云升级可执行文件</h2><p>为了升级服务器的可执行文件, 新的可执行文件应该首先取代旧的文件. 然后发送 <code>USR2</code> 信号到 master 进程. master 进程首先用进程 ID 将文件重命名为后缀名是 <code>.oldbin</code> 的新文件, 例如 <code>/usr/local/nginx/logs/nginx.pid.oldbin</code>, 然后启动一个新的可执行文件, 该文件又启动新的 worker 进程:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>之后所有的 worker 进程 (旧的和新的) 继续接受请求. 如果 <code>WINCH</code> 信号发送到第一个 master 进程, 它将会向其 worker 进程发送消息, 请求它们优雅的关闭, 然后他们开始退出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>一段时间后, 只有新的 worker 进程将会处理请求:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是, 旧的 master 进程没有关闭它的 listen 套接字, 如果需要, 它会重新启动它的 worker 进程. 如果由于某种原因, 新的可执行文件 工作不能接受, 可以选择下面之一进行操作:</p>
+<ul>
+<li>发送 <code>HUP</code> 信号给旧的 master 进行. 旧的 master 进程将会启动新的 worker 进程而无需重新读取配置. 然后, 发送 <code>QUIT</code> 信号到新的 master 进程, 可以优雅的关闭所有的新进程.</li>
+<li>向新 master 进程发送 <code>TERM</code>. 它将向 worker 进程发送一条消息, 请求它们立即退出, 随即他们将会全部退出. (如果新的进程因为某种原因不能退出, <code>KILL</code> 将会发送给它们并强制退出.) 当新的 master 进程退出时, 旧的 master 进程将会自动启动新的 worker 进程.</li>
+</ul>
+<p>如果新的 master 进程退出然后旧的 master 进程会从带有进程 ID 的文件名中丢弃 <code>.oldbin</code> 后缀.</p>
+<p>如果升级成功, 然后 <code>QUIT</code> 信号则发送到旧的 master 进程, 只有新的进程将会保留:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">36264     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+              <a href="/tags/%E4%BF%A1%E5%8F%B7/" rel="tag"># 信号</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/05/18/php-built-in-web-server/" rel="prev" title="PHP之内置web服务器">
+      <i class="fa fa-chevron-left"></i> PHP之内置web服务器
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#改变配置文件"><span class="nav-number">1.</span> <span class="nav-text">改变配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换日志文件"><span class="nav-number">2.</span> <span class="nav-text">切换日志文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云升级可执行文件"><span class="nav-number">3.</span> <span class="nav-text">云升级可执行文件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魔王卷子"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mowangjuanzi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mowangjuanzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:baoguoxiao0538@hotmail.com" title="E-Mail → mailto:baoguoxiao0538@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-baoguoxiao-com.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://www.baoguoxiao.com/2019/12/29/control-nginx/",
+            identifier: "2019/12/29/control-nginx/",
+            title: "控制 nginx【译】"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
