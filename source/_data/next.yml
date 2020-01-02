@@ -36,3 +36,5 @@ github_banner:
 social:
   GitHub: https://github.com/mowangjuanzi || github
   E-Mail: mailto:baoguoxiao0538@hotmail.com || envelope
+comments:
+  lazyload: true
