@@ -14,6 +14,8 @@ categories:
 
 nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 `/usr/local/nginx/logs/nginx.pid` 文件. 这个文件名称可以在配置时更改, 或者在 `nginx.conf` 使用 [pid](http://nginx.org/en/docs/ngx_core_module.html#pid) 指令更改. master 进程支持以下信号:
 
+<!-- more -->
+
 | 信号 | 描述 |
 | :---: | :---: |
 | TERM, INT | 快速关闭 |

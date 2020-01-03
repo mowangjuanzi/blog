@@ -15,6 +15,8 @@ PHP从5.4开始，就提供了一个内置的web服务器。
 
 这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。
 
+<!-- more -->
+
 ## 基础应用
 
 首先我们假定项目目录是`/home/baoguoxiao/www/php/demo`，外界可访问的目录是`/home/baoguoxiao/www/php/demo/public`。然后访问的端口是`8000`，入口文件是`index.php`和`index.html`。那么我们可以执行如下命令：
