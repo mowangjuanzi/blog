@@ -46,12 +46,12 @@
   };
 </script>
 
-  <meta name="description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:    信号 描述    TERM, INT 快速关闭   QUIT 平滑关闭">
+  <meta name="description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="控制 nginx【译】">
 <meta property="og:url" content="http://www.baoguoxiao.com/2019/12/29/control-nginx/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:    信号 描述    TERM, INT 快速关闭   QUIT 平滑关闭">
+<meta property="og:description" content="原文地址：Controlling nginx  nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid 文件. 这个文件名称可以在配置时更改, 或者在 nginx.conf 使用 pid 指令更改. master 进程支持以下信号:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-29T01:00:00.000Z">
 <meta property="article:modified_time" content="2019-12-29T13:00:00.000Z">
@@ -271,6 +271,8 @@
 <p>原文地址：<a href="http://nginx.org/en/docs/control.html" target="_blank" rel="noopener">Controlling nginx</a></p>
 </blockquote>
 <p>nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 <code>/usr/local/nginx/logs/nginx.pid</code> 文件. 这个文件名称可以在配置时更改, 或者在 <code>nginx.conf</code> 使用 <a href="http://nginx.org/en/docs/ngx_core_module.html#pid" target="_blank" rel="noopener">pid</a> 指令更改. master 进程支持以下信号:</p>
+<a id="more"></a>
+
 <table>
 <thead>
 <tr>

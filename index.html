@@ -268,98 +268,14 @@
 <p>原文地址：<a href="http://nginx.org/en/docs/control.html" target="_blank" rel="noopener">Controlling nginx</a></p>
 </blockquote>
 <p>nginx 可以用信号来控制. 默认 master 进程的进程 ID 写入到 <code>/usr/local/nginx/logs/nginx.pid</code> 文件. 这个文件名称可以在配置时更改, 或者在 <code>nginx.conf</code> 使用 <a href="http://nginx.org/en/docs/ngx_core_module.html#pid" target="_blank" rel="noopener">pid</a> 指令更改. master 进程支持以下信号:</p>
-<table>
-<thead>
-<tr>
-<th align="center">信号</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">TERM, INT</td>
-<td align="center">快速关闭</td>
-</tr>
-<tr>
-<td align="center">QUIT</td>
-<td align="center">平滑关闭</td>
-</tr>
-<tr>
-<td align="center">HUP</td>
-<td align="center">更改配置, 保持已改变的时区 (仅限于 FreeBSD 和 Linux), 使用新配置启动新的 worker 进程, 合理的关闭旧的 worker 进程</td>
-</tr>
-<tr>
-<td align="center">USR1</td>
-<td align="center">重新打开日志文件</td>
-</tr>
-<tr>
-<td align="center">USR2</td>
-<td align="center">升级可执行文件</td>
-</tr>
-<tr>
-<td align="center">WINCH</td>
-<td align="center">平滑关闭 worker 进程</td>
-</tr>
-</tbody></table>
-<p>个别 worker 进程也可以用信号来控制, 尽管这不是必须的. 支持的信号有:</p>
-<table>
-<thead>
-<tr>
-<th align="center">信号</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">TERM, INT</td>
-<td align="center">快速关闭</td>
-</tr>
-<tr>
-<td align="center">QUIT</td>
-<td align="center">平滑关闭</td>
-</tr>
-<tr>
-<td align="center">USR1</td>
-<td align="center">重新打开日志文件</td>
-</tr>
-<tr>
-<td align="center">WINCH</td>
-<td align="center">调试异常终止 (需要启用 <a href="http://nginx.org/en/docs/ngx_core_module.html#debug_points" target="_blank" rel="noopener">debug_points</a> )</td>
-</tr>
-</tbody></table>
-<p><a name="971bdd34"></a></p>
-<h2 id="改变配置文件"><a href="#改变配置文件" class="headerlink" title="改变配置文件"></a>改变配置文件</h2><p>为了让 nginx 重新读取配置文件, 应将 <code>HUP</code> 信号发送到 master 进程. master 进程首先检查语法的有效性, 然后尝试应用新配置, 即打开日志文件和新的 listen 套接字. 如果失败, 将回滚更改并继续使用旧配置. 如果成功, 它开始新的 worker 进程, 并发消息到旧的 worker 进程, 要求它们正常关闭. 旧的 worker 进程关闭 listen 套接字和继续服务老的客户端. 为所有的客户端提供服务后, 旧的 worker 进程将会关闭.</p>
-<p>让我们举例说明. 想象一下 nginx 在 FreeBSD 上运行，并且执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps axw -o pid,ppid,user,%cpu,vsz,wchan,<span class="built_in">command</span> | egrep <span class="string">'(nginx|PID)'</span></span><br></pre></td></tr></table></figure>
-
-<p>生成以下输出:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33127 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33128 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">33129 33126 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p>如果 <code>HUP</code> 发送到 master 进程, 输出则变为:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33129 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p>一个 PID 为 33129 的 worker 进程仍然可以继续工作. 一段时间后, 它将会退出:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p><a name="6bd59ffc"></a></p>
-<h2 id="切换日志文件"><a href="#切换日志文件" class="headerlink" title="切换日志文件"></a>切换日志文件</h2><p>为了切换日志文件, 首先需要将其重命名. 之后,  <code>USR1</code> 信号应发送到 master 进程. master 进程将重新打开所有当前打开的日志文件, 并将这些文件分配给非特权用户, 该用户作为所有者运行工作进程. 成功重新打开后, master 进程将关闭所有打开的文件并发送消息给 worker 进程, 要求它们重新打开文件. worker 进程会立即重新打开新文件并关闭旧文件. 最后, 旧的日志文件几乎可以立即用于压缩等后期处理.</p>
-<p><a name="5d87d4bd"></a></p>
-<h2 id="云升级可执行文件"><a href="#云升级可执行文件" class="headerlink" title="云升级可执行文件"></a>云升级可执行文件</h2><p>为了升级服务器的可执行文件, 新的可执行文件应该首先取代旧的文件. 然后发送 <code>USR2</code> 信号到 master 进程. master 进程首先用进程 ID 将文件重命名为后缀名是 <code>.oldbin</code> 的新文件, 例如 <code>/usr/local/nginx/logs/nginx.pid.oldbin</code>, 然后启动一个新的可执行文件, 该文件又启动新的 worker 进程:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process (nginx)</span><br><span class="line">33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p>之后所有的 worker 进程 (旧的和新的) 继续接受请求. 如果 <code>WINCH</code> 信号发送到第一个 master 进程, 它将会向其 worker 进程发送消息, 请求它们优雅的关闭, 然后他们开始退出:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">33135 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p>一段时间后, 只有新的 worker 进程将会处理请求:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">33126     1 root     0.0  1164 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36264 33126 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是, 旧的 master 进程没有关闭它的 listen 套接字, 如果需要, 它会重新启动它的 worker 进程. 如果由于某种原因, 新的可执行文件 工作不能接受, 可以选择下面之一进行操作:</p>
-<ul>
-<li>发送 <code>HUP</code> 信号给旧的 master 进行. 旧的 master 进程将会启动新的 worker 进程而无需重新读取配置. 然后, 发送 <code>QUIT</code> 信号到新的 master 进程, 可以优雅的关闭所有的新进程.</li>
-<li>向新 master 进程发送 <code>TERM</code>. 它将向 worker 进程发送一条消息, 请求它们立即退出, 随即他们将会全部退出. (如果新的进程因为某种原因不能退出, <code>KILL</code> 将会发送给它们并强制退出.) 当新的 master 进程退出时, 旧的 master 进程将会自动启动新的 worker 进程.</li>
-</ul>
-<p>如果新的 master 进程退出然后旧的 master 进程会从带有进程 ID 的文件名中丢弃 <code>.oldbin</code> 后缀.</p>
-<p>如果升级成功, 然后 <code>QUIT</code> 信号则发送到旧的 master 进程, 只有新的进程将会保留:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  PPID USER    %CPU   VSZ WCHAN  COMMAND</span><br><span class="line">36264     1 root     0.0  1148 pause  nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br><span class="line">36265 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36266 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br><span class="line">36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/29/control-nginx/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -449,62 +365,14 @@
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP从5.4开始，就提供了一个内置的web服务器。</p>
 <p>这个主要是用来做本地的开发用的。不能用于线上环境。现在我就介绍一下这个工具如何使用。</p>
-<h2 id="基础应用"><a href="#基础应用" class="headerlink" title="基础应用"></a>基础应用</h2><p>首先我们假定项目目录是<code>/home/baoguoxiao/www/php/demo</code>，外界可访问的目录是<code>/home/baoguoxiao/www/php/demo/public</code>。然后访问的端口是<code>8000</code>，入口文件是<code>index.php</code>和<code>index.html</code>。那么我们可以执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo/public</span><br><span class="line">php -S localhost:8000</span><br></pre></td></tr></table></figure>
-
-<p>然后这个时候就可以正常访问了。</p>
-<p>那么现在有个问题，就是难道每次必须要进入<code>public</code>文件夹才能启动web服务器吗，其实我们可以指定根目录的，那么可以使用如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo</span><br><span class="line">php -S localhost:8000 -t public/</span><br></pre></td></tr></table></figure>
-
-<p>那么现在有一个问题就是说，如果我们使用了单入口，而且还是用了PATHINFO模式。那么上面的可能就有问题了。</p>
-<p>对此，我们可以使用如下方案：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/baoguoxiao/www/php/demo</span><br><span class="line">php -S localhost:8000 router.php</span><br></pre></td></tr></table></figure>
-
-<p>router.php 文件的代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对URL进行解析，并获取请求的文件名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$uri = urldecode(parse_url($_SERVER[<span class="string">"REQUEST_URI"</span>], PHP_URL_PATH));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否存在该文件，如果不存在，则直接继续加载入口文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> ($uri !== <span class="string">"/"</span> &amp;&amp; file_exists(<span class="keyword">__DIR__</span> . <span class="string">"$uri"</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载入口文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"./index.php"</span>;</span><br></pre></td></tr></table></figure>
-
-<p>通过这个路由文件，我们就可以支持目前常用的开发情况了。</p>
-<h2 id="框架参考"><a href="#框架参考" class="headerlink" title="框架参考"></a>框架参考</h2><p>上面的方式是我们自己的实现，那么我们也可以看看相关知名框架的实现方法。</p>
-<p>比如 Laravel 和 Symfony。</p>
-<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><p>在Laravel中的<a href="https://laravel.com/docs/5.8/installation#installing-laravel" target="_blank" rel="noopener">安装</a>一节中介绍了一个命令可以使用PHP内置web服务器实现外部访问的命令。实现的命令是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan serve</span><br></pre></td></tr></table></figure>
-
-<p>我们可以看一下相关代码：</p>
-<p>具体的文件路径为：vendor/laravel/framework/src/Illuminate/Foundation/Console/ServeCommand.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 执行命令.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> int</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> \Exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 切换路径到 public 目录</span></span><br><span class="line">    chdir(public_path());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在命令台进行输出相关内容</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;line(<span class="string">"&lt;info&gt;Laravel development server started:&lt;/info&gt; &lt;http://&#123;$this-&gt;host()&#125;:&#123;$this-&gt;port()&#125;&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行外部程序，并且 $status 为系统的返回状态</span></span><br><span class="line">    passthru(<span class="keyword">$this</span>-&gt;serverCommand(), $status);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// $status 为0 表示执行正常, 为其他大于0的数字表示出现了错误，有可能是端口被抢占了，这个时候就会接着判断是否进行再次尝试</span></span><br><span class="line">    <span class="keyword">if</span> ($status &amp;&amp; <span class="keyword">$this</span>-&gt;canTryAnotherPort()) &#123;</span><br><span class="line">        <span class="comment">// 对绑定的端口号加1 默认是8000, 如果失败则重试端口号为8001，再次失败重试端口号为8002，以此类推。</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;portOffset += <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 再次调用此程序</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;handle();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回状态值</span></span><br><span class="line">    <span class="keyword">return</span> $status;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取完整的 server 命令.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">serverCommand</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sprintf(<span class="string">'%s -S %s:%s %s'</span>,</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取PHP可执行命令的路径</span></span><br><span class="line">        ProcessUtils::escapeArgument((<span class="keyword">new</span> PhpExecutableFinder)-&gt;find(<span class="keyword">false</span>)),</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取需要绑定的host</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;host(),</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取需要绑定的端口</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;port(),</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对需要执行的参数进行转义处理。这里的 server 就是我们之前说的路由文件，它在项目的根路径下</span></span><br><span class="line">        ProcessUtils::escapeArgument(base_path(<span class="string">'server.php'</span>))</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对上面的命令进行翻译一下，实际上就是执行的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./public</span><br><span class="line">php -S 0.0.0.0:8000 ../server.php</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>note:</p>
-<p>这里我们可以看到一个区别就是之前我自己写的代码，host 都是 localhost, 但是这里写的是 0.0.0.0。这两个有什么区别呢？</p>
-<p>其实区别很简单，比如我之前写的 localhost 绑定的ip 是 127.0.0.1, 这个相当于一个回环地址，那么我们就只允许本机的IP进行访问。而 0.0.0.0，则表示我们对ip不进行限制，所有的IP都可以进行访问。</p>
-</blockquote>
-<p>那我们接着再来看看项目根目录下面的<code>server.php</code>:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Laravel - A PHP Framework For Web Artisans</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@package</span>  Laravel</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>   Taylor Otwell &lt;taylor<span class="doctag">@laravel</span>.com&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">$uri = urldecode(</span><br><span class="line">    parse_url($_SERVER[<span class="string">'REQUEST_URI'</span>], PHP_URL_PATH)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个文件允许我们从内置 PHP web 服务器中模拟 Apache 的 "mod_rewrite" 功能.</span></span><br><span class="line"><span class="comment">// 这提供了一种测试 Laravel 应用程序的便捷方法,</span></span><br><span class="line"><span class="comment">// 而无需在此安装"真正的" web 服务器软件。</span></span><br><span class="line"><span class="keyword">if</span> ($uri !== <span class="string">'/'</span> &amp;&amp; file_exists(<span class="keyword">__DIR__</span>.<span class="string">'/public'</span>.$uri)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span>.<span class="string">'/public/index.php'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>发现跟我之前写的路由文件相同。没错，我就是从这里抄过来的。</p>
-<p>基本上 Larvel 的实现方法就是这样了。</p>
-<h3 id="Symfony"><a href="#Symfony" class="headerlink" title="Symfony"></a>Symfony</h3><p>如果你在使用 Symfony 框架话，发现Symfony有一个组件叫做<a href="https://github.com/symfony/web-server-bundle" target="_blank" rel="noopener">web-server-bundle</a>，这个组件的作用跟Laravel相同，也是不借助web服务器，实现通过浏览器访问应用程序。</p>
-<p>基本的操作可以参考<a href="https://symfony.com/doc/current/setup/built_in_web_server.html" target="_blank" rel="noopener">该页面</a></p>
-<p>我在这里主要说一下Symfony是如何实现的.</p>
-<p>在Symfony中有一段代码是这样的:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span><span class="params">(WebServerConfig $config, $pidFile = null)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 获取默认的PID文件位置</span></span><br><span class="line">    $pidFile = $pidFile ?: <span class="keyword">$this</span>-&gt;getDefaultPidFile();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否在运行，如果运行则提示已经在监听了</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;isRunning($pidFile)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(sprintf(<span class="string">'A process is already listening on http://%s.'</span>, $config-&gt;getAddress()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fork了一个子进程，如果成功，会有两个进程进行同时执行下面的文件，父进程，也就是当前执行的进程会返回子进程的PID，而子进程则返回的PID为0，</span></span><br><span class="line">    <span class="comment">// 如果失败，则子进程不会创建，并且父进程会返回的pid为-1。更多内容可查看 https://www.php.net/manual/zh/function.pcntl-fork.php</span></span><br><span class="line">    $pid = pcntl_fork();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 表示fork进程失败</span></span><br><span class="line">    <span class="keyword">if</span> ($pid &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to start the server process.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 进入这个判断，表示执行的是父进程，表示不用继续向下执行</span></span><br><span class="line">    <span class="keyword">if</span> ($pid &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::STARTED;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从此往后是子进程运行，首先通过 posix_setsid 变为守护进程，意思是使其脱离终端的管理，自立门户，谁也没办法管理这个进程，除了PID。</span></span><br><span class="line">    <span class="keyword">if</span> (posix_setsid() &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to set the child process as session leader.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建命令，命令类似Laravel，不过这里的路由文件跟Laravel类似。也是处理加载规则，并加载入口文件。具体的router.php 路径为：</span></span><br><span class="line">    <span class="comment">// vendor\symfony\web-server-bundle/Resources/router.php</span></span><br><span class="line">    <span class="comment">// 下面是禁用输出并且开始运行</span></span><br><span class="line">    $process = <span class="keyword">$this</span>-&gt;createServerProcess($config);</span><br><span class="line">    $process-&gt;disableOutput();</span><br><span class="line">    $process-&gt;start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否运行成功</span></span><br><span class="line">    <span class="keyword">if</span> (!$process-&gt;isRunning()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to start the server process.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 写入PID文件</span></span><br><span class="line">    file_put_contents($pidFile, $config-&gt;getAddress());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检测PID文件，如果PID文件删除了，那么进程就立即退出。</span></span><br><span class="line">    <span class="keyword">while</span> ($process-&gt;isRunning()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!file_exists($pidFile)) &#123;</span><br><span class="line">            $process-&gt;stop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回停止的状态</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>::STOPPED;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 启动PHP内置web服务器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> Process The process</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">createServerProcess</span><span class="params">(WebServerConfig $config)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 查找PHP的可执行程序</span></span><br><span class="line">    $finder = <span class="keyword">new</span> PhpExecutableFinder();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">false</span> === $binary = $finder-&gt;find(<span class="keyword">false</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \RuntimeException(<span class="string">'Unable to find the PHP binary.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $xdebugArgs = ini_get(<span class="string">'xdebug.profiler_enable_trigger'</span>) ? [<span class="string">'-dxdebug.profiler_enable_trigger=1'</span>] : [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 实例化PHP要执行的命令 php_path -dvariables_order=EGPCS -S 127.0.0.1:8000 vendor\symfony\web-server-bundle/Resources/router.php</span></span><br><span class="line">    $process = <span class="keyword">new</span> Process(array_merge([$binary], $finder-&gt;findArguments(), $xdebugArgs, [<span class="string">'-dvariables_order=EGPCS'</span>, <span class="string">'-S'</span>, $config-&gt;getAddress(), $config-&gt;getRouter()]));</span><br><span class="line">    <span class="comment">// 设置工作目录</span></span><br><span class="line">    $process-&gt;setWorkingDirectory($config-&gt;getDocumentRoot());</span><br><span class="line">    <span class="comment">// 设置超时时间</span></span><br><span class="line">    $process-&gt;setTimeout(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置环境变量</span></span><br><span class="line">    <span class="keyword">if</span> (\in_array(<span class="string">'APP_ENV'</span>, explode(<span class="string">','</span>, getenv(<span class="string">'SYMFONY_DOTENV_VARS'</span>)))) &#123;</span><br><span class="line">        $process-&gt;setEnv([<span class="string">'APP_ENV'</span> =&gt; <span class="keyword">false</span>]);</span><br><span class="line">        $process-&gt;inheritEnvironmentVariables();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回相关变量</span></span><br><span class="line">    <span class="keyword">return</span> $process;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我在上面的代码中进行了注释, 描述了Symfony是如何启动的.</p>
-<p>里面有一个问题就是使用<a href="https://www.php.net/manual/zh/function.pcntl-fork.php" target="_blank" rel="noopener"><code>pcntl_fork</code></a>, 该扩展在Windows中是不受支持的. 所以 Symfony框架会提示使用<code>php bin/console server:run</code>命令运行程序.</p>
-<h2 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h2><p>其实还有一个方式, 就是 Workman 是通过自身的实现的web服务器，它并没有借助<code>php -S</code>命令。这一块的代码我还没有吃透，并且我觉得这个也可以单独拎几章出来讲。希望以后有这个机会。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过我们学习 PHP 命令实现web服务器访问以及对 Laravel 和 Symfony 框架的分析, 让我了解到在Windows的开发过程中,我们完全可以借助该方式来摆脱对web服务器的依赖.既能方便我们在Windows环境进行开发并且学习了PHP一个技巧.感觉挺好的.</p>
-<p>大家如果对此有什么疑问可以评论进行交流.</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://www.php.net/manual/zh/features.commandline.webserver.php" target="_blank" rel="noopener">PHP: 内置Web Server - Manual </a></li>
-<li><a href="https://laravel.com/" target="_blank" rel="noopener">Laravel</a></li>
-<li><a href="https://symfony.com/doc/current/setup/built_in_web_server.html" target="_blank" rel="noopener">How to Use PHP’s built-in Web Server</a></li>
-<li><a href="https://www.php.net/manual/zh/function.pcntl-fork.php" target="_blank" rel="noopener">PHP: pcntl_fork - Manual</a></li>
-<li><a href="https://www.php.net/manual/zh/function.posix-setsid.php" target="_blank" rel="noopener">PHP: posix_setsid - Manual</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/18/php-built-in-web-server/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -554,7 +422,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -601,60 +469,14 @@
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近想要统计项目中的请求时间，来判断那些请求响应时间来进行优化对应的代码。</p>
 <p>传统办法是使用PHP在项目的入口文件和输出的分别计算时间，然后计算时间差值。但是这种的话，非常麻烦，而且需要修改项目文件，改动较大。如果你对nginx比较了解的话，你就会发现nginx也有统计请求时间的功能，而且配置一下就能实现该功能。</p>
-<p>下面就介绍一下nginx统计请求时间的方式。</p>
-<h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><ul>
-<li>Linux环境：Ubuntu 18.10</li>
-<li>Nginx版本：1.15.5</li>
-<li>PHP版本：7.2.15</li>
-</ul>
-<p>我为了能测试该功能，特意搭建了一个phpmyadmin项目来统计访问的请求时间。</p>
-<h2 id="定义log格式"><a href="#定义log格式" class="headerlink" title="定义log格式"></a>定义log格式</h2><p>对于记录请求时间，那么我们需要定义个log格式，来记录请求的URL以及请求处理时间。</p>
-<p>该定义在<code>/etc/nginx/nginx.conf</code>中：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 注意这一行</span></span><br><span class="line">    <span class="attribute">log_format</span> statistics_time <span class="string">"<span class="variable">$request</span> <span class="variable">$request_time</span>"</span>;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面介绍一下这行配置的意义：</p>
-<ul>
-<li><code>log_format</code> 定义nginx log格式的指令</li>
-<li><code>statistics_time</code> 定义log格式的名称</li>
-<li><code>$request</code> 请求的URI和HTTP协议，如： “GET /article-10000.html HTTP/1.1”</li>
-<li><code>$request_time</code> 整个请求的总时间，单位为分，精确到微秒。如：0.205</li>
-</ul>
-<h2 id="定义记录位置"><a href="#定义记录位置" class="headerlink" title="定义记录位置"></a>定义记录位置</h2><p>下面打开<code>/etc/nginx/sites-enabled/pma</code>.</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">root</span> /home/baoguoxiao/code/php/phpmyadmin;</span><br><span class="line">	<span class="attribute">index</span> index.php index.html;</span><br><span class="line">	<span class="attribute">server_name</span> pma.lvh.me;</span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/access_pma.log;</span><br><span class="line">    <span class="attribute">access_log</span> <span class="string">'/var/log/nginx/time_pma.log'</span> statistics_time; <span class="comment"># 注意这行</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">		<span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line">		<span class="attribute">fastcgi_pass</span> unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面解释一下这一行的指令：</p>
-<ul>
-<li><code>access_log</code> nginx 设置访客log路径的指令</li>
-<li><code>/var/log/nginx/time_pma.log</code> 定义访问日志的路径</li>
-<li><code>statistics_time</code> log格式的名称，对应上面的自定义log格式</li>
-</ul>
-<p>配置好之后，就可以重启nginx，查看效果了。下面就是我查看的日志的部分内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F; HTTP&#x2F;1.1 0.037</span><br><span class="line">POST &#x2F;ajax.php HTTP&#x2F;1.1 0.012</span><br><span class="line">POST &#x2F;navigation.php?ajax_request&#x3D;1 HTTP&#x2F;1.1 0.018</span><br><span class="line">POST &#x2F;ajax.php HTTP&#x2F;1.1 0.019</span><br><span class="line">POST &#x2F;ajax.php HTTP&#x2F;1.1 0.011</span><br><span class="line">POST &#x2F;version_check.php HTTP&#x2F;1.1 0.008</span><br><span class="line">GET &#x2F;favicon.ico HTTP&#x2F;1.1 0.000</span><br><span class="line">GET &#x2F;db_structure.php?server&#x3D;1&amp;db&#x3D;mysql&amp;ajax_request&#x3D;true&amp;ajax_page_request&#x3D;true&amp;_nocache&#x3D;1550413689281586612&amp;token&#x3D;%3B%24*%5DFp%7BVsh%40~8%5D9t HTTP&#x2F;1.1 0.126</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现按天区分"><a href="#实现按天区分" class="headerlink" title="实现按天区分"></a>实现按天区分</h2><p>如何实现按天分配，网上介绍的方式都太重了。我感觉应该nginx是可以自己实现分天记录日志的。在我的不懈搜索之下，真让我找到了。</p>
-<p>本次修改都是只需要修改一个文件就可以了：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/sites-enabled/pma</span></span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">    if ($time_iso8601 ~ "^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)") &#123;</span><br><span class="line">        <span class="attribute">set</span> <span class="variable">$date</span> <span class="variable">$1</span><span class="variable">$2</span><span class="variable">$3</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/time_pma_<span class="variable">$date</span>.log statistics_time;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是在实际运行中并不会出现对应的日志，通过查看<code>error.log</code>可以看到如下错误：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019&#x2F;02&#x2F;17 22:33:09 [crit] 54018#54018: *58 open() &quot;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;time_pma_20190217.log&quot; failed (13: Permission denied) while logging request, client: 192.168.1.230, server: pma.lvh.me, request: &quot;POST &#x2F;navigation.php?ajax_request&#x3D;1 HTTP&#x2F;1.1&quot;, upstream: &quot;fastcgi:&#x2F;&#x2F;unix:&#x2F;var&#x2F;run&#x2F;php&#x2F;php7.2-fpm.sock&quot;, host: &quot;pma.lvh.me&quot;</span><br></pre></td></tr></table></figure>
-
-<p>通过该日志可以明白是权限的问题导致的该情况。</p>
-<p>所以执行以下命令对文件夹进行赋予权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown www-data /var/<span class="built_in">log</span>/nginx -R</span><br></pre></td></tr></table></figure>
-
-<p>这里我的<code>nginx</code>运行的用户是<code>www-data</code>，如果你的<code>nginx</code>用户是<code>www</code>，那么你就要将上面命令中的<code>www-data</code>修改为<code>www</code>再执行。</p>
-<p>这样就可以看到生成的对应文件了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">access.log  access_pma.log  error.log  time_pma_20190217.log  time_pma.log</span><br></pre></td></tr></table></figure>
-
-<h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>下一步思考如何将nginx进行入库，然后实现各种查询和聚合查询。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上面的方式通过nginx的配置可以做很多的事情。今天要多多加强对于nginx配置的了解。这样通过一些简单的配置，可以做更多的事情，从而减轻自己的工作量。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://www.cnblogs.com/kevingrace/p/5893499.html" target="_blank" rel="noopener">https://www.cnblogs.com/kevingrace/p/5893499.html</a></li>
-<li><a href="http://wfsovereign.github.io/2018/05/10/NGINX%E6%8C%89%E5%A4%A9%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">http://wfsovereign.github.io/2018/05/10/NGINX%E6%8C%89%E5%A4%A9%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE/</a></li>
-<li><a href="http://returnc.com/detail/3685" target="_blank" rel="noopener">http://returnc.com/detail/3685</a></li>
-<li><a href="http://nginx.org/en/docs/http/ngx_http_log_module.html" target="_blank" rel="noopener">http://nginx.org/en/docs/http/ngx_http_log_module.html</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/02/17/nginx-statistics-request-time/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -704,7 +526,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -749,218 +571,14 @@
 <li>新增个税附加扣除，具体就不说了，网上的资料太多了。</li>
 <li>使用累计预扣法预扣税款。</li>
 </ol>
-<p>所以计算公式修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">累计预扣预缴应纳税所得额 &#x3D; 累计收入 - 累计免税收入 - 累计减除费用 - 累计专项扣除 - 累计专项附加扣除 - 累计依法确定的其他扣除</span><br><span class="line"></span><br><span class="line">本期应预扣预缴税额 &#x3D;（累计预扣预缴应纳税所得额 × 预扣率 - 速算扣除数) - 累计减免税额 - 累计已预扣预缴税额</span><br></pre></td></tr></table></figure>
-
-<p>看起公式来比较枯燥。我们直接举例子吧，大家直接带入进行计算。</p>
-<p>比如说小A，他月工资1W，然后五险一金2000元，附加扣除1500元。那么小A能拿到的的工资是多少呢？</p>
-<p>现在我们套用上面的公式计算前三月的工资的工资：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1月份</span><br><span class="line"></span><br><span class="line">10000(累计收入) * 1(月份) - 0(累计免税收入) * 1(月份) - 5000(累计减除费用) * 1(月份) - 2000(累计专项扣除) * 1(月份) - 1500(累计专项附加扣除) * 1 - 0(累计依法确定的其他扣除) * 1(月份) &#x3D; 1500(累计预扣预缴应纳税所得额)</span><br><span class="line"></span><br><span class="line">(1500(累计预扣预缴应纳税所得额) * 3%(预扣率) - 0(速算扣除数)) - 0(累计减免税额) - 0(累计已预扣预缴税额) &#x3D; 45(本期应预扣预缴税额)</span><br><span class="line"></span><br><span class="line">2月份</span><br><span class="line"></span><br><span class="line">10000(累计收入) * 2(月份) - 0(累计免税收入) * 2(月份) - 5000(累计减除费用) * 2(月份) - 2000(累计专项扣除) * 2(月份) - 1500(累计专项附加扣除) * 2 - 0(累计依法确定的其他扣除) * 2(月份) &#x3D; 3000(累计预扣预缴应纳税所得额)</span><br><span class="line"></span><br><span class="line">(3000(累计预扣预缴应纳税所得额) * 3%(预扣率) - 0(速算扣除数)) - 0(累计减免税额) - 45(累计已预扣预缴税额) &#x3D; 45(本期应预扣预缴税额)</span><br><span class="line"></span><br><span class="line">3月份</span><br><span class="line">10000(累计收入) * 3(月份) - 0(累计免税收入) * 3(月份) - 5000(累计减除费用) * 3(月份) - 2000(累计专项扣除) * 3(月份) - 1500(累计专项附加扣除) * 3 - 0(累计依法确定的其他扣除) * 3(月份) &#x3D; 4500(累计预扣预缴应纳税所得额)</span><br><span class="line"></span><br><span class="line">(4500(累计预扣预缴应纳税所得额) * 3%(预扣率) - 0(速算扣除数)) - 0(累计减免税额) - 90(累计已预扣预缴税额, 前两个月的交税总额) &#x3D; 45(本期应预扣预缴税额)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>预扣率可以参考后面的个税税率表</p>
-</blockquote>
-<p>那么这么算起来，小A每个月的可获得工资为：</p>
-<table>
-<thead>
-<tr>
-<th align="center">月份</th>
-<th align="center">本月工资</th>
-<th align="center">累计预扣预缴应纳税所得额</th>
-<th align="center">本期应预扣预缴税额</th>
-<th align="center">税后工资</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">01月份</td>
-<td align="center">10000</td>
-<td align="center">1500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">02月份</td>
-<td align="center">10000</td>
-<td align="center">3000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">03月份</td>
-<td align="center">10000</td>
-<td align="center">4500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">04月份</td>
-<td align="center">10000</td>
-<td align="center">6000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">05月份</td>
-<td align="center">10000</td>
-<td align="center">7500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">06月份</td>
-<td align="center">10000</td>
-<td align="center">9000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">07月份</td>
-<td align="center">10000</td>
-<td align="center">10500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">08月份</td>
-<td align="center">10000</td>
-<td align="center">12000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">09月份</td>
-<td align="center">10000</td>
-<td align="center">13500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">10月份</td>
-<td align="center">10000</td>
-<td align="center">15000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">11月份</td>
-<td align="center">10000</td>
-<td align="center">16500</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-<tr>
-<td align="center">12月份</td>
-<td align="center">10000</td>
-<td align="center">18000</td>
-<td align="center">45</td>
-<td align="center">7955</td>
-</tr>
-</tbody></table>
-<p>如果小B月工资是20000，然后五险一金4000元，附加扣除1500元。那么小B能拿到的的工资是多少呢？</p>
-<table>
-<thead>
-<tr>
-<th align="center">月份</th>
-<th align="center">本月工资</th>
-<th align="center">累计预扣预缴应纳税所得额</th>
-<th align="center">本期应预扣预缴税额</th>
-<th align="center">税后工资</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">01月份</td>
-<td align="center">10000</td>
-<td align="center">9500</td>
-<td align="center">285</td>
-<td align="center">15715</td>
-</tr>
-<tr>
-<td align="center">02月份</td>
-<td align="center">10000</td>
-<td align="center">19000</td>
-<td align="center">285</td>
-<td align="center">15715</td>
-</tr>
-<tr>
-<td align="center">03月份</td>
-<td align="center">10000</td>
-<td align="center">28500</td>
-<td align="center">285</td>
-<td align="center">15715</td>
-</tr>
-<tr>
-<td align="center">04月份</td>
-<td align="center">10000</td>
-<td align="center">38000</td>
-<td align="center">425</td>
-<td align="center">15575</td>
-</tr>
-<tr>
-<td align="center">05月份</td>
-<td align="center">10000</td>
-<td align="center">47500</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">06月份</td>
-<td align="center">10000</td>
-<td align="center">57000</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">07月份</td>
-<td align="center">10000</td>
-<td align="center">66500</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">08月份</td>
-<td align="center">10000</td>
-<td align="center">76000</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">09月份</td>
-<td align="center">10000</td>
-<td align="center">85500</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">10月份</td>
-<td align="center">10000</td>
-<td align="center">95000</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">11月份</td>
-<td align="center">10000</td>
-<td align="center">104500</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-<tr>
-<td align="center">12月份</td>
-<td align="center">10000</td>
-<td align="center">114000</td>
-<td align="center">950</td>
-<td align="center">15050</td>
-</tr>
-</tbody></table>
-<p>具体大家可以套用公式对自己的薪资进行计算，或者按照下面参考链接中的工资计算器进行计算。</p>
-<h2 id="年终奖计算办法"><a href="#年终奖计算办法" class="headerlink" title="年终奖计算办法"></a>年终奖计算办法</h2><p>待续</p>
-<h2 id="个税税率表"><a href="#个税税率表" class="headerlink" title="个税税率表"></a>个税税率表</h2><p>| 级数 | 累计预扣预缴应纳税所得额 | 预扣率（%） | 速算扣除数 |<br>|:—:|:—:|:—:|:—:|:—:|<br>| 1 | 不超过36000元的 | 3 | 0 |<br>| 2 | 超过36000元至144000元的部分 | 10 | 2520|<br>| 3 | 超过144000元至300000元的部分 | 20 | 16920 |<br>| 4 | 超过300000元至420000元的部分 | 25 | 31920 |<br>| 5 | 超过420000元至660000元的部分 | 30 | 52920 |<br>| 6 | 超过660000元至960000元的部分 | 35 | 85920 |<br>| 7 | 超过960000元的部分 | 45 | 181920 |</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://www.gerensuodeshui.cn/" target="_blank" rel="noopener">工资计算器 | 个税计算器2019 - 个人所得税计算器2019</a></li>
-<li><a href="http://www.chinatax.gov.cn/n810341/n810755/c3978994/content.html" target="_blank" rel="noopener">关于个人所得税法修改后有关优惠政策衔接问题的通知</a></li>
-<li><a href="http://www.chinatax.gov.cn/n810341/n810760/c3959585/content.html" target="_blank" rel="noopener">关于《国家税务总局关于发布&lt;个人所得税扣缴申报管理办法（试行）&gt;的公告》的解读</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/07/personal-income-tax-2019/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1010,7 +628,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1311,7 +929,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1458,7 +1076,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1558,7 +1176,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1740,7 +1358,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 07:45:12" itemprop="dateModified" datetime="2020-01-03T07:45:12+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
