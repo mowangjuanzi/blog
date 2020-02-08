@@ -13,6 +13,8 @@ categories:
 
 目前发现了一个特别好玩的东西，就是vscode可以注入code命令，在终端使用code命令打开相应的目录或文件，非常方便。
 
+<!-- more -->
+
 首先打开vscode软件。
 
 同时按住`shift + command + P`打开命令面板。

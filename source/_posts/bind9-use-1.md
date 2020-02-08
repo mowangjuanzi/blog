@@ -11,6 +11,8 @@ categories:
 
 周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统[bind9](https://www.isc.org/downloads/bind/)来搞一番。
 
+<!-- more -->
+
 ## 环境介绍
 
 - Ubuntu: 18.10 (ip: 192.168.1.230)

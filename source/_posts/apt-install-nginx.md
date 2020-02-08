@@ -13,6 +13,8 @@ categories:
 
 使用 `apt` 安装 `nginx` ，方便快捷，省去了编译失败的可能。
 
+<!-- more -->
+
 ## 支持平台
 
 | Version | Codename | Supported Platforms |

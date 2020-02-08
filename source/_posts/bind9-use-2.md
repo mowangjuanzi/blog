@@ -11,6 +11,8 @@ categories:
 
 比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到`/etc/bind/named.conf.options`文件中。
 
+<!-- more -->
+
 ```conf
     listen-on {
         192.168.1.230;
