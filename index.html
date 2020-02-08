@@ -512,7 +512,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -616,7 +616,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -718,7 +718,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -764,40 +764,14 @@
 
       
           <h2 id="设置局域网访问"><a href="#设置局域网访问" class="headerlink" title="设置局域网访问"></a>设置局域网访问</h2><p>比如我的windows 10的ip地址是192.168.1.230。那么我们可以添加如下内容到<code>/etc/bind/named.conf.options</code>文件中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">listen-on &#123;</span><br><span class="line">    192.168.1.230;</span><br><span class="line">    192.168.1.231;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>填写完成后打开<code>/etc/bind/named.conf.options</code>内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span><br><span class="line">options &#123;</span><br><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span><br><span class="line"></span><br><span class="line">	// If there is a firewall between you and nameservers you want</span><br><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span><br><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span><br><span class="line"></span><br><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span><br><span class="line">	// nameservers, you probably want to use them as forwarders.  </span><br><span class="line">	// Uncomment the following block, and insert the addresses replacing </span><br><span class="line">	// the all-0<span class="string">'s placeholder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	// forwarders &#123;</span></span><br><span class="line"><span class="string">	//	114.114.114.114;</span></span><br><span class="line"><span class="string">	// &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span><br><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	dnssec-validation auto;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    listen-on &#123;</span></span><br><span class="line"><span class="string">        192.168.1.230;</span></span><br><span class="line"><span class="string">        192.168.1.231;</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
-
-<p>重启bind9。</p>
-<p>然后在windows 10 上设置DNS为<code>192.168.1.231</code>和<code>114.114.114.114</code>。</p>
-<p>这样我们打开cmd，查看域名是否获取到了正确的ip。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\baogu&gt; ping www.baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">正在 Ping www.baoguoxiao.pro [192.168.1.231] 具有 32 字节的数据:</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.1.231 的回复: 字节=32 时间=1ms TTL=64</span><br><span class="line"></span><br><span class="line">192.168.1.231 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = 0ms，最长 = 1ms，平均 = 0ms</span><br></pre></td></tr></table></figure>
-
-<p>但是如果我们这边手机要连怎么办。不能每次都加ip吧。所以这里有个简单的办法。直接将上面的配置修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/named.conf.options </span><br><span class="line">options &#123;</span><br><span class="line">	directory <span class="string">"/var/cache/bind"</span>;</span><br><span class="line"></span><br><span class="line">	// If there is a firewall between you and nameservers you want</span><br><span class="line">	// to talk to, you may need to fix the firewall to allow multiple</span><br><span class="line">	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113</span><br><span class="line"></span><br><span class="line">	// If your ISP provided one or more IP addresses <span class="keyword">for</span> stable </span><br><span class="line">	// nameservers, you probably want to use them as forwarders.  </span><br><span class="line">	// Uncomment the following block, and insert the addresses replacing </span><br><span class="line">	// the all-0<span class="string">'s placeholder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	// forwarders &#123;</span></span><br><span class="line"><span class="string">	// 	0.0.0.0;</span></span><br><span class="line"><span class="string">	// &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	// If BIND logs error messages about the root key being expired,</span></span><br><span class="line"><span class="string">	// you will need to update your keys.  See https://www.isc.org/bind-keys</span></span><br><span class="line"><span class="string">	//========================================================================</span></span><br><span class="line"><span class="string">	dnssec-validation auto;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	listen-on-v6 &#123; any; &#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    listen-on &#123;</span></span><br><span class="line"><span class="string">        any;</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
-
-<p>这样直接将ip列表修改为any。就可以接收所有的ip了。</p>
-<p>这个时候我们将bind9再次重启。</p>
-<p>首先安装一个nginx。具体的安装教程可查看我的另外一篇文章 <a href="/2018/12/16/apt-install-nginx/" title="ubuntu 中使用 apt 安装 nginx">ubuntu 中使用 apt 安装 nginx</a></p>
-<p>安装之后，如果访问192.168.1.231，就能看到默认的nginx页面了。</p>
-<h2 id="手机测试"><a href="#手机测试" class="headerlink" title="手机测试"></a>手机测试</h2><p>每个手机是设置是不同的。我这里是iphone，版本是12.1.1。</p>
-<p>进入设置-&gt;无线局域网-&gt;在已连接的WIFI右边点击带圈的感叹号-&gt;配置DNS-&gt;选择手动。</p>
-<p>最后点击添加服务器，输入我们虚拟机的地址：192.168.1.231。</p>
-<p>这个时候我们在手机的浏览器里面输入我们之前设置的域名 <a href="http://www.baoguoxiao.pro" target="_blank" rel="noopener">www.baoguoxiao.pro</a> 。就能看到我们经典的nginx主页了。</p>
-<p>这样我们就可以使用手机访问我们的电脑页面了。在调试某些情况的时候，是不是感觉会非常方便呢。</p>
-<h2 id="泛域名设置"><a href="#泛域名设置" class="headerlink" title="泛域名设置"></a>泛域名设置</h2><p>在开发的时候，可能会出现使用多个域名的情况，但是如果每次添加域名都要设置bind9，还要重启，非常麻烦，那么有没有简单的办法呢？有，就是使用泛域名设置。</p>
-<p>废话不多说，请看如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span><br><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line"><span class="variable">$TTL</span> 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">www IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
-
-<p>这个是我们之前<a href="/2018/12/16/bind9-use-1/" title="bind9的初步使用（1）">bind9的初步使用（1）</a>对其的设置。那么如果要设置泛域名，只需要把最后一行的<code>www</code>更改为<code>*</code>就可以了。</p>
-<p>那么切换后的配置如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/<span class="built_in">bind</span>/zones/baoguoxiao.pro.db </span><br><span class="line">; BIND data file <span class="keyword">for</span> baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line"><span class="variable">$TTL</span> 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">* IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
-
-<p>最后重启一下，那么泛域名设置就成功了。</p>
-<p>不早了，要去睡觉了。</p>
-<p>晚安。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/16/bind9-use-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -893,83 +867,14 @@
 
       
           <p>使用 <code>apt</code> 安装 <code>nginx</code> ，方便快捷，省去了编译失败的可能。</p>
-<h2 id="支持平台"><a href="#支持平台" class="headerlink" title="支持平台"></a>支持平台</h2><table>
-<thead>
-<tr>
-<th align="center">Version</th>
-<th align="center">Codename</th>
-<th align="center">Supported Platforms</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">16.04</td>
-<td align="center">xenial</td>
-<td align="center">x86_64, i386, ppc64el, aarch64/arm64</td>
-</tr>
-<tr>
-<td align="center">18.04</td>
-<td align="center">bionic</td>
-<td align="center">x86_64, aarch64/arm64</td>
-</tr>
-<tr>
-<td align="center">19.04</td>
-<td align="center">disco</td>
-<td align="center">x86_64</td>
-</tr>
-<tr>
-<td align="center">19.10</td>
-<td align="center">eoan</td>
-<td align="center">x86_64</td>
-</tr>
-</tbody></table>
-<p>我这里的ubuntu的环境是 <code>19.10</code> 。通过上面的表格可以了解到我这里是支持安装的。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先，我们安装key</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<p>接下来添加 apt repository:</p>
-<p>安装主线版本执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span><br></pre></td></tr></table></figure>
-
-<p>安装稳定版本执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx"</span> | sudo tee /etc/apt/sources.list.d/nginx.list</span><br></pre></td></tr></table></figure>
-
-<p>接下来执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>下面就可以进行安装了，只需执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
-
-<p>执行完成之后，这样就安装完成了，是不是非常方便呢。</p>
-<h2 id="相关目录"><a href="#相关目录" class="headerlink" title="相关目录"></a>相关目录</h2><p>下面看下配置文件夹的相关目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ tree /etc/nginx/</span><br><span class="line">/etc/nginx/</span><br><span class="line">├── conf.d</span><br><span class="line">│   └── default.conf</span><br><span class="line">├── fastcgi_params</span><br><span class="line">├── koi-utf</span><br><span class="line">├── koi-win</span><br><span class="line">├── mime.types</span><br><span class="line">├── modules -&gt; /usr/lib/nginx/modules</span><br><span class="line">├── nginx.conf</span><br><span class="line">├── scgi_params</span><br><span class="line">├── uwsgi_params</span><br><span class="line">└── win-utf</span><br><span class="line"></span><br><span class="line">2 directories, 9 files</span><br></pre></td></tr></table></figure>
-
-<p>日志相关：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ tree /var/<span class="built_in">log</span>/nginx/</span><br><span class="line">/var/<span class="built_in">log</span>/nginx/</span><br><span class="line">├── access.log</span><br><span class="line">└── error.log</span><br><span class="line"></span><br><span class="line">0 directories, 2 files</span><br></pre></td></tr></table></figure>
-
-<p>缓存相关：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tree /var/cache/nginx/</span><br><span class="line">/var/cache/nginx/</span><br><span class="line">├── client_temp</span><br><span class="line">├── fastcgi_temp</span><br><span class="line">├── proxy_temp</span><br><span class="line">├── scgi_temp</span><br><span class="line">└── uwsgi_temp</span><br><span class="line"></span><br><span class="line">5 directories, 0 files</span><br></pre></td></tr></table></figure>
-
-<h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>下面看看支持的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx</span><br><span class="line">Usage: /etc/init.d/nginx &#123;start|stop|status|restart|reload|force-reload|upgrade|configtest|check-reload&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里介绍几个常用的</p>
-<p>启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx start</span><br><span class="line">[ ok ] Starting nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
-
-<p>重启：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx restart</span><br><span class="line">[ ok ] Restarting nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
-
-<p>状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx status</span><br><span class="line">● nginx.service - nginx - high performance web server</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Sun 2019-12-08 09:51:20 UTC; 18s ago</span><br><span class="line">     Docs: http://nginx.org/en/docs/</span><br><span class="line">  Process: 15032 ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 15033 (nginx)</span><br><span class="line">    Tasks: 2 (<span class="built_in">limit</span>: 4591)</span><br><span class="line">   Memory: 1.7M</span><br><span class="line">   CGroup: /system.slice/nginx.service</span><br><span class="line">           ├─15033 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf</span><br><span class="line">           └─15034 nginx: worker process</span><br><span class="line"></span><br><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Starting nginx - high performance web server...</span><br><span class="line">Dec 08 09:51:20 baoguoxiao systemd[1]: Started nginx - high performance web server.</span><br></pre></td></tr></table></figure>
-
-<p>停止:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx stop</span><br><span class="line">[ ok ] Stopping nginx (via systemctl): nginx.service.</span><br></pre></td></tr></table></figure>
-
-<p>检测配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/nginx configtest</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure>
-
-<p>其他的我就不列举了。大家可以自己去试验。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/16/apt-install-nginx/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1019,7 +924,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1065,58 +970,14 @@
 
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统<a href="https://www.isc.org/downloads/bind/" target="_blank" rel="noopener">bind9</a>来搞一番。</p>
-<h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><ul>
-<li>Ubuntu: 18.10 (ip: 192.168.1.230)</li>
-<li>bind9: 9.11.4</li>
-<li>Windows 10 (ip: 192.168.1.230)</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>其实安装非常简单，一条命令就搞定了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install bind9</span><br></pre></td></tr></table></figure>
-
-<h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start bind9</span><br></pre></td></tr></table></figure>
-
-<p>停止:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop bind9</span><br></pre></td></tr></table></figure>
-
-<p>重启：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart bind9</span><br></pre></td></tr></table></figure>
-
-<p>状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status bind9</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h2><p>举个例子，比如现在我们有个域名是：baoguoxiao.pro。现在我们要对这个域名进行虚拟映射。</p>
-<p>首先打开<code>/etc/bind/named.conf.local</code>，追加如下内容到文件尾部：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;baoguoxiao.pro&quot; &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;&#x2F;etc&#x2F;bind&#x2F;zones&#x2F;baoguoxiao.pro.db&quot;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>那么现在这个文件的内容完整如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Do any local configuration here</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Consider adding the 1918 zones here, if they are not used in your</span><br><span class="line">&#x2F;&#x2F; organization</span><br><span class="line">&#x2F;&#x2F;include &quot;&#x2F;etc&#x2F;bind&#x2F;zones.rfc1918&quot;;</span><br><span class="line"></span><br><span class="line">zone &quot;baoguoxiao.pro&quot; &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;&#x2F;etc&#x2F;bind&#x2F;zones&#x2F;baoguoxiao.pro.db&quot;; &#x2F;&#x2F; 这个文件定义了文件地址</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们定义的地址是<code>/etc/bind/zones/baoguoxiao.pro.db</code>。但是我们的<code>/etc/bind/</code>并没有该目录。所以需要如下命令进行创建：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/<span class="built_in">bind</span>/</span><br><span class="line">sudo mkdir zones</span><br></pre></td></tr></table></figure>
-
-<p>进入该目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> zones</span><br></pre></td></tr></table></figure>
-
-<p>然后创建该文件<code>baoguoxiao.pro.db</code>，并追加如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">; BIND data file for baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line">$TTL 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">www IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
-
-<p>这样就设置完成了。然后我们将bind9进行重启。</p>
-<h2 id="测试DNS效果"><a href="#测试DNS效果" class="headerlink" title="测试DNS效果"></a>测试DNS效果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ dig @192.168.1.231 www.baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; @192.168.1.231 www.baoguoxiao.pro</span><br><span class="line">; (1 server found)</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 35630</span><br><span class="line">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4096</span><br><span class="line">; COOKIE: f077ba72f04b75a1ac9b27275c16148f4732abac11c21ce8 (good)</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;www.baoguoxiao.pro.			IN	A</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">www.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span><br><span class="line"></span><br><span class="line">;; AUTHORITY SECTION:</span><br><span class="line">baoguoxiao.pro.			14400	IN	NS	ns1.baoguoxiao.pro.</span><br><span class="line"></span><br><span class="line">;; ADDITIONAL SECTION:</span><br><span class="line">ns1.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span><br><span class="line"></span><br><span class="line">;; Query time: 0 msec</span><br><span class="line">;; SERVER: 192.168.1.231<span class="comment">#53(192.168.1.231)</span></span><br><span class="line">;; WHEN: Sun Dec 16 17:02:07 CST 2018</span><br><span class="line">;; MSG SIZE  rcvd: 117</span><br></pre></td></tr></table></figure>
-
-<p>好了，这样就表示已经配置成功了</p>
-<h2 id="设置默认本机DNS可用"><a href="#设置默认本机DNS可用" class="headerlink" title="设置默认本机DNS可用"></a>设置默认本机DNS可用</h2><p>之前的设置我们需要指定本机的DNS服务器才可以使用，如果我们不指定的话，那么查询该域名是没有效果的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ dig baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; baoguoxiao.pro</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 52385</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 65494</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;baoguoxiao.pro.			IN	A</span><br><span class="line"></span><br><span class="line">;; Query time: 274 msec</span><br><span class="line">;; SERVER: 127.0.0.53<span class="comment">#53(127.0.0.53)</span></span><br><span class="line">;; WHEN: Sun Dec 16 17:03:59 CST 2018</span><br><span class="line">;; MSG SIZE  rcvd: 43</span><br></pre></td></tr></table></figure>
-
-<p>在ubuntu17.10之后，网卡配置已经更新为netplan。该配置文件的目录是<code>/etc/netplan/</code>。不过里面的文件不一定是相同的名字。我的文件打开是这样的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/netplan/50-cloud-init.yaml </span><br><span class="line"><span class="comment"># This file is generated from information provided by</span></span><br><span class="line"><span class="comment"># the datasource.  Changes to it will not persist across an instance.</span></span><br><span class="line"><span class="comment"># To disable cloud-init's network configuration capabilities, write a file</span></span><br><span class="line"><span class="comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span></span><br><span class="line"><span class="comment"># network: &#123;config: disabled&#125;</span></span><br><span class="line">network:</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            addresses: [192.168.1.231/24]</span><br><span class="line">            dhcp4: <span class="literal">false</span></span><br><span class="line">            dhcp6: <span class="literal">false</span></span><br><span class="line">            gateway4: 192.168.1.1</span><br><span class="line">            nameservers:</span><br><span class="line">                addresses: [192.168.1.231,114.114.114.114]</span><br><span class="line">    version: 2</span><br></pre></td></tr></table></figure>
-
-<p>注意，我在倒数第二行的数组里面添加本机的服务器<code>192.168.1.231</code>。关于该文件的配置，可以查看我的另外一篇文章：。</p>
-<p>这样我们在本机就可以不指定dns服务器的基础上进行获取域名的ip了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ dig www.bgx.me</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; www.baoguoxiao.pro</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 58219</span><br><span class="line">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4096</span><br><span class="line">; COOKIE: 15d0881d8eed3292569558cd5c1623fa33a2d05212e7e662 (good)</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;www.baoguoxiao.pro.			IN	A</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">www.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span><br><span class="line"></span><br><span class="line">;; AUTHORITY SECTION:</span><br><span class="line">baoguoxiao.pro.			14400	IN	NS	ns1.baoguoxiao.pro.</span><br><span class="line"></span><br><span class="line">;; ADDITIONAL SECTION:</span><br><span class="line">ns1.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span><br><span class="line"></span><br><span class="line">;; Query time: 0 msec</span><br><span class="line">;; SERVER: 192.168.1.231<span class="comment">#53(192.168.1.231)</span></span><br><span class="line">;; WHEN: Sun Dec 16 18:07:54 CST 2018</span><br><span class="line">;; MSG SIZE  rcvd: 117</span><br></pre></td></tr></table></figure>
-
-<p>本篇文章就说到这里。下一篇讲如何配置可局域网访问。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/16/bind9-use-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1166,7 +1027,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1266,7 +1127,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1314,91 +1175,14 @@
           <p>在mac进行开发的时候，有时候项目的目录在访达中不好找到。在终端中进行查找的时候就比较方便，一个<code>cd</code>命令可以切到任何位置。</p>
 <p>但是将项目目录从加入到编辑器中就比较费劲了。</p>
 <p>目前发现了一个特别好玩的东西，就是vscode可以注入code命令，在终端使用code命令打开相应的目录或文件，非常方便。</p>
-<p>首先打开vscode软件。</p>
-<p>同时按住<code>shift + command + P</code>打开命令面板。</p>
-<p>找到<code>Install ‘code&#39; command in PATH</code>，并执行。</p>
-<p>那么就可以在终端执行命令了。</p>
-<p>比如我要打开nginx.conf。</p>
-<p>那么就可以在终端执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
-
-<p>打开目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
-
-<p>code 还有其他命令选项：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>-h</code> 或 <code>--help</code></td>
-<td align="center">code使用说明</td>
-</tr>
-<tr>
-<td align="center"><code>-v</code> 或 <code>--version</code></td>
-<td align="center">VS Code版本（例如：0.10.10）</td>
-</tr>
-<tr>
-<td align="center"><code>-n</code> 或 <code>--new-window</code></td>
-<td align="center">打开一个VS Code新的版本替代默认版本</td>
-</tr>
-<tr>
-<td align="center"><code>-r</code> 或 <code>--reuse-window</code></td>
-<td align="center">强制打开最后活动窗口的文件或文件夹</td>
-</tr>
-<tr>
-<td align="center"><code>-g</code> 或 <code>--goto</code></td>
-<td align="center">当和 ``file:line:column?` 使用时 ，打开文件并定位到一个的特定行和可选的列位置的文件。</td>
-</tr>
-<tr>
-<td align="center">file</td>
-<td align="center">以一个文件名打开。如果文件不存在，此文件将被创建并标记为已编辑</td>
-</tr>
-<tr>
-<td align="center"><code>file:line:column?</code></td>
-<td align="center">以文件的名称在指定行和可选的列的位置打开，你可以以这个方式指定多个文件。但是在使用 <code>file:line:column?</code> 之前必须使用 <code>-g</code> 参数。例如：<code>code -g file:10</code></td>
-</tr>
-<tr>
-<td align="center">folder</td>
-<td align="center">以一个文件夹名打开。你可以指定多个文件夹。例如：<code>code folder folder</code></td>
-</tr>
-<tr>
-<td align="center"><code>-d</code> 或 <code>--diff</code></td>
-<td align="center">打开一个不同的编辑器。需要两个文件路径作为参数。例如：<code>code -d file file</code></td>
-</tr>
-<tr>
-<td align="center"><code>--locale</code></td>
-<td align="center">为VS Code设置显示语言，支持语言环境有：<code>en-US</code> (英语) ，<code>zh-TW</code>（中文繁体），<code>zh-CN</code> (中文简体)，<code>fr</code> ，<code>de</code> ，<code>it</code> ，<code>ja</code> ，<code>ko</code> ，<code>ru</code> ，<code>es</code> 。例如：<code>code . --locale=en-US</code> 设置显示语言为英语</td>
-</tr>
-<tr>
-<td align="center"><code>--disable-extensions</code></td>
-<td align="center">禁用所有安装的插件。下拉选 <code>Show installed Extensions</code> 后插件依然可见，但是永远不会被激活。</td>
-</tr>
-<tr>
-<td align="center"><code>--list-extensions</code></td>
-<td align="center"><code>code --list-extensions</code> 列出被安装的插件</td>
-</tr>
-<tr>
-<td align="center"><code>--install-extension</code></td>
-<td align="center">安装一个插件。提供完整的扩展名 <code>publisher.extension</code> 作为参数。例如：<code>code --install-extension ms-vscode.cpptools</code></td>
-</tr>
-<tr>
-<td align="center"><code>--uninstall-extension</code></td>
-<td align="center">卸载一个插件。提供完整的扩展名 <code>publisher.extension</code> 作为参数.例如 <code>code --uninstall-extension ms-vscode.csharp</code></td>
-</tr>
-<tr>
-<td align="center"><code>-w</code> 或 <code>--wait</code></td>
-<td align="center">等待窗口返回之前关闭</td>
-</tr>
-</tbody></table>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://www.jianshu.com/p/3dda4756eca5" target="_blank" rel="noopener">https://www.jianshu.com/p/3dda4756eca5</a></li>
-<li><a href="https://segmentfault.com/q/1010000005104983" target="_blank" rel="noopener">https://segmentfault.com/q/1010000005104983</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/16/open-file-or-folder-in-terminal-vscode/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
