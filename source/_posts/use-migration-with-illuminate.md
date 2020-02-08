@@ -1,8 +1,20 @@
-# 依托illuminate组件实现数据库迁移
+---
+title: 依托illuminate组件实现数据库迁移
+date: 2019-11-07 00:00:00
+updated: 2020-02-08 22:18:04
+tags:
+- laravel
+- php
+category:
+- php
+- laravel
+---
 
 ## 前言
 
 因为一些原因，我准备选用`yaf`框架作为我们的主力开发框架，但是我还想要将`Laravel`的数据库迁移功能给挪过来。所以就研究了一天相关功能。终于让我实现了。
+
+<!-- more -->
 
 ## 文件简介
 
@@ -11,20 +23,20 @@
 ```bash
 yaf-base/
 ├── app
-│   ├── Bootstrap.php
-│   ├── controllers
-│   │   └── Index.php
-│   └── Models
-│       └── UserBase.php
+│   ├── Bootstrap.php
+│   ├── controllers
+│   │   └── Index.php
+│   └── Models
+│       └── UserBase.php
 ├── app.ini
 ├── bin
-│   └── migrate.php
+│   └── migrate.php
 ├── composer.json
 ├── composer.lock
 ├── migrations
-│   └── 2014_10_12_000000_create_users_table.php
+│   └── 2014_10_12_000000_create_users_table.php
 ├── public
-│   └── index.php
+│   └── index.php
 ├── README.md
 └── vendor
 ```
@@ -254,19 +266,19 @@ $ php bin/migrate.php create create_demo_table
 $ tree -L 2 ./yaf-base/
 ./yaf-base/
 ├── app
-│   ├── Bootstrap.php
-│   ├── controllers
-│   └── Models
+│   ├── Bootstrap.php
+│   ├── controllers
+│   └── Models
 ├── app.ini
 ├── bin
-│   └── migrate.php
+│   └── migrate.php
 ├── composer.json
 ├── composer.lock
 ├── migrations
-│   ├── 2014_10_12_000000_create_users_table.php
-│   └── 2019_11_06_220957_create_demo_table.php
+│   ├── 2014_10_12_000000_create_users_table.php
+│   └── 2019_11_06_220957_create_demo_table.php
 ├── public
-│   └── index.php
+│   └── index.php
 ├── README.md
 └── vendor
 ```

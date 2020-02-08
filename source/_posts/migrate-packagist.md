@@ -1,8 +1,20 @@
-# 依托illuminate组件实现数据库迁移(后续)
+---
+title: 依托illuminate组件实现数据库迁移(后续)
+date: 2019-11-24 00:00:00
+updated: 2020-02-08 22:15:18
+tags:
+- laravel
+- php
+category:
+- php
+- laravel
+---
 
 这段时间一直在思考，想着把迁移功能给独立出来。所以还是按照Laravel的模式重新写了一版并提交到了 [GitHub](https://github.com/mowangjuanzi/migrate) 中，另外 [Packagist](https://packagist.org/packages/wowangjuanzi/migrate) 也发布了。
 
 下面简单介绍一下。
+
+<!-- more -->
 
 首先创建项目使用如下命令：
 
@@ -20,57 +32,57 @@ $ tree ./migrate/ -L 3
 ├── composer.json
 ├── composer.lock
 ├── config
-│   ├── app.php
-│   └── database.php
+│   ├── app.php
+│   └── database.php
 ├── console.php
 ├── database
-│   └── migrations
+│   └── migrations
 ├── helper.php
 └── vendor
     ├── autoload.php
     ├── bin
-    │   ├── carbon -> ../nesbot/carbon/bin/carbon
-    │   └── var-dump-server -> ../symfony/var-dumper/Resources/bin/var-dump-server
+    │   ├── carbon -> ../nesbot/carbon/bin/carbon
+    │   └── var-dump-server -> ../symfony/var-dumper/Resources/bin/var-dump-server
     ├── composer
-    │   ├── ClassLoader.php
-    │   ├── LICENSE
-    │   ├── autoload_classmap.php
-    │   ├── autoload_files.php
-    │   ├── autoload_namespaces.php
-    │   ├── autoload_psr4.php
-    │   ├── autoload_real.php
-    │   ├── autoload_static.php
-    │   └── installed.json
+    │   ├── ClassLoader.php
+    │   ├── LICENSE
+    │   ├── autoload_classmap.php
+    │   ├── autoload_files.php
+    │   ├── autoload_namespaces.php
+    │   ├── autoload_psr4.php
+    │   ├── autoload_real.php
+    │   ├── autoload_static.php
+    │   └── installed.json
     ├── doctrine
-    │   └── inflector
+    │   └── inflector
     ├── illuminate
-    │   ├── config
-    │   ├── console
-    │   ├── container
-    │   ├── contracts
-    │   ├── database
-    │   ├── events
-    │   ├── filesystem
-    │   └── support
+    │   ├── config
+    │   ├── console
+    │   ├── container
+    │   ├── contracts
+    │   ├── database
+    │   ├── events
+    │   ├── filesystem
+    │   └── support
     ├── nesbot
-    │   └── carbon
+    │   └── carbon
     ├── phpoption
-    │   └── phpoption
+    │   └── phpoption
     ├── psr
-    │   ├── container
-    │   └── simple-cache
+    │   ├── container
+    │   └── simple-cache
     ├── symfony
-    │   ├── console
-    │   ├── finder
-    │   ├── polyfill-ctype
-    │   ├── polyfill-mbstring
-    │   ├── polyfill-php72
-    │   ├── polyfill-php73
-    │   ├── process
-    │   ├── service-contracts
-    │   ├── translation
-    │   ├── translation-contracts
-    │   └── var-dumper
+    │   ├── console
+    │   ├── finder
+    │   ├── polyfill-ctype
+    │   ├── polyfill-mbstring
+    │   ├── polyfill-php72
+    │   ├── polyfill-php73
+    │   ├── process
+    │   ├── service-contracts
+    │   ├── translation
+    │   ├── translation-contracts
+    │   └── var-dumper
     └── vlucas
         └── phpdotenv
 
