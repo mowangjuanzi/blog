@@ -194,6 +194,330 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/02/c-program-to-execute-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/02/c-program-to-execute-file/" class="post-title-link" itemprop="url">C语言程序编译成可执行文件的过程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-02-03 00:24:13" itemprop="dateCreated datePublished" datetime="2018-02-03T00:24:13+08:00">2018-02-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/02/02/c-program-to-execute-file/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/02/c-program-to-execute-file/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>现在我们有一个C语言文件（hello.c）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们将执行以下命令将源文件（hello.c）转化为可执行目标文件（hello）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o hello hello.c</span><br></pre></td></tr></table></figure>
+
+<p>我们使用的是gcc编译器驱动程序完成的。这个转化的过程可分为四个阶段完成。执行这四个阶段的程序（预处理器、编译器、汇编器和链接器）一起构成了编译系统。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello.c(源程序[文本])-&gt;预处理器(cpp)-&gt;hello.i(修改了的源程序[文本])-&gt;编译器(ccl)-&gt;hello.s(汇编程序[文本])-&gt;汇编器(as)-&gt;hello.o(可重定位目标程序[二进制])-&gt;链接器(ld)-&gt;hello(可执行目标程序[二进制])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>预处理阶段。预处理器(cpp)根据字符#开头的命令，修改原始的C程序。结果就得到了另外一个C程序，通常是以<strong>.i</strong>作为文件扩展名。</li>
+<li>编译阶段。编译器(ccl)将文本文件hello.i翻译成文本文件hello.s，它包含一个汇编语言程序。汇编程序是非常有用的，它位不同高级语言的不同编译器提供了通用的输出语言。</li>
+<li>汇编阶段。汇编器(as)将hello.s翻译成机器语言指令，将这些指令打包成一种叫做可重定位目标程序的格式，并将格式保存在目标文件hello.o中。如果我们使用文本编辑器打开hello.o文件，将会看到一堆乱码。</li>
+<li>链接阶段。hello程序调用了printf函数，它是每个C编译器都会提供的标准C库中的一个函数。printf函数存在于一个名为printf.o的单独的预编译好了的目标文件中，而这个文件必须以某种方式合并到我们的hello.o程序中，链接器(ld)就是处理这种合并，结果就得到了hello文件。它是一个可执行文件，可以被加载到内存中，由系统执行。</li>
+</ul>
+<blockquote>
+<p>来源于：《深入理解计算机系统》 · 第三版</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/27/computer-basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/27/computer-basics/" class="post-title-link" itemprop="url">计算机基础知识回顾</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-28 00:08:12" itemprop="dateCreated datePublished" datetime="2018-01-28T00:08:12+08:00">2018-01-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/01/27/computer-basics/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/27/computer-basics/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="次方"><a href="#次方" class="headerlink" title="次方"></a>次方</h2><p>设定a为某数，n为负整数。那么a的n次方则就表示为 1除以 a的n次方。</p>
+<p>$$<br>a ^ n = 1 / a ^ n<br>$$</p>
+<p>举例：10的-2次方就等于1除以10的平方，那么值就等于1/100，结果为0.01。</p>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><p>整数部分十进制转二进制（除以2逆向取余法）：</p>
+<p>$$<br>108_{10} = 1 * 2^6 + 1 * 2^5 + 0 * 2^4 + 1 * 2^3 + 1 * 2^2 + 0 * 2^1 + 0 * 2^0<br>$$</p>
+<p>计算方法：</p>
+<p>108 / 2 = 54 … 0<br>54 / 2 = 27 … 0<br>27 / 2 = 13 … 1<br>13 / 2 = 6 … 1<br>6 / 2 = 3 … 0<br>3 / 2 = 1 … 0<br>1 / 2 = 0 … 1  </p>
+<p>然后我们将上面的余数按照从下往上进行取数。即可得出 $$ 108_{10} = 1001100_2 $$ 。</p>
+<p>小数部分十进制转二进制（乘以2顺向取整法）：</p>
+<p>0.875 * 2 = 1.75<br>0.75 * 2 = 1.5<br>0.5 * 2 = 1</p>
+<p>我们可以查看以上的计算公式，对初始小数乘以2，当数值超过1时，继续将小数部分乘以2，一直到数值正好为1。</p>
+<p>我们通过观察以上公式即可得出 $$ 0.875_{10} = 0.111_2 $$</p>
+<h2 id="原码，反码，补码"><a href="#原码，反码，补码" class="headerlink" title="原码，反码，补码"></a>原码，反码，补码</h2><p>原码是一种计算机对二进制数字的表示方式。其中最高位为符号位。符号位0表示正数，符号位1表示负数。</p>
+<p>反码是对原码进行取反。如果机器数是正数，那么反码与原码相同，如果是负数则对除符号位的其他位进行取反。</p>
+<p>补码则是如果机器数整数则补码和原码相同，如果是负数，那么补码就是对除符号位的其他位进行取反，并且在末位+1。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/05/vim-set-tab-four-space/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/05/vim-set-tab-four-space/" class="post-title-link" itemprop="url">vim设置tab为四个空格</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-06 00:06:08" itemprop="dateCreated datePublished" datetime="2018-01-06T00:06:08+08:00">2018-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/01/05/vim-set-tab-four-space/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/05/vim-set-tab-four-space/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>其实非常简单。</p>
+<p>首先我们编辑<strong>~/.vimrc</strong>文件。新增以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set ts&#x3D;4</span><br><span class="line">set expandtab</span><br></pre></td></tr></table></figure>
+
+<p>然后保存。</p>
+<p>重启之后使用tab就是四个空格了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/02/virtual-machine-install-ubuntu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +549,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -368,7 +692,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -486,7 +810,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -617,7 +941,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -726,7 +1050,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -831,7 +1155,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -949,7 +1273,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1027,440 +1351,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-php/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/yum-install-php/" class="post-title-link" itemprop="url">yum 安装 php</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:33:10" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:10+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/yum-install-php/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/yum-install-php/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>本教程是在CentOS7系统下执行的。</p>
-</blockquote>
-<h2 id="安装epel"><a href="#安装epel" class="headerlink" title="安装epel"></a>安装epel</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br></pre></td></tr></table></figure>
-
-<p>接下来我们需要安装remi源：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置默认安装的PHP版本"><a href="#设置默认安装的PHP版本" class="headerlink" title="设置默认安装的PHP版本"></a>设置默认安装的PHP版本</h2><p>首先我们先看看我们能选择安装的版本：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line">remi-php54                       Remi's PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi's PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi's PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
-
-<p>现在我们发现全部都是禁用的，这样需要我们手动启动一个，比如现在我们需要使用最新版本PHP7.1的。那么我们就可以执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum-config-manager --enable remi-php71</span><br><span class="line">-bash: yum-config-manager: 未找到命令</span><br></pre></td></tr></table></figure>
-
-<p>提示命令没有安装，执行以下命令安装Yum管理工具：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
-
-<p>我们再继续执行命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --enable remi-php71</span><br></pre></td></tr></table></figure>
-
-<p>现在在重新查看当前remi源的状态：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line"> * remi-php71: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line">remi-php54                       Remi's PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi's PHP 7.1 RPM repository for  启用:    318</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi's PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi's PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php</span><br></pre></td></tr></table></figure>
-
-<p>这样php就会安装成功了，因为依赖的关系，我们也会顺便安装上了apache。不过我们可以不用管它。</p>
-<h2 id="php支持的扩展"><a href="#php支持的扩展" class="headerlink" title="php支持的扩展"></a>php支持的扩展</h2><p>我们可以通过以下命令查看支持安装的php扩展：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf.d]# yum search php71-php-</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.btte.net</span><br><span class="line"> * epel: ftp.jaist.ac.jp</span><br><span class="line"> * extras: mirrors.btte.net</span><br><span class="line"> * remi-php71: nl.mirror.babylon.network</span><br><span class="line"> * remi-safe: nl.mirror.babylon.network</span><br><span class="line"> * updates: mirrors.zju.edu.cn</span><br><span class="line">========================================================================================================================== N/S matched: php71-php- ===========================================================================================================================</span><br><span class="line">php71-php-pecl-propro-devel.x86_64 : php71-php-pecl-propro developer files (header)</span><br><span class="line">php71-php-pecl-raphf-devel.x86_64 : php71-php-pecl-raphf developer files (header)</span><br><span class="line">php71-php-pecl-xmldiff-devel.x86_64 : php71-php-pecl-xmldiff developer files (header)</span><br><span class="line">php71-php-pecl-yaconf-devel.x86_64 : php71-php-pecl-yaconf developer files (header)</span><br><span class="line">php71-php-ast.x86_64 : Abstract Syntax Tree</span><br><span class="line">php71-php-bcmath.x86_64 : A module for PHP applications for using the bcmath library</span><br><span class="line">php71-php-cli.x86_64 : Command-line interface for PHP</span><br><span class="line">php71-php-common.x86_64 : Common files for PHP</span><br><span class="line">php71-php-dba.x86_64 : A database abstraction layer module for PHP applications</span><br><span class="line">php71-php-dbg.x86_64 : The interactive PHP debugger</span><br><span class="line">php71-php-devel.x86_64 : Files needed for building PHP extensions</span><br><span class="line">php71-php-embedded.x86_64 : PHP library for embedding in applications</span><br><span class="line">php71-php-enchant.x86_64 : Enchant spelling extension for PHP applications</span><br><span class="line">php71-php-fpm.x86_64 : PHP FastCGI Process Manager</span><br><span class="line">php71-php-gd.x86_64 : A module for PHP applications for using the gd graphics library</span><br><span class="line">php71-php-geos.x86_64 : PHP module for GEOS</span><br><span class="line">php71-php-gmp.x86_64 : A module for PHP applications for using the GNU MP library</span><br><span class="line">php71-php-horde-horde-lz4.x86_64 : Horde LZ4 Compression Extension</span><br><span class="line">php71-php-imap.x86_64 : A module for PHP applications that use IMAP</span><br><span class="line">php71-php-interbase.x86_64 : A module for PHP applications that use Interbase/Firebird databases</span><br><span class="line">php71-php-intl.x86_64 : Internationalization extension for PHP applications</span><br><span class="line">php71-php-json.x86_64 : JavaScript Object Notation extension for PHP</span><br><span class="line">php71-php-ldap.x86_64 : A module for PHP applications that use LDAP</span><br><span class="line">php71-php-libvirt.x86_64 : PHP language binding for Libvirt</span><br><span class="line">php71-php-libvirt-doc.noarch : Document of php-libvirt</span><br><span class="line">php71-php-litespeed.x86_64 : LiteSpeed Web Server PHP support</span><br><span class="line">php71-php-lz4.x86_64 : LZ4 Extension for PHP</span><br><span class="line">php71-php-mbstring.x86_64 : A module for PHP applications which need multi-byte string handling</span><br><span class="line">php71-php-mcrypt.x86_64 : Standard PHP module provides mcrypt library support</span><br><span class="line">php71-php-mysqlnd.x86_64 : A module for PHP applications that use MySQL databases</span><br><span class="line">php71-php-oci8.x86_64 : A module for PHP applications that use OCI8 databases</span><br><span class="line">php71-php-odbc.x86_64 : A module for PHP applications that use ODBC databases</span><br><span class="line">php71-php-opcache.x86_64 : The Zend OPcache</span><br><span class="line">php71-php-pdo.x86_64 : A database access abstraction module for PHP applications</span><br><span class="line">php71-php-pdo-dblib.x86_64 : PDO driver Microsoft SQL Server and Sybase databases</span><br><span class="line">php71-php-pear.noarch : PHP Extension and Application Repository framework</span><br><span class="line">php71-php-pecl-amqp.x86_64 : Communicate with any AMQP compliant server</span><br><span class="line">php71-php-pecl-apcu.x86_64 : APC User Cache</span><br><span class="line">php71-php-pecl-apcu-bc.x86_64 : APCu Backwards Compatibility Module</span><br><span class="line">php71-php-pecl-apcu-devel.x86_64 : APCu developer files (header)</span><br><span class="line">php71-php-pecl-apfd.x86_64 : Always Populate Form Data</span><br><span class="line">php71-php-pecl-apm.x86_64 : Alternative PHP Monitor</span><br><span class="line">php71-php-pecl-bitset.x86_64 : BITSET library</span><br><span class="line">php71-php-pecl-cassandra.x86_64 : DataStax PHP Driver for Apache Cassandra</span><br><span class="line">php71-php-pecl-couchbase2.x86_64 : Couchbase Server PHP extension</span><br><span class="line">php71-php-pecl-crypto.x86_64 : Wrapper for OpenSSL Crypto Library</span><br><span class="line">php71-php-pecl-dbase.x86_64 : dBase database file access functions</span><br><span class="line">php71-php-pecl-dio.x86_64 : Direct I/O functions</span><br><span class="line">php71-php-pecl-druid.x86_64 : A Druid driver for PHP</span><br><span class="line">php71-php-pecl-ds.x86_64 : Data Structures for PHP</span><br><span class="line">php71-php-pecl-eio.x86_64 : Provides interface to the libeio library</span><br><span class="line">php71-php-pecl-env.x86_64 : Load environment variables</span><br><span class="line">php71-php-pecl-ev.x86_64 : Provides interface to libev library</span><br><span class="line">php71-php-pecl-event.x86_64 : Provides interface to libevent library</span><br><span class="line">php71-php-pecl-fann.x86_64 : Wrapper for FANN Library</span><br><span class="line">php71-php-pecl-gearman.x86_64 : PHP wrapper to libgearman</span><br><span class="line">php71-php-pecl-gender.x86_64 : Gender Extension</span><br><span class="line">php71-php-pecl-geoip.x86_64 : Extension to map IP addresses to geographic places</span><br><span class="line">php71-php-pecl-geospatial.x86_64 : PHP Extension to handle common geospatial functions</span><br><span class="line">php71-php-pecl-gmagick.x86_64 : Provides a wrapper to the GraphicsMagick library</span><br><span class="line">php71-php-pecl-gnupg.x86_64 : Wrapper around the gpgme library</span><br><span class="line">php71-php-pecl-hdr-histogram.x86_64 : PHP extension wrapper for the C hdrhistogram API</span><br><span class="line">php71-php-pecl-hprose.x86_64 : Hprose for PHP</span><br><span class="line">php71-php-pecl-hrtime.x86_64 : High resolution timing</span><br><span class="line">php71-php-pecl-http.x86_64 : Extended HTTP support</span><br><span class="line">php71-php-pecl-http-devel.x86_64 : Extended HTTP support developer files (header)</span><br><span class="line">php71-php-pecl-igbinary.x86_64 : Replacement for the standard PHP serializer</span><br><span class="line">php71-php-pecl-igbinary-devel.x86_64 : Igbinary developer files (header)</span><br><span class="line">php71-php-pecl-imagick.x86_64 : Extension to create and modify images using ImageMagick</span><br><span class="line">php71-php-pecl-imagick-devel.x86_64 : imagick extension developer files (header)</span><br><span class="line">php71-php-pecl-inotify.x86_64 : Inotify</span><br><span class="line">php71-php-pecl-json-post.x86_64 : JSON POST handler</span><br><span class="line">php71-php-pecl-krb5.x86_64 : Kerberos authentification extension</span><br><span class="line">php71-php-pecl-krb5-devel.x86_64 : Kerberos extension developer files (header)</span><br><span class="line">php71-php-pecl-libsodium.x86_64 : Wrapper for the Sodium cryptographic library</span><br><span class="line">php71-php-pecl-lua.x86_64 : Embedded lua interpreter</span><br><span class="line">php71-php-pecl-lzf.x86_64 : Extension to handle LZF de/compression</span><br><span class="line">php71-php-pecl-mailparse.x86_64 : PHP PECL package for parsing and working with email messages</span><br><span class="line">php71-php-pecl-memcache.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memcached.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memprof.x86_64 : Memory usage profiler</span><br><span class="line">php71-php-pecl-mogilefs.x86_64 : PHP client library to communicate with the MogileFS storage</span><br><span class="line">php71-php-pecl-mongodb.x86_64 : MongoDB driver for PHP</span><br><span class="line">php71-php-pecl-mosquitto.x86_64 : Extension for libmosquitto</span><br><span class="line">php71-php-pecl-msgpack.x86_64 : API for communicating with MessagePack serialization</span><br><span class="line">php71-php-pecl-msgpack-devel.x86_64 : MessagePack developer files (header)</span><br><span class="line">php71-php-pecl-mysql.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-mysql-xdevapi.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-oauth.x86_64 : PHP OAuth consumer extension</span><br><span class="line">php71-php-pecl-pcs.x86_64 : PHP Code Service</span><br><span class="line">php71-php-pecl-pcs-devel.x86_64 : PHP Code Service (header)</span><br><span class="line">php71-php-pecl-pdflib.x86_64 : Package for generating PDF files</span><br><span class="line">php71-php-pecl-pq.x86_64 : PostgreSQL client library (libpq) binding</span><br><span class="line">php71-php-pecl-propro.x86_64 : Property proxy</span><br><span class="line">php71-php-pecl-radius.x86_64 : Radius client library</span><br><span class="line">php71-php-pecl-raphf.x86_64 : Resource and persistent handles factory</span><br><span class="line">php71-php-pecl-rdkafka.x86_64 : Kafka client based on librdkafka</span><br><span class="line">php71-php-pecl-redis.x86_64 : Extension for communicating with the Redis key-value store</span><br><span class="line">php71-php-pecl-ref.x86_64 : Soft and Weak references support in PHP</span><br><span class="line">php71-php-pecl-request.x86_64 : Server-side request and response objects</span><br><span class="line">php71-php-pecl-rrd.x86_64 : PHP Bindings for rrdtool</span><br><span class="line">php71-php-pecl-scrypt.x86_64 : Scrypt hashing function</span><br><span class="line">php71-php-pecl-seaslog.x86_64 : A effective,fast,stable log extension for PHP</span><br><span class="line">php71-php-pecl-selinux.x86_64 : SELinux binding for PHP scripting language</span><br><span class="line">php71-php-pecl-solr2.x86_64 : API orientée objet pour Apache Solr</span><br><span class="line">php71-php-pecl-ssdeep.x86_64 : Wrapper for libfuzzy library</span><br><span class="line">php71-php-pecl-ssh2.x86_64 : Bindings for the libssh2 library</span><br><span class="line">php71-php-pecl-stats.x86_64 : Routines for statistical computation</span><br><span class="line">php71-php-pecl-stomp.x86_64 : Stomp client extension</span><br><span class="line">php71-php-pecl-swoole.x86_64 : PHP's asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-swoole-serialize.x86_64 : Fast and Small serialize</span><br><span class="line">php71-php-pecl-swoole2.x86_64 : PHP's asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-sync.x86_64 : Named and unnamed synchronization objects</span><br><span class="line">php71-php-pecl-taint.x86_64 : XSS code sniffer</span><br><span class="line">php71-php-pecl-tcpwrap.x86_64 : Tcpwrappers binding</span><br><span class="line">php71-php-pecl-termbox.x86_64 : A termbox wrapper for PHP</span><br><span class="line">php71-php-pecl-trace.x86_64 : Trace is a low-overhead tracing tool for PHP</span><br><span class="line">php71-php-pecl-trader.x86_64 : Technical Analysis for traders</span><br><span class="line">php71-php-pecl-ui.x86_64 : UI API</span><br><span class="line">php71-php-pecl-uopz.x86_64 : User Operations for Zend</span><br><span class="line">php71-php-pecl-uploadprogress.x86_64 : An extension to track progress of a file upload</span><br><span class="line">php71-php-pecl-uuid.x86_64 : Universally Unique Identifier extension for PHP</span><br><span class="line">php71-php-pecl-uv.x86_64 : Libuv wrapper</span><br><span class="line">php71-php-pecl-varnish.x86_64 : Varnish Cache bindings</span><br><span class="line">php71-php-pecl-vips.x86_64 : PHP extension for interfacing with libvips</span><br><span class="line">php71-php-pecl-vld.x86_64 : Dump the internal representation of PHP scripts</span><br><span class="line">php71-php-pecl-weakref.x86_64 : Implementation of weak references</span><br><span class="line">php71-php-pecl-xattr.x86_64 : Extended attributes</span><br><span class="line">php71-php-pecl-xdebug.x86_64 : PECL package for debugging PHP scripts</span><br><span class="line">php71-php-pecl-xdiff.x86_64 : File differences/patches</span><br><span class="line">php71-php-pecl-xmldiff.x86_64 : XML diff and merge</span><br><span class="line">php71-php-pecl-xxtea.x86_64 : XXTEA encryption algorithm extension for PHP</span><br><span class="line">php71-php-pecl-yac.x86_64 : Lockless user data cache</span><br><span class="line">php71-php-pecl-yaconf.x86_64 : Yet Another Configurations Container</span><br><span class="line">php71-php-pecl-yaf.x86_64 : Yet Another Framework</span><br><span class="line">php71-php-pecl-yaml.x86_64 : PHP Bindings for yaml</span><br><span class="line">php71-php-pecl-yar.x86_64 : Light, concurrent RPC framework</span><br><span class="line">php71-php-pecl-yaz.x86_64 : Z39.50/SRU client</span><br><span class="line">php71-php-pecl-zip.x86_64 : Une extension de gestion des ZIP</span><br><span class="line">php71-php-pecl-zmq.x86_64 : ZeroMQ messaging</span><br><span class="line">php71-php-pgsql.x86_64 : A PostgreSQL database module for PHP</span><br><span class="line">php71-php-phalcon3.x86_64 : Phalcon Framework</span><br><span class="line">php71-php-phpiredis.x86_64 : Client extension for Redis</span><br><span class="line">php71-php-pinba.x86_64 : Client extension for Pinba statistics server</span><br><span class="line">php71-php-process.x86_64 : Modules for PHP script using system process interfaces</span><br><span class="line">php71-php-pspell.x86_64 : A module for PHP applications for using pspell interfaces</span><br><span class="line">php71-php-recode.x86_64 : A module for PHP applications for using the recode library</span><br><span class="line">php71-php-smbclient.x86_64 : PHP wrapper for libsmbclient</span><br><span class="line">php71-php-snappy.x86_64 : Snappy Extension for PHP</span><br><span class="line">php71-php-snmp.x86_64 : A module for PHP applications that query SNMP-managed devices</span><br><span class="line">php71-php-soap.x86_64 : A module for PHP applications that use the SOAP protocol</span><br><span class="line">php71-php-sqlsrv.x86_64 : Microsoft Drivers for PHP for SQL Server</span><br><span class="line">php71-php-tarantool.x86_64 : PHP driver for Tarantool/Box</span><br><span class="line">php71-php-tidy.x86_64 : Standard PHP module provides tidy library support</span><br><span class="line">php71-php-xml.x86_64 : A module for PHP applications which use XML</span><br><span class="line">php71-php-xmlrpc.x86_64 : A module for PHP applications which use the XML-RPC protocol</span><br><span class="line"></span><br><span class="line">  名称和简介匹配 only，使用“search all”试试。</span><br></pre></td></tr></table></figure>
-
-<p>比如我们现在想要安装php-fpm扩展，我们可以执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-fpm -y</span><br></pre></td></tr></table></figure>
-
-<p>其实如果不支持的话，我们也可以手动安装。但是需要执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-devel -y</span><br></pre></td></tr></table></figure>
-
-<h2 id="php-fpm-命令管理"><a href="#php-fpm-命令管理" class="headerlink" title="php-fpm 命令管理"></a>php-fpm 命令管理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动</span></span><br><span class="line">systemctl start php-fpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止</span></span><br><span class="line">systemctl stop php-fpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重载</span></span><br><span class="line">systemctl reload php-fpm </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设置开机启动</span></span><br><span class="line">systemctl enable php-fpm </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">禁止开机启动</span></span><br><span class="line">systemctl disable php-pfm</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结。"><a href="#总结。" class="headerlink" title="总结。"></a>总结。</h2><p>至此，我们的yum安装php已经讲解完毕。如果有什么问题，可以在下面给我留言，我会再进行补充。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-cli-change-font-color/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/php-cli-change-font-color/" class="post-title-link" itemprop="url">php-cli 改变输出的字体颜色</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:33:01" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:01+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/php-cli-change-font-color/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-cli-change-font-color/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>我只会用，不清楚原理。  </p>
-<p>再次感谢军哥的<a href="https://lnmp.org/" target="_blank" rel="noopener">一键linux</a>安装包，我是从它的安装包中借鉴的代码</p>
-</blockquote>
-<p>直接上代码，大家自行测试即可。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">color_red</span><span class="params">($str = <span class="string">''</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"\e[0;31m&#123;$str&#125;\e[0m"</span> . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">color_green</span><span class="params">($str = <span class="string">''</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"\e[0;32m&#123;$str&#125;\e[0m"</span> . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">color_yellow</span><span class="params">($str = <span class="string">''</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"\e[0;33m&#123;$str&#125;\e[0m"</span> . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">color_blue</span><span class="params">($str = <span class="string">''</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"\e[0;34m&#123;$str&#125;\e[0m"</span> . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line">color_red(<span class="string">'red'</span>);</span><br><span class="line">color_green(<span class="string">'green'</span>);</span><br><span class="line">color_yellow(<span class="string">'yellow'</span>);</span><br><span class="line">color_blue(<span class="string">'blue'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>注意，以上代码请在shell环境中执行。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-document-curd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/elasticsearch-document-curd/" class="post-title-link" itemprop="url">Elasticsearch 教程（3）文档CRUD操作</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:32:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:54+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/elasticsearch-document-curd/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-document-curd/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Elasticsearch 是面向文档的，这就意味着它可以像MongoDB一样存储整个对象或者文档。然而它不仅仅是存储，还会索引每个文档的内容使值可以被索引。我们也可以对文档进行索引，搜索，排序，过滤。</p>
-<p>它存储的文档格式是JSON格式的。比如：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"email"</span>:      <span class="string">"john@smith.com"</span>,</span><br><span class="line">    <span class="attr">"first_name"</span>: <span class="string">"John"</span>,</span><br><span class="line">    <span class="attr">"last_name"</span>:  <span class="string">"Smith"</span>,</span><br><span class="line">    <span class="attr">"info"</span>: &#123;</span><br><span class="line">        <span class="attr">"bio"</span>:         <span class="string">"Eco-warrior and defender of the weak"</span>,</span><br><span class="line">        <span class="attr">"age"</span>:         <span class="number">25</span>,</span><br><span class="line">        <span class="attr">"interests"</span>: [ <span class="string">"dolphins"</span>, <span class="string">"whales"</span> ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"join_date"</span>: <span class="string">"2014/05/01"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在Elasticsearch中存储数据的行为就叫做<strong>索引</strong>（<strong>indexing</strong>）。文档属于一种<strong>类型</strong>（<strong>type</strong>），而这些类型存储在<strong>索引</strong>（<strong>index</strong>）中。</p>
-<p>我们可以使用下面这个图来简单解释一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MySQL           -&gt;  Database    -&gt;  Tables      -&gt; Row       -&gt; Columns</span><br><span class="line">MongoDB         -&gt;  Database    -&gt;  Collections -&gt; Documents -&gt; Fields</span><br><span class="line">Elasticsearch   -&gt;  Indices     -&gt;  Types       -&gt; Documents -&gt; Fields</span><br></pre></td></tr></table></figure>
-
-<p>Elasticsearch集群可以包含多个<strong>索引</strong>(<strong>indices</strong>)（数据库），每一个索引可以包含多个<strong>类型</strong>(<strong>types</strong>)（表），每一个类型包含多个<strong>文档</strong>(<strong>documents</strong>)（行），然后每个文档包含多个<strong>字</strong>段(<strong>Fields</strong>)（列）。</p>
-<blockquote>
-<h3 id="索引-含义的区分"><a href="#索引-含义的区分" class="headerlink" title="[索引]含义的区分"></a>[索引]含义的区分</h3><p>你可能已经注意到<strong>索引</strong>(<strong>index</strong>)这个词在Elasticsearch中有着不同的含义，所以有必要在此做一下区分:</p>
-<ul>
-<li>索引（名词） 如上文所述，一个<strong>索引</strong>(<strong>index</strong>)就像是传统关系数据库中的<strong>数据库</strong>，它是相关文档存储的地方，index的复数是<strong>indices</strong>或<strong>indexes</strong>。</li>
-<li>索引（动词） <strong>「索引一个文档」</strong>表示把一个文档存储到<strong>索引</strong>（<strong>名</strong>词）里，以便它可以被检索或者查询。这很像SQL中的<code>INSERT</code>关键字，差别是，如果文档已经存在，新的文档将覆盖旧的文档。</li>
-<li>倒排索引 传统数据库为特定列增加一个索引，例如B-Tree索引来加速检索。Elasticsearch和Lucene使用一种叫做<strong>倒排索引</strong>(<strong>inverted index</strong>)的数据结构来达到相同目的。</li>
-</ul>
-</blockquote>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h3><p>单个插入：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line"></span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, <span class="comment">//索引</span></span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>, <span class="comment">//类型</span></span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">1</span>, <span class="comment">//ID 如果不加，则会自动生成</span></span><br><span class="line">	<span class="string">'body'</span> =&gt; [ <span class="comment">//要添加的数据</span></span><br><span class="line">		<span class="string">'first_name'</span> =&gt; <span class="string">'Join'</span>,</span><br><span class="line">		<span class="string">'last_name'</span> =&gt; <span class="string">'Smith'</span>,</span><br><span class="line">		<span class="string">'age'</span> =&gt; <span class="number">25</span>,</span><br><span class="line">		<span class="string">'about'</span> =&gt; <span class="string">'I love to go rock climbing'</span>,</span><br><span class="line">		<span class="string">'interests'</span> =&gt; [<span class="string">'sports'</span>, <span class="string">'music'</span>],</span><br><span class="line">	]</span><br><span class="line">];</span><br><span class="line">$response = $client-&gt;index($params);</span><br><span class="line">print_r($response);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>输出为：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">1</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [result] =&gt; created</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">    [created] =&gt; <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>就表示已经插入成功了。</p>
-<p>这里的插入的数组中有个字段为<code>id</code>，如果我们不对其进行填写的话，它会自动生成一个<code>id</code>。</p>
-<p>这个自动生成的<code>_id</code>会有22个字符长。我们把它称作<strong>UUIDs</strong>。</p>
-<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><p>下面我们接着插入。我们需要插入同时插入两个：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [];</span><br><span class="line">$params[<span class="string">'body'</span>] = [</span><br><span class="line">	[</span><br><span class="line">		<span class="string">'index'</span> =&gt; [</span><br><span class="line">			<span class="string">'_index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">			<span class="string">'_type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">			<span class="string">'_id'</span> =&gt; <span class="number">2</span></span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">"first_name"</span> =&gt; <span class="string">"Jane"</span>,</span><br><span class="line">	    <span class="string">"last_name"</span> =&gt; <span class="string">"Smith"</span>,</span><br><span class="line">	    <span class="string">"age"</span> =&gt; <span class="number">32</span>,</span><br><span class="line">	    <span class="string">"about"</span> =&gt; <span class="string">"I like to collect rock albums"</span>,</span><br><span class="line">	    <span class="string">"interests"</span> =&gt; [<span class="string">"music"</span>],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">'index'</span> =&gt; [</span><br><span class="line">			<span class="string">'_index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">			<span class="string">'_type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">			<span class="string">'_id'</span> =&gt; <span class="number">3</span></span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">		<span class="string">"first_name"</span> =&gt; <span class="string">"Douglas"</span>,</span><br><span class="line">	    <span class="string">"last_name"</span> =&gt; <span class="string">"Fir"</span>,</span><br><span class="line">	    <span class="string">"age"</span> =&gt; <span class="number">35</span>,</span><br><span class="line">	    <span class="string">"about"</span> =&gt; <span class="string">"I like to build cabinets"</span>,</span><br><span class="line">	    <span class="string">"interests"</span> =&gt; [ <span class="string">"forestry"</span> ]</span><br><span class="line">	]</span><br><span class="line">];</span><br><span class="line">$responses = $client-&gt;bulk($params);</span><br><span class="line">print_r($responses);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>显示如下就表示插入成功了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [took] =&gt; <span class="number">217</span></span><br><span class="line">    [errors] =&gt; </span><br><span class="line">    [items] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [index] =&gt; <span class="keyword">Array</span></span><br><span class="line">                        (</span><br><span class="line">                            [_index] =&gt; megacorp</span><br><span class="line">                            [_type] =&gt; employee</span><br><span class="line">                            [_id] =&gt; <span class="number">2</span></span><br><span class="line">                            [_version] =&gt; <span class="number">1</span></span><br><span class="line">                            [result] =&gt; created</span><br><span class="line">                            [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">                                (</span><br><span class="line">                                    [total] =&gt; <span class="number">2</span></span><br><span class="line">                                    [successful] =&gt; <span class="number">1</span></span><br><span class="line">                                    [failed] =&gt; <span class="number">0</span></span><br><span class="line">                                )</span><br><span class="line">                            [created] =&gt; <span class="number">1</span></span><br><span class="line">                            [status] =&gt; <span class="number">201</span></span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [index] =&gt; <span class="keyword">Array</span></span><br><span class="line">                        (</span><br><span class="line">                            [_index] =&gt; megacorp</span><br><span class="line">                            [_type] =&gt; employee</span><br><span class="line">                            [_id] =&gt; <span class="number">3</span></span><br><span class="line">                            [_version] =&gt; <span class="number">1</span></span><br><span class="line">                            [result] =&gt; created</span><br><span class="line">                            [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">                                (</span><br><span class="line">                                    [total] =&gt; <span class="number">2</span></span><br><span class="line">                                    [successful] =&gt; <span class="number">1</span></span><br><span class="line">                                    [failed] =&gt; <span class="number">0</span></span><br><span class="line">                                )</span><br><span class="line">                            [created] =&gt; <span class="number">1</span></span><br><span class="line">                            [status] =&gt; <span class="number">201</span></span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取文档"><a href="#获取文档" class="headerlink" title="获取文档"></a>获取文档</h2><p>现在我们尝试获取文档。获取文档可以获取指定文档的全部字段或者指定字段。我们分开来讲解：</p>
-<h3 id="获取单个文档"><a href="#获取单个文档" class="headerlink" title="获取单个文档"></a>获取单个文档</h3><h4 id="获取全部字段"><a href="#获取全部字段" class="headerlink" title="获取全部字段"></a>获取全部字段</h4><p>比如我们现在要获取<code>id=2</code>的文档。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">print_r($client-&gt;get($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行之后输出的结果就是：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>这里我们可以看到<code>_source</code>字段包含的就是我们插入的内容。而<code>found</code>字段为<strong>1</strong>表示文档已经找到，如果我们请求一个不存在的文档，也会返回一个json，只不过<code>found</code>就会变成<strong>0</strong>了。</p>
-<h4 id="获取指定字段"><a href="#获取指定字段" class="headerlink" title="获取指定字段"></a>获取指定字段</h4><p>比如我们这里用不到这么多的字段。我们仅仅需要<code>first_name</code>, <code>last_name</code>和<code>age</code>。我们可以这么请求：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'_source'</span> =&gt; [<span class="string">'first_name'</span>, <span class="string">'last_name'</span>, <span class="string">'age'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">print_r($client-&gt;get($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>返回的结果仅仅是：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="检查文档是否存在"><a href="#检查文档是否存在" class="headerlink" title="检查文档是否存在"></a>检查文档是否存在</h3><p>如果我们不需要返回指定文档的内容，而仅仅是想知道文档是否存在，我们可以这样：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>, </span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">var_dump($client-&gt;exists($params));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>返回的结果不是数组了。而是一个bool值：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(<span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="获取多个文档"><a href="#获取多个文档" class="headerlink" title="获取多个文档"></a>获取多个文档</h3><h4 id="获取全部的字段："><a href="#获取全部的字段：" class="headerlink" title="获取全部的字段："></a>获取全部的字段：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">暂无</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><h2 id="部分文档更新"><a href="#部分文档更新" class="headerlink" title="部分文档更新"></a>部分文档更新</h2><p>此处的更新只适合修改现有字段或者增加新的字段。我们需要在<code>body</code>字段中指定<code>doc</code>字段。<br>比如我说现在要修改<code>id</code>为2的员工。</p>
-<p>首先我们先看看2号员工的信息：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">32</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>接下来我们要修改它的信息，我们要将他的年龄修改成33，并且增加一个信息，<code>mobile_phone</code>为<code>1234567890</code>。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'./vendor/autoload.php'</span>;</span><br><span class="line">$client = Elasticsearch\ClientBuilder::create();</span><br><span class="line">$client-&gt;setHosts([<span class="string">'127.0.0.1'</span>]);</span><br><span class="line">$client = $client-&gt;build();</span><br><span class="line"></span><br><span class="line">$response = $client-&gt;update([</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'doc'</span> =&gt; [</span><br><span class="line">			<span class="string">'age'</span> =&gt; <span class="number">33</span>,</span><br><span class="line">			<span class="string">'mobile_phone'</span> =&gt; <span class="string">'1234567890'</span></span><br><span class="line">		]</span><br><span class="line">	]</span><br><span class="line">]);</span><br><span class="line">print_r($response);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [result] =&gt; updated</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>我们再来看一下之前的员工的信息：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">2</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Jane</span><br><span class="line">            [last_name] =&gt; Smith</span><br><span class="line">            [age] =&gt; <span class="number">33</span></span><br><span class="line">            [about] =&gt; I like to collect rock albums</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; music</span><br><span class="line">                )</span><br><span class="line">            [mobile_phone] =&gt; <span class="number">1234567890</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="脚本更新文档"><a href="#脚本更新文档" class="headerlink" title="脚本更新文档"></a>脚本更新文档</h3><p>有时候我们需要执行计数器更新，或者向数组中添加新值。我们就可以使用脚本式更新。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'script'</span> =&gt; <span class="string">'ctx._source.interests.add("sports")'</span>;</span><br><span class="line">	]</span><br><span class="line">]; <span class="comment">// 数组中添加新值</span></span><br><span class="line"></span><br><span class="line">$params = [</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">	<span class="string">'body'</span> =&gt; [</span><br><span class="line">		<span class="string">'script'</span> =&gt; <span class="string">'ctx._source.age += 2'</span>;</span><br><span class="line">	]</span><br><span class="line">]; <span class="comment">// 计数器更新</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="upsert"><a href="#upsert" class="headerlink" title="upsert"></a>upsert</h3><p>upsert 其实是更新或者插入操作，这意味着upsert将尝试更新操作，如果文档不存在，那么将插入默认值。</p>
-<h3 id="更新和冲突"><a href="#更新和冲突" class="headerlink" title="更新和冲突"></a>更新和冲突</h3><p>为了避免更新数据，<code>update</code>API在解锁阶段检索文档当前的<code>_version</code>，然后在重建索引阶段通过<code>index</code>请求提交，如果其它进程在检索和重建索引阶段修改了文档，<code>_version</code>将不能被匹配，然后更新失败。</p>
-<p>对于这种情况，我们只需要重新尝试更新就好了，其实这些我们可以通过<code>retry_on_conflict</code>参数设置重试次数来自动完成，这样<code>update</code>操作将会在发生错误前重试——这个值默认为0。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实<code>update</code>这个操作似乎允许你修改文档的局部，但实际上还是遵循先查后改的过程，步骤如下：</p>
-<ol>
-<li>从旧文档中检索JSON</li>
-<li>修改它</li>
-<li>删除旧文档</li>
-<li>索引新文档</li>
-</ol>
-<p>唯一的不同是<code>update</code>这个操作只需要一个客户端请求就好，不需要<code>get</code>和<code>index</code>请求了。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>比如我们要删除<code>id</code>为3的员工：</p>
-<p>我们先查询一下这个员工：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">3</span></span><br><span class="line">    [_version] =&gt; <span class="number">1</span></span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_source] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [first_name] =&gt; Douglas</span><br><span class="line">            [last_name] =&gt; Fir</span><br><span class="line">            [age] =&gt; <span class="number">35</span></span><br><span class="line">            [about] =&gt; I like to build cabinets</span><br><span class="line">            [interests] =&gt; <span class="keyword">Array</span></span><br><span class="line">                (</span><br><span class="line">                    [<span class="number">0</span>] =&gt; forestry</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>下面我们来执行操作：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print_r($client-&gt;delete([</span><br><span class="line">	<span class="string">'index'</span> =&gt; <span class="string">'megacorp'</span>,</span><br><span class="line">	<span class="string">'type'</span> =&gt; <span class="string">'employee'</span>,</span><br><span class="line">	<span class="string">'id'</span> =&gt; <span class="number">3</span>,</span><br><span class="line">]));</span><br></pre></td></tr></table></figure>
-
-<p>返回结果为：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [found] =&gt; <span class="number">1</span></span><br><span class="line">    [_index] =&gt; megacorp</span><br><span class="line">    [_type] =&gt; employee</span><br><span class="line">    [_id] =&gt; <span class="number">3</span></span><br><span class="line">    [_version] =&gt; <span class="number">2</span></span><br><span class="line">    [result] =&gt; deleted</span><br><span class="line">    [_shards] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [total] =&gt; <span class="number">2</span></span><br><span class="line">            [successful] =&gt; <span class="number">1</span></span><br><span class="line">            [failed] =&gt; <span class="number">0</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意看<code>found</code>为1，并且<code>_version</code>相比之前，已经变为2了。</p>
-<p>当我们再次执行一下之前的删除操作，我们再看一下返回结果：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"found"</span>:<span class="literal">false</span>,<span class="attr">"_index"</span>:<span class="string">"megacorp"</span>,<span class="attr">"_type"</span>:<span class="string">"employee"</span>,<span class="attr">"_id"</span>:<span class="string">"3"</span>,<span class="attr">"_version"</span>:<span class="number">1</span>,<span class="attr">"result"</span>:<span class="string">"not_found"</span>,<span class="attr">"_shards"</span>:&#123;<span class="attr">"total"</span>:<span class="number">2</span>,<span class="attr">"successful"</span>:<span class="number">1</span>,<span class="attr">"failed"</span>:<span class="number">0</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"found"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"_index"</span>: <span class="string">"megacorp"</span>,</span><br><span class="line">  <span class="attr">"_type"</span>: <span class="string">"employee"</span>,</span><br><span class="line">  <span class="attr">"_id"</span>: <span class="string">"3"</span>,</span><br><span class="line">  <span class="attr">"_version"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"result"</span>: <span class="string">"not_found"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span>: &#123;</span><br><span class="line">    <span class="attr">"total"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span>: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>删除不存在的文档的时候，抛出了一个错误。我们可以看到<code>found</code>的值是<code>false</code>，且<code>_version</code>也有记录值。这是内部记录的一部分，它确保再多节点不同操作可以有正确的顺序。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1528,18 +1423,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

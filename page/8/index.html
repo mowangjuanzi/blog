@@ -194,6 +194,353 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/" class="post-title-link" itemprop="url">django 报错 Error loading either pysqlite2 or sqlite3 modules</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:29:43" itemprop="dateCreated datePublished" datetime="2017-11-17T16:29:43+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/error-loading-either-pysqlite2-or-sqlite3-module/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的使用环境是<code>Python-3.5.3</code>。Django版本是1.10.5.</p>
+<p>按照教程创建项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject blog_python</span><br></pre></td></tr></table></figure>
+
+<p>然后在启动的时候，结果报错了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<p>结果报错信息如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">Unhandled exception <span class="keyword">in</span> thread started by &lt;function check_errors.&lt;locals&gt;.wrapper at <span class="number">0x7fdc67089f28</span>&gt;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">34</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> pysqlite2 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">ImportError: No module named <span class="string">'pysqlite2'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">36</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/__init__.py"</span>, line <span class="number">23</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> sqlite3.dbapi2 <span class="keyword">import</span> *</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/sqlite3/dbapi2.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> _sqlite3 <span class="keyword">import</span> *</span><br><span class="line">ImportError: No module named <span class="string">'_sqlite3'</span></span><br><span class="line"></span><br><span class="line">During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/core/management/commands/runserver.py"</span>, line <span class="number">113</span>, <span class="keyword">in</span> inner_run</span><br><span class="line">    autoreload.raise_last_exception()</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">249</span>, <span class="keyword">in</span> raise_last_exception</span><br><span class="line">    six.reraise(*_exception)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/six.py"</span>, line <span class="number">685</span>, <span class="keyword">in</span> reraise</span><br><span class="line">    <span class="keyword">raise</span> value.with_traceback(tb)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/utils/autoreload.py"</span>, line <span class="number">226</span>, <span class="keyword">in</span> wrapper</span><br><span class="line">    fn(*args, **kwargs)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/__init__.py"</span>, line <span class="number">27</span>, <span class="keyword">in</span> setup</span><br><span class="line">    apps.populate(settings.INSTALLED_APPS)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/registry.py"</span>, line <span class="number">108</span>, <span class="keyword">in</span> populate</span><br><span class="line">    app_config.import_models(all_models)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/apps/config.py"</span>, line <span class="number">199</span>, <span class="keyword">in</span> import_models</span><br><span class="line">    self.models_module = import_module(models_module_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">986</span>, <span class="keyword">in</span> _gcd_import</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">969</span>, <span class="keyword">in</span> _find_and_load</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">958</span>, <span class="keyword">in</span> _find_and_load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> _load_unlocked</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap_external&gt;"</span>, line <span class="number">673</span>, <span class="keyword">in</span> exec_module</span><br><span class="line">  File <span class="string">"&lt;frozen importlib._bootstrap&gt;"</span>, line <span class="number">222</span>, <span class="keyword">in</span> _call_with_frames_removed</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/models.py"</span>, line <span class="number">4</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">from</span> django.contrib.auth.base_user <span class="keyword">import</span> AbstractBaseUser, BaseUserManager</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/contrib/auth/base_user.py"</span>, line <span class="number">52</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">AbstractBaseUser</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">119</span>, <span class="keyword">in</span> __new__</span><br><span class="line">    new_class.add_to_class(<span class="string">'_meta'</span>, Options(meta, app_label))</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/base.py"</span>, line <span class="number">316</span>, <span class="keyword">in</span> add_to_class</span><br><span class="line">    value.contribute_to_class(cls, name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/models/options.py"</span>, line <span class="number">214</span>, <span class="keyword">in</span> contribute_to_class</span><br><span class="line">    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/__init__.py"</span>, line <span class="number">33</span>, <span class="keyword">in</span> __getattr__</span><br><span class="line">    <span class="keyword">return</span> getattr(connections[DEFAULT_DB_ALIAS], item)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">211</span>, <span class="keyword">in</span> __getitem__</span><br><span class="line">    backend = load_backend(db[<span class="string">'ENGINE'</span>])</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/utils.py"</span>, line <span class="number">115</span>, <span class="keyword">in</span> load_backend</span><br><span class="line">    <span class="keyword">return</span> import_module(<span class="string">'%s.base'</span> % backend_name)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/importlib/__init__.py"</span>, line <span class="number">126</span>, <span class="keyword">in</span> import_module</span><br><span class="line">    <span class="keyword">return</span> _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">  File <span class="string">"/usr/local/python3/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py"</span>, line <span class="number">39</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">raise</span> ImproperlyConfigured(<span class="string">"Error loading either pysqlite2 or sqlite3 modules (tried in that order): %s"</span> % exc)</span><br><span class="line">django.core.exceptions.ImproperlyConfigured: Error loading either pysqlite2 <span class="keyword">or</span> sqlite3 modules (tried <span class="keyword">in</span> that order): No module named <span class="string">'_sqlite3'</span></span><br></pre></td></tr></table></figure>
+
+<p>最后在这里查到了解决办法：</p>
+<p><a href="http://stackoverflow.com/questions/1210664/no-module-named-sqlite3" target="_blank" rel="noopener">http://stackoverflow.com/questions/1210664/no-module-named-sqlite3</a></p>
+<p>首先我们先执行一下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sqlite-devel</span><br></pre></td></tr></table></figure>
+
+<p>然后使用以下命令进行Python重装：</p>
+<p><code>./configure</code>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/python3/ --enable-loadable-sqlite-extensions</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>这样重新执行前面的程序，就正常了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost blog_python]# python3 manage.py runserver</span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">Not checking migrations as it is not possible to access/create the django_migrations table.</span><br><span class="line">February 12, 2017 - 14:42:20</span><br><span class="line">Django version 1.10.5, using settings 'blog_python.settings'</span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-change-language-to-chinese/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/centos-change-language-to-chinese/" class="post-title-link" itemprop="url">CentOS修改语言包为中文</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:29:20" itemprop="dateCreated datePublished" datetime="2017-11-17T16:29:20+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/centos-change-language-to-chinese/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/centos-change-language-to-chinese/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="临时办法"><a href="#临时办法" class="headerlink" title="临时办法"></a>临时办法</h2><p>在命令行执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LANG="zh_CN.UTF-8"</span><br></pre></td></tr></table></figure>
+
+<h2 id="开机生效的办法："><a href="#开机生效的办法：" class="headerlink" title="开机生效的办法："></a>开机生效的办法：</h2><p>修改配置文件<code>vim /etc/locale.conf</code>，</p>
+<p>将：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">LANG</span>=en_US.UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">LANG</span>=zh_CN.UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="http://blog.csdn.net/ysm_sd/article/details/51144975" target="_blank" rel="noopener">http://blog.csdn.net/ysm_sd/article/details/51144975</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/django-error-loading-mysqldb-module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/django-error-loading-mysqldb-module/" class="post-title-link" itemprop="url">django 报错：Error loading MySQLdb module：No module named 'MySQLdb'</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:29:11" itemprop="dateCreated datePublished" datetime="2017-11-17T16:29:11+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/django/" itemprop="url" rel="index">
+                    <span itemprop="name">django</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/django-error-loading-mysqldb-module/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/django-error-loading-mysqldb-module/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>居然提示不存在mysql扩展。那我就安装呗。</p>
+<p>我通过查阅<a href="https://docs.djangoproject.com/en/1.10/ref/databases/#mysql-db-api-drivers" target="_blank" rel="noopener">文档</a>，说python3需要安装的包已经不是<code>MySQLdb</code>了，而是<code>mysqlclient</code>。那我们就安装这个包了。</p>
+<p>执行下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient</span><br></pre></td></tr></table></figure>
+
+<p>居然报错了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSError: mysql_config not found</span><br></pre></td></tr></table></figure>
+
+<p>因为我是使用<a href="http://baoguoxiao.com/detail/4" target="_blank" rel="noopener">Yum 安装 MySQL</a>的方式来安装MySQL的。所有我需要安装开发包。如果你是编译安装的，就不会出现这个问题。</p>
+<p>好了，现在安装开发包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-devel -y</span><br></pre></td></tr></table></figure>
+
+<p>好了。安装成功了。那么就反过头来继续安装之前的mysql包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient</span><br></pre></td></tr></table></figure>
+
+<p>好了，我们继续执行一下django，看看是否已经正常了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver 0.0.0.0:8001</span><br></pre></td></tr></table></figure>
+
+<p>显示信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Django version 1.10.5, using settings &#39;blog_python.settings&#39;</span><br><span class="line">Starting development server at http:&#x2F;&#x2F;0.0.0.0:8001&#x2F;</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+<p>这样就表示已经正常了。我们可以继续往下开发了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/simple-template-separation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +572,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -332,7 +679,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -482,7 +829,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -595,7 +942,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -708,7 +1055,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -965,7 +1312,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1099,7 +1446,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1180,358 +1527,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/javascript-time-string-to-timestamp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/javascript-time-string-to-timestamp/" class="post-title-link" itemprop="url">记一次js处理时间字符串转为时间戳的问题</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:26:48" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:48+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/javascript-time-string-to-timestamp/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/javascript-time-string-to-timestamp/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天朋友问我，js应该如何将时间字符串转为时间戳。</p>
-<p>我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    $.extend(&#123;</span><br><span class="line">        myTime: &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 当前时间戳</span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)  </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            CurTime: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>())/<span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 日期 转换为 Unix时间戳</span></span><br><span class="line"><span class="comment">             * @param &lt;string&gt; 2014-01-01 20:20:20  日期格式              </span></span><br><span class="line"><span class="comment">             * @return &lt;int&gt;        unix时间戳(秒)              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            DateToUnix: <span class="function"><span class="keyword">function</span>(<span class="params">string</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> f = string.split(<span class="string">' '</span>, <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">var</span> d = (f[<span class="number">0</span>] ? f[<span class="number">0</span>] : <span class="string">''</span>).split(<span class="string">'-'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">var</span> t = (f[<span class="number">1</span>] ? f[<span class="number">1</span>] : <span class="string">''</span>).split(<span class="string">':'</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        (<span class="built_in">parseInt</span>(d[<span class="number">1</span>], <span class="number">10</span>) || <span class="number">1</span>) - <span class="number">1</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">1</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span></span><br><span class="line">                        )).getTime() / <span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 时间戳转换日期              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt; unixTime    待时间戳(秒)              </span></span><br><span class="line"><span class="comment">             * @param &lt;bool&gt; isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              </span></span><br><span class="line"><span class="comment">             * @param &lt;int&gt;  timeZone   时区              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            UnixToDate: <span class="function"><span class="keyword">function</span>(<span class="params">unixTime, isFull, timeZone</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span> (timeZone) == <span class="string">'number'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    unixTime = <span class="built_in">parseInt</span>(unixTime) + <span class="built_in">parseInt</span>(timeZone) * <span class="number">60</span> * <span class="number">60</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(unixTime * <span class="number">1000</span>);</span><br><span class="line">                <span class="keyword">var</span> ymdhis = <span class="string">""</span>;</span><br><span class="line">                ymdhis += time.getUTCFullYear() + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += (time.getUTCMonth()+<span class="number">1</span>) + <span class="string">"-"</span>;</span><br><span class="line">                ymdhis += time.getUTCDate();</span><br><span class="line">                <span class="keyword">if</span> (isFull === <span class="literal">true</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ymdhis += <span class="string">" "</span> + time.getUTCHours() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCMinutes() + <span class="string">":"</span>;</span><br><span class="line">                    ymdhis += time.getUTCSeconds();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ymdhis;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-
-<p>看起来就非常的麻烦。于是我想到去官方文档去了一下，还真让我找到了。于是写了这么一个demo，这里我们并不需要将时间戳转化为字符串。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间字符串转化为时间戳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str2time</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (data.length == <span class="number">10</span>) &#123;</span><br><span class="line">		data += <span class="string">' 00:00:00'</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(data);</span><br><span class="line">	<span class="keyword">return</span> (date.getTime() / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这么一个简单的工作就完成了。</p>
-<p>在这里要注意的一个坑就是，注意服务器的时区是否跟浏览器的时区相同，如果不同，那么显示的时间跟服务器就会有几个小时的误差。具体的误差就看差着几个时区了。</p>
-<p>我这里对于这个也是抛砖引玉。</p>
-<p>具体复杂的，可以看看我列出的参考连接。就是在<code>new Date</code>注意看看传入的值就好了。</p>
-<blockquote>
-<p>参考文档：</p>
-</blockquote>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/jquery-form-input-to-object/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/jquery-form-input-to-object/" class="post-title-link" itemprop="url">jq将form 表单数据转为object</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:26:22" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:22+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/jquery/" itemprop="url" rel="index">
-                    <span itemprop="name">jquery</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/jquery-form-input-to-object/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/jquery-form-input-to-object/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我平常上传数据都是使用<code>$(this).serialize()</code>，但是这次我需要使用上传数据的对象。结果这个方法给我转成了字符串。特别不方便。于是找到一个插件。就可以实现，获取的时候，获取到的是对象而不是字符串了。</p>
-<p>首先，我们先加载jquery;</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在后面写一个js方法就好了：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">$.fn.serializeObject = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> o = &#123;&#125;;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> a = <span class="keyword">this</span>.serializeArray();</span></span><br><span class="line"><span class="javascript">    $.each(a, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">if</span> (o[<span class="keyword">this</span>.name] !== <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (!o[<span class="keyword">this</span>.name].push) &#123;</span></span><br><span class="line"><span class="actionscript">                o[<span class="keyword">this</span>.name] = [o[<span class="keyword">this</span>.name]];</span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="actionscript">            o[<span class="keyword">this</span>.name].push(<span class="keyword">this</span>.value || <span class="string">''</span>);</span></span><br><span class="line"><span class="actionscript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">            o[<span class="keyword">this</span>.name] = <span class="keyword">this</span>.value || <span class="string">''</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> o;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这样我们直接就可以获取对象了：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(form).serializeObject();</span><br></pre></td></tr></table></figure>
-
-<p>这样我们获取到的数据直接就是对象了。</p>
-<blockquote>
-<p>参考资料：</p>
-</blockquote>
-<ul>
-<li><a href="http://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery" target="_blank" rel="noopener">http://stackoverflow.com/questions/1184624/convert-form-data-to-javascript-object-with-jquery</a></li>
-<li><a href="http://www.thinksaas.cn/topics/0/345/345610.html" target="_blank" rel="noopener">http://www.thinksaas.cn/topics/0/345/345610.html</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/sublime-text-3-install-package-control/" class="post-title-link" itemprop="url">sublime text 3 安装 package control</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:26:17" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:17+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:04:59" itemprop="dateModified" datetime="2020-02-08T22:04:59+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/sublime-text/" itemprop="url" rel="index">
-                    <span itemprop="name">sublime text</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/sublime-text-3-install-package-control/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/sublime-text-3-install-package-control/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我使用sublime，想要使用插件，还是得使用它的商店。</p>
-<p>商店默认是不会安装的，于是我就是网上搜索，尝试安装一下。</p>
-<p>我用的是这个：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'2915d1851351e5ee549c20394736b442'</span> + <span class="string">'8bc59f460fa1548d1514676163dafc88'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
-
-<p>结果我执行之后，发现提示这个错误：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error validating download (got df21e130d211cfc94d9b0905775a7c0f1e3d39e33b79698005270310898eea76 instead of <span class="number">2915</span>d1851351e5ee549c20394736b4428bc59f460fa1548d1514676163dafc88), please <span class="keyword">try</span> manual install</span><br></pre></td></tr></table></figure>
-
-<p>顿时觉得不行了。我觉得我还是得找谷歌，于是我去外国网站，找了一个，嘿嘿，还真安装上了。现提供命令如下：</p>
-<p>sublime3：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</span><br></pre></td></tr></table></figure>
-
-<p>sublime2：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="literal">None</span>; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by) <span class="keyword">if</span> dh == h <span class="keyword">else</span> <span class="literal">None</span>; print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>完毕，收工。</p>
-<p>参考网址：</p>
-<ul>
-<li><a href="https://packagecontrol.io/installation#st2" target="_blank" rel="noopener">https://packagecontrol.io/installation#st2</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1599,18 +1599,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
