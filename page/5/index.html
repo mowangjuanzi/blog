@@ -194,6 +194,148 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/04/19/java-string-chinese/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/04/19/java-string-chinese/" class="post-title-link" itemprop="url">Java中json字符串中文的处理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-19 17:37:52" itemprop="dateCreated datePublished" datetime="2018-04-19T17:37:52+08:00">2018-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/04/19/java-string-chinese/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/19/java-string-chinese/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这两天让安卓将json转成字符串传递给我，结果在传递中文时，PHP不能正常解析。</p>
+<p>中间想过先把中文转成unicode。但是<code>\u</code>会变成<code>\\u</code>，还是有问题，无奈之下，只好自己上场，写了一个JAVA脚本提供给安卓了。</p>
+<p>以下是所有的JAVA代码：</p>
+<pre><code class="java"><span class="keyword">import</span> net.sf.json.JSONObject;
+<span class="keyword">import</span> java.lang.Character.UnicodeBlock;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>{
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        JSONObject json = <span class="keyword">new</span> JSONObject();
+        json.put(<span class="string">"name"</span>, <span class="string">"包裹小"</span>);
+        String result = json.toString();
+        System.out.println(result);
+
+        result = jsonParse(result);
+
+        System.out.println(result);
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">jsonParse</span><span class="params">(String jsonStr)</span> </span>{
+        <span class="keyword">char</span>[] myBuffer = jsonStr.toCharArray();
+
+        StringBuffer sb = <span class="keyword">new</span> StringBuffer();
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; jsonStr.length(); i++) {
+            UnicodeBlock ub = UnicodeBlock.of(myBuffer[i]);
+            <span class="comment">// 判断是否是中日韩文字</span>
+            <span class="keyword">if</span> (ub == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS) {
+                <span class="keyword">char</span> c = jsonStr.charAt(i);
+                sb.append(<span class="string">"\\u"</span>);
+                <span class="keyword">int</span> j = (c &gt;&gt;&gt;<span class="number">8</span>); <span class="comment">//取出高8位</span>
+                String tmp = Integer.toHexString(j);
+                <span class="keyword">if</span> (tmp.length() == <span class="number">1</span>)
+                    sb.append(<span class="string">"0"</span>);
+                sb.append(tmp);
+                j = (c &amp; <span class="number">0xFF</span>); <span class="comment">//取出低8位</span>
+                tmp = Integer.toHexString(j);
+                <span class="keyword">if</span> (tmp.length() == <span class="number">1</span>)
+                    sb.append(<span class="string">"0"</span>);
+                sb.append(tmp);
+            } <span class="keyword">else</span> {
+                sb.append(myBuffer[i]);
+            }
+        }
+
+        <span class="keyword">return</span> sb.toString();
+    }
+}</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/03/30/wechat-custom-share-title/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +367,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -341,7 +483,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -459,7 +601,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -605,7 +747,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -715,7 +857,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -871,7 +1013,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -985,7 +1127,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1098,7 +1240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1208,7 +1350,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1259,149 +1401,6 @@
 
 <p>然后保存。</p>
 <p>重启之后使用tab就是四个空格了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/02/virtual-machine-install-ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/02/virtual-machine-install-ubuntu/" class="post-title-link" itemprop="url">虚拟机安装ubuntu</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-01-02 12:00:25" itemprop="dateCreated datePublished" datetime="2018-01-02T12:00:25+08:00">2018-01-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/01/02/virtual-machine-install-ubuntu/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/02/virtual-machine-install-ubuntu/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。</p>
-<p>好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。</p>
-<h2 id="开启ssh服务"><a href="#开启ssh服务" class="headerlink" title="开启ssh服务"></a>开启ssh服务</h2><p>首先执行以下命令安装openssh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span><br></pre></td></tr></table></figure>
-
-<p>启动服务并且设置开机启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看IP，并使用xshell连接"><a href="#查看IP，并使用xshell连接" class="headerlink" title="查看IP，并使用xshell连接"></a>查看IP，并使用xshell连接</h2><p>查看ip</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
-
-<p>查看你的网卡信息，发现我的IP是192.168.110.128.</p>
-<p>因为直接使用虚拟机内部的终端并不好用，不能够进行复制粘贴啥的，所以我使用外部的终端程序。我在这里使用的是xshell。</p>
-<p>新建会话属性，输入主机ip（就是刚才我们获得的），在用户身份验证输入用户名和密码。</p>
-<p>然后点击最下面的连接。会出现一个弹出框，选择“接口并保存”。</p>
-<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><p>进入后第一件事就是修改<strong>apt</strong>源。</p>
-<p>在修改源之前，我们先安装VIM编辑器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span><br></pre></td></tr></table></figure>
-
-<p>安装完成之后，我们要编辑<strong>apt</strong>源文件去除cd源。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-
-<p>将第5行的配置进行注释：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="修改源为阿里源"><a href="#修改源为阿里源" class="headerlink" title="修改源为阿里源"></a>修改源为阿里源</h2><p>这是我从阿里云的帮助文件中复制到的源的内容。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<p>首先我们需要对该内容进行修改。</p>
-<p>我们查看版本信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 17.10</span><br><span class="line">Release:	17.10</span><br><span class="line">Codename:	artful</span><br></pre></td></tr></table></figure>
-
-<p>可以看到<strong>codename</strong>的值是<strong>artful</strong></p>
-<p>我们可以把上面<strong>quantal</strong>全部替换为<strong>artful</strong>，替换完成如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<p>然后将替换好的内容添加到<strong>/etc/apt/sources.list</strong>开头。</p>
-<p>这样就可以<strong>:x</strong>进行保存了。</p>
-<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><p>其实很简单。首先更新源：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>在输出的消息的最后一行会输出以下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">'apt list --upgradable'</span> to see them.</span><br></pre></td></tr></table></figure>
-
-<p>这就表示我有46个包需要更新。那么就执行运行以下命令进行更新吧：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
-
-<p>好了，最开始的安装环境就已经搭建完成了。</p>
 
       
     </div>
@@ -1489,18 +1488,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

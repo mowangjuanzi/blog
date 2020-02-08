@@ -194,6 +194,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/mysql-reset-password/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/mysql-reset-password/" class="post-title-link" itemprop="url">mysql 重置密码</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:25:49" itemprop="dateCreated datePublished" datetime="2017-11-17T16:25:49+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/mysql-reset-password/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/mysql-reset-password/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当我们安装了mysql或者mariadb的时候，一不小心，就把密码给忘记了。这个时候，我们不管怎么尝试密码，都是错误的，都会显示如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]<span class="comment"># mysql -uroot -p</span></span><br><span class="line">Enter password: </span><br><span class="line">ERROR 1045 (28000): Access denied <span class="keyword">for</span> user <span class="string">'root'</span>@<span class="string">'localhost'</span> (using password: YES)</span><br></pre></td></tr></table></figure>
+
+<p>这个问题特别的头疼。<br>但是如果我们用如下方法就可以迎刃而解了。<br>首先我们先修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>mysqld</code>节中增加下面一行代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line">skip-grant-tables # 这个是要加入的内容</span><br></pre></td></tr></table></figure>
+
+<p>然后重启mysql/mariadb之后，就可以不用密码而直接进去了。<br>这个时候我们就可以执行命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> mysql.user <span class="keyword">SET</span> <span class="keyword">Password</span>=<span class="keyword">PASSWORD</span>(&amp;<span class="comment">#039;your password&amp;#039;) WHERE User=&amp;#039;root&amp;#039;;</span></span><br></pre></td></tr></table></figure>
+<p>这样就把密码给修改了。修改之后。然后我们将<code>my.cnf</code>中的这行注释掉：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br></pre></td></tr></table></figure>
+<p>然后重启就可以了。<br>这样就实现了我们mysql/mariadb的重置密码功能了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/mongodb-replica-set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +334,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -390,7 +499,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -499,7 +608,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -651,7 +760,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -848,7 +957,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1031,7 +1140,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1136,7 +1245,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1356,18 +1465,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

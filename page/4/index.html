@@ -194,6 +194,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/08/09/xls-export-overflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/09/xls-export-overflow/" class="post-title-link" itemprop="url">xls数据导出会内存溢出</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-09 10:54:48" itemprop="dateCreated datePublished" datetime="2018-08-09T10:54:48+08:00">2018-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/08/09/xls-export-overflow/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/09/xls-export-overflow/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。</p>
+<p>那么应该如何解决呢？</p>
+<p>其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。</p>
+<p>PHP已经内置了对这个格式的处理。其中使用的函数就是：</p>
+<ul>
+<li><a href="http://php.net/manual/zh/function.fputcsv.php" target="_blank" rel="noopener">fputcsv()</a></li>
+</ul>
+<p>其实使用方法很简单我就不用写范例了。就把php的示例搬过来吧。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$list = <span class="keyword">array</span> (</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'aaa'</span>, <span class="string">'bbb'</span>, <span class="string">'ccc'</span>, <span class="string">'dddd'</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'123'</span>, <span class="string">'456'</span>, <span class="string">'789'</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'"aaa"'</span>, <span class="string">'"bbb"'</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$fp = fopen(<span class="string">'file.csv'</span>, <span class="string">'w'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($list <span class="keyword">as</span> $fields) &#123;</span><br><span class="line">    fputcsv($fp, $fields);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fclose($fp);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span><br><span class="line">123,456,789</span><br><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>上面这种是写入文件的，评论第一的说的是如何直接进行输出。他的原理是写入到php的输出中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$out = fopen(<span class="string">'php://output'</span>, <span class="string">'w'</span>);</span><br><span class="line">fputcsv($out, <span class="keyword">array</span>(<span class="string">'this'</span>,<span class="string">'is some'</span>, <span class="string">'csv "stuff", you know.'</span>));</span><br><span class="line">fclose($out);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这么一看的话，导出xls是不是就简单了很多呢。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/14/sudo-password-free/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +337,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -331,7 +443,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -433,7 +545,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -588,7 +700,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -692,7 +804,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -818,7 +930,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -927,7 +1039,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1157,7 +1269,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1262,7 +1374,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
+                <time title="修改时间：2020-02-08 21:38:42" itemprop="dateModified" datetime="2020-02-08T21:38:42+08:00">2020-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1308,148 +1420,6 @@
 
       
           <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $data;</span><br><span class="line">    <span class="keyword">private</span> $next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setData</span><span class="params">($data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = $data;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setNext</span><span class="params">($next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;next = $next;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 链表类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> $first;</span><br><span class="line">    <span class="keyword">private</span> $last;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取链表长度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLength</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表中插入第一个元素的时候，头和尾部都是同一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">oneNode</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first = <span class="keyword">new</span> Node;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first-&gt;setData($element);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;last = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当只有一个元素的时候，删除$fist和$last</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;first = <span class="keyword">$this</span>-&gt;last = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 头节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addHead</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;oneNode($element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $node = <span class="keyword">new</span> Node;</span><br><span class="line">            $node-&gt;setData($element);</span><br><span class="line">            $node-&gt;setNext(<span class="keyword">$this</span>-&gt;first);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 尾节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addTail</span><span class="params">(string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;oneNode($element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $node = <span class="keyword">new</span> Node();</span><br><span class="line">            $node-&gt;setData($element);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;last-&gt;setNext($node);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;last = $node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 中间节点插入</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(int $index, string $element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($index &lt;= <span class="keyword">$this</span>-&gt;size) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">                oneNode($element);</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($index == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;addHead($element);</span><br><span class="line">            &#125; <span class="keyword">elseif</span> ($index == <span class="keyword">$this</span>-&gt;size) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;addTail($element);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $tmp = <span class="keyword">$this</span>-&gt;get($index - <span class="number">1</span>);</span><br><span class="line">                $node = <span class="keyword">new</span> Node;</span><br><span class="line">                $node-&gt;setData($element);</span><br><span class="line">                $node-&gt;setNext($tmp-&gt;getNext());</span><br><span class="line">                $tmp-&gt;setNext($node);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"插入位置无效或超出链表长度"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取指定位置的元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">(int $index)</span> </span>&#123;</span><br><span class="line">        $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">        <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $index - <span class="number">1</span>; $i++) &#123;</span><br><span class="line">            $tmp = $tmp-&gt;getNext();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $tmp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $tmp-&gt;getNext();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除尾节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;get(<span class="keyword">$this</span>-&gt;size - <span class="number">1</span>);</span><br><span class="line">            $tmp-&gt;setNext(<span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除指定节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleteIndex</span><span class="params">(int $index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="string">"空链表，无元素可删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (<span class="keyword">$this</span>-&gt;size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;clear();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;get($index - <span class="number">1</span>);</span><br><span class="line">            $tmp-&gt;setNext($tmp-&gt;getNext()-&gt;getNext());</span><br><span class="line">            <span class="keyword">$this</span>-&gt;size--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反转节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">receve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;size &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">            $last = $tmp;</span><br><span class="line">            $next = <span class="keyword">$this</span>-&gt;first-&gt;getNext();</span><br><span class="line">            <span class="keyword">for</span>($i = <span class="number">0</span>; $i &lt; <span class="keyword">$this</span>-&gt;size - <span class="number">1</span>; $i++) &#123;</span><br><span class="line">                $nextNext = $next-&gt;getNext();</span><br><span class="line">                $next-&gt;setNext($tmp);</span><br><span class="line">                $tmp = $next;</span><br><span class="line">                $next = $nextNext;</span><br><span class="line">            &#125;</span><br><span class="line">            $last-&gt;setNext(<span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;first = $tmp;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打印现有的所有元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">printLink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $tmp = <span class="keyword">$this</span>-&gt;first;</span><br><span class="line">        <span class="keyword">if</span>(is_null($tmp)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">echo</span> $tmp-&gt;getData();</span><br><span class="line">        <span class="keyword">while</span>(!is_null($tmp-&gt;getNext())) &#123;</span><br><span class="line">            $tmp = $tmp-&gt;getNext();</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"-&gt;"</span> . $tmp-&gt;getData();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$link = <span class="keyword">new</span> Link();</span><br><span class="line">$link-&gt;addHead(<span class="string">"1"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addHead(<span class="string">"5"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addTail(<span class="string">"9"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9</span></span><br><span class="line"></span><br><span class="line">$link-&gt;addTail(<span class="string">"7"</span>);</span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9-&gt;7</span></span><br><span class="line"></span><br><span class="line">$link-&gt;add(<span class="number">3</span>, <span class="string">"8"</span>); </span><br><span class="line">$link-&gt;printLink(); <span class="comment">// 5-&gt;1-&gt;9-&gt;8-&gt;7</span></span><br><span class="line"></span><br><span class="line">print_r(<span class="string">"链表长度："</span> . $link-&gt;getLength() . <span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteFirst();</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteLast();</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">$link-&gt;deleteIndex(<span class="number">1</span>);</span><br><span class="line">$link-&gt;printLink();</span><br><span class="line"></span><br><span class="line">print_r(<span class="string">"链表长度："</span> . $link-&gt;getLength() . <span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/04/19/java-string-chinese/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/19/java-string-chinese/" class="post-title-link" itemprop="url">Java中json字符串中文的处理</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-04-19 17:37:52" itemprop="dateCreated datePublished" datetime="2018-04-19T17:37:52+08:00">2018-04-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 08:43:26" itemprop="dateModified" datetime="2020-01-03T08:43:26+08:00">2020-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/04/19/java-string-chinese/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/19/java-string-chinese/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这两天让安卓将json转成字符串传递给我，结果在传递中文时，PHP不能正常解析。</p>
-<p>中间想过先把中文转成unicode。但是<code>\u</code>会变成<code>\\u</code>，还是有问题，无奈之下，只好自己上场，写了一个JAVA脚本提供给安卓了。</p>
-<p>以下是所有的JAVA代码：</p>
-<pre><code class="java"><span class="keyword">import</span> net.sf.json.JSONObject;
-<span class="keyword">import</span> java.lang.Character.UnicodeBlock;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>{
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-        JSONObject json = <span class="keyword">new</span> JSONObject();
-        json.put(<span class="string">"name"</span>, <span class="string">"包裹小"</span>);
-        String result = json.toString();
-        System.out.println(result);
-
-        result = jsonParse(result);
-
-        System.out.println(result);
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">jsonParse</span><span class="params">(String jsonStr)</span> </span>{
-        <span class="keyword">char</span>[] myBuffer = jsonStr.toCharArray();
-
-        StringBuffer sb = <span class="keyword">new</span> StringBuffer();
-        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; jsonStr.length(); i++) {
-            UnicodeBlock ub = UnicodeBlock.of(myBuffer[i]);
-            <span class="comment">// 判断是否是中日韩文字</span>
-            <span class="keyword">if</span> (ub == UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS) {
-                <span class="keyword">char</span> c = jsonStr.charAt(i);
-                sb.append(<span class="string">"\\u"</span>);
-                <span class="keyword">int</span> j = (c &gt;&gt;&gt;<span class="number">8</span>); <span class="comment">//取出高8位</span>
-                String tmp = Integer.toHexString(j);
-                <span class="keyword">if</span> (tmp.length() == <span class="number">1</span>)
-                    sb.append(<span class="string">"0"</span>);
-                sb.append(tmp);
-                j = (c &amp; <span class="number">0xFF</span>); <span class="comment">//取出低8位</span>
-                tmp = Integer.toHexString(j);
-                <span class="keyword">if</span> (tmp.length() == <span class="number">1</span>)
-                    sb.append(<span class="string">"0"</span>);
-                sb.append(tmp);
-            } <span class="keyword">else</span> {
-                sb.append(myBuffer[i]);
-            }
-        }
-
-        <span class="keyword">return</span> sb.toString();
-    }
-}</code></pre>
 
       
     </div>
@@ -1537,18 +1507,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
