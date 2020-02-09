@@ -1,4 +1,15 @@
-# ubuntu 17.10 设置固态IP
+---
+title: ubuntu 17.10 设置固态IP
+date: 2018-01-02 00:00:00
+updated: 2020-02-09 08:15:56
+tags:
+- ubuntu
+- static ip
+- network
+categories:
+- 操作系统
+- ubuntu
+---
 
 设置了基本的环境之后，需要设置固定的ip，要不然每次启动都变IP，我每次调整IP都得疯了。
 

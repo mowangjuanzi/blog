@@ -1,8 +1,23 @@
-# Lumen 实现 SQL 监听
+---
+title: Lumen 实现 SQL 监听
+date: 2019-07-12 00:00:00
+updated: 2020-02-09 08:08:45
+tags:
+- laravel
+- lumen
+- php
+- git
+categories:
+- 编程语言
+- php
+- lumen
+---
 
 之前 `Lumen` 框架从 `5.6` 升级到 `5.7`。发现 `laravel-sql-logger` 包不能正常记录日志了。进行排查，发现是 `Lumen` 框架没有对 `DB` 类型注入 `event` 对象，导致不能正常对其进行SQL监听。
 
 那么解决方案也非常简单。
+
+<!-- more -->
 
 ```php
 // file: bootstrap/app.php

@@ -1,12 +1,9 @@
 # 魔王卷子的博客
 
-## 文章
+阅读最新博文，请浏览我的官网：https://www.baoguoxiao.com
 
-- [2019.08.07 纪录一次sentry升级历史](./posts/2019.08.07-sentry-upgrade.md)
-- [2019.07.12 Lumen 实现 SQL 监听](./posts/2019.07.12-lumen_listen_sql_logger.md)
-- [2019.02.17 nginx 自定义日志记录请求时间](./posts/2019.02.17-nginx-statistics-request-time.md)
-- [2019.01.02 Ubuntu 17.10 设置固态IP](./posts/2018.01.02-ubuntu-set-static-ip.md)
+分发网站：
 
-## 单页
-
-- [关于我](./pages/about-me.md)
+- https://segmentfault.com/u/mowangjuanzi
+- https://www.zhihu.com/people/bao-guo-xiao
+- https://cloud.tencent.com/developer/user/1340976

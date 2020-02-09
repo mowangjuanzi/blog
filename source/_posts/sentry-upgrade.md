@@ -1,8 +1,19 @@
-# 纪录一次sentry升级历史
+---
+title: 纪录一次sentry升级历史
+date: 2001-08-07 00:00:00
+updated: 2020-02-09 08:01:39
+tags:
+- sentry
+categories:
+- 工具
+- sentry
+---
 
 ## 起因
 
 IOS同事说他发现了sentry的一个bug。说是因为9.0.0的bug导致debug file 提示上传成功，但是上网站却发现根本没有上传。所以就开始了我的升级之路。
+
+<!-- more -->
 
 ## 调研
 
