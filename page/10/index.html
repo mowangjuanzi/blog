@@ -194,6 +194,294 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/redis-geo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/redis-geo/" class="post-title-link" itemprop="url">Redis 的 GEO 特性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:14:41" itemprop="dateCreated datePublished" datetime="2017-11-17T16:14:41+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/redis-geo/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/redis-geo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天看文档，无意中发现了 Redis 的一个新功能。<br>Redis 在 3.2 版本实现了一个地理位置计算的特性。</p>
+<h2 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h2><p>Redis 3.2 或者更新</p>
+<h2 id="添加和获取位置"><a href="#添加和获取位置" class="headerlink" title="添加和获取位置"></a>添加和获取位置</h2><h3 id="geoadd-添加位置"><a href="#geoadd-添加位置" class="headerlink" title="geoadd (添加位置)"></a>geoadd (添加位置)</h3><p>这个命令对于经纬度是有要求的:</p>
+<ul>
+<li>有效的经度从-180度到180度。</li>
+<li>有效的纬度从-85.05112878度到85.05112878度。</li>
+</ul>
+<p>如果超出返回，那么命令就会返回一个错误.</p>
+<p>添加命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GEOADD location-set longitude latitude name [longitude latitude name ...]</span><br></pre></td></tr></table></figure>
+
+<p>这个可以同时添加多个位置。其中 <strong>location-set</strong> 是存储地理位置的集合名称，<strong>longitude</strong>，<strong>latitude</strong> 和 <strong>name</strong> 则是地理位置的精度、纬度、名字。</p>
+<p>下面添加北京的地铁站的坐标：</p>
+<p>添加单个位置如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geoadd subways 116.404269 39.906543 qianmen</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<p>添加多个位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geoadd subways 116.409465 39.939578 nanluoguxiang 116.402549 39.944163 shichahai 116.315934 40.005471 yuanmingyuan 116.399279 40.007208 aolinpikegongyuan</span><br><span class="line">(integer) 4</span><br></pre></td></tr></table></figure>
+
+<p>将坐标记录到位置集合之后，我们使用 <code>geopos</code> 命令来获取位置的名字和具体经纬度</p>
+<p>获取命令如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GEOPOS location-set name [name ...]</span><br></pre></td></tr></table></figure>
+
+<p>比如说，如果我们想要获取圆明园、前门的经纬度，那么我们就可以执行以下代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geopos subways yuanmingyuan qianmen</span><br><span class="line">1) 1) "116.31593316793441772"</span><br><span class="line">   2) "40.00546983911101506"</span><br><span class="line">2) 1) "116.40426903963088989"</span><br><span class="line">   2) "39.90654220698316834"</span><br></pre></td></tr></table></figure>
+
+<h2 id="计算两个点之前的距离"><a href="#计算两个点之前的距离" class="headerlink" title="计算两个点之前的距离"></a>计算两个点之前的距离</h2><p>命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GEODIST location-set location-x location-y [unit]</span><br></pre></td></tr></table></figure>
+
+<p>可选参数 <code>unit</code> 用于指定计算距离时的单位，它的值为下面的一个：</p>
+<ul>
+<li>m 表示单位为米。</li>
+<li>km 表示单位为千米。</li>
+<li>mi 表示单位为英里。</li>
+<li>ft 表示单位为英尺。</li>
+</ul>
+<p>比如我们要计算奥林匹克公园和圆明园的距离：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geodist subways yuanmingyuan aolinpikegongyuan</span><br><span class="line">"7103.4924"</span><br></pre></td></tr></table></figure>
+
+<p>如果我们指定单位为 <strong>km</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geodist subways yuanmingyuan aolinpikegongyuan km</span><br><span class="line">"7.1035"</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取指定范围内的元素"><a href="#获取指定范围内的元素" class="headerlink" title="获取指定范围内的元素"></a>获取指定范围内的元素</h2><p>Redis 提供了两种方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GEORADIUS location-set longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [ASC|DESC] [COUNT count]</span><br><span class="line"></span><br><span class="line">GEORADIUSBYMEMBER location-set location radius m|km|ft|mi [WITHCOORD] [WITHDIST] [ASC|DESC] [COUNT count]</span><br></pre></td></tr></table></figure>
+
+<p>这两个命令都是用来查找特定范围地点的功能，但是指定中心点的方式不同：<code>georadius</code> 使用的是用户给定的经纬度，而 <code>georadiusbymember</code> 则使用存储在位置集合里面的某个地点作为中心点。</p>
+<ul>
+<li>m|km|ft|mi 指定的是计算范围时的单位；</li>
+<li>如果给定了可选的 WITHCOORD ， 那么命令在返回匹配的位置时会将位置的经纬度一并返回；</li>
+<li>如果给定了可选的 WITHDIST ， 那么命令在返回匹配的位置时会将位置与中心点之间的距离一并返回；</li>
+<li>在默认情况下， GEORADIUS 和 GEORADIUSBYMEMBER 的结果是未排序的， ASC 可以让查找结果根据距离从近到远排序， 而 DESC 则可以让查找结果根据从远到近排序；</li>
+<li>COUNT 参数指定要返回的结果数量。</li>
+</ul>
+<p>命令默认返回未排序的位置元素。 通过以下两个参数， 用户可以指定被返回位置元素的排序方式：</p>
+<ul>
+<li>ASC: 根据中心的位置， 按照从近到远的方式返回位置元素。</li>
+<li>DESC: 根据中心的位置， 按照从远到近的方式返回位置元素。</li>
+</ul>
+<p>比如说我们要返回指定坐标的10km内的位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius subways 116.403878 39.914942 10 km</span><br><span class="line">1) "qianmen"</span><br><span class="line">2) "nanluoguxiang"</span><br><span class="line">3) "shichahai"</span><br></pre></td></tr></table></figure>
+
+<p>我们还需要获取位置与中心点的距离:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius subways 116.403878 39.914942 10 km withdist</span><br><span class="line">1) 1) "qianmen"</span><br><span class="line">   2) "0.9349"</span><br><span class="line">2) 1) "nanluoguxiang"</span><br><span class="line">   2) "2.7812"</span><br><span class="line">3) 1) "shichahai"</span><br><span class="line">   2) "3.2521"</span><br></pre></td></tr></table></figure>
+
+<p>我们需要返回按照最远距离排序：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius subways 116.403878 39.914942 10 km withdist desc</span><br><span class="line">1) 1) "shichahai"</span><br><span class="line">   2) "3.2521"</span><br><span class="line">2) 1) "nanluoguxiang"</span><br><span class="line">   2) "2.7812"</span><br><span class="line">3) 1) "qianmen"</span><br><span class="line">   2) "0.9349"</span><br></pre></td></tr></table></figure>
+
+<p>我们只需要两个就够了，三个太多了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius subways 116.403878 39.914942 10 km withdist desc count 2</span><br><span class="line">1) 1) "shichahai"</span><br><span class="line">   2) "3.2521"</span><br><span class="line">2) 1) "nanluoguxiang"</span><br><span class="line">   2) "2.7812"</span><br><span class="line">127.0.0.1:6379&gt; georadius subways 116.403878 39.914942 10 km withdist count 2</span><br><span class="line">1) 1) "qianmen"</span><br><span class="line">   2) "0.9349"</span><br><span class="line">2) 1) "nanluoguxiang"</span><br><span class="line">   2) "2.7812"</span><br></pre></td></tr></table></figure>
+
+<p>获取前门10km附近的位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadiusbymember subways qianmen 10 km</span><br><span class="line">1) "qianmen"</span><br><span class="line">2) "nanluoguxiang"</span><br><span class="line">3) "shichahai"</span><br></pre></td></tr></table></figure>
+
+<p>我们只是需要将其坐标换成集合名称中的会员名称就好了，用法跟之前的<code>georadius</code>相同。</p>
+<p><code>georadius</code>和<code>georadiusbymember</code>执行的代价并不低，因此强烈建议为查询结果创建缓存。</p>
+<h2 id="geohash"><a href="#geohash" class="headerlink" title="geohash"></a><code>geohash</code></h2><p>这个会返回一个11个字符的geohash字符串，使用内部52位表示。返回的geohashes具有以下特性:</p>
+<ul>
+<li>他们可以缩短从右边的字符。它将失去精度，但仍将指向同一地区。</li>
+<li>它可以在 geohash.org 网站使用，网址<a href="http://geohash.org/" target="_blank" rel="noopener">http://geohash.org/</a><geohash-string>。查询例子：<a href="http://geohash.org/sqdtr74hyu0" target="_blank" rel="noopener">http://geohash.org/sqdtr74hyu0</a>.</li>
+<li>与类似的前缀字符串是附近，但相反的是不正确的，这是可能的，用不同的前缀字符串附近。</li>
+</ul>
+<p>命令格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GEOHASH key member [member ...]</span><br></pre></td></tr></table></figure>
+
+<p>例如我要查询前门的geohash:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geohash subways qianmen</span><br><span class="line">1) "wx4g0bg02n0"</span><br></pre></td></tr></table></figure>
+
+<p>完了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-ssh-remote-access/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/ubuntu-16-10-set-ssh-remote-access/" class="post-title-link" itemprop="url">ubuntu 16.10 支持ssh远程访问</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 15:21:26" itemprop="dateCreated datePublished" datetime="2017-11-17T15:21:26+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/ubuntu-16-10-set-ssh-remote-access/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/ubuntu-16-10-set-ssh-remote-access/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>hell<br>sudo apt-get install openssh-server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后执行启动命令：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;&#96;shell</span><br><span class="line">sudo systemctl start ssh</span><br></pre></td></tr></table></figure>
+
+<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>我们打开<code>/etc/rc.local</code>，加入如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable ssh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：如果文件中如果有<code>exit 0</code>，一定要在其之前加入。</p>
+</blockquote>
+<p>这样我们的ubuntu就能正常远程访问了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/16/centos-build-lnmp-environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +513,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -373,6 +661,109 @@
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2001/08/06/sentry-upgrade/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2001/08/06/sentry-upgrade/" class="post-title-link" itemprop="url">纪录一次sentry升级历史</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2001-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2001-08-07T00:00:00+08:00">2001-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:01:39" itemprop="dateModified" datetime="2020-02-09T08:01:39+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/sentry/" itemprop="url" rel="index">
+                    <span itemprop="name">sentry</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2001/08/06/sentry-upgrade/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2001/08/06/sentry-upgrade/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>IOS同事说他发现了sentry的一个bug。说是因为9.0.0的bug导致debug file 提示上传成功，但是上网站却发现根本没有上传。所以就开始了我的升级之路。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2001/08/06/sentry-upgrade/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
@@ -445,7 +836,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

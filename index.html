@@ -662,36 +662,124 @@
 
       
           <h1 id="并行请求测试"><a href="#并行请求测试" class="headerlink" title="并行请求测试"></a>并行请求测试</h1><p>因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。</p>
-<h2 id="使用版本："><a href="#使用版本：" class="headerlink" title="使用版本："></a>使用版本：</h2><ul>
-<li>PHP: 7.3.8</li>
-<li>PHP-Swoole: 4.4.8</li>
-<li>PHP-cURL: 7.65.3</li>
-<li>Node.js:</li>
-<li>GoLang: </li>
-</ul>
-<h2 id="串行读取"><a href="#串行读取" class="headerlink" title="串行读取"></a>串行读取</h2><p>首先呢，就是PHP的默认串行读取了。接下来直接看脚本吧：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$urls = [</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($urls <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    geturl($item);</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">geturl</span><span class="params">($url)</span></span>&#123;</span><br><span class="line">       </span><br><span class="line">        $ch = curl_init();</span><br><span class="line">        curl_setopt_array($ch, [</span><br><span class="line">            CURLOPT_FOLLOWLOCATION =&gt; <span class="keyword">true</span>,</span><br><span class="line">            CURLOPT_MAXREDIRS      =&gt; <span class="number">5</span>,</span><br><span class="line">            CURLOPT_RETURNTRANSFER =&gt; <span class="keyword">true</span>,</span><br><span class="line">            CURLOPT_URL =&gt; <span class="string">"http://"</span> . $url,</span><br><span class="line">        ]);</span><br><span class="line">        </span><br><span class="line">        $output = curl_exec($ch);</span><br><span class="line">        curl_close($ch);</span><br><span class="line"> </span><br><span class="line">        var_dump(strlen($output));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/28/parallel-request-testing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>执行时间：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m1.150s</span><br><span class="line">user    0m0.045s</span><br><span class="line">sys     0m0.040s</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<h2 id="CURL并发请求"><a href="#CURL并发请求" class="headerlink" title="CURL并发请求"></a>CURL并发请求</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">$urls = [</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$rolling_window = count($urls);</span><br><span class="line"> </span><br><span class="line">$master   = curl_multi_init();</span><br><span class="line">$curl_arr = <span class="keyword">array</span>();</span><br><span class="line"> </span><br><span class="line">$std_options = <span class="keyword">array</span>(</span><br><span class="line">    CURLOPT_FOLLOWLOCATION =&gt; <span class="keyword">true</span>,</span><br><span class="line">    CURLOPT_MAXREDIRS      =&gt; <span class="number">5</span>,</span><br><span class="line">    CURLOPT_RETURNTRANSFER =&gt; <span class="keyword">true</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$options = $std_options;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $rolling_window; $i++) &#123;</span><br><span class="line">    $ch                   = curl_init();</span><br><span class="line">    $options[CURLOPT_URL] = <span class="string">"http://"</span> . $urls[$i];</span><br><span class="line">    curl_setopt_array($ch, $options);</span><br><span class="line">    curl_multi_add_handle($master, $ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$result = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (($execrun = curl_multi_exec($master, $running)) == CURLM_CALL_MULTI_PERFORM);</span><br><span class="line">    <span class="keyword">if</span> ($execrun != CURLM_OK) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ($done = curl_multi_info_read($master)) &#123;</span><br><span class="line">        $info = curl_getinfo($done[<span class="string">'handle'</span>]);</span><br><span class="line">        $output = curl_multi_getcontent($done[<span class="string">'handle'</span>]);</span><br><span class="line">        var_dump(strlen($output));</span><br><span class="line">        curl_multi_remove_handle($master, $done[<span class="string">'handle'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> ($running);</span><br><span class="line"> </span><br><span class="line">curl_multi_close($master);</span><br></pre></td></tr></table></figure>
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2019/07/11/lumen-listen-sql-logger/">
 
-<p>执行时间：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m0.246s</span><br><span class="line">user    0m0.081s</span><br><span class="line">sys     0m0.173s</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
 
-<h2 id="Swoole-协程请求"><a href="#Swoole-协程请求" class="headerlink" title="Swoole 协程请求"></a>Swoole 协程请求</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Swoole\Runtime::enableCoroutine();</span><br><span class="line"></span><br><span class="line">$urls = [</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">    <span class="string">"cn.bing.com"</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$chan = <span class="keyword">new</span> chan(count($urls));</span><br><span class="line"></span><br><span class="line">go(<span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span><span class="params">($chan, $urls)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span>($urls <span class="keyword">as</span> $item) &#123;</span><br><span class="line">        var_dump($chan-&gt;pop());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($urls <span class="keyword">as</span> $url) &#123;</span><br><span class="line">    go(<span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span><span class="params">($chan, $url)</span> </span>&#123;</span><br><span class="line">        $cli = <span class="keyword">new</span> Swoole\Coroutine\Http\Client(<span class="string">'cn.bing.com'</span>, <span class="number">80</span>);</span><br><span class="line">        $ret = $cli-&gt;get(<span class="string">'/'</span>);</span><br><span class="line"></span><br><span class="line">        $chan-&gt;push([$url =&gt; strlen($cli-&gt;getBody())]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/11/lumen-listen-sql-logger/" class="post-title-link" itemprop="url">Lumen 实现 SQL 监听</a>
+        </h1>
 
-<p>执行时间：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m0.140s</span><br><span class="line">user    0m0.019s</span><br><span class="line">sys     0m0.031s</span><br></pre></td></tr></table></figure>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<h2 id="Golang协程"><a href="#Golang协程" class="headerlink" title="Golang协程"></a>Golang协程</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	urls := []<span class="keyword">string</span>&#123;</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">		<span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, url := <span class="keyword">range</span> urls &#123;</span><br><span class="line">		<span class="keyword">go</span> fetch(url, ch) <span class="comment">// start a goroutine</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> <span class="keyword">range</span> urls &#123;</span><br><span class="line">		&lt;-ch</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetch</span><span class="params">(url <span class="keyword">string</span>, ch <span class="keyword">chan</span>&lt;- <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	resp, err := http.Get(url)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		ch &lt;- fmt.Sprint(err) <span class="comment">// send to channel ch</span></span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	body, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	resp.Body.Close()</span><br><span class="line">	ch &lt;- <span class="keyword">string</span>(<span class="built_in">len</span>(body))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              <time title="创建时间：2019-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-12T00:00:00+08:00">2019-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:08:45" itemprop="dateModified" datetime="2020-02-09T08:08:45+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/lumen/" itemprop="url" rel="index">
+                    <span itemprop="name">lumen</span>
+                  </a>
+                </span>
+            </span>
 
-<p>执行时间：0.185s</p>
-<h2 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axiso = <span class="built_in">require</span>(<span class="string">'axios'</span>);</span><br><span class="line"><span class="keyword">const</span> urls = [</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">    <span class="string">"https://www.baidu.com"</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fetchAll</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> promiseAll=[];</span><br><span class="line">  urls.forEach(<span class="function"><span class="params">url</span> =&gt;</span> &#123;</span><br><span class="line">      promiseAll.push(fetch(url));</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="built_in">Promise</span>.all(promiseAll);</span><br><span class="line">  res.forEach(<span class="function"><span class="params">val</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//   console.log(val.data.length);</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> axiso.get(url)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetchAll();</span><br></pre></td></tr></table></figure>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/07/11/lumen-listen-sql-logger/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/11/lumen-listen-sql-logger/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
-<p>运行时间 0.344s</p>
+        </div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>之前 <code>Lumen</code> 框架从 <code>5.6</code> 升级到 <code>5.7</code>。发现 <code>laravel-sql-logger</code> 包不能正常记录日志了。进行排查，发现是 <code>Lumen</code> 框架没有对 <code>DB</code> 类型注入 <code>event</code> 对象，导致不能正常对其进行SQL监听。</p>
+<p>那么解决方案也非常简单。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/11/lumen-listen-sql-logger/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -838,7 +926,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -942,7 +1030,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1044,7 +1132,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1093,109 +1181,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/12/16/bind9-use-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/12/16/apt-install-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/16/apt-install-nginx/" class="post-title-link" itemprop="url">ubuntu 中使用 apt 安装 nginx</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-17 00:09:38" itemprop="dateCreated datePublished" datetime="2018-12-17T00:09:38+08:00">2018-12-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 18:00:00" itemprop="dateModified" datetime="2019-12-08T18:00:00+08:00">2019-12-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">web服务器</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/12/16/apt-install-nginx/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/16/apt-install-nginx/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用 <code>apt</code> 安装 <code>nginx</code> ，方便快捷，省去了编译失败的可能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/12/16/apt-install-nginx/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1287,7 +1272,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

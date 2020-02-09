@@ -46,12 +46,12 @@
   };
 </script>
 
-  <meta name="description" content="并行请求测试因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。 使用版本： PHP: 7.3.8 PHP-Swoole: 4.4.8 PHP-cURL: 7.65.3 Node.js: GoLang:   串行读取首先呢，就是PHP的默认串行读取了。">
+  <meta name="description" content="并行请求测试因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="parallel-request-testing">
 <meta property="og:url" content="http://www.baoguoxiao.com/2019/10/28/parallel-request-testing/index.html">
 <meta property="og:site_name" content="魔王卷子的博客">
-<meta property="og:description" content="并行请求测试因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。 使用版本： PHP: 7.3.8 PHP-Swoole: 4.4.8 PHP-cURL: 7.65.3 Node.js: GoLang:   串行读取首先呢，就是PHP的默认串行读取了。">
+<meta property="og:description" content="并行请求测试因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-28T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-02-08T14:22:13.000Z">
@@ -271,6 +271,8 @@
 
       
         <h1 id="并行请求测试"><a href="#并行请求测试" class="headerlink" title="并行请求测试"></a>并行请求测试</h1><p>因为我们想要做底层服务，那么肯定会有一个对外的接口中会有好几个调用底层的接口。按照传统做法，就只能是串行请求。下面我做了一个测试。测试使用各种方法连续请求10次，看看总的统计时间，来确定使用哪种方案。</p>
+<a id="more"></a>
+
 <h2 id="使用版本："><a href="#使用版本：" class="headerlink" title="使用版本："></a>使用版本：</h2><ul>
 <li>PHP: 7.3.8</li>
 <li>PHP-Swoole: 4.4.8</li>
@@ -342,8 +344,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/05/18/php-built-in-web-server/" rel="prev" title="PHP之内置web服务器">
-      <i class="fa fa-chevron-left"></i> PHP之内置web服务器
+    <a href="/2019/07/11/lumen-listen-sql-logger/" rel="prev" title="Lumen 实现 SQL 监听">
+      <i class="fa fa-chevron-left"></i> Lumen 实现 SQL 监听
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/11/06/use-migration-with-illuminate/" rel="next" title="依托illuminate组件实现数据库迁移">
@@ -431,7 +433,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

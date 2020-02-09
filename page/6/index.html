@@ -194,6 +194,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/03/awk-run-mv-command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/03/awk-run-mv-command/" class="post-title-link" itemprop="url">awk中执行mv命令</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-02-03 09:40:30" itemprop="dateCreated datePublished" datetime="2018-02-03T09:40:30+08:00">2018-02-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/02/03/awk-run-mv-command/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/03/awk-run-mv-command/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我现在有一个thinkphp文件夹，我需要将文件夹下面所有的<strong>.class.php</strong>修改为<strong>.php</strong></p>
+<p>我的执行方法是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./thinkphp2 -name *.class.php | awk -F <span class="string">"class."</span> <span class="string">'&#123;print "mv "$0 " " $1$2&#125;'</span> | sh</span><br></pre></td></tr></table></figure>
+
+<p>这句话的作用就是首先我们先找出所有文件夹里面后缀名为<strong>.class.php</strong>的文件，执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@192:~/windows$ find ./thinkphp2 -name *.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Net/Http.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Date.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Stack.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/String.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Auth.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Behavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Build.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Lite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Exception.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Hook.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Page.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Route.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Think.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Verify.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/View.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Model.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/View.class.php</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们对文件内容进行拆分，然后组合成正确的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@192:~/windows$ find ./thinkphp2 -name *.class.php | awk -F <span class="string">".class"</span> <span class="string">'&#123;print "mv " $0 " " $1$2&#125;'</span></span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Net/Http.class.php ./thinkphp2/ThinkPHP/Library/Org/Net/Http.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.class.php ./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Date.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Date.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Stack.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Stack.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/String.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/String.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/App.class.php ./thinkphp2/ThinkPHP/Library/Think/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Auth.class.php ./thinkphp2/ThinkPHP/Library/Think/Auth.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Behavior.class.php ./thinkphp2/ThinkPHP/Library/Think/Behavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Build.class.php ./thinkphp2/ThinkPHP/Library/Think/Build.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Lite.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Lite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Dispatcher.class.php ./thinkphp2/ThinkPHP/Library/Think/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Exception.class.php ./thinkphp2/ThinkPHP/Library/Think/Exception.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Hook.class.php ./thinkphp2/ThinkPHP/Library/Think/Hook.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image.class.php ./thinkphp2/ThinkPHP/Library/Think/Image.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log.class.php ./thinkphp2/ThinkPHP/Library/Think/Log.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model.class.php ./thinkphp2/ThinkPHP/Library/Think/Model.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Page.class.php ./thinkphp2/ThinkPHP/Library/Think/Page.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Route.class.php ./thinkphp2/ThinkPHP/Library/Think/Route.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template.class.php ./thinkphp2/ThinkPHP/Library/Think/Template.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Think.class.php ./thinkphp2/ThinkPHP/Library/Think/Think.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Verify.class.php ./thinkphp2/ThinkPHP/Library/Think/Verify.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/View.class.php ./thinkphp2/ThinkPHP/Library/Think/View.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.class.php ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.class.php ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/App.class.php ./thinkphp2/ThinkPHP/Mode/Api/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/Controller.class.php ./thinkphp2/ThinkPHP/Mode/Api/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.class.php ./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/App.class.php ./thinkphp2/ThinkPHP/Mode/Lite/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Controller.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Model.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Model.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/View.class.php ./thinkphp2/ThinkPHP/Mode/Lite/View.php</span><br></pre></td></tr></table></figure>
+
+<p><strong>awk</strong>中<strong>-F</strong>代表是分割符。这一段命令是我们使用分隔符将文件名拆开，然后打印是修改文件名的命令。</p>
+<p>最后一步，我们就是将输出的内容导入到<strong>sh</strong>执行即可。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./thinkphp3 -name *.class.php | awk -F <span class="string">"class."</span> <span class="string">'&#123;print "mv "$0 " " $1$2&#125;'</span> | sh</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/ginvip/p/6352157.html" target="_blank" rel="noopener">Linux三剑客之awk命令</a></li>
+<li><a href="http://blog.csdn.net/limsai/article/details/8215134" target="_blank" rel="noopener">AWK 中运行MV命令</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/02/c-program-to-execute-file/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +339,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -338,7 +452,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -448,7 +562,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -549,7 +663,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -661,6 +775,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/01/ubuntu-set-static-ip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/01/ubuntu-set-static-ip/" class="post-title-link" itemprop="url">ubuntu 17.10 设置固态IP</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-01-02T00:00:00+08:00">2018-01-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:15:56" itemprop="dateModified" datetime="2020-02-09T08:15:56+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/01/01/ubuntu-set-static-ip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/01/ubuntu-set-static-ip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>设置了基本的环境之后，需要设置固定的ip，要不然每次启动都变IP，我每次调整IP都得疯了。</p>
+<p>在Ubuntu 17.10 中，使用了一种新的命令来配置静态IP。</p>
+<p>对此，我们需要修改的是 <strong>/etc/netplan/01-netcfg.yaml</strong></p>
+<p>我们先看看该文件的内容和格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># For more information, see netplan(5).</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">networkd</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">ens33:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到这里设置的<strong>dhcp4</strong>为<strong>yes</strong>。表示是<strong>dhcp</strong>模式。</p>
+<p>好了，下面我们要进行修改了。下面是改好的格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># For more information, see netplan(5).</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">networkd</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">ens33:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">dhcp6:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> <span class="string">[192.168.110.231/24]</span></span><br><span class="line">      <span class="attr">gateway4:</span> <span class="number">192.168</span><span class="number">.110</span><span class="number">.1</span></span><br><span class="line">      <span class="attr">nameservers:</span></span><br><span class="line">          <span class="attr">addresses:</span> <span class="string">[114.114.114.114,</span> <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<p>现在我们解释一下修改的内容：</p>
+<ul>
+<li><strong>dhcp4</strong>：ipv4的自动分配，设置为<strong>no</strong>表示不进行ipv4地址的自动分配</li>
+<li><strong>dhcp6</strong>：ipv6的自动分配，设置为<strong>no</strong>表示不进行ipv6地址的自动分配</li>
+<li><strong>addresses</strong>：设置固定的ip。这里有个<strong>/24</strong>，我们需要对这一块单独说下。</li>
+<li><strong>gateway4</strong>：网关地址。</li>
+<li><strong>nameservers</strong>: DNS服务器。<strong>addresses</strong>的数组表示可以设置多个。</li>
+</ul>
+<p>如果有人设置过windows的静态IP或者说之前的版本的ubuntu的静态ip的，可能会觉得少了一个东西，没错，就是子网掩码。</p>
+<p>这里就是说的<strong>/24</strong>了。它其实就是设置的子网掩码。下面有前缀对应的ip，我们可以通过这个来进行响应的设置了。</p>
+<table>
+<thead>
+<tr>
+<th align="center">前缀大小</th>
+<th align="center">子网掩码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/24</td>
+<td align="center">255.255.255.0</td>
+</tr>
+<tr>
+<td align="center">/25</td>
+<td align="center">255.255.255.128</td>
+</tr>
+<tr>
+<td align="center">/26</td>
+<td align="center">255.255.255.192</td>
+</tr>
+<tr>
+<td align="center">/27</td>
+<td align="center">255.255.255.224</td>
+</tr>
+<tr>
+<td align="center">/28</td>
+<td align="center">255.255.255.240</td>
+</tr>
+<tr>
+<td align="center">/29</td>
+<td align="center">255.255.255.248</td>
+</tr>
+<tr>
+<td align="center">/30</td>
+<td align="center">255.255.255.252</td>
+</tr>
+</tbody></table>
+<p>好了，我们把配置文件的内容按照实际情况修改好了之后。执行以下命令进行部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure>
+
+<p>如果没有问题，固态ip就设置成功了。然后我们重新配置我们xshell登录的ip，重新就进行登录就可以了。</p>
+<p>好了，是不是非常简单呢？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/25/kylin-firefox-prevent-access-sogou-site/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,7 +962,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -810,7 +1080,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -941,7 +1211,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1050,7 +1320,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1105,237 +1375,6 @@
 </ul>
 <p>我想说，其实作者吐槽了很多，只是在总结中并没有体现出来，比如JAVA的不好用；自由派与保守派，对于重构的看法；弱类型与强类型的选择；项目的代码量应该要精简；编程语言的营销；学习离散数学；学习编写编译器等。</p>
 <p>希望大家也能去读一下这本书。非常值得一看。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/laravel-validator-update-only-row/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/laravel-validator-update-only-row/" class="post-title-link" itemprop="url">Laravel Validator 更新时验证记录唯一的小技巧</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:34:33" itemprop="dateCreated datePublished" datetime="2017-11-17T16:34:33+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/laravel-validator-update-only-row/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/laravel-validator-update-only-row/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>比如我们在新增一篇文章的时候，我们一般会写如下的表单验证。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">'required|unique:article|max:255'</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>这样在新增的时候是没什么问题的，但是在更新的时候就出现了一个问题，就是当我们的title没有发生改变的时候，我们使用<code>unique</code>的时候，会将原来的记录行进行扫描，这样就会提示我们<code>该标题已经存在</code>。</p>
-<p>这样就比较坑爹了，那么有没有什么办法可以解决呢。办法是有的，其实很简单，我们只需要跟下面那样写就好了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$id = $request-&gt;input(<span class="string">"id"</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">"required|unique:article,id,&#123;$id&#125;|max:255"</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>这样的话在验证唯一的时候就会不去验证id=<code>$id</code>的记录。这样就可以防止我们刚才碰到的问题了。</p>
-<p>那么不管新增还是更新，套路就是这样了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$id = $request-&gt;input(<span class="string">"id"</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">"required|unique:article,id,&#123;$id&#125;|max:255"</span>,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($id &lt; <span class="number">1</span>) &#123; <span class="comment">// 新增</span></span><br><span class="line">    $info = <span class="keyword">new</span> Article();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    $info = Article::where(<span class="string">"id"</span>, $id)-&gt;first();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$info-&gt;title = $request-&gt;input(<span class="string">"title"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($info-&gt;save()) &#123;</span><br><span class="line">    <span class="comment">// 操作成功</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 操作失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Laravel真是最好的框架。</p>
-<p>哈哈</p>
-<blockquote>
-<p>参考网址：</p>
-</blockquote>
-<p><a href="https://stackoverflow.com/questions/23587833/laravel-validation-unique-on-update" target="_blank" rel="noopener">https://stackoverflow.com/questions/23587833/laravel-validation-unique-on-update</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-singleton-mode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/php-singleton-mode/" class="post-title-link" itemprop="url">单例模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:33:52" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:52+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/php-singleton-mode/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-singleton-mode/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>好久没发表文章了。今天说一下单例模式。</p>
-<p>单例模式主要有以下几个关键点：</p>
-<ul>
-<li>对象应该可以被系统中的任何对象使用。</li>
-<li>对象不应该被存储在会被覆写的全局变量中。</li>
-<li>系统中不应超过一个要单例的对象。</li>
-</ul>
-<p>其实实现单例的方法很简单。比如我们现在声明一个类Config。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $configs = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($key, $value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;configs[$key] = $value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;configs[$key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时的类还是无法使用的。因为构造函数已经被私有化了。我们需要一个静态方法和静态变量来间接的实例化对象。代码如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $configs = [];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> $instacne;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取实例化对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="keyword">self</span>::$instacne)) &#123;</span><br><span class="line">            <span class="keyword">self</span>::$instacne = <span class="keyword">new</span> <span class="keyword">self</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::$instacne;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($key, $value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;configs[$key] = $value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;configs[$key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们使用<code>Config::getInstanct()</code>来获取对象实例，并将其保存到<code>$instance</code>静态变量中。</p>
-<p>接下来，我们写一个demo，来检测代码是否能够正常工作：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$config = Config::getInstance();</span><br><span class="line"></span><br><span class="line">$config-&gt;set(<span class="string">"name"</span>, <span class="string">"matt"</span>);</span><br><span class="line"><span class="keyword">unset</span>($config);</span><br><span class="line"></span><br><span class="line">$config = Config::getInstance();</span><br><span class="line">var_dump($config-&gt;get(<span class="string">"name"</span>));</span><br></pre></td></tr></table></figure>
-
-<p>执行即可得出结果正是我们最早写入的值。 好了，单例模式就介绍完成了。</p>
 
       
     </div>
@@ -1423,7 +1462,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

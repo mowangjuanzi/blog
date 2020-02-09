@@ -194,6 +194,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/29/javascript-string-exception/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/29/javascript-string-exception/" class="post-title-link" itemprop="url">JS解析字符串异常的处理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-29 12:06:05" itemprop="dateCreated datePublished" datetime="2018-06-29T12:06:05+08:00">2018-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/06/29/javascript-string-exception/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/29/javascript-string-exception/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我目前在做的webview渲染优化的事情。</p>
+<p>目前碰到一个问题，就是说安卓APP请求服务器返回的字符串，然后调用参数传递内容。</p>
+<p>但是在执行的时候，总是报错。</p>
+<p>有一个不可见的字符，在编辑器中识别不出来，执行之后也看不到，但是查看上一条执行的命令的时候就可以看到一个红点。</p>
+<p><img src="/images/30bf6573ae356fbcebe10a74625c60ea.png" alt=""></p>
+<p>然后使用unicode进行解析，发现unicode是\u2028。</p>
+<p>经过百度发现了解决办法。</p>
+<p>最后解决的办法很简单：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 替换字符串 处理Zp(\u2028)段落分隔符，Zl(\u2029)行分隔符</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterWord</span><span class="params">(&amp;amp;$value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (is_string($value)) &#123;</span><br><span class="line">        $value =  preg_replace(&amp;<span class="comment">#039;/[\p&#123;Zp&#125;\p&#123;Zl&#125;]+/u&amp;#039;,&amp;#039;&amp;#039;,$value);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.yongxiang.me/2017/03/05/201703/special-character/" target="_blank" rel="noopener">http://www.yongxiang.me/2017/03/05/201703/special-character/</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/03/ubuntu-install-elasticsearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +334,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -455,7 +564,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -560,7 +669,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -656,7 +765,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -798,7 +907,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -914,7 +1023,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1032,7 +1141,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1178,7 +1287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1288,7 +1397,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1409,120 +1518,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/03/awk-run-mv-command/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/03/awk-run-mv-command/" class="post-title-link" itemprop="url">awk中执行mv命令</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-02-03 09:40:30" itemprop="dateCreated datePublished" datetime="2018-02-03T09:40:30+08:00">2018-02-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/02/03/awk-run-mv-command/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/03/awk-run-mv-command/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我现在有一个thinkphp文件夹，我需要将文件夹下面所有的<strong>.class.php</strong>修改为<strong>.php</strong></p>
-<p>我的执行方法是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./thinkphp2 -name *.class.php | awk -F <span class="string">"class."</span> <span class="string">'&#123;print "mv "$0 " " $1$2&#125;'</span> | sh</span><br></pre></td></tr></table></figure>
-
-<p>这句话的作用就是首先我们先找出所有文件夹里面后缀名为<strong>.class.php</strong>的文件，执行结果如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@192:~/windows$ find ./thinkphp2 -name *.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Net/Http.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Date.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/Stack.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Org/Util/String.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Auth.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Behavior.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Build.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Cache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Crypt.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Driver.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db/Lite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Exception.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Hook.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Image.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Log.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Model.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Page.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Route.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Storage.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Template.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Think.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Upload.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/Verify.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Think/View.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/App.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Controller.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/Model.class.php</span><br><span class="line">./thinkphp2/ThinkPHP/Mode/Lite/View.class.php</span><br></pre></td></tr></table></figure>
-
-<p>接下来我们对文件内容进行拆分，然后组合成正确的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@192:~/windows$ find ./thinkphp2 -name *.class.php | awk -F <span class="string">".class"</span> <span class="string">'&#123;print "mv " $0 " " $1$2&#125;'</span></span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/AgentCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BorisBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BrowserCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/BuildLiteBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CheckActionRouteBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CheckLangBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ChromeShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ContentReplaceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/CronRunBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/FireShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ParseTemplateBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ReadHtmlCacheBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/RobotCheckBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ShowPageTraceBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/ShowRuntimeBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/TokenBuildBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/UpgradeNoticeBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.class.php ./thinkphp2/ThinkPHP/Library/Behavior/WriteHtmlCacheBehavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Net/Http.class.php ./thinkphp2/ThinkPHP/Library/Org/Net/Http.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.class.php ./thinkphp2/ThinkPHP/Library/Org/Net/IpLocation.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/ArrayList.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/CodeSwitch.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Date.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Date.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Rbac.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/Stack.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/Stack.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Org/Util/String.class.php ./thinkphp2/ThinkPHP/Library/Org/Util/String.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/App.class.php ./thinkphp2/ThinkPHP/Library/Think/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Auth.class.php ./thinkphp2/ThinkPHP/Library/Think/Auth.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Behavior.class.php ./thinkphp2/ThinkPHP/Library/Think/Behavior.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Build.class.php ./thinkphp2/ThinkPHP/Library/Think/Build.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apachenote.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Apc.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Eaccelerator.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcached.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Memcachesae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Redis.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Shmop.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Sqlite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Wincache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache/Driver/Xcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Cache.class.php ./thinkphp2/ThinkPHP/Library/Think/Cache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/HproseController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/JsonRpcController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/RestController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/RpcController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller/YarController.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Controller.class.php ./thinkphp2/ThinkPHP/Library/Think/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Base64.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Crypt.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Des.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Think.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt/Driver/Xxtea.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Crypt.class.php ./thinkphp2/ThinkPHP/Library/Think/Crypt.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Firebird.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mongo.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Mysql.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Oracle.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Pgsql.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver/Sqlsrv.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Driver.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Driver.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db/Lite.class.php ./thinkphp2/ThinkPHP/Library/Think/Db/Lite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Dispatcher.class.php ./thinkphp2/ThinkPHP/Library/Think/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Exception.class.php ./thinkphp2/ThinkPHP/Library/Think/Exception.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Hook.class.php ./thinkphp2/ThinkPHP/Library/Think/Hook.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Gd.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/GIF.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.class.php ./thinkphp2/ThinkPHP/Library/Think/Image/Driver/Imagick.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Image.class.php ./thinkphp2/ThinkPHP/Library/Think/Image.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Log/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Log.class.php ./thinkphp2/ThinkPHP/Library/Think/Log.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/AdvModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/MergeModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/MongoModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/RelationModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.class.php ./thinkphp2/ThinkPHP/Library/Think/Model/ViewModel.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Model.class.php ./thinkphp2/ThinkPHP/Library/Think/Model.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Page.class.php ./thinkphp2/ThinkPHP/Library/Think/Page.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Route.class.php ./thinkphp2/ThinkPHP/Library/Think/Route.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Db.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Memcache.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.class.php ./thinkphp2/ThinkPHP/Library/Think/Session/Driver/Mysqli.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/File.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Storage.class.php ./thinkphp2/ThinkPHP/Library/Think/Storage.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Ease.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Lite.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Mobile.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smart.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/Driver/Smarty.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Cx.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib/Html.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.class.php ./thinkphp2/ThinkPHP/Library/Think/Template/TagLib.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Template.class.php ./thinkphp2/ThinkPHP/Library/Think/Template.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Think.class.php ./thinkphp2/ThinkPHP/Library/Think/Think.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/bcs.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/mimetypes.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs/requestcore.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Bcs.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Ftp.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Local.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu/QiniuStorage.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Qiniu.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Sae.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload/Driver/Upyun.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Upload.class.php ./thinkphp2/ThinkPHP/Library/Think/Upload.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/Verify.class.php ./thinkphp2/ThinkPHP/Library/Think/Verify.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Think/View.class.php ./thinkphp2/ThinkPHP/Library/Think/View.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.class.php ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/Smarty.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.class.php ./thinkphp2/ThinkPHP/Library/Vendor/Smarty/SmartyBC.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/App.class.php ./thinkphp2/ThinkPHP/Mode/Api/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/Controller.class.php ./thinkphp2/ThinkPHP/Mode/Api/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.class.php ./thinkphp2/ThinkPHP/Mode/Api/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/App.class.php ./thinkphp2/ThinkPHP/Mode/Lite/App.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Controller.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Controller.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Dispatcher.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/Model.class.php ./thinkphp2/ThinkPHP/Mode/Lite/Model.php</span><br><span class="line">mv ./thinkphp2/ThinkPHP/Mode/Lite/View.class.php ./thinkphp2/ThinkPHP/Mode/Lite/View.php</span><br></pre></td></tr></table></figure>
-
-<p><strong>awk</strong>中<strong>-F</strong>代表是分割符。这一段命令是我们使用分隔符将文件名拆开，然后打印是修改文件名的命令。</p>
-<p>最后一步，我们就是将输出的内容导入到<strong>sh</strong>执行即可。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./thinkphp3 -name *.class.php | awk -F <span class="string">"class."</span> <span class="string">'&#123;print "mv "$0 " " $1$2&#125;'</span> | sh</span><br></pre></td></tr></table></figure>
-
-<p>参考资料：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/ginvip/p/6352157.html" target="_blank" rel="noopener">Linux三剑客之awk命令</a></li>
-<li><a href="http://blog.csdn.net/limsai/article/details/8215134" target="_blank" rel="noopener">AWK 中运行MV命令</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1595,7 +1590,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

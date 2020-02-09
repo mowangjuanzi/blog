@@ -194,6 +194,237 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/laravel-validator-update-only-row/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/laravel-validator-update-only-row/" class="post-title-link" itemprop="url">Laravel Validator 更新时验证记录唯一的小技巧</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:34:33" itemprop="dateCreated datePublished" datetime="2017-11-17T16:34:33+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/laravel-validator-update-only-row/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/laravel-validator-update-only-row/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>比如我们在新增一篇文章的时候，我们一般会写如下的表单验证。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">'required|unique:article|max:255'</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>这样在新增的时候是没什么问题的，但是在更新的时候就出现了一个问题，就是当我们的title没有发生改变的时候，我们使用<code>unique</code>的时候，会将原来的记录行进行扫描，这样就会提示我们<code>该标题已经存在</code>。</p>
+<p>这样就比较坑爹了，那么有没有什么办法可以解决呢。办法是有的，其实很简单，我们只需要跟下面那样写就好了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$id = $request-&gt;input(<span class="string">"id"</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">"required|unique:article,id,&#123;$id&#125;|max:255"</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>这样的话在验证唯一的时候就会不去验证id=<code>$id</code>的记录。这样就可以防止我们刚才碰到的问题了。</p>
+<p>那么不管新增还是更新，套路就是这样了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$id = $request-&gt;input(<span class="string">"id"</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">$this</span>-&gt;validate($request, [</span><br><span class="line">    <span class="string">'title'</span> =&gt; <span class="string">"required|unique:article,id,&#123;$id&#125;|max:255"</span>,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($id &lt; <span class="number">1</span>) &#123; <span class="comment">// 新增</span></span><br><span class="line">    $info = <span class="keyword">new</span> Article();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    $info = Article::where(<span class="string">"id"</span>, $id)-&gt;first();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$info-&gt;title = $request-&gt;input(<span class="string">"title"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($info-&gt;save()) &#123;</span><br><span class="line">    <span class="comment">// 操作成功</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 操作失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Laravel真是最好的框架。</p>
+<p>哈哈</p>
+<blockquote>
+<p>参考网址：</p>
+</blockquote>
+<p><a href="https://stackoverflow.com/questions/23587833/laravel-validation-unique-on-update" target="_blank" rel="noopener">https://stackoverflow.com/questions/23587833/laravel-validation-unique-on-update</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-singleton-mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/php-singleton-mode/" class="post-title-link" itemprop="url">单例模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:33:52" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:52+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/php-singleton-mode/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/php-singleton-mode/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>好久没发表文章了。今天说一下单例模式。</p>
+<p>单例模式主要有以下几个关键点：</p>
+<ul>
+<li>对象应该可以被系统中的任何对象使用。</li>
+<li>对象不应该被存储在会被覆写的全局变量中。</li>
+<li>系统中不应超过一个要单例的对象。</li>
+</ul>
+<p>其实实现单例的方法很简单。比如我们现在声明一个类Config。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $configs = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($key, $value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;configs[$key] = $value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;configs[$key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的类还是无法使用的。因为构造函数已经被私有化了。我们需要一个静态方法和静态变量来间接的实例化对象。代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $configs = [];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> $instacne;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取实例化对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="keyword">self</span>::$instacne)) &#123;</span><br><span class="line">            <span class="keyword">self</span>::$instacne = <span class="keyword">new</span> <span class="keyword">self</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::$instacne;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($key, $value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;configs[$key] = $value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;configs[$key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用<code>Config::getInstanct()</code>来获取对象实例，并将其保存到<code>$instance</code>静态变量中。</p>
+<p>接下来，我们写一个demo，来检测代码是否能够正常工作：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$config = Config::getInstance();</span><br><span class="line"></span><br><span class="line">$config-&gt;set(<span class="string">"name"</span>, <span class="string">"matt"</span>);</span><br><span class="line"><span class="keyword">unset</span>($config);</span><br><span class="line"></span><br><span class="line">$config = Config::getInstance();</span><br><span class="line">var_dump($config-&gt;get(<span class="string">"name"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>执行即可得出结果正是我们最早写入的值。 好了，单例模式就介绍完成了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-php/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +456,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -358,7 +589,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,7 +692,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -654,7 +885,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -770,7 +1001,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -898,7 +1129,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -944,7 +1175,7 @@
 
       
           <blockquote>
-<p>最新版可参考：</p>
+<p>最新版可参考：<a href="/2018/01/01/ubuntu-set-static-ip/" title="ubuntu 17.10 设置固态IP">ubuntu 17.10 设置固态IP</a></p>
 </blockquote>
 <p>首先我们打开网卡配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
@@ -1016,7 +1247,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1155,7 +1386,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1217,261 +1448,6 @@
 <p>这样就正常了。</p>
 <blockquote>
 <p><a href="http://my.oschina.net/leejun2005/blog/74430" target="_blank" rel="noopener">http://my.oschina.net/leejun2005/blog/74430</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/python-3-6-install-scrapy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/python-3-6-install-scrapy/" class="post-title-link" itemprop="url">python3.6 安装scrapy</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:30:32" itemprop="dateCreated datePublished" datetime="2017-11-17T16:30:32+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/python-3-6-install-scrapy/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/python-3-6-install-scrapy/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我首先执行pip安装命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy</span><br></pre></td></tr></table></figure>
-
-<p>结果提示以下错误：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  Could not find a version that satisfies the requirement Twisted&gt;=13.1.0 (from scrapy) (from versions: )</span><br><span class="line">No matching distribution found for Twisted&gt;=13.1.0 (from scrapy)</span><br></pre></td></tr></table></figure>
-
-<p>因为pip3 暂时还没有Twisted，所以我们需要手动安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br><span class="line">wget -c https://twistedmatrix.com/Releases/Twisted/16.6/Twisted-16.6.0.tar.bz2</span><br></pre></td></tr></table></figure>
-
-<p>这个包国内下载有些慢，我建议使用迅雷进行下载，然后通过<code>rz</code>命令进行上传。</p>
-<p>下面我们进行解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar jxf Twisted-16.6.0.tar.bz2</span><br></pre></td></tr></table></figure>
-
-<p>提示下列错误：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar (child): bzip2：无法 exec: 没有那个文件或目录</span><br><span class="line">tar (child): Error is not recoverable: exiting now</span><br><span class="line">tar: Child returned status 2</span><br><span class="line">tar: Error is not recoverable: exiting now</span><br></pre></td></tr></table></figure>
-
-<p>说明我们缺少bzip2这个类文件，我们需要进行安装类库：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install bzip2 -y</span><br></pre></td></tr></table></figure>
-
-<p>我们回过头去继续执行刚才的解压命令，解压成功后：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Twisted-16.6.0</span><br><span class="line">python3 setup.py install</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-
-<p>提示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Using /usr/local/python3/lib/python3.6/site-packages</span><br><span class="line">Finished processing dependencies for Twisted==16.6.0</span><br></pre></td></tr></table></figure>
-
-<p>这样就表示安装成功了。现在我们开始执行最开始安装<code>scrapy</code>的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy</span><br></pre></td></tr></table></figure>
-
-<p>如果显示如下信息：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully installed PyDispatcher-2.0.5 attrs-16.3.0 cffi-1.9.1 cryptography-1.7.2 cssselect-1.0.1 idna-2.2 lxml-3.7.2 parsel-1.1.0 pyOpenSSL-16.2.0 pyasn1-0.1.9 pyasn1-modules-0.0.8 pycparser-2.17 queuelib-1.4.2 scrapy-1.3.0 service-identity-16.0.0 six-1.10.0 w3lib-1.16.0</span><br></pre></td></tr></table></figure>
-
-<p>则表示已经安装成功了。</p>
-<p>我们测试一下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]# scrapy version</span><br><span class="line">-bash: scrapy: 未找到命令</span><br></pre></td></tr></table></figure>
-
-<p>这个很奇怪，我们使用<code>find</code>命令找一下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ Twisted-16.6.0]# find / -name scrapy</span><br><span class="line">/usr/local/python3/bin/scrapy</span><br><span class="line">/usr/local/python3/lib/python3.6/site-packages/scrapy</span><br></pre></td></tr></table></figure>
-
-<p>我们创建一个软连接：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/local/python3/bin/scrapy /usr/local/bin/scrapy</span><br></pre></td></tr></table></figure>
-
-<p>然后我们继续执行一下刚才查看版本的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]# scrapy version</span><br><span class="line">Scrapy 1.3.0</span><br></pre></td></tr></table></figure>
-
-<p>这样就表示安装成功了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/uwsgi-command-manager/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/uwsgi-command-manager/" class="post-title-link" itemprop="url">uwsgi 命令管理</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:30:00" itemprop="dateCreated datePublished" datetime="2017-11-17T16:30:00+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 22:26:00" itemprop="dateModified" datetime="2020-02-08T22:26:00+08:00">2020-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/uwsgi-command-manager/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/uwsgi-command-manager/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h2><p>首先先看看我的<code>mysite.ini</code>文件内容:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/data/custom/mysite</span><br><span class="line"><span class="attr">module</span>=mysite.wsgi:application</span><br><span class="line"><span class="attr">master</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">pidfile</span>=/tmp/project-mysite.pid</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">max-requests</span>=<span class="number">5000</span></span><br><span class="line"><span class="comment">#daemonize=/var/log/uwsgi/project-mysite.log</span></span><br><span class="line"><span class="attr">http</span>=<span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8002</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8000</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>我们主要看<code>pidfile</code>，它指定的位置是：<strong>/tmp/project-mysite.pid</strong></p>
-<p>然后启动命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini mysite.ini</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h2><blockquote>
-<p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --reload /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
-
-<h2 id="停止命令"><a href="#停止命令" class="headerlink" title="停止命令"></a>停止命令</h2><blockquote>
-<p>下面命令的<code>pid</code>文件就是我们启动时指定的<code>pid</code>文件。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --stop /tmp/project-mysite.pid</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>参考：<a href="https://uwsgi-docs.readthedocs.io/en/latest/Management.html" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/Management.html</a></p>
 </blockquote>
 
       
@@ -1560,7 +1536,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
