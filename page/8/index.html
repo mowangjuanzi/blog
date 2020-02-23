@@ -194,6 +194,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/python-coding-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/python-coding-error/" class="post-title-link" itemprop="url">记Python中一个编码的错误</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:31:09" itemprop="dateCreated datePublished" datetime="2017-11-17T16:31:09+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/python-coding-error/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/python-coding-error/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>提示：这个应该仅仅是在Python2中出现这个问题。因为Python2的默认编码是<code>ascii</code>，Python3的默认编码已经编程了<code>utf-8</code>。</p>
+</blockquote>
+<p>我在Linux中使用make html的时候，提示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnicodeDecodeError: <span class="string">'ascii'</span> codec can<span class="string">'t decode byte 0xe5 in position 0: ordinal not in range(128)</span></span><br></pre></td></tr></table></figure>
+
+<p>一直不知道是什么原因，通过查阅一个资料，才知道，原来是编码问题。</p>
+<p>字符串在进行unicode的时候，要使用什么编码格式进行转换呢？utf-8？gb2312？utf-16？这个时候就要根据 <code>sys.getdefaultencoding()</code>来确定了。而<code>sys.getdefaultencoding()</code>是<code>ascii</code>编码，在ascii字符表中不存在0xe5这种大于128的字符存在。所以当然会报错。</p>
+<p>可以这样修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line">reload(sys) </span><br><span class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>而因为我是使用的make html，通过查找，发现是<code>/usr/bin/sphinx-build</code>这个文件在捣鬼。所以我修改这个文件就好了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys) <span class="comment">#新添加的</span></span><br><span class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>) <span class="comment">#新添加的</span></span><br><span class="line"><span class="keyword">from</span> sphinx <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    sys.argv[<span class="number">0</span>] = re.sub(<span class="string">r'(-script\.pyw|\.exe)?$'</span>, <span class="string">''</span>, sys.argv[<span class="number">0</span>])</span><br><span class="line">    sys.exit(main())</span><br></pre></td></tr></table></figure>
+
+<p>这样就正常了。</p>
+<blockquote>
+<p><a href="http://my.oschina.net/leejun2005/blog/74430" target="_blank" rel="noopener">http://my.oschina.net/leejun2005/blog/74430</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/python-3-6-install-scrapy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -365,7 +478,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -480,7 +593,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -596,7 +709,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -704,7 +817,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -827,7 +940,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -934,7 +1047,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1084,7 +1197,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1197,7 +1310,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1260,263 +1373,6 @@
 </li>
 </ul>
 <p>默认模式是：<code>SplDoublyLinkedList::IT_MODE_FIFO | SplDoublyLinkedList::IT_MODE_KEEP</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/elasticsearch-install-centos/" class="post-title-link" itemprop="url">Elasticsearch 教程（1）安装【CentOS版】</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:27:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:54+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/elasticsearch-install-centos/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-install-centos/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/zip-targz.html" target="_blank" rel="noopener">.zip或者.tar.gz安装Elasticsearch</a>。</p>
-<p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先编辑<code>/etc/yum.repos.d/elasticsearch.repo</code>文件：</p>
-<p>将以下内容放入到上面打开的文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span><br><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span><br><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">type</span>=rpm-md</span><br></pre></td></tr></table></figure>
-
-<p><code>:wq</code>保存，然后执行以下安装命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>这样安装就完成了。</p>
-<h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用两种命令方式进行Elasticsearch进行管理</p>
-<h3 id="SysV-init"><a href="#SysV-init" class="headerlink" title="SysV init"></a>SysV <code>init</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span><br><span class="line">chkconfig elasticsearch on</span><br></pre></td></tr></table></figure>
-
-<p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
-
-<p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span><br></pre></td></tr></table></figure>
-
-<h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
-
-<h2 id="记录的日志"><a href="#记录的日志" class="headerlink" title="记录的日志"></a>记录的日志</h2><p>日志消息记录位置是：<strong>/var/log/elasticsearch/</strong>。</p>
-<h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
-
-<p>然后执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET '127.0.0.1:9200/?pretty'</span><br></pre></td></tr></table></figure>
-
-<p>如果返回的数据如下所示，即表示安装成功了：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"shcGs0R"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"k71Pk416RB6HTvdh9xuBFA"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"5.1.1"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"5395e21"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2016-12-06T12:36:15.409Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"6.3.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
-</blockquote>
-<h2 id="配置-Elasticsearch"><a href="#配置-Elasticsearch" class="headerlink" title="配置 Elasticsearch"></a>配置 Elasticsearch</h2><p>Elasticsearch 默认情况下从 <strong>/etc/elasticsearch/elasticsearch.yml</strong> 文件中加载它的配置。</p>
-<p>RPM也又一个系统配置文件（<strong>/etc/sysconfig/elasticsearch</strong>），它允许你设置以下参数：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ES_USER</td>
-<td align="center">运行的用户，默认是<strong>elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">ES_GROUP</td>
-<td align="center">运行的组，默认是<strong>elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">JAVA_HOME</td>
-<td align="center">设置要使用的自定义Java路径</td>
-</tr>
-<tr>
-<td align="center">MAX_OPEN_FILES</td>
-<td align="center">打开文件的最大数量，默认<strong>65536</strong></td>
-</tr>
-<tr>
-<td align="center">MAX_LOCKED_MEMORY</td>
-<td align="center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
-</tr>
-<tr>
-<td align="center">MAX_MAP_COUNT</td>
-<td align="center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt" target="_blank" rel="noopener">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
-</tr>
-<tr>
-<td align="center">LOG_DIR</td>
-<td align="center">日志目录，默认为：<strong>/var/log/elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">DATA_DIR</td>
-<td align="center">数据目录，默认为：<strong>/var/lib/elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">CONF_DIR</td>
-<td align="center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：<strong>/etc/elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">ES_JAVA_OPTS</td>
-<td align="center">Any additional JVM system properties you may want to apply.</td>
-</tr>
-<tr>
-<td align="center">RESTART_ON_UPGRADE</td>
-<td align="center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
-</tr>
-</tbody></table>
-<h2 id="RPM的目录布局"><a href="#RPM的目录布局" class="headerlink" title="RPM的目录布局"></a>RPM的目录布局</h2><table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">描述</th>
-<th align="center">默认路径</th>
-<th align="center">设置</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">home</td>
-<td align="center">Elasticsearch家目录或者<strong>$ES_HOME</strong></td>
-<td align="center"><strong>/usr/share/elasticsearch</strong></td>
-<td align="center">&nbsp;</td>
-</tr>
-<tr>
-<td align="center">bin</td>
-<td align="center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
-<td align="center"><strong>/usr/share/elasticsearch/bin</strong></td>
-<td align="center">&nbsp;</td>
-</tr>
-<tr>
-<td align="center">conf</td>
-<td align="center">配置文件，包含<strong>elasticsearch.yml</strong></td>
-<td align="center"><strong>/etc/elasticsearch</strong></td>
-<td align="center"><strong>path.conf</strong></td>
-</tr>
-<tr>
-<td align="center">conf</td>
-<td align="center">环境变量，包含 heap 大小，文件描述符。</td>
-<td align="center"><strong>/etc/sysconfig/elasticsearch</strong></td>
-<td align="center">&nbsp;</td>
-</tr>
-<tr>
-<td align="center">data</td>
-<td align="center">在节点上分配的每个索引/分片的数据文件的位置。可以容纳多个位置。</td>
-<td align="center"><strong>/var/lib/elasticsearch</strong></td>
-<td align="center"><strong>path.data</strong></td>
-</tr>
-<tr>
-<td align="center">logs</td>
-<td align="center">日志文件位置。</td>
-<td align="center"><strong>/var/log/elasticsearch</strong></td>
-<td align="center"><strong>path.logs</strong></td>
-</tr>
-<tr>
-<td align="center">plugins</td>
-<td align="center">插件文件位置. 每个插件将包含在一个子目录中.</td>
-<td align="center"><strong>/usr/share/elasticsearch/plugins</strong></td>
-<td align="center">&nbsp;</td>
-</tr>
-<tr>
-<td align="center">repo</td>
-<td align="center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
-<td align="center">Not configured</td>
-<td align="center"><strong>path.repo</strong></td>
-</tr>
-<tr>
-<td align="center">script</td>
-<td align="center">脚本文件的位置。</td>
-<td align="center"><strong>/etc/elasticsearch/scripts</strong></td>
-<td align="center"><strong>path.scripts</strong></td>
-</tr>
-</tbody></table>
 
       
     </div>

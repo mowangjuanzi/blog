@@ -194,6 +194,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/11/11/install-docker-composer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/11/install-docker-composer/" class="post-title-link" itemprop="url">docker-compose安装</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-11 21:49:51" itemprop="dateCreated datePublished" datetime="2018-11-11T21:49:51+08:00">2018-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/11/11/install-docker-composer/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/11/install-docker-composer/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在安装docker-compose之前必须先检查是否已经安装好了docker。具体安装教程可阅读 <a href="/2018/02/07/docker-study-notes-1-install/" title="docker学习笔记之一 安装">docker学习笔记之一 安装</a>。</p>
+<p>运行此命令下载最新版本的docker-compose</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们上面下载的版本是1.23.1。这个可能很快就过期了，这个时候可以查看<a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">Releases</a>页面了解最新发布的版本，然后将最新发布的版本号替换上面命令中已知的版本号进行下载。</p>
+<p>接下来我们对其设置执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>好了，这样就安装完成了。是不是非常简单。</p>
+<p>最后我们检查看版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose --version</span><br><span class="line">docker-compose version 1.23.1, build b02f1306</span><br></pre></td></tr></table></figure>
+
+<p>end.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/11/11/ubuntu-apt-install-lrzsz/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +333,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,7 +441,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -567,7 +675,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -719,7 +827,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -861,7 +969,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -972,7 +1080,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1155,7 +1263,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1258,7 +1366,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1371,7 +1479,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1502,133 +1610,6 @@
 <p>  默认为false，如果将其设置为true，则表示允许root用户使用空密码启动。但是在非开发环境设置此变量为true是不安全的，因为他会让MySQL实例完全不受保护，从而允许任何人都可以获得弯针的超级用户访问权限。最好试用默认设置。</p>
 </li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/09/18/laravel-db-timezone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/18/laravel-db-timezone/" class="post-title-link" itemprop="url">laravel中DB_TIIMEZONE中的坑</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-18 10:57:58" itemprop="dateCreated datePublished" datetime="2018-09-18T10:57:58+08:00">2018-09-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/09/18/laravel-db-timezone/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/18/laravel-db-timezone/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先介绍一下环境。</p>
-<p>数据库：RDS(阿里云)-5.6<br>PHP：PHP7.2 + Lumen<br>系统：Ubuntu</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;query(<span class="string">"select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们有一条上面的查询语句。在开发的时候没有任何问题，但是代码在上线后，突然爆出不能正确的查出相应的数据。但是数据确实存在。</p>
-<p>当时我们处理这个问题是凌晨1点，并且是在家里。考虑可能是时区问题，但是因为太晚了，所以我们使用了另外一种方式去避免这个问题。并没有追查这个事情的具体原因。</p>
-<p>正好白天有一点空闲，所以准备排查一下这个问题。</p>
-<p>我的第一考虑就是时区的问题，但是我自己执行以下的查询语句，却是发现没有问题。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;queru(<span class="string">"select now()"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所以我把目标转向了lumen这个框架，我通过查询源码，发现有这么一段源码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file_path: vendor/illuminate/database/Connectors/MySqlConnector.php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Set the timezone on the connection.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \PDO  $connection</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array  $config</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">configureTimezone</span><span class="params">($connection, array $config)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($config[<span class="string">'timezone'</span>])) &#123;</span><br><span class="line">        $connection-&gt;prepare(<span class="string">'set time_zone="'</span>.$config[<span class="string">'timezone'</span>].<span class="string">'"'</span>)-&gt;execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后我就去看我的数据配置，找到这里：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file path: config/database.php</span></span><br><span class="line"><span class="string">'mysql'</span> =&gt; [</span><br><span class="line">    <span class="string">'driver'</span>    =&gt; <span class="string">'mysql'</span>,</span><br><span class="line">    <span class="string">'host'</span>      =&gt; env(<span class="string">'DB_HOST'</span>, <span class="string">'localhost'</span>),</span><br><span class="line">    <span class="string">'port'</span>      =&gt; env(<span class="string">'DB_PORT'</span>, <span class="number">3306</span>),</span><br><span class="line">    <span class="string">'database'</span>  =&gt; env(<span class="string">'DB_DATABASE'</span>, <span class="string">'forge'</span>),</span><br><span class="line">    <span class="string">'username'</span>  =&gt; env(<span class="string">'DB_USERNAME'</span>, <span class="string">'forge'</span>),</span><br><span class="line">    <span class="string">'password'</span>  =&gt; env(<span class="string">'DB_PASSWORD'</span>, <span class="string">''</span>),</span><br><span class="line">    <span class="string">'charset'</span>   =&gt; env(<span class="string">'DB_CHARSET'</span>, <span class="string">'utf8mb4'</span>),</span><br><span class="line">    <span class="string">'collation'</span> =&gt; env(<span class="string">'DB_COLLATION'</span>, <span class="string">'utf8mb4_unicode_ci'</span>),</span><br><span class="line">    <span class="string">'prefix'</span>    =&gt; env(<span class="string">'DB_PREFIX'</span>, <span class="string">''</span>),</span><br><span class="line">    <span class="string">'timezone'</span>  =&gt; env(<span class="string">'DB_TIMEZONE'</span>, <span class="string">'+00:00'</span>), <span class="comment">// 注意看这里</span></span><br><span class="line">    <span class="string">'strict'</span>    =&gt; env(<span class="string">'DB_STRICT_MODE'</span>, <span class="keyword">false</span>),</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-
-<p>然后再次修改自己的SQL进行尝试：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$time = date(<span class="string">'Ymd'</span>);</span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"dns"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">$data = $pdo-&gt;query(<span class="string">"set time_zone= '+00:00'; select * from table where date_format(from_unixtime(addtime),'%Y%m%d') = '&#123;$time&#125;'"</span>);</span><br><span class="line"><span class="keyword">foreach</span>($data <span class="keyword">as</span> $item) &#123;</span><br><span class="line">    var_dump($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>发现时间就会变成CST时间了。</p>
-<p>这样在该框架的路由中增加了该方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">"/test"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> \DB::select(<span class="string">"select now()"</span>)-&gt;toArray();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>发现返回的时间也是CST时间了。所以真相大白了。</p>
-<p>我们上班的时间是白天十点以后，这样当天的时间减去八个小时候再去计算，最上面写的SQL中的where条件还是成立的，但是凌晨一点去计算的时候，却是查询的昨天的数据，所以where条件就不查询不到正确的数据了。</p>
-<p>这个事情让我明白，要仔细了解一个框架，说不定一个小小的细节被遗漏，就会造成不可预料的后果。</p>
 
       
     </div>

@@ -194,6 +194,263 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/17/elasticsearch-install-centos/" class="post-title-link" itemprop="url">Elasticsearch 教程（1）安装【CentOS版】</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-17 16:27:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:54+08:00">2017-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/elasticsearch-install-centos/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/elasticsearch-install-centos/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/zip-targz.html" target="_blank" rel="noopener">.zip或者.tar.gz安装Elasticsearch</a>。</p>
+<p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先编辑<code>/etc/yum.repos.d/elasticsearch.repo</code>文件：</p>
+<p>将以下内容放入到上面打开的文件中：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span><br><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span><br><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">type</span>=rpm-md</span><br></pre></td></tr></table></figure>
+
+<p><code>:wq</code>保存，然后执行以下安装命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p>这样安装就完成了。</p>
+<h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用两种命令方式进行Elasticsearch进行管理</p>
+<h3 id="SysV-init"><a href="#SysV-init" class="headerlink" title="SysV init"></a>SysV <code>init</code></h3><p>设置开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span><br><span class="line">chkconfig elasticsearch on</span><br></pre></td></tr></table></figure>
+
+<p>启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
+
+<p>关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p>启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p>关闭：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
+
+<h2 id="记录的日志"><a href="#记录的日志" class="headerlink" title="记录的日志"></a>记录的日志</h2><p>日志消息记录位置是：<strong>/var/log/elasticsearch/</strong>。</p>
+<h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
+
+<p>然后执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET '127.0.0.1:9200/?pretty'</span><br></pre></td></tr></table></figure>
+
+<p>如果返回的数据如下所示，即表示安装成功了：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"shcGs0R"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"k71Pk416RB6HTvdh9xuBFA"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"5.1.1"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"5395e21"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2016-12-06T12:36:15.409Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"6.3.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
+</blockquote>
+<h2 id="配置-Elasticsearch"><a href="#配置-Elasticsearch" class="headerlink" title="配置 Elasticsearch"></a>配置 Elasticsearch</h2><p>Elasticsearch 默认情况下从 <strong>/etc/elasticsearch/elasticsearch.yml</strong> 文件中加载它的配置。</p>
+<p>RPM也又一个系统配置文件（<strong>/etc/sysconfig/elasticsearch</strong>），它允许你设置以下参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ES_USER</td>
+<td align="center">运行的用户，默认是<strong>elasticsearch</strong></td>
+</tr>
+<tr>
+<td align="center">ES_GROUP</td>
+<td align="center">运行的组，默认是<strong>elasticsearch</strong></td>
+</tr>
+<tr>
+<td align="center">JAVA_HOME</td>
+<td align="center">设置要使用的自定义Java路径</td>
+</tr>
+<tr>
+<td align="center">MAX_OPEN_FILES</td>
+<td align="center">打开文件的最大数量，默认<strong>65536</strong></td>
+</tr>
+<tr>
+<td align="center">MAX_LOCKED_MEMORY</td>
+<td align="center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
+</tr>
+<tr>
+<td align="center">MAX_MAP_COUNT</td>
+<td align="center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt" target="_blank" rel="noopener">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
+</tr>
+<tr>
+<td align="center">LOG_DIR</td>
+<td align="center">日志目录，默认为：<strong>/var/log/elasticsearch</strong></td>
+</tr>
+<tr>
+<td align="center">DATA_DIR</td>
+<td align="center">数据目录，默认为：<strong>/var/lib/elasticsearch</strong></td>
+</tr>
+<tr>
+<td align="center">CONF_DIR</td>
+<td align="center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：<strong>/etc/elasticsearch</strong></td>
+</tr>
+<tr>
+<td align="center">ES_JAVA_OPTS</td>
+<td align="center">Any additional JVM system properties you may want to apply.</td>
+</tr>
+<tr>
+<td align="center">RESTART_ON_UPGRADE</td>
+<td align="center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
+</tr>
+</tbody></table>
+<h2 id="RPM的目录布局"><a href="#RPM的目录布局" class="headerlink" title="RPM的目录布局"></a>RPM的目录布局</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+<th align="center">默认路径</th>
+<th align="center">设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">home</td>
+<td align="center">Elasticsearch家目录或者<strong>$ES_HOME</strong></td>
+<td align="center"><strong>/usr/share/elasticsearch</strong></td>
+<td align="center">&nbsp;</td>
+</tr>
+<tr>
+<td align="center">bin</td>
+<td align="center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
+<td align="center"><strong>/usr/share/elasticsearch/bin</strong></td>
+<td align="center">&nbsp;</td>
+</tr>
+<tr>
+<td align="center">conf</td>
+<td align="center">配置文件，包含<strong>elasticsearch.yml</strong></td>
+<td align="center"><strong>/etc/elasticsearch</strong></td>
+<td align="center"><strong>path.conf</strong></td>
+</tr>
+<tr>
+<td align="center">conf</td>
+<td align="center">环境变量，包含 heap 大小，文件描述符。</td>
+<td align="center"><strong>/etc/sysconfig/elasticsearch</strong></td>
+<td align="center">&nbsp;</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">在节点上分配的每个索引/分片的数据文件的位置。可以容纳多个位置。</td>
+<td align="center"><strong>/var/lib/elasticsearch</strong></td>
+<td align="center"><strong>path.data</strong></td>
+</tr>
+<tr>
+<td align="center">logs</td>
+<td align="center">日志文件位置。</td>
+<td align="center"><strong>/var/log/elasticsearch</strong></td>
+<td align="center"><strong>path.logs</strong></td>
+</tr>
+<tr>
+<td align="center">plugins</td>
+<td align="center">插件文件位置. 每个插件将包含在一个子目录中.</td>
+<td align="center"><strong>/usr/share/elasticsearch/plugins</strong></td>
+<td align="center">&nbsp;</td>
+</tr>
+<tr>
+<td align="center">repo</td>
+<td align="center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
+<td align="center">Not configured</td>
+<td align="center"><strong>path.repo</strong></td>
+</tr>
+<tr>
+<td align="center">script</td>
+<td align="center">脚本文件的位置。</td>
+<td align="center"><strong>/etc/elasticsearch/scripts</strong></td>
+<td align="center"><strong>path.scripts</strong></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-shell-install-php-composer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +482,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,7 +616,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -475,7 +732,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -588,7 +845,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -707,7 +964,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -822,7 +1079,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -931,7 +1188,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1096,7 +1353,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1205,7 +1462,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1307,203 +1564,6 @@
 
 <p>这样就正常了。Slave_IO_State 显示正在等待从主库传递过来的事件，这意味着I/O线程已经读取了主库所有的事件。</p>
 <p>到此，一个全新的复制就搞定了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/17/yum-install-mysql/" class="post-title-link" itemprop="url">yum 安装 mysql</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-17 16:23:11" itemprop="dateCreated datePublished" datetime="2017-11-17T16:23:11+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2017/11/17/yum-install-mysql/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/yum-install-mysql/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>提示：以下命令都是在 <code>root</code> 账户下执行的命令。</p>
-</blockquote>
-<p>每次安装mysql的时候都非常痛苦。因为至少要编译半个小时，在想有没有什么简单的办法，我一查官方文档，真让我看到一个简单的yum的安装办法。现在步骤如下：</p>
-<h2 id="删除已经存在的mysql"><a href="#删除已经存在的mysql" class="headerlink" title="删除已经存在的mysql"></a>删除已经存在的mysql</h2><p>我们执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mysql</span><br><span class="line">rpm -e mysql mysql-libs</span><br><span class="line">yum -y remove mysql-server mysql mysql-libs</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置源"><a href="#配置源" class="headerlink" title="配置源"></a>配置源</h2><p>首先我们需要获取分发源的地址（<a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">点击此处</a>）。我现在提供 Red Hat/Centos 连接如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Red Hat7/CentOS7</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Red Hat6/CentOS6</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Red Hat5/CentOS5</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-el5-7.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Fedora 24</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-fc24-9.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Fedora 23</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-fc23-9.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Fedora 22</span></span><br><span class="line">http://dev.mysql.com/get/mysql57-community-release-fc22-8.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<p>比如说我现在的系统是CentOS7，那么我就使用如下方法进行安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br><span class="line">获取http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br><span class="line">警告：/var/tmp/rpm-tmp.yIWWrJ: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY</span><br><span class="line">准备中...                          ################################# [100%]</span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:mysql57-community-release-el7-9  ################################# [100%]</span><br></pre></td></tr></table></figure>
-
-<p>我们可以通过以下方法检测是否已经成功安装了rpm源：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist enabled | grep "mysql.*-community.*"</span><br><span class="line">mysql-connectors-community/x86_64        MySQL Connectors Community           24</span><br><span class="line">mysql-tools-community/x86_64             MySQL Tools Community                38</span><br><span class="line">mysql57-community/x86_64                 MySQL 5.7 Community Server          146</span><br></pre></td></tr></table></figure>
-
-<p>出现最后一行内容就表示已经安装成功了。</p>
-<h2 id="选择安装版本"><a href="#选择安装版本" class="headerlink" title="选择安装版本"></a>选择安装版本</h2><blockquote>
-<p>注意，默认安装源之后自动开启5.7系列的安装。如果你要安装的MySQL低于5.7那么可以通过本节来进行修改源，否则跳过本节即可。</p>
-</blockquote>
-<p>当你使用此方法进行安装MySQL的时候，会默认安装mysql的最新稳定版本（在我现在安装的时候，最新版本为5.7.16）。如果这就是你想要安装的，那么你就可以忽略这步了。如果想要安装以前的版本，比如5.6或者5.5，那么就可以用下面的方法来配置了。</p>
-<p>首先我们先查看MySQL的那些源被禁用或者启用了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep mysql</span><br><span class="line">mysql-connectors-community/x86_64 MySQL Connectors Community         启用:    24</span><br><span class="line">mysql-connectors-community-source MySQL Connectors Community - Sourc 禁用</span><br><span class="line">mysql-tools-community/x86_64      MySQL Tools Community              启用:    38</span><br><span class="line">mysql-tools-community-source      MySQL Tools Community - Source     禁用</span><br><span class="line">mysql-tools-preview/x86_64        MySQL Tools Preview                禁用</span><br><span class="line">mysql-tools-preview-source        MySQL Tools Preview - Source       禁用</span><br><span class="line">mysql55-community/x86_64          MySQL 5.5 Community Server         禁用</span><br><span class="line">mysql55-community-source          MySQL 5.5 Community Server - Sourc 禁用</span><br><span class="line">mysql56-community/x86_64          MySQL 5.6 Community Server         禁用</span><br><span class="line">mysql56-community-source          MySQL 5.6 Community Server - Sourc 禁用</span><br><span class="line">mysql57-community/x86_64          MySQL 5.7 Community Server         启用:   146</span><br><span class="line">mysql57-community-source          MySQL 5.7 Community Server - Sourc 禁用</span><br><span class="line">mysql80-community/x86_64          MySQL 8.0 Community Server         禁用</span><br><span class="line">mysql80-community-source          MySQL 8.0 Community Server - Sourc 禁用</span><br></pre></td></tr></table></figure>
-
-<p>比如我们看到现在启用的是5.7版本系列的。我们需要安装的是5.6系列的。那么我们就可以执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum-config-manager --disable mysql57-community</span><br><span class="line">-bash: yum-config-manager: 未找到命令</span><br></pre></td></tr></table></figure>
-
-<p>提示没有找到命令，那么我们就需要安装执行以下命令来安装一个包：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
-
-<p>执行成功之后就好了，那么我们继续执行上面的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --disable mysql57-community</span><br><span class="line">yum-config-manager --enable mysql56-community</span><br></pre></td></tr></table></figure>
-
-<p>我们看看现在的系统配置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist enabled | grep mysql</span><br><span class="line">mysql-connectors-community/x86_64        MySQL Connectors Community           24</span><br><span class="line">mysql-tools-community/x86_64             MySQL Tools Community                38</span><br><span class="line">mysql56-community/x86_64                 MySQL 5.6 Community Server          289</span><br></pre></td></tr></table></figure>
-
-<p>好了。下面就可以进行安装MySQL了。</p>
-<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><p>我这里也是使用MySQL5.7来安装的。</p>
-<p>我们只需要执行以下命令就OK了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-community-server</span><br></pre></td></tr></table></figure>
-
-<p>#MySQL 管理命令</p>
-<p>使用下面的命令启动MySQL：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service mysqld start</span><br><span class="line">Redirecting to /bin/systemctl start  mysqld.service</span><br></pre></td></tr></table></figure>
-
-<p>只要没有错误信息就表示已经正常启动了。</p>
-<p>现在我们看以下MySQL的状态：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service mysqld status</span><br><span class="line">Redirecting to /bin/systemctl status  mysqld.service</span><br><span class="line">● mysqld.service - MySQL Server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 一 2016-11-14 12:34:44 CST; 5min ago</span><br><span class="line">  Process: 35494 ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid $MYSQLD_OPTS (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 35421 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 35498 (mysqld)</span><br><span class="line">   CGroup: /system.slice/mysqld.service</span><br><span class="line">           └─35498 /usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid</span><br><span class="line"></span><br><span class="line">11月 14 12:34:39 localhost.localdomain systemd[1]: Starting MySQL Server...</span><br><span class="line">11月 14 12:34:44 localhost.localdomain systemd[1]: Started MySQL Server.</span><br></pre></td></tr></table></figure>
-
-<p>这样表示已经正常启动了。</p>
-<p>停止：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld stop</span><br></pre></td></tr></table></figure>
-
-<p>重启：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改MySQL密码"><a href="#修改MySQL密码" class="headerlink" title="修改MySQL密码"></a>修改MySQL密码</h2><p>我们首先查找一下MySQL的密码：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep 'temporary password' /var/log/mysqld.log</span><br><span class="line">2016-11-14T04:34:41.742516Z 1 [Note] A temporary password is generated for root@localhost: sNKz9yEdzw%/</span><br></pre></td></tr></table></figure>
-
-<p>我们就可以看到我们的密码就是： <strong>sNKz9yEdzw%/</strong>。</p>
-<p>首先启动MySQL client:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 2</span><br><span class="line">Server version: 5.7.16</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>首先我们先查看一下数据库：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">ERROR 1820 (HY000): You must <span class="keyword">reset</span> your <span class="keyword">password</span> <span class="keyword">using</span> <span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="keyword">statement</span> <span class="keyword">before</span> executing this statement.</span><br></pre></td></tr></table></figure>
-
-<p>这里提示我们需要修改密码：</p>
-<p>这里MySQL安装了 <a href="http://dev.mysql.com/doc/refman/5.7/en/validate-password-plugin.html" target="_blank" rel="noopener">validate_password</a>。这个插件要求密码至少包含一个大写字母，一个小写字母，一个数字和一个特殊字符，并且密码长度至少8个字符。</p>
-<p>比如我们定义密码为 <strong>Pw12345.</strong>。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set password = password('Pw12345.');</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<p>然后我们就可以正常的执行SQL命令了：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">4 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用Yum-安装其它的MySQL产品和组件"><a href="#使用Yum-安装其它的MySQL产品和组件" class="headerlink" title="使用Yum 安装其它的MySQL产品和组件"></a>使用Yum 安装其它的MySQL产品和组件</h2><p>我们查看一下有什么可以安装的MySQL产品和组件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum --disablerepo=\* --enablerepo='mysql*-community*' list available</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">可安装的软件包</span><br><span class="line">mysql-community-bench.x86_64                                     5.6.34-2.el7                             mysql56-community         </span><br><span class="line">mysql-community-client.i686                                      8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-client.x86_64                                    8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-common.i686                                      8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-common.x86_64                                    8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-devel.i686                                       8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-devel.x86_64                                     8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded.i686                                    8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded.x86_64                                  8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded-compat.i686                             8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded-compat.x86_64                           8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded-devel.i686                              8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-embedded-devel.x86_64                            8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-libs.i686                                        8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-libs.x86_64                                      8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-libs-compat.i686                                 8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-libs-compat.x86_64                               8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-release.noarch                                   el7-7                                    mysql57-community         </span><br><span class="line">mysql-community-server.x86_64                                    8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-community-test.x86_64                                      8.0.0-0.1.dmr.el7                        mysql80-community         </span><br><span class="line">mysql-connector-odbc.x86_64                                      5.3.6-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-odbc-debuginfo.x86_64                            5.3.6-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-odbc-setup.x86_64                                5.3.6-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-python.noarch                                    2.0.4-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-python.x86_64                                    2.1.4-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-python-cext.x86_64                               2.1.4-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-connector-python-debuginfo.x86_64                          2.1.4-1.el7                              mysql-connectors-community</span><br><span class="line">mysql-router.x86_64                                              2.0.3-1.el7                              mysql-tools-community     </span><br><span class="line">mysql-router-debuginfo.x86_64                                    2.0.3-1.el7                              mysql-tools-community     </span><br><span class="line">mysql-utilities.noarch                                           1.6.4-1.el7                              mysql-tools-community     </span><br><span class="line">mysql-utilities-extra.noarch                                     1.5.6-1.el7                              mysql-tools-community     </span><br><span class="line">mysql-workbench-community.x86_64                                 6.3.8-1.el7                              mysql-tools-community     </span><br><span class="line">mysql-workbench-community-debuginfo.x86_64                       6.3.8-1.el7                              mysql-tools-community</span><br></pre></td></tr></table></figure>
-
-<p>我们可以使用以下命令来安装任何一个软件包，替换 <em>package-name</em> 为你要安装的软件包的名字：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install package-name</span><br></pre></td></tr></table></figure>
-
-<p>例如：我们要安装 <code>mysql-community-libs</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-community-libs</span><br></pre></td></tr></table></figure>
-
-<h2 id="禁止更新"><a href="#禁止更新" class="headerlink" title="禁止更新"></a>禁止更新</h2><p>我们在安装之后，为了能够正常运行，我们会禁止MySQL进行更新。因为在yum更新了MySQL之后，MySQL会自动重启。这对于我们来说是没有必要的，所以我们可以屏蔽更新。我们可以这样，将下列指定放到你的<code>/etc/yum.conf</code>文件中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exclude=mysql-community-client,mysql-community-common,mysql-community-libs,mysql-community-server</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新MySQL"><a href="#更新MySQL" class="headerlink" title="更新MySQL"></a>更新MySQL</h2><p>一般在生产环境，我们都是禁用更新的。所以说，这里只是作为一个参考。<br>我们需要执行的命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update mysql-server</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意： 在使用 yum 更新之后，MySQL服务器会自动重启。</p>
-</blockquote>
-<h2 id="更新单个组件"><a href="#更新单个组件" class="headerlink" title="更新单个组件"></a>更新单个组件</h2><p>我们也可以指定更新单个组件。首先我们先运行以下命令来查看MySQL的组件列表</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@baoguoxiao ~]# yum list installed | grep "^mysql"</span><br><span class="line">mysql-community-client.x86_64    5.7.17-1.el7                   @mysql57-community</span><br><span class="line">mysql-community-common.x86_64    5.7.17-1.el7                   @mysql57-community</span><br><span class="line">mysql-community-libs.x86_64      5.7.17-1.el7                   @mysql57-community</span><br><span class="line">mysql-community-server.x86_64    5.7.17-1.el7                   @mysql57-community</span><br><span class="line">mysql57-community-release.noarch el7-9                          installed</span><br></pre></td></tr></table></figure>
-
-<p>我们可以使用以下命令来更新任何一个软件包，替换 <em>package-name</em> 为你要安装的软件包的名字：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update package-name</span><br></pre></td></tr></table></figure>
-
-<p>例如：我们要安装 <code>mysql-community-client</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update mysql-community-client</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面实现了MySQL的默认安装，命令管理，修改密码，屏蔽更新以及更新。希望能对大家有所帮助。</p>
 
       
     </div>

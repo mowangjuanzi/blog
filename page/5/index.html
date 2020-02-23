@@ -194,6 +194,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/30/app-webview-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/30/app-webview-note/" class="post-title-link" itemprop="url">APP的webview碰到的一些坑</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-30 21:31:26" itemprop="dateCreated datePublished" datetime="2018-06-30T21:31:26+08:00">2018-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/06/30/app-webview-note/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/30/app-webview-note/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司APP的文章详情，之前是将所有的HTML内容全部从接口中返回，然后APP的webview将其载入到内中，然后渲染并展示出来。</p>
+<p>但是这个速度太慢了。所以我们对其进行优化。修改后的加载流程如下：</p>
+<ol>
+<li>将HTML模板和CSS，JS资源全部缓存到本地。</li>
+<li>Webview首先加载模板，然后JS调用原生接口请求动态内容。</li>
+<li>APP获取到资讯后调用JS接口，然后进行页面渲染。</li>
+</ol>
+<p>这是修改后的执行流程。目前加载的过程提升了好几倍不止。</p>
+<p>如果有机会会发出对比视频。</p>
+<h2 id="开发过程中碰到的坑"><a href="#开发过程中碰到的坑" class="headerlink" title="开发过程中碰到的坑"></a>开发过程中碰到的坑</h2><p><strong>VasSonic</strong></p>
+<p>领导给推荐了这个：<a href="https://github.com/Tencent/VasSonic" target="_blank" rel="noopener">VasSonic</a> 。但是实际的测试效果并不是特别明显，所以我们直接放弃了这个方法。</p>
+<p><strong>对于字符串中存在单引号，安卓不能正确传值</strong></p>
+<p>原因在于安卓调用js方法的方式。</p>
+<p>在安卓中，调用的方式为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webview.loadUrl(&amp;quot;javascript:returnData(&amp;#039;&amp;quot;+content+&amp;quot;&amp;#039;)&amp;quot;)</span><br></pre></td></tr></table></figure>
+
+<p>比如content的值为<code>aa&#39;a</code>，那么替换值之后实际调用的代码为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webview.loadUrl(&amp;quot;javascript:returnData(&amp;#039;aa&amp;#039;a&amp;#039;)&amp;quot;);</span><br></pre></td></tr></table></figure>
+
+<p>其实仔细一看，就是需要对单引号进行转义。所以我的解决方案是在服务器端对单引号转义成HTML实体。这样传值和显示都会是正常的。</p>
+<p><strong>渲染的文章只显示图片不显示文字</strong></p>
+<p>原因是JS端获取宽度是使用的是<code>clientWidth</code>，对于像是我们这种设计的，有时候获取到的宽度为0，所以这个时候我们只能使用<code>window.innerWidth</code>获取宽度更加靠谱。</p>
+<p><strong>字符串中存在特殊字符，导致调用JS方法失败</strong></p>
+<p>其实最开始也不知道这个是什么字符。后来通过一点点排查，发现这个特殊的换行符。具体的解决方法我已经在这里进行记录：<a href="/js%E8%A7%A3%E6%9E%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%84%E7%90%86/">点击这里</a>;</p>
+<p><strong>应用调用JS方法接收返回数据</strong></p>
+<p>因为安卓的原因，不知道为啥不不能接收数组，所以我将其转为json字符串。但是安卓说左右会多出两个双引号。</p>
+<p>解决办法是安卓自己想办法将双引号给去掉了。</p>
+<p><strong>懒加载失效</strong></p>
+<p>在文章显示的时候，我增加了懒加载，使用的jquery_lazyload。但是实际在执行过程中，发现有几篇文章总是懒加载执行不成功。这个我没有找到原因，没办法，使用<code>settimeout</code>方法设置了延迟函数，延迟100毫秒再去执行懒加载。直接解决。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实我做这一套解决方案的时候，不仅仅是和安卓配合，还有跟IOS配合，有时候总是会出现安卓可以，IOS不行，或者反过来IOS可以，安卓不行的情况。</p>
+<p>对于这种情况，需要学会具体分析。学会使用远程调试。这样才能更好的排查其中的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/06/29/javascript-string-exception/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +351,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,7 +460,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -564,7 +690,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -669,7 +795,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -765,7 +891,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -907,7 +1033,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1023,7 +1149,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1141,7 +1267,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1287,7 +1413,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-23 21:16:19" itemprop="dateModified" datetime="2020-02-23T21:16:19+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1347,162 +1473,6 @@
 <p>列出由镜像产生的<strong>hello-world</strong>容器，当显示消息后就会退出。如果它在运行中，你不需要使用<strong>–all</strong>选项：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker container ls --all</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES</span><br><span class="line">65fbaf599670        hello-world         <span class="string">"/hello"</span>            23 minutes ago      Exited (0) 23 minutes ago                       silly_mclean</span><br><span class="line">419dce2f6ec9        hello-world         <span class="string">"/hello"</span>            2 hours ago         Exited (0) 2 hours ago                          eloquent_visvesvaraya</span><br></pre></td></tr></table></figure>
 <h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 列出 Docker CLI 命令</span></span><br><span class="line">docker</span><br><span class="line">docker container --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 显示 Docker 版本和信息</span></span><br><span class="line">docker --version</span><br><span class="line">docker version</span><br><span class="line">docker info</span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行 Docker 镜像</span></span><br><span class="line">docker run hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment">## 列出 Docker 镜像</span></span><br><span class="line">docker image ls</span><br><span class="line"></span><br><span class="line"><span class="comment">## 理出 Docker 容器 (running, all, all in quiet mode)</span></span><br><span class="line">docker container ls</span><br><span class="line">docker container ls -all</span><br><span class="line">docker container ls -a -q</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/07/docker-study-notes-1-install/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/07/docker-study-notes-1-install/" class="post-title-link" itemprop="url">docker学习笔记之一 安装</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-02-07 21:47:40" itemprop="dateCreated datePublished" datetime="2018-02-07T21:47:40+08:00">2018-02-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 08:18:21" itemprop="dateModified" datetime="2020-02-09T08:18:21+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/02/07/docker-study-notes-1-install/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/07/docker-study-notes-1-install/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h2><p>安装docker需要以下版本系统的64位系统：</p>
-<ul>
-<li>Artful 17.10 (Docker CE 17.11 Edge and higher only)</li>
-<li>Zesty 17.04</li>
-<li>Xenial 16.04 (LTS)</li>
-<li>Trusty 14.04 (LTS)</li>
-</ul>
-<h2 id="卸载老版本"><a href="#卸载老版本" class="headerlink" title="卸载老版本"></a>卸载老版本</h2><p>老版本的docker叫做<strong>docker</strong>或者<strong>docker-engine</strong>，如果安装了，就使用以下命令进行卸载：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置使用源安装"><a href="#设置使用源安装" class="headerlink" title="设置使用源安装"></a>设置使用源安装</h2><ul>
-<li>更新源：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用<strong>apt</strong>使用HTTPS安装包</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https ca-certificates curl software-properties-common</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>添加docker官方GPG密钥：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使用下列命令设置<strong>stable</strong>源</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository  &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&amp;quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-docker-cc-社区版"><a href="#安装-docker-cc-社区版" class="headerlink" title="安装 docker cc(社区版)"></a>安装 docker cc(社区版)</h2><ul>
-<li>更新索引。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>验证安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-
-<p>这个命令会下载一个测试镜像，然后在容器中运行它。当容器运行时，它会输出一个消息并退出。</p>
-<h2 id="卸载Docker-CE"><a href="#卸载Docker-CE" class="headerlink" title="卸载Docker CE"></a>卸载Docker CE</h2><ul>
-<li>卸载Docker CE包</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge docker-ce</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>镜像，容器，卷或者自定义配置文件不会自动移除。要删除所有的镜像，容器和卷，请执行以下命令：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装之后"><a href="#安装之后" class="headerlink" title="安装之后"></a>安装之后</h2><p>免<strong>sudo</strong>执行<strong>docker</strong>命令，防止出现以下权限不足的错误提示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Got permission denied while trying to connect to the Docker daemon socket at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock: Get http:&#x2F;&#x2F;%2Fvar%2Frun%2Fdocker.sock&#x2F;v1.35&#x2F;version: dial unix &#x2F;var&#x2F;run&#x2F;docker.sock: connect: permission denied</span><br></pre></td></tr></table></figure>
-
-<p>执行命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a <span class="variable">$&#123;USER&#125;</span> docker</span><br><span class="line">newgrp - docker</span><br></pre></td></tr></table></figure>
 
       
     </div>
