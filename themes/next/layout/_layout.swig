@@ -23,7 +23,7 @@
       <div class="main-inner">
         <div class="content-wrap">
           {% include '_partials/header/sub-menu.swig' %}
-          <div class="content">
+          <div class="content {% block class %}{% endblock %}">
             {% block content %}{% endblock %}
           </div>
           {% include '_partials/comments.swig' %}
@@ -36,6 +36,7 @@
 
     <footer class="footer">
       <div class="footer-inner">
+        {% include '_partials/languages.swig' %}
         {{ partial('_partials/footer.swig', {}, {cache: theme.cache.enable}) }}
         {{ partial('_third-party/statistics/index.swig', {}, {cache: theme.cache.enable}) }}
       </div>

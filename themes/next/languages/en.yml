@@ -1,3 +1,5 @@
+name: English
+
 title:
   archive: Archive
   category: Category
@@ -26,7 +28,6 @@ post:
   modified: Modified
   edit: Edit this post
   in: In
-  more: more
   read_more: Read more
   untitled: Untitled
   sticky: Sticky
@@ -40,7 +41,6 @@ post:
 
 footer:
   powered: "Powered by %s"
-  theme: Theme
   total_views: Total Views
   total_visitors: Total Visitors
 
@@ -87,7 +87,11 @@ reward:
   donate: Donate
   wechatpay: WeChat Pay
   alipay: Alipay
+  paypal: PayPal
   bitcoin: Bitcoin
+
+follow_me:
+  welcome: Welcome to my other publishing channels
 
 accessibility:
   nav_toggle: Toggle navigation bar

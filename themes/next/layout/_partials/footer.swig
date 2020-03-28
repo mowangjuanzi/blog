@@ -38,29 +38,17 @@
     {%- if theme.symbols_count_time.item_text_total %}
       <span class="post-meta-item-text">{{ __('symbols_count_time.time_total') }} &asymp;</span>
     {%- endif %}
-    <span title="{{ __('symbols_count_time.time_total') }}">{{ symbolsTimeTotal(site, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+    <span title="{{ __('symbols_count_time.time_total') }}">{{ symbolsTimeTotal(site, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
   {%- endif %}
 </div>
 
-{%- if theme.footer.powered.enable %}
+{%- if theme.footer.powered %}
   <div class="powered-by">
-    {{- __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}
-    {%- if theme.footer.powered.version %} v{{ hexo_version }}{%- endif %}
-  </div>
-{%- endif %}
-
-{%- if theme.footer.powered.enable and theme.footer.theme.enable %}
-  <span class="post-meta-divider">|</span>
-{%- endif %}
-
-{%- if theme.footer.theme.enable %}
-  <div class="theme-info">
     {%- set next_site = 'https://theme-next.org' %}
     {%- if theme.scheme !== 'Gemini' %}
       {%- set next_site = 'https://' + theme.scheme | lower + '.theme-next.org' %}
     {%- endif %}
-    {{- __('footer.theme') }} – {{ next_url(next_site, 'NexT.' + theme.scheme, {class: 'theme-link'}) }}
-    {%- if theme.footer.theme.version %} v{{ next_version }}{%- endif %}
+    {{- __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'}) + ' & ' + next_url(next_site, 'NexT.' + theme.scheme, {class: 'theme-link'})) }}
   </div>
 {%- endif %}
 

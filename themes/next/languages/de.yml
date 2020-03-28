@@ -75,7 +75,10 @@ reward:
   donate: Spenden
   wechatpay: WeChat Bezahlung
   alipay: Alipay
+  paypal: PayPal
   bitcoin: Bitcoin
+follow_me:
+  welcome: Welcome to my other publishing channels
 accessibility:
   nav_toggle: Navigationsleiste an/ausschalten
   prev_page: Vorherige Seite
