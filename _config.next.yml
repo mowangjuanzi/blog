@@ -1,0 +1,36 @@
+footer:
+  since: 2015
+  beian:
+    enable: true
+    icp: '鲁ICP备13027795号-1'
+menu:
+  home: / || fa fa-home
+  archives: /archives/ || fa fa-archive
+  书籍: https://book.douban.com/people/119869986/ || fa fa-book
+  about: /about.html || fa fa-user
+  sitemap: /sitemap.xml || fa fa-sitemap
+scheme: Gemini
+avatar:
+  url: /images/avatar.png
+  rounded: true
+  rotated: true
+sidebar:
+  position: right
+reward_settings:
+  enable: true
+reward:
+  wechatpay: /images/wechatpay.jpg
+  alipay: /images/alipay.jpg
+disqus:
+  enable: true
+  shortname: www-baoguoxiao-com
+baidu_analytics: 569d323c10cf83b1409b1e2228474415
+github_banner:
+  enable: true
+  permalink: https://github.com/mowangjuanzi/blog
+  title: 在 Github 上关注我
+social:
+  GitHub: https://github.com/mowangjuanzi || fab fa-github
+  E-Mail: mailto:baoguoxiao0538@hotmail.com || fa fa-envelope
+comments:
+  lazyload: true
