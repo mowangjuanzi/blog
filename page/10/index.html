@@ -22,9 +22,9 @@
 
     <meta name="description" content="记录我的工作中碰到的坑">
 <meta property="og:type" content="website">
-<meta property="og:title" content="魔王卷子的博客">
+<meta property="og:title" content="魔王卷子">
 <meta property="og:url" content="http://www.baoguoxiao.com/page/10/index.html">
-<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:site_name" content="魔王卷子">
 <meta property="og:description" content="记录我的工作中碰到的坑">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="魔王卷子">
@@ -38,7 +38,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/10/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>魔王卷子的博客</title>
+<title>魔王卷子</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -70,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">魔王卷子的博客</h1>
+      <h1 class="site-title">魔王卷子</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-书籍"><a href="https://book.douban.com/people/119869986/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>书籍</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-书籍"><a href="/books.html" rel="section"><i class="fa fa-book fa-fw"></i>书籍</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
   </ul>
 </nav>
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -188,6 +188,165 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/mysql-replicate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/17/mysql-replicate/" class="post-title-link" itemprop="url">mysql 复制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-17 16:24:36" itemprop="dateCreated datePublished" datetime="2017-11-17T16:24:36+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/11/17/mysql-replicate/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/17/mysql-replicate/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>MySQL的复制功能是构建基于MySQL的大规模、高性能应用的基础。复制功能不仅有利于构建高性能的应用，同时也是高可用性、可扩展性、灾难恢复、备份以及数据仓库等工作的基础。</p>
+<p>本文主要讲述复制如何工作，基本的复制如何搭建，复制的相关配置和优化复制服务器。</p>
+<h2 id="复制的工作原理："><a href="#复制的工作原理：" class="headerlink" title="复制的工作原理："></a>复制的工作原理：</h2><p>简单来说，复制分为下面三个步骤：</p>
+<ol>
+<li>在主库上把数据更改记录到二进制日志中（这些记录被称为二进制日志事件）。</li>
+<li>备库将主库上的日志复制到自己的中继日志（relay log）中。</li>
+<li>备库读取中继日志中的事件，将其重放到备库数据之上。</li>
+</ol>
+<h2 id="配置复制"><a href="#配置复制" class="headerlink" title="配置复制"></a>配置复制</h2><p>为MySQL服务器配置复制非常简单。最基本的场景是新安装的主库和备库，总的来说分为以下几步：</p>
+<ol>
+<li>在每台服务器上创建复制账号。</li>
+<li>配置主库和备库。</li>
+<li>通知备库连接到主库并从主库复制数据。</li>
+</ol>
+<h3 id="创建复制账号"><a href="#创建复制账号" class="headerlink" title="创建复制账号"></a>创建复制账号</h3><p>MySQL 会赋予一个特殊的权限给复制线程。在备库运行的I&#x2F;O线程会建立一个到主库的TCP&#x2F;IP连接。这意味着必须在主库创建一个用户，并赋予一个合适的权限。</p>
+<p>通过如下语句创建用户账号：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">grant replication slave, replication client on *.* to repl@<span class="string">&#x27;10.55.160.%&#x27;</span> identified by <span class="string">&#x27;Pw12345.&#x27;</span>;</span></span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>请注意我们将这个账户限制在本地网络。因为这是一个特权账号。</p>
+<p>复制账户只需要有主库上的 replication slave 权限，并不需要每一端都赋予 replication client 权限，为啥两端都要赋予呢：</p>
+<ul>
+<li>用来监控和管理复制的账号需要 replication client 权限，并且针对两个目的使用同一个账号更加容易。</li>
+<li>如果在主库上建立了账号，然后从主库将数据克隆到备库上时，备库也就设置了 ———— 变成主库所需要的角色，方便后续有需要进行转换角色。</li>
+</ul>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>在主库的 <code>my.cnf</code> 文件中增加或者修改如下内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log_bin</span>=mysql-bin</span><br><span class="line"><span class="attr">server_id</span>=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>必须明确的指定一个唯一的服务器ID，默认服务器ID为1，使用默认值可能会导致和其它服务器的ID产生冲突，所以我们选择10来作为ID，一般的做法时使用服务器的末8位，但要保证它是不变且唯一的。最好选择一些有意义的约定并遵循。</p>
+<p>如果之前没有在MySQL的配置中指定<code>log_bin</code>选项，需要重新启动MySQL。为了确认二进制日志文件是否已经创建，我们使用以下命令进行查看：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> master status\G</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">             File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">         Position: <span class="number">154</span></span><br><span class="line">     Binlog_Do_DB: </span><br><span class="line"> Binlog_Ignore_DB: </span><br><span class="line">Executed_Gtid_Set: </span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>需要在备库上的<code>my.cnf</code>文件中增加类似的配置，并且同样需要重启服务器：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">log_bin<span class="operator">=</span>mysql<span class="operator">-</span>bin</span><br><span class="line">server_id<span class="operator">=</span><span class="number">11</span></span><br><span class="line">relay_log<span class="operator">=</span><span class="operator">/</span>var<span class="operator">/</span>lib<span class="operator">/</span>mysql<span class="operator">/</span>mysql<span class="operator">-</span>relay<span class="operator">-</span>bin</span><br><span class="line">log_slave_updates<span class="operator">=</span><span class="number">1</span></span><br><span class="line">read_only<span class="operator">=</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>从技术上来说，这些选项都不是必须的。其中一些选项只是显式的列出了默认值。事实上只有<code>server_id</code>时必需的。</p>
+<p><code>log_bin</code>：默认情况下，它是根据机器名来命名的，但是如果机器名变化了可能会出现问题，为了简便起见，我们在主库和备库设置了同样的值。<br><code>relay_log</code>：指定中继日志的位置和命名。<br><code>slave_updates</code>：允许备库将其重放的事件也记录到自身的二进制日志中。<br><code>read_only</code>：该选项会阻止没有任何特权权限的线程修改数据。所以最好不要给用户超出需要的权限。但是并不是很实用，特别是那些需要在备库建表的应用。</p>
+<h3 id="启动复制"><a href="#启动复制" class="headerlink" title="启动复制"></a>启动复制</h3><p>下面我们告诉备库如何连接到主库并重放其二进制日志。这一步不要通过<strong>my.cnf</strong>来配置，而是使用 <code>change master to</code> 语句。因为该语句完全替代了<strong>my.cnf</strong>中相应的配置而且允许以后指向别的主库的时候无需重启备库。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> change master <span class="keyword">to</span> master_host<span class="operator">=</span><span class="string">&#x27;10.55.160.91&#x27;</span>, master_user<span class="operator">=</span><span class="string">&#x27;repl&#x27;</span>, master_password<span class="operator">=</span><span class="string">&#x27;Pw12345.&#x27;</span>, master_log_file<span class="operator">=</span><span class="string">&#x27;mysql-bin.000001&#x27;</span>, master_log_pos<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">2</span> warnings (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p><strong>master_log_pos</strong>参数倍设置成0，因为要从日志的开头读起。我们可以通过<code>show slave status</code>语句来检查复制是否正确执行了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> slave status\G</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">               Slave_IO_State: </span><br><span class="line">                  Master_Host: <span class="number">10.55</span><span class="number">.160</span><span class="number">.91</span></span><br><span class="line">                  Master_User: repl</span><br><span class="line">                  Master_Port: <span class="number">3306</span></span><br><span class="line">                Connect_Retry: <span class="number">60</span></span><br><span class="line">              Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">          Read_Master_Log_Pos: <span class="number">4</span></span><br><span class="line">               Relay_Log_File: mysql<span class="operator">-</span>relay<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">                Relay_Log_Pos: <span class="number">4</span></span><br><span class="line">        Relay_Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">             Slave_IO_Running: <span class="keyword">No</span></span><br><span class="line">            Slave_SQL_Running: <span class="keyword">No</span></span><br><span class="line">              Replicate_Do_DB: </span><br><span class="line">          Replicate_Ignore_DB: </span><br><span class="line">           Replicate_Do_Table: </span><br><span class="line">       Replicate_Ignore_Table: </span><br><span class="line">      Replicate_Wild_Do_Table: </span><br><span class="line">  Replicate_Wild_Ignore_Table: </span><br><span class="line">                   Last_Errno: <span class="number">0</span></span><br><span class="line">                   Last_Error: </span><br><span class="line">                 Skip_Counter: <span class="number">0</span></span><br><span class="line">          Exec_Master_Log_Pos: <span class="number">4</span></span><br><span class="line">              Relay_Log_Space: <span class="number">154</span></span><br><span class="line">              Until_Condition: <span class="keyword">None</span></span><br><span class="line">               Until_Log_File: </span><br><span class="line">                Until_Log_Pos: <span class="number">0</span></span><br><span class="line">           Master_SSL_Allowed: <span class="keyword">No</span></span><br><span class="line">           Master_SSL_CA_File: </span><br><span class="line">           Master_SSL_CA_Path: </span><br><span class="line">              Master_SSL_Cert: </span><br><span class="line">            Master_SSL_Cipher: </span><br><span class="line">               Master_SSL_Key: </span><br><span class="line">        Seconds_Behind_Master: <span class="keyword">NULL</span></span><br><span class="line">Master_SSL_Verify_Server_Cert: <span class="keyword">No</span></span><br><span class="line">                Last_IO_Errno: <span class="number">0</span></span><br><span class="line">                Last_IO_Error: </span><br><span class="line">               Last_SQL_Errno: <span class="number">0</span></span><br><span class="line">               Last_SQL_Error: </span><br><span class="line">  Replicate_Ignore_Server_Ids: </span><br><span class="line">             Master_Server_Id: <span class="number">0</span></span><br><span class="line">                  Master_UUID: </span><br><span class="line">             Master_Info_File: <span class="operator">/</span>var<span class="operator">/</span>lib<span class="operator">/</span>mysql<span class="operator">/</span>master.info</span><br><span class="line">                    SQL_Delay: <span class="number">0</span></span><br><span class="line">          SQL_Remaining_Delay: <span class="keyword">NULL</span></span><br><span class="line">      Slave_SQL_Running_State: </span><br><span class="line">           Master_Retry_Count: <span class="number">86400</span></span><br><span class="line">                  Master_Bind: </span><br><span class="line">      Last_IO_Error_Timestamp: </span><br><span class="line">     Last_SQL_Error_Timestamp: </span><br><span class="line">               Master_SSL_Crl: </span><br><span class="line">           Master_SSL_Crlpath: </span><br><span class="line">           Retrieved_Gtid_Set: </span><br><span class="line">            Executed_Gtid_Set: </span><br><span class="line">                Auto_Position: <span class="number">0</span></span><br><span class="line">         Replicate_Rewrite_DB: </span><br><span class="line">                 Channel_Name: </span><br><span class="line">           Master_TLS_Version: </span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p><code>Slave_IO_State</code>、<code>Slave_IO_Running</code>、<code>Slave_SQL_Running</code>这三列显式当前备库尚未运行。</p>
+<p>运行下面的命令进行复制：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">start</span> slave;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>执行该命令没有显示错误，我们再用<code>show slave status</code>命令检查一下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> slave status\G</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">               Slave_IO_State: </span><br><span class="line">                  Master_Host: <span class="number">10.55</span><span class="number">.160</span><span class="number">.91</span></span><br><span class="line">                  Master_User: repl</span><br><span class="line">                  Master_Port: <span class="number">3306</span></span><br><span class="line">                Connect_Retry: <span class="number">60</span></span><br><span class="line">              Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">          Read_Master_Log_Pos: <span class="number">4</span></span><br><span class="line">               Relay_Log_File: mysql<span class="operator">-</span>relay<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">                Relay_Log_Pos: <span class="number">4</span></span><br><span class="line">        Relay_Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">             Slave_IO_Running: <span class="keyword">No</span></span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB: </span><br><span class="line">          Replicate_Ignore_DB: </span><br><span class="line">           Replicate_Do_Table: </span><br><span class="line">       Replicate_Ignore_Table: </span><br><span class="line">      Replicate_Wild_Do_Table: </span><br><span class="line">  Replicate_Wild_Ignore_Table: </span><br><span class="line">                   Last_Errno: <span class="number">0</span></span><br><span class="line">                   Last_Error: </span><br><span class="line">                 Skip_Counter: <span class="number">0</span></span><br><span class="line">          Exec_Master_Log_Pos: <span class="number">4</span></span><br><span class="line">              Relay_Log_Space: <span class="number">154</span></span><br><span class="line">              Until_Condition: <span class="keyword">None</span></span><br><span class="line">               Until_Log_File: </span><br><span class="line">                Until_Log_Pos: <span class="number">0</span></span><br><span class="line">           Master_SSL_Allowed: <span class="keyword">No</span></span><br><span class="line">           Master_SSL_CA_File: </span><br><span class="line">           Master_SSL_CA_Path: </span><br><span class="line">              Master_SSL_Cert: </span><br><span class="line">            Master_SSL_Cipher: </span><br><span class="line">               Master_SSL_Key: </span><br><span class="line">        Seconds_Behind_Master: <span class="keyword">NULL</span></span><br><span class="line">Master_SSL_Verify_Server_Cert: <span class="keyword">No</span></span><br><span class="line">                Last_IO_Errno: <span class="number">1593</span></span><br><span class="line">                Last_IO_Error: Fatal error: The slave I<span class="operator">/</span>O thread stops because master <span class="keyword">and</span> slave have equal MySQL server UUIDs; these UUIDs must be different <span class="keyword">for</span> replication <span class="keyword">to</span> work.</span><br><span class="line">               Last_SQL_Errno: <span class="number">0</span></span><br><span class="line">               Last_SQL_Error: </span><br><span class="line">  Replicate_Ignore_Server_Ids: </span><br><span class="line">             Master_Server_Id: <span class="number">10</span></span><br><span class="line">                  Master_UUID: </span><br><span class="line">             Master_Info_File: <span class="operator">/</span>var<span class="operator">/</span>lib<span class="operator">/</span>mysql<span class="operator">/</span>master.info</span><br><span class="line">                    SQL_Delay: <span class="number">0</span></span><br><span class="line">          SQL_Remaining_Delay: <span class="keyword">NULL</span></span><br><span class="line">      Slave_SQL_Running_State: Slave has read <span class="keyword">all</span> relay log; waiting <span class="keyword">for</span> more updates</span><br><span class="line">           Master_Retry_Count: <span class="number">86400</span></span><br><span class="line">                  Master_Bind: </span><br><span class="line">      Last_IO_Error_Timestamp: <span class="number">161114</span> <span class="number">15</span>:<span class="number">28</span>:<span class="number">07</span></span><br><span class="line">     Last_SQL_Error_Timestamp: </span><br><span class="line">               Master_SSL_Crl: </span><br><span class="line">           Master_SSL_Crlpath: </span><br><span class="line">           Retrieved_Gtid_Set: </span><br><span class="line">            Executed_Gtid_Set: </span><br><span class="line">                Auto_Position: <span class="number">0</span></span><br><span class="line">         Replicate_Rewrite_DB: </span><br><span class="line">                 Channel_Name: </span><br><span class="line">           Master_TLS_Version: </span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>看到这里报出一个错误：<code>Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work.</code>，其实这是因为我是用的虚拟机，然后直接进行复制的，倒是UUID相同，解决办法就是删除<code>auto.cnf</code>就好了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service mysqld stop</span><br><span class="line">Redirecting to /bin/systemctl stop  mysqld.service</span><br><span class="line">[root@localhost ~]# \rm /var/lib/mysql/auto.cnf </span><br><span class="line">[root@localhost ~]# service mysqld start</span><br><span class="line">Redirecting to /bin/systemctl start  mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>然后我们继续上面的操作：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">start</span> slave;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> slave status\G</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">               Slave_IO_State: Waiting <span class="keyword">for</span> master <span class="keyword">to</span> send event</span><br><span class="line">                  Master_Host: <span class="number">10.55</span><span class="number">.160</span><span class="number">.91</span></span><br><span class="line">                  Master_User: repl</span><br><span class="line">                  Master_Port: <span class="number">3306</span></span><br><span class="line">                Connect_Retry: <span class="number">60</span></span><br><span class="line">              Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">          Read_Master_Log_Pos: <span class="number">472</span></span><br><span class="line">               Relay_Log_File: mysql<span class="operator">-</span>relay<span class="operator">-</span>bin<span class="number">.000003</span></span><br><span class="line">                Relay_Log_Pos: <span class="number">685</span></span><br><span class="line">        Relay_Master_Log_File: mysql<span class="operator">-</span>bin<span class="number">.000001</span></span><br><span class="line">             Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">              Replicate_Do_DB: </span><br><span class="line">          Replicate_Ignore_DB: </span><br><span class="line">           Replicate_Do_Table: </span><br><span class="line">       Replicate_Ignore_Table: </span><br><span class="line">      Replicate_Wild_Do_Table: </span><br><span class="line">  Replicate_Wild_Ignore_Table: </span><br><span class="line">                   Last_Errno: <span class="number">0</span></span><br><span class="line">                   Last_Error: </span><br><span class="line">                 Skip_Counter: <span class="number">0</span></span><br><span class="line">          Exec_Master_Log_Pos: <span class="number">472</span></span><br><span class="line">              Relay_Log_Space: <span class="number">892</span></span><br><span class="line">              Until_Condition: <span class="keyword">None</span></span><br><span class="line">               Until_Log_File: </span><br><span class="line">                Until_Log_Pos: <span class="number">0</span></span><br><span class="line">           Master_SSL_Allowed: <span class="keyword">No</span></span><br><span class="line">           Master_SSL_CA_File: </span><br><span class="line">           Master_SSL_CA_Path: </span><br><span class="line">              Master_SSL_Cert: </span><br><span class="line">            Master_SSL_Cipher: </span><br><span class="line">               Master_SSL_Key: </span><br><span class="line">        Seconds_Behind_Master: <span class="number">0</span></span><br><span class="line">Master_SSL_Verify_Server_Cert: <span class="keyword">No</span></span><br><span class="line">                Last_IO_Errno: <span class="number">0</span></span><br><span class="line">                Last_IO_Error: </span><br><span class="line">               Last_SQL_Errno: <span class="number">0</span></span><br><span class="line">               Last_SQL_Error: </span><br><span class="line">  Replicate_Ignore_Server_Ids: </span><br><span class="line">             Master_Server_Id: <span class="number">10</span></span><br><span class="line">                  Master_UUID: a901199b<span class="operator">-</span>aa23<span class="number">-11e6</span><span class="number">-862e-000</span>c2943e6a3</span><br><span class="line">             Master_Info_File: <span class="operator">/</span>var<span class="operator">/</span>lib<span class="operator">/</span>mysql<span class="operator">/</span>master.info</span><br><span class="line">                    SQL_Delay: <span class="number">0</span></span><br><span class="line">          SQL_Remaining_Delay: <span class="keyword">NULL</span></span><br><span class="line">      Slave_SQL_Running_State: Slave has read <span class="keyword">all</span> relay log; waiting <span class="keyword">for</span> more updates</span><br><span class="line">           Master_Retry_Count: <span class="number">86400</span></span><br><span class="line">                  Master_Bind: </span><br><span class="line">      Last_IO_Error_Timestamp: </span><br><span class="line">     Last_SQL_Error_Timestamp: </span><br><span class="line">               Master_SSL_Crl: </span><br><span class="line">           Master_SSL_Crlpath: </span><br><span class="line">           Retrieved_Gtid_Set: </span><br><span class="line">            Executed_Gtid_Set: </span><br><span class="line">                Auto_Position: <span class="number">0</span></span><br><span class="line">         Replicate_Rewrite_DB: </span><br><span class="line">                 Channel_Name: </span><br><span class="line">           Master_TLS_Version: </span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>这样就正常了。Slave_IO_State 显示正在等待从主库传递过来的事件，这意味着I&#x2F;O线程已经读取了主库所有的事件。</p>
+<p>到此，一个全新的复制就搞定了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,12 +355,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -224,7 +383,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -400,12 +559,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -428,7 +587,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -590,12 +749,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -618,7 +777,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -702,12 +861,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -730,7 +889,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">

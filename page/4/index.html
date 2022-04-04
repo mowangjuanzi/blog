@@ -22,9 +22,9 @@
 
     <meta name="description" content="记录我的工作中碰到的坑">
 <meta property="og:type" content="website">
-<meta property="og:title" content="魔王卷子的博客">
+<meta property="og:title" content="魔王卷子">
 <meta property="og:url" content="http://www.baoguoxiao.com/page/4/index.html">
-<meta property="og:site_name" content="魔王卷子的博客">
+<meta property="og:site_name" content="魔王卷子">
 <meta property="og:description" content="记录我的工作中碰到的坑">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="魔王卷子">
@@ -38,7 +38,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/4/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>魔王卷子的博客</title>
+<title>魔王卷子</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -70,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">魔王卷子的博客</h1>
+      <h1 class="site-title">魔王卷子</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-书籍"><a href="https://book.douban.com/people/119869986/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>书籍</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-书籍"><a href="/books.html" rel="section"><i class="fa fa-book fa-fw"></i>书籍</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
   </ul>
 </nav>
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -188,6 +188,194 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/09/19/docker-install-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/09/19/docker-install-mysql/" class="post-title-link" itemprop="url">docker安装mysql</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-09-19 10:53:16" itemprop="dateCreated datePublished" datetime="2018-09-19T10:53:16+08:00">2018-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/09/19/docker-install-mysql/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/19/docker-install-mysql/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>记录一下自己使用docker安装mysql的过程。</p>
+<p>首先我找到两个:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/r/mysql/mysql-server/">https://hub.docker.com/r/mysql/mysql-server/</a></li>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">https://hub.docker.com/_/mysql/</a></li>
+</ul>
+<p>我对比了一下。发现第一个是mysql官方推出的，而第二是docker自带library推出的。那么我肯定选择mysql官方推出的mysql了。</p>
+<p>既然确定了要安装的包，那么就要开始拉取了。</p>
+<ul>
+<li>MySQL Server 5.5 (tag: 5.5, 5.5.61, 5.5.61-1.1.7) (mysql-server&#x2F;5.5&#x2F;Dockerfile)</li>
+<li>MySQL Server 5.6 (tag: 5.6, 5.6.41, 5.6.41-1.1.7) (mysql-server&#x2F;5.6&#x2F;Dockerfile)</li>
+<li>MySQL Server 5.7 (tag: 5.7, 5.7.23, 5.7.23-1.1.7) (mysql-server&#x2F;5.7&#x2F;Dockerfile)</li>
+<li>MySQL Server 8.0, the latest GA (tag: 8.0, 8.0.12, 8.0.12-1.1.7, latest) (mysql-server&#x2F;8.0&#x2F;Dockerfile)</li>
+<li>MySQL Server 8.0 for AArch64 (ARM64) (tag: 8.0-aarch64, 8.0.12-aarch64)</li>
+</ul>
+<p>上面是可以安装的版本。那么我肯定是安装latest的。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>那么执行代码如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql/mysql-server</span><br></pre></td></tr></table></figure>
+
+<p>如果想要安装5.7版本的，可以执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql/mysql-server:5.7</span><br></pre></td></tr></table></figure>
+
+<p>好了等待之后，就安装成功了，接下来，我们看看我们在本地存储的镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker image <span class="built_in">ls</span></span><br><span class="line">REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql/mysql-server                              latest              1fdf3806e715        5 weeks ago         309MB</span><br></pre></td></tr></table></figure>
+
+<p>接下来执行创建容器的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql1 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server:latest</span><br></pre></td></tr></table></figure>
+
+<p>在这里要注意的是最后的<code>:latest</code>，这个是可省略的。如果刚才安装的是指定版本，比如5.7，那么我们就需要执行以下命令了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql1 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server:5.7</span><br></pre></td></tr></table></figure>
+
+<p>好了，安装完成，就可以使用PHP进行连接测试了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pdo</span> = <span class="keyword">new</span> \<span class="title function_ invoke__">PDO</span>(<span class="string">&quot;mysql:host=127.0.0.1;dbname=mysql&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line"><span class="variable">$data</span> = <span class="variable">$pdo</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;select version()&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$data</span> <span class="keyword">as</span> <span class="variable">$item</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$item</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>会提示如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Host &#x27;172.17.0.1&#x27; is not allowed to connect to this MySQL server</span><br></pre></td></tr></table></figure>
+
+<p>那么我们只能登录mysql进行修改数据了，首先是登录mysql，密码就是我们设置的123456：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -it mysql1 mysql -uroot -p</span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
+
+<p>然后执行如下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host <span class="operator">=</span> <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> <span class="operator">=</span> &quot;root&quot;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>我们继续测试PHP脚本，发现链接就正常了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ php ./demo.php</span><br><span class="line">/Users/baoguoxiao/demo.php:5:</span><br><span class="line">array(2) &#123;</span><br><span class="line">  <span class="string">&#x27;version()&#x27;</span> =&gt;</span><br><span class="line">  string(6) <span class="string">&quot;8.0.12&quot;</span></span><br><span class="line">  [0] =&gt;</span><br><span class="line">  string(6) <span class="string">&quot;8.0.12&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询日志"><a href="#查询日志" class="headerlink" title="查询日志"></a>查询日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs mysql1</span><br></pre></td></tr></table></figure>
+
+<h2 id="登录shell"><a href="#登录shell" class="headerlink" title="登录shell"></a>登录shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mysql1 bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop mysql1</span><br></pre></td></tr></table></figure>
+
+<h2 id="开启容器"><a href="#开启容器" class="headerlink" title="开启容器"></a>开启容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start mysql1</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart mysql1</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop mysql1</span><br><span class="line">docker <span class="built_in">rm</span> mysql1</span><br></pre></td></tr></table></figure>
+
+<h2 id="从另外的容器中连接mysql"><a href="#从另外的容器中连接mysql" class="headerlink" title="从另外的容器中连接mysql"></a>从另外的容器中连接mysql</h2><p>暂无</p>
+<h2 id="Docker-环境变量"><a href="#Docker-环境变量" class="headerlink" title="Docker 环境变量"></a>Docker 环境变量</h2><p>其实我们在创建container的时候就已经用了一个环境变量了，就是<code>MYSQL_ROOT_PASSWORD</code>，现在我们来介绍一些其他的环境变量</p>
+<ul>
+<li><p>MYSQL_RANDOM_ROOT_PASSWD</p>
+<p>  该值默认为ture（除非<code>MYSQL_ROOT_PASSWORD</code>设置了或者<code>MYSQL_ALLOW_EMPTY_PASSWORD</code>设置为true了），意思是在启动docker容器时随机生成root密码。密码打印到日志中。查看随机密码的方式如下：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs mysql1 2&gt;&amp;1 | grep GENERATED</span><br><span class="line">GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&amp;EShOs</span><br></pre></td></tr></table></figure></li>
+<li><p>MYSQL_ONETIME_PASSWORD </p>
+<p>  默认为ture（除非<code>MYSQL_ROOT_PASSWORD</code>设置了或者<code>MYSQL_ALLOW_EMPTY_PASSWORD</code>设置为true了）root用户的密码设置为expired，必须先修改密码才能使用。</p>
+</li>
+<li><p>MYSQL_DATABSE</p>
+<p>  指定在容器创建时同时创建数据库的名称。如果启动参数也有<code>MYSQL_USER</code>和<code>MSQL_PASSWORD</code>，则会创建用户并授予该数据库对应的用户权限。如果指定的数据库已经存在了，则该变量无效。</p>
+</li>
+<li><p>MYSQL_USER和MYSQL_PASSWORD</p>
+<p>  该变量用户创建用户名和密码，并为该用户授予<code>MYSQL_DATABASE</code>变量指定的数据库的超级用户权限。如果两个变量没有设置，则其他会被忽略。如果两个变量都已设置但是没有设置<code>MYSQL_DATABASE</code>，则创建的用户没有任何权限。</p>
+</li>
+<li><p>MYSQL_ROOT_HOST</p>
+<p>  默认情况下，MySQL会设置”root@localhost”账户，此账户只能从内部进行连接。要允许其他主机的根连接，就需要设置此变量了。例如，该值<code>172.17.0.1</code>(默认的docker网关IP)允许来自运行容器的主机的连接。但是该选项仅接受一条记录，但是允许使用通配符（例如，MYSQL_ROOT_HOST&#x3D;172.<em>.</em>.*或MYSQL_ROOT_HOST&#x3D;%）。</p>
+</li>
+<li><p>MYSQL_LOG_CONSOLE</p>
+<p>  当变量为true时（MySQL8.0服务器容器的默认状态）,MySQL服务器的错误日志被重定向到stderr，以便错误日志进入docker容器的日志，并且可以使用<code>docker logs mysqld-container</code>进行查看。</p>
+</li>
+<li><p>MYSQL_ROOT_PASSWORD</p>
+<p>  此变量指定为MySQL root账户设置的密码。在命令行上设置MySQL root密码是不安全的，因为可以通过<code>history</code>查看命令历史从而获取创建的密码。所以最好是试用默认设置。</p>
+</li>
+<li><p>MYSQL_ALLOW_EMPTY_PASSWORD</p>
+<p>  默认为false，如果将其设置为true，则表示允许root用户使用空密码启动。但是在非开发环境设置此变量为true是不安全的，因为他会让MySQL实例完全不受保护，从而允许任何人都可以获得弯针的超级用户访问权限。最好试用默认设置。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/09/18/laravel-db-timezone/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,12 +384,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -224,7 +412,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -328,12 +516,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -356,7 +544,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -453,12 +641,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -481,7 +669,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -565,12 +753,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -593,7 +781,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -691,12 +879,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -719,7 +907,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -832,12 +1020,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -860,7 +1048,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -951,12 +1139,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -979,7 +1167,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1064,12 +1252,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -1092,7 +1280,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1173,12 +1361,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="name" content="魔王卷子">
       <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
+      <meta itemprop="name" content="undefined | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -1201,7 +1389,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+      <time title="修改时间：2022-04-04 19:19:49" itemprop="dateModified" datetime="2022-04-04T19:19:49+08:00">2022-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1301,117 +1489,6 @@
 <td align="center">无</td>
 </tr>
 </tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/01/git-set-different-email-for-different-projects/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子的博客">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/07/01/git-set-different-email-for-different-projects/" class="post-title-link" itemprop="url">git为不同的项目设置不同的邮箱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-07-01 12:01:35" itemprop="dateCreated datePublished" datetime="2018-07-01T12:01:35+08:00">2018-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/07/01/git-set-different-email-for-different-projects/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/07/01/git-set-different-email-for-different-projects/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在我们使用Git开发项目的时候，可能经常会碰到个人和公司开发的项目都在一台机器上的情况。不管你们有没有，反正我是碰到了。因为公司有公司自己分配的邮箱，而我自己喜欢用自己的邮箱开发自己的项目。这样可能会导致邮箱混用的情况。</p>
-<p>比如我们之前设置的命令是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &amp;quot;aaa&amp;quot;</span><br><span class="line">git config --global user.email &amp;quot;a@b.com&amp;quot;</span><br></pre></td></tr></table></figure>
-
-<p>这样的话，就会像是上面说的不同的项目使用一个邮箱。</p>
-<p>但是如果我应该如何为不同的项目设置不同的用户呢。其实很简单，就是把命令中的<code>--global</code>给去掉就好了。因为<code>--global</code>代表的就是全局化的意思。命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name &amp;quot;aaa&amp;quot;</span><br><span class="line">git config user.email &amp;quot;a@b.com&amp;quot;</span><br></pre></td></tr></table></figure>
-
-<p>是不是很简单？</p>
 
       
     </div>
