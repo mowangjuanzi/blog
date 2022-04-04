@@ -2,9 +2,10 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,14 +14,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.baoguoxiao.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"lazyload":true,"style":"tabs","active":null,"storage":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="本教程是在CentOS7系统下执行的。  安装epel1yum install epel-release -y  接下来我们需要安装remi源： 1rpm -ivh https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;remi&#x2F;enterprise&#x2F;remi-release-7.rpm  设置默认安装的PHP版本首先我们先看看我们能选择安装的版本： 123456789101">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本教程是在CentOS7系统下执行的。  安装epel1yum install epel-release -y  接下来我们需要安装remi源： 1rpm -ivh https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;remi&#x2F;enterprise&#x2F;remi-release-7.rpm  设置默认安装的PHP版本首先我们先看看我们能选择安装的版本： 123456789101">
 <meta property="og:type" content="article">
 <meta property="og:title" content="yum 安装 php">
 <meta property="og:url" content="http://www.baoguoxiao.com/2017/11/17/yum-install-php/index.html">
@@ -28,89 +28,55 @@
 <meta property="og:description" content="本教程是在CentOS7系统下执行的。  安装epel1yum install epel-release -y  接下来我们需要安装remi源： 1rpm -ivh https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;remi&#x2F;enterprise&#x2F;remi-release-7.rpm  设置默认安装的PHP版本首先我们先看看我们能选择安装的版本： 123456789101">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-11-17T08:33:10.000Z">
-<meta property="article:modified_time" content="2020-03-28T00:31:16.204Z">
+<meta property="article:modified_time" content="2022-04-04T09:27:18.453Z">
 <meta property="article:author" content="魔王卷子">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="centos">
 <meta property="article:tag" content="yum">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://www.baoguoxiao.com/2017/11/17/yum-install-php/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>yum 安装 php | 魔王卷子的博客</title>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/2017/11/17/yum-install-php/","path":"2017/11/17/yum-install-php/","title":"yum 安装 php"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>yum 安装 php | 魔王卷子的博客</title>
   
 
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?569d323c10cf83b1409b1e2228474415"></script>
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="魔王卷子的博客" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">魔王卷子的博客</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">魔王卷子的博客</p>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -122,34 +88,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-书籍">
-
-    <a href="https://book.douban.com/people/119869986/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>书籍</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about.html" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-书籍"><a href="https://book.douban.com/people/119869986/" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>书籍</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
   </ul>
 </nav>
 
@@ -157,82 +97,162 @@
 
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85epel"><span class="nav-number">1.</span> <span class="nav-text">安装epel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%AE%89%E8%A3%85%E7%9A%84PHP%E7%89%88%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">设置默认安装的PHP版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PHP"><span class="nav-number">3.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E6%94%AF%E6%8C%81%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">php支持的扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-fpm-%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">php-fpm 命令管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E3%80%82"><span class="nav-number">6.</span> <span class="nav-text">总结。</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="魔王卷子"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mowangjuanzi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mowangjuanzi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:baoguoxiao0538@hotmail.com" title="E-Mail → mailto:baoguoxiao0538@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/mowangjuanzi/blog" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <a href="https://github.com/mowangjuanzi/blog" class="github-corner" title="在 Github 上关注我" aria-label="在 Github 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    <div class="main-inner post posts-expand">
 
-          <div class="content post">
-            
 
-  <div class="posts-expand">
-      
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-php/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="魔王卷子的博客">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="yum 安装 php | 魔王卷子的博客">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           yum 安装 php
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-11-17 16:33:10" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:10+08:00">2017-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-28 08:31:16" itemprop="dateModified" datetime="2020-03-28T08:31:16+08:00">2020-03-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2017-11-17 16:33:10" itemprop="dateCreated datePublished" datetime="2017-11-17T16:33:10+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-04 17:27:18" itemprop="dateModified" datetime="2022-04-04T17:27:18+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
+        </span>
+    </span>
 
-          
+  
   
   <span class="post-meta-item">
     
       <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
+        <i class="far fa-comment"></i>
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
@@ -242,6 +262,7 @@
   </span>
   
   
+</div>
 
         </div>
       </header>
@@ -250,8 +271,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <blockquote>
 <p>本教程是在CentOS7系统下执行的。</p>
 </blockquote>
@@ -261,7 +280,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure>
 
 <h2 id="设置默认安装的PHP版本"><a href="#设置默认安装的PHP版本" class="headerlink" title="设置默认安装的PHP版本"></a>设置默认安装的PHP版本</h2><p>首先我们先看看我们能选择安装的版本：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line">remi-php54                       Remi's PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi's PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi's PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line">remi-php54                       Remi&#x27;s PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi&#x27;s PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi&#x27;s PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi&#x27;s PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi&#x27;s PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi&#x27;s PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi&#x27;s PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi&#x27;s PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi&#x27;s PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi&#x27;s PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi&#x27;s PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi&#x27;s PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi&#x27;s PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
 
 <p>现在我们发现全部都是禁用的，这样需要我们手动启动一个，比如现在我们需要使用最新版本PHP7.1的。那么我们就可以执行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum-config-manager --enable remi-php71</span><br><span class="line">-bash: yum-config-manager: 未找到命令</span><br></pre></td></tr></table></figure>
@@ -273,13 +292,13 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --enable remi-php71</span><br></pre></td></tr></table></figure>
 
 <p>现在在重新查看当前remi源的状态：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line"> * remi-php71: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line">remi-php54                       Remi's PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi's PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi's PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi's PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi's PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi's PHP 7.1 RPM repository for  启用:    318</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi's PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi's PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi's PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist all | grep php</span><br><span class="line"> * remi-php71: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line">remi-php54                       Remi&#x27;s PHP 5.4 RPM repository for  禁用</span><br><span class="line">remi-php55                       Remi&#x27;s PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php55-debuginfo/x86_64      Remi&#x27;s PHP 5.5 RPM repository for  禁用</span><br><span class="line">remi-php56                       Remi&#x27;s PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php56-debuginfo/x86_64      Remi&#x27;s PHP 5.6 RPM repository for  禁用</span><br><span class="line">remi-php70                       Remi&#x27;s PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-debuginfo/x86_64      Remi&#x27;s PHP 7.0 RPM repository for  禁用</span><br><span class="line">remi-php70-test                  Remi&#x27;s PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php70-test-debuginfo/x86_64 Remi&#x27;s PHP 7.0 test RPM repository 禁用</span><br><span class="line">remi-php71                       Remi&#x27;s PHP 7.1 RPM repository for  启用:    318</span><br><span class="line">remi-php71-debuginfo/x86_64      Remi&#x27;s PHP 7.1 RPM repository for  禁用</span><br><span class="line">remi-php71-test                  Remi&#x27;s PHP 7.1 test RPM repository 禁用</span><br><span class="line">remi-php71-test-debuginfo/x86_64 Remi&#x27;s PHP 7.1 test RPM repository 禁用</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php</span><br></pre></td></tr></table></figure>
+<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php </span><br></pre></td></tr></table></figure>
 
 <p>这样php就会安装成功了，因为依赖的关系，我们也会顺便安装上了apache。不过我们可以不用管它。</p>
 <h2 id="php支持的扩展"><a href="#php支持的扩展" class="headerlink" title="php支持的扩展"></a>php支持的扩展</h2><p>我们可以通过以下命令查看支持安装的php扩展：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf.d]# yum search php71-php-</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.btte.net</span><br><span class="line"> * epel: ftp.jaist.ac.jp</span><br><span class="line"> * extras: mirrors.btte.net</span><br><span class="line"> * remi-php71: nl.mirror.babylon.network</span><br><span class="line"> * remi-safe: nl.mirror.babylon.network</span><br><span class="line"> * updates: mirrors.zju.edu.cn</span><br><span class="line">========================================================================================================================== N/S matched: php71-php- ===========================================================================================================================</span><br><span class="line">php71-php-pecl-propro-devel.x86_64 : php71-php-pecl-propro developer files (header)</span><br><span class="line">php71-php-pecl-raphf-devel.x86_64 : php71-php-pecl-raphf developer files (header)</span><br><span class="line">php71-php-pecl-xmldiff-devel.x86_64 : php71-php-pecl-xmldiff developer files (header)</span><br><span class="line">php71-php-pecl-yaconf-devel.x86_64 : php71-php-pecl-yaconf developer files (header)</span><br><span class="line">php71-php-ast.x86_64 : Abstract Syntax Tree</span><br><span class="line">php71-php-bcmath.x86_64 : A module for PHP applications for using the bcmath library</span><br><span class="line">php71-php-cli.x86_64 : Command-line interface for PHP</span><br><span class="line">php71-php-common.x86_64 : Common files for PHP</span><br><span class="line">php71-php-dba.x86_64 : A database abstraction layer module for PHP applications</span><br><span class="line">php71-php-dbg.x86_64 : The interactive PHP debugger</span><br><span class="line">php71-php-devel.x86_64 : Files needed for building PHP extensions</span><br><span class="line">php71-php-embedded.x86_64 : PHP library for embedding in applications</span><br><span class="line">php71-php-enchant.x86_64 : Enchant spelling extension for PHP applications</span><br><span class="line">php71-php-fpm.x86_64 : PHP FastCGI Process Manager</span><br><span class="line">php71-php-gd.x86_64 : A module for PHP applications for using the gd graphics library</span><br><span class="line">php71-php-geos.x86_64 : PHP module for GEOS</span><br><span class="line">php71-php-gmp.x86_64 : A module for PHP applications for using the GNU MP library</span><br><span class="line">php71-php-horde-horde-lz4.x86_64 : Horde LZ4 Compression Extension</span><br><span class="line">php71-php-imap.x86_64 : A module for PHP applications that use IMAP</span><br><span class="line">php71-php-interbase.x86_64 : A module for PHP applications that use Interbase/Firebird databases</span><br><span class="line">php71-php-intl.x86_64 : Internationalization extension for PHP applications</span><br><span class="line">php71-php-json.x86_64 : JavaScript Object Notation extension for PHP</span><br><span class="line">php71-php-ldap.x86_64 : A module for PHP applications that use LDAP</span><br><span class="line">php71-php-libvirt.x86_64 : PHP language binding for Libvirt</span><br><span class="line">php71-php-libvirt-doc.noarch : Document of php-libvirt</span><br><span class="line">php71-php-litespeed.x86_64 : LiteSpeed Web Server PHP support</span><br><span class="line">php71-php-lz4.x86_64 : LZ4 Extension for PHP</span><br><span class="line">php71-php-mbstring.x86_64 : A module for PHP applications which need multi-byte string handling</span><br><span class="line">php71-php-mcrypt.x86_64 : Standard PHP module provides mcrypt library support</span><br><span class="line">php71-php-mysqlnd.x86_64 : A module for PHP applications that use MySQL databases</span><br><span class="line">php71-php-oci8.x86_64 : A module for PHP applications that use OCI8 databases</span><br><span class="line">php71-php-odbc.x86_64 : A module for PHP applications that use ODBC databases</span><br><span class="line">php71-php-opcache.x86_64 : The Zend OPcache</span><br><span class="line">php71-php-pdo.x86_64 : A database access abstraction module for PHP applications</span><br><span class="line">php71-php-pdo-dblib.x86_64 : PDO driver Microsoft SQL Server and Sybase databases</span><br><span class="line">php71-php-pear.noarch : PHP Extension and Application Repository framework</span><br><span class="line">php71-php-pecl-amqp.x86_64 : Communicate with any AMQP compliant server</span><br><span class="line">php71-php-pecl-apcu.x86_64 : APC User Cache</span><br><span class="line">php71-php-pecl-apcu-bc.x86_64 : APCu Backwards Compatibility Module</span><br><span class="line">php71-php-pecl-apcu-devel.x86_64 : APCu developer files (header)</span><br><span class="line">php71-php-pecl-apfd.x86_64 : Always Populate Form Data</span><br><span class="line">php71-php-pecl-apm.x86_64 : Alternative PHP Monitor</span><br><span class="line">php71-php-pecl-bitset.x86_64 : BITSET library</span><br><span class="line">php71-php-pecl-cassandra.x86_64 : DataStax PHP Driver for Apache Cassandra</span><br><span class="line">php71-php-pecl-couchbase2.x86_64 : Couchbase Server PHP extension</span><br><span class="line">php71-php-pecl-crypto.x86_64 : Wrapper for OpenSSL Crypto Library</span><br><span class="line">php71-php-pecl-dbase.x86_64 : dBase database file access functions</span><br><span class="line">php71-php-pecl-dio.x86_64 : Direct I/O functions</span><br><span class="line">php71-php-pecl-druid.x86_64 : A Druid driver for PHP</span><br><span class="line">php71-php-pecl-ds.x86_64 : Data Structures for PHP</span><br><span class="line">php71-php-pecl-eio.x86_64 : Provides interface to the libeio library</span><br><span class="line">php71-php-pecl-env.x86_64 : Load environment variables</span><br><span class="line">php71-php-pecl-ev.x86_64 : Provides interface to libev library</span><br><span class="line">php71-php-pecl-event.x86_64 : Provides interface to libevent library</span><br><span class="line">php71-php-pecl-fann.x86_64 : Wrapper for FANN Library</span><br><span class="line">php71-php-pecl-gearman.x86_64 : PHP wrapper to libgearman</span><br><span class="line">php71-php-pecl-gender.x86_64 : Gender Extension</span><br><span class="line">php71-php-pecl-geoip.x86_64 : Extension to map IP addresses to geographic places</span><br><span class="line">php71-php-pecl-geospatial.x86_64 : PHP Extension to handle common geospatial functions</span><br><span class="line">php71-php-pecl-gmagick.x86_64 : Provides a wrapper to the GraphicsMagick library</span><br><span class="line">php71-php-pecl-gnupg.x86_64 : Wrapper around the gpgme library</span><br><span class="line">php71-php-pecl-hdr-histogram.x86_64 : PHP extension wrapper for the C hdrhistogram API</span><br><span class="line">php71-php-pecl-hprose.x86_64 : Hprose for PHP</span><br><span class="line">php71-php-pecl-hrtime.x86_64 : High resolution timing</span><br><span class="line">php71-php-pecl-http.x86_64 : Extended HTTP support</span><br><span class="line">php71-php-pecl-http-devel.x86_64 : Extended HTTP support developer files (header)</span><br><span class="line">php71-php-pecl-igbinary.x86_64 : Replacement for the standard PHP serializer</span><br><span class="line">php71-php-pecl-igbinary-devel.x86_64 : Igbinary developer files (header)</span><br><span class="line">php71-php-pecl-imagick.x86_64 : Extension to create and modify images using ImageMagick</span><br><span class="line">php71-php-pecl-imagick-devel.x86_64 : imagick extension developer files (header)</span><br><span class="line">php71-php-pecl-inotify.x86_64 : Inotify</span><br><span class="line">php71-php-pecl-json-post.x86_64 : JSON POST handler</span><br><span class="line">php71-php-pecl-krb5.x86_64 : Kerberos authentification extension</span><br><span class="line">php71-php-pecl-krb5-devel.x86_64 : Kerberos extension developer files (header)</span><br><span class="line">php71-php-pecl-libsodium.x86_64 : Wrapper for the Sodium cryptographic library</span><br><span class="line">php71-php-pecl-lua.x86_64 : Embedded lua interpreter</span><br><span class="line">php71-php-pecl-lzf.x86_64 : Extension to handle LZF de/compression</span><br><span class="line">php71-php-pecl-mailparse.x86_64 : PHP PECL package for parsing and working with email messages</span><br><span class="line">php71-php-pecl-memcache.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memcached.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memprof.x86_64 : Memory usage profiler</span><br><span class="line">php71-php-pecl-mogilefs.x86_64 : PHP client library to communicate with the MogileFS storage</span><br><span class="line">php71-php-pecl-mongodb.x86_64 : MongoDB driver for PHP</span><br><span class="line">php71-php-pecl-mosquitto.x86_64 : Extension for libmosquitto</span><br><span class="line">php71-php-pecl-msgpack.x86_64 : API for communicating with MessagePack serialization</span><br><span class="line">php71-php-pecl-msgpack-devel.x86_64 : MessagePack developer files (header)</span><br><span class="line">php71-php-pecl-mysql.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-mysql-xdevapi.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-oauth.x86_64 : PHP OAuth consumer extension</span><br><span class="line">php71-php-pecl-pcs.x86_64 : PHP Code Service</span><br><span class="line">php71-php-pecl-pcs-devel.x86_64 : PHP Code Service (header)</span><br><span class="line">php71-php-pecl-pdflib.x86_64 : Package for generating PDF files</span><br><span class="line">php71-php-pecl-pq.x86_64 : PostgreSQL client library (libpq) binding</span><br><span class="line">php71-php-pecl-propro.x86_64 : Property proxy</span><br><span class="line">php71-php-pecl-radius.x86_64 : Radius client library</span><br><span class="line">php71-php-pecl-raphf.x86_64 : Resource and persistent handles factory</span><br><span class="line">php71-php-pecl-rdkafka.x86_64 : Kafka client based on librdkafka</span><br><span class="line">php71-php-pecl-redis.x86_64 : Extension for communicating with the Redis key-value store</span><br><span class="line">php71-php-pecl-ref.x86_64 : Soft and Weak references support in PHP</span><br><span class="line">php71-php-pecl-request.x86_64 : Server-side request and response objects</span><br><span class="line">php71-php-pecl-rrd.x86_64 : PHP Bindings for rrdtool</span><br><span class="line">php71-php-pecl-scrypt.x86_64 : Scrypt hashing function</span><br><span class="line">php71-php-pecl-seaslog.x86_64 : A effective,fast,stable log extension for PHP</span><br><span class="line">php71-php-pecl-selinux.x86_64 : SELinux binding for PHP scripting language</span><br><span class="line">php71-php-pecl-solr2.x86_64 : API orientée objet pour Apache Solr</span><br><span class="line">php71-php-pecl-ssdeep.x86_64 : Wrapper for libfuzzy library</span><br><span class="line">php71-php-pecl-ssh2.x86_64 : Bindings for the libssh2 library</span><br><span class="line">php71-php-pecl-stats.x86_64 : Routines for statistical computation</span><br><span class="line">php71-php-pecl-stomp.x86_64 : Stomp client extension</span><br><span class="line">php71-php-pecl-swoole.x86_64 : PHP's asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-swoole-serialize.x86_64 : Fast and Small serialize</span><br><span class="line">php71-php-pecl-swoole2.x86_64 : PHP's asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-sync.x86_64 : Named and unnamed synchronization objects</span><br><span class="line">php71-php-pecl-taint.x86_64 : XSS code sniffer</span><br><span class="line">php71-php-pecl-tcpwrap.x86_64 : Tcpwrappers binding</span><br><span class="line">php71-php-pecl-termbox.x86_64 : A termbox wrapper for PHP</span><br><span class="line">php71-php-pecl-trace.x86_64 : Trace is a low-overhead tracing tool for PHP</span><br><span class="line">php71-php-pecl-trader.x86_64 : Technical Analysis for traders</span><br><span class="line">php71-php-pecl-ui.x86_64 : UI API</span><br><span class="line">php71-php-pecl-uopz.x86_64 : User Operations for Zend</span><br><span class="line">php71-php-pecl-uploadprogress.x86_64 : An extension to track progress of a file upload</span><br><span class="line">php71-php-pecl-uuid.x86_64 : Universally Unique Identifier extension for PHP</span><br><span class="line">php71-php-pecl-uv.x86_64 : Libuv wrapper</span><br><span class="line">php71-php-pecl-varnish.x86_64 : Varnish Cache bindings</span><br><span class="line">php71-php-pecl-vips.x86_64 : PHP extension for interfacing with libvips</span><br><span class="line">php71-php-pecl-vld.x86_64 : Dump the internal representation of PHP scripts</span><br><span class="line">php71-php-pecl-weakref.x86_64 : Implementation of weak references</span><br><span class="line">php71-php-pecl-xattr.x86_64 : Extended attributes</span><br><span class="line">php71-php-pecl-xdebug.x86_64 : PECL package for debugging PHP scripts</span><br><span class="line">php71-php-pecl-xdiff.x86_64 : File differences/patches</span><br><span class="line">php71-php-pecl-xmldiff.x86_64 : XML diff and merge</span><br><span class="line">php71-php-pecl-xxtea.x86_64 : XXTEA encryption algorithm extension for PHP</span><br><span class="line">php71-php-pecl-yac.x86_64 : Lockless user data cache</span><br><span class="line">php71-php-pecl-yaconf.x86_64 : Yet Another Configurations Container</span><br><span class="line">php71-php-pecl-yaf.x86_64 : Yet Another Framework</span><br><span class="line">php71-php-pecl-yaml.x86_64 : PHP Bindings for yaml</span><br><span class="line">php71-php-pecl-yar.x86_64 : Light, concurrent RPC framework</span><br><span class="line">php71-php-pecl-yaz.x86_64 : Z39.50/SRU client</span><br><span class="line">php71-php-pecl-zip.x86_64 : Une extension de gestion des ZIP</span><br><span class="line">php71-php-pecl-zmq.x86_64 : ZeroMQ messaging</span><br><span class="line">php71-php-pgsql.x86_64 : A PostgreSQL database module for PHP</span><br><span class="line">php71-php-phalcon3.x86_64 : Phalcon Framework</span><br><span class="line">php71-php-phpiredis.x86_64 : Client extension for Redis</span><br><span class="line">php71-php-pinba.x86_64 : Client extension for Pinba statistics server</span><br><span class="line">php71-php-process.x86_64 : Modules for PHP script using system process interfaces</span><br><span class="line">php71-php-pspell.x86_64 : A module for PHP applications for using pspell interfaces</span><br><span class="line">php71-php-recode.x86_64 : A module for PHP applications for using the recode library</span><br><span class="line">php71-php-smbclient.x86_64 : PHP wrapper for libsmbclient</span><br><span class="line">php71-php-snappy.x86_64 : Snappy Extension for PHP</span><br><span class="line">php71-php-snmp.x86_64 : A module for PHP applications that query SNMP-managed devices</span><br><span class="line">php71-php-soap.x86_64 : A module for PHP applications that use the SOAP protocol</span><br><span class="line">php71-php-sqlsrv.x86_64 : Microsoft Drivers for PHP for SQL Server</span><br><span class="line">php71-php-tarantool.x86_64 : PHP driver for Tarantool/Box</span><br><span class="line">php71-php-tidy.x86_64 : Standard PHP module provides tidy library support</span><br><span class="line">php71-php-xml.x86_64 : A module for PHP applications which use XML</span><br><span class="line">php71-php-xmlrpc.x86_64 : A module for PHP applications which use the XML-RPC protocol</span><br><span class="line"></span><br><span class="line">  名称和简介匹配 only，使用“search all”试试。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf.d]# yum search php71-php-</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.btte.net</span><br><span class="line"> * epel: ftp.jaist.ac.jp</span><br><span class="line"> * extras: mirrors.btte.net</span><br><span class="line"> * remi-php71: nl.mirror.babylon.network</span><br><span class="line"> * remi-safe: nl.mirror.babylon.network</span><br><span class="line"> * updates: mirrors.zju.edu.cn</span><br><span class="line">========================================================================================================================== N/S matched: php71-php- ===========================================================================================================================</span><br><span class="line">php71-php-pecl-propro-devel.x86_64 : php71-php-pecl-propro developer files (header)</span><br><span class="line">php71-php-pecl-raphf-devel.x86_64 : php71-php-pecl-raphf developer files (header)</span><br><span class="line">php71-php-pecl-xmldiff-devel.x86_64 : php71-php-pecl-xmldiff developer files (header)</span><br><span class="line">php71-php-pecl-yaconf-devel.x86_64 : php71-php-pecl-yaconf developer files (header)</span><br><span class="line">php71-php-ast.x86_64 : Abstract Syntax Tree</span><br><span class="line">php71-php-bcmath.x86_64 : A module for PHP applications for using the bcmath library</span><br><span class="line">php71-php-cli.x86_64 : Command-line interface for PHP</span><br><span class="line">php71-php-common.x86_64 : Common files for PHP</span><br><span class="line">php71-php-dba.x86_64 : A database abstraction layer module for PHP applications</span><br><span class="line">php71-php-dbg.x86_64 : The interactive PHP debugger</span><br><span class="line">php71-php-devel.x86_64 : Files needed for building PHP extensions</span><br><span class="line">php71-php-embedded.x86_64 : PHP library for embedding in applications</span><br><span class="line">php71-php-enchant.x86_64 : Enchant spelling extension for PHP applications</span><br><span class="line">php71-php-fpm.x86_64 : PHP FastCGI Process Manager</span><br><span class="line">php71-php-gd.x86_64 : A module for PHP applications for using the gd graphics library</span><br><span class="line">php71-php-geos.x86_64 : PHP module for GEOS</span><br><span class="line">php71-php-gmp.x86_64 : A module for PHP applications for using the GNU MP library</span><br><span class="line">php71-php-horde-horde-lz4.x86_64 : Horde LZ4 Compression Extension</span><br><span class="line">php71-php-imap.x86_64 : A module for PHP applications that use IMAP</span><br><span class="line">php71-php-interbase.x86_64 : A module for PHP applications that use Interbase/Firebird databases</span><br><span class="line">php71-php-intl.x86_64 : Internationalization extension for PHP applications</span><br><span class="line">php71-php-json.x86_64 : JavaScript Object Notation extension for PHP</span><br><span class="line">php71-php-ldap.x86_64 : A module for PHP applications that use LDAP</span><br><span class="line">php71-php-libvirt.x86_64 : PHP language binding for Libvirt</span><br><span class="line">php71-php-libvirt-doc.noarch : Document of php-libvirt</span><br><span class="line">php71-php-litespeed.x86_64 : LiteSpeed Web Server PHP support</span><br><span class="line">php71-php-lz4.x86_64 : LZ4 Extension for PHP</span><br><span class="line">php71-php-mbstring.x86_64 : A module for PHP applications which need multi-byte string handling</span><br><span class="line">php71-php-mcrypt.x86_64 : Standard PHP module provides mcrypt library support</span><br><span class="line">php71-php-mysqlnd.x86_64 : A module for PHP applications that use MySQL databases</span><br><span class="line">php71-php-oci8.x86_64 : A module for PHP applications that use OCI8 databases</span><br><span class="line">php71-php-odbc.x86_64 : A module for PHP applications that use ODBC databases</span><br><span class="line">php71-php-opcache.x86_64 : The Zend OPcache</span><br><span class="line">php71-php-pdo.x86_64 : A database access abstraction module for PHP applications</span><br><span class="line">php71-php-pdo-dblib.x86_64 : PDO driver Microsoft SQL Server and Sybase databases</span><br><span class="line">php71-php-pear.noarch : PHP Extension and Application Repository framework</span><br><span class="line">php71-php-pecl-amqp.x86_64 : Communicate with any AMQP compliant server</span><br><span class="line">php71-php-pecl-apcu.x86_64 : APC User Cache</span><br><span class="line">php71-php-pecl-apcu-bc.x86_64 : APCu Backwards Compatibility Module</span><br><span class="line">php71-php-pecl-apcu-devel.x86_64 : APCu developer files (header)</span><br><span class="line">php71-php-pecl-apfd.x86_64 : Always Populate Form Data</span><br><span class="line">php71-php-pecl-apm.x86_64 : Alternative PHP Monitor</span><br><span class="line">php71-php-pecl-bitset.x86_64 : BITSET library</span><br><span class="line">php71-php-pecl-cassandra.x86_64 : DataStax PHP Driver for Apache Cassandra</span><br><span class="line">php71-php-pecl-couchbase2.x86_64 : Couchbase Server PHP extension</span><br><span class="line">php71-php-pecl-crypto.x86_64 : Wrapper for OpenSSL Crypto Library</span><br><span class="line">php71-php-pecl-dbase.x86_64 : dBase database file access functions</span><br><span class="line">php71-php-pecl-dio.x86_64 : Direct I/O functions</span><br><span class="line">php71-php-pecl-druid.x86_64 : A Druid driver for PHP</span><br><span class="line">php71-php-pecl-ds.x86_64 : Data Structures for PHP</span><br><span class="line">php71-php-pecl-eio.x86_64 : Provides interface to the libeio library</span><br><span class="line">php71-php-pecl-env.x86_64 : Load environment variables</span><br><span class="line">php71-php-pecl-ev.x86_64 : Provides interface to libev library</span><br><span class="line">php71-php-pecl-event.x86_64 : Provides interface to libevent library</span><br><span class="line">php71-php-pecl-fann.x86_64 : Wrapper for FANN Library</span><br><span class="line">php71-php-pecl-gearman.x86_64 : PHP wrapper to libgearman</span><br><span class="line">php71-php-pecl-gender.x86_64 : Gender Extension</span><br><span class="line">php71-php-pecl-geoip.x86_64 : Extension to map IP addresses to geographic places</span><br><span class="line">php71-php-pecl-geospatial.x86_64 : PHP Extension to handle common geospatial functions</span><br><span class="line">php71-php-pecl-gmagick.x86_64 : Provides a wrapper to the GraphicsMagick library</span><br><span class="line">php71-php-pecl-gnupg.x86_64 : Wrapper around the gpgme library</span><br><span class="line">php71-php-pecl-hdr-histogram.x86_64 : PHP extension wrapper for the C hdrhistogram API</span><br><span class="line">php71-php-pecl-hprose.x86_64 : Hprose for PHP</span><br><span class="line">php71-php-pecl-hrtime.x86_64 : High resolution timing</span><br><span class="line">php71-php-pecl-http.x86_64 : Extended HTTP support</span><br><span class="line">php71-php-pecl-http-devel.x86_64 : Extended HTTP support developer files (header)</span><br><span class="line">php71-php-pecl-igbinary.x86_64 : Replacement for the standard PHP serializer</span><br><span class="line">php71-php-pecl-igbinary-devel.x86_64 : Igbinary developer files (header)</span><br><span class="line">php71-php-pecl-imagick.x86_64 : Extension to create and modify images using ImageMagick</span><br><span class="line">php71-php-pecl-imagick-devel.x86_64 : imagick extension developer files (header)</span><br><span class="line">php71-php-pecl-inotify.x86_64 : Inotify</span><br><span class="line">php71-php-pecl-json-post.x86_64 : JSON POST handler</span><br><span class="line">php71-php-pecl-krb5.x86_64 : Kerberos authentification extension</span><br><span class="line">php71-php-pecl-krb5-devel.x86_64 : Kerberos extension developer files (header)</span><br><span class="line">php71-php-pecl-libsodium.x86_64 : Wrapper for the Sodium cryptographic library</span><br><span class="line">php71-php-pecl-lua.x86_64 : Embedded lua interpreter</span><br><span class="line">php71-php-pecl-lzf.x86_64 : Extension to handle LZF de/compression</span><br><span class="line">php71-php-pecl-mailparse.x86_64 : PHP PECL package for parsing and working with email messages</span><br><span class="line">php71-php-pecl-memcache.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memcached.x86_64 : Extension to work with the Memcached caching daemon</span><br><span class="line">php71-php-pecl-memprof.x86_64 : Memory usage profiler</span><br><span class="line">php71-php-pecl-mogilefs.x86_64 : PHP client library to communicate with the MogileFS storage</span><br><span class="line">php71-php-pecl-mongodb.x86_64 : MongoDB driver for PHP</span><br><span class="line">php71-php-pecl-mosquitto.x86_64 : Extension for libmosquitto</span><br><span class="line">php71-php-pecl-msgpack.x86_64 : API for communicating with MessagePack serialization</span><br><span class="line">php71-php-pecl-msgpack-devel.x86_64 : MessagePack developer files (header)</span><br><span class="line">php71-php-pecl-mysql.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-mysql-xdevapi.x86_64 : MySQL database access functions</span><br><span class="line">php71-php-pecl-oauth.x86_64 : PHP OAuth consumer extension</span><br><span class="line">php71-php-pecl-pcs.x86_64 : PHP Code Service</span><br><span class="line">php71-php-pecl-pcs-devel.x86_64 : PHP Code Service (header)</span><br><span class="line">php71-php-pecl-pdflib.x86_64 : Package for generating PDF files</span><br><span class="line">php71-php-pecl-pq.x86_64 : PostgreSQL client library (libpq) binding</span><br><span class="line">php71-php-pecl-propro.x86_64 : Property proxy</span><br><span class="line">php71-php-pecl-radius.x86_64 : Radius client library</span><br><span class="line">php71-php-pecl-raphf.x86_64 : Resource and persistent handles factory</span><br><span class="line">php71-php-pecl-rdkafka.x86_64 : Kafka client based on librdkafka</span><br><span class="line">php71-php-pecl-redis.x86_64 : Extension for communicating with the Redis key-value store</span><br><span class="line">php71-php-pecl-ref.x86_64 : Soft and Weak references support in PHP</span><br><span class="line">php71-php-pecl-request.x86_64 : Server-side request and response objects</span><br><span class="line">php71-php-pecl-rrd.x86_64 : PHP Bindings for rrdtool</span><br><span class="line">php71-php-pecl-scrypt.x86_64 : Scrypt hashing function</span><br><span class="line">php71-php-pecl-seaslog.x86_64 : A effective,fast,stable log extension for PHP</span><br><span class="line">php71-php-pecl-selinux.x86_64 : SELinux binding for PHP scripting language</span><br><span class="line">php71-php-pecl-solr2.x86_64 : API orientée objet pour Apache Solr</span><br><span class="line">php71-php-pecl-ssdeep.x86_64 : Wrapper for libfuzzy library</span><br><span class="line">php71-php-pecl-ssh2.x86_64 : Bindings for the libssh2 library</span><br><span class="line">php71-php-pecl-stats.x86_64 : Routines for statistical computation</span><br><span class="line">php71-php-pecl-stomp.x86_64 : Stomp client extension</span><br><span class="line">php71-php-pecl-swoole.x86_64 : PHP&#x27;s asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-swoole-serialize.x86_64 : Fast and Small serialize</span><br><span class="line">php71-php-pecl-swoole2.x86_64 : PHP&#x27;s asynchronous concurrent distributed networking framework</span><br><span class="line">php71-php-pecl-sync.x86_64 : Named and unnamed synchronization objects</span><br><span class="line">php71-php-pecl-taint.x86_64 : XSS code sniffer</span><br><span class="line">php71-php-pecl-tcpwrap.x86_64 : Tcpwrappers binding</span><br><span class="line">php71-php-pecl-termbox.x86_64 : A termbox wrapper for PHP</span><br><span class="line">php71-php-pecl-trace.x86_64 : Trace is a low-overhead tracing tool for PHP</span><br><span class="line">php71-php-pecl-trader.x86_64 : Technical Analysis for traders</span><br><span class="line">php71-php-pecl-ui.x86_64 : UI API</span><br><span class="line">php71-php-pecl-uopz.x86_64 : User Operations for Zend</span><br><span class="line">php71-php-pecl-uploadprogress.x86_64 : An extension to track progress of a file upload</span><br><span class="line">php71-php-pecl-uuid.x86_64 : Universally Unique Identifier extension for PHP</span><br><span class="line">php71-php-pecl-uv.x86_64 : Libuv wrapper</span><br><span class="line">php71-php-pecl-varnish.x86_64 : Varnish Cache bindings</span><br><span class="line">php71-php-pecl-vips.x86_64 : PHP extension for interfacing with libvips</span><br><span class="line">php71-php-pecl-vld.x86_64 : Dump the internal representation of PHP scripts</span><br><span class="line">php71-php-pecl-weakref.x86_64 : Implementation of weak references</span><br><span class="line">php71-php-pecl-xattr.x86_64 : Extended attributes</span><br><span class="line">php71-php-pecl-xdebug.x86_64 : PECL package for debugging PHP scripts</span><br><span class="line">php71-php-pecl-xdiff.x86_64 : File differences/patches</span><br><span class="line">php71-php-pecl-xmldiff.x86_64 : XML diff and merge</span><br><span class="line">php71-php-pecl-xxtea.x86_64 : XXTEA encryption algorithm extension for PHP</span><br><span class="line">php71-php-pecl-yac.x86_64 : Lockless user data cache</span><br><span class="line">php71-php-pecl-yaconf.x86_64 : Yet Another Configurations Container</span><br><span class="line">php71-php-pecl-yaf.x86_64 : Yet Another Framework</span><br><span class="line">php71-php-pecl-yaml.x86_64 : PHP Bindings for yaml</span><br><span class="line">php71-php-pecl-yar.x86_64 : Light, concurrent RPC framework</span><br><span class="line">php71-php-pecl-yaz.x86_64 : Z39.50/SRU client</span><br><span class="line">php71-php-pecl-zip.x86_64 : Une extension de gestion des ZIP</span><br><span class="line">php71-php-pecl-zmq.x86_64 : ZeroMQ messaging</span><br><span class="line">php71-php-pgsql.x86_64 : A PostgreSQL database module for PHP</span><br><span class="line">php71-php-phalcon3.x86_64 : Phalcon Framework</span><br><span class="line">php71-php-phpiredis.x86_64 : Client extension for Redis</span><br><span class="line">php71-php-pinba.x86_64 : Client extension for Pinba statistics server</span><br><span class="line">php71-php-process.x86_64 : Modules for PHP script using system process interfaces</span><br><span class="line">php71-php-pspell.x86_64 : A module for PHP applications for using pspell interfaces</span><br><span class="line">php71-php-recode.x86_64 : A module for PHP applications for using the recode library</span><br><span class="line">php71-php-smbclient.x86_64 : PHP wrapper for libsmbclient</span><br><span class="line">php71-php-snappy.x86_64 : Snappy Extension for PHP</span><br><span class="line">php71-php-snmp.x86_64 : A module for PHP applications that query SNMP-managed devices</span><br><span class="line">php71-php-soap.x86_64 : A module for PHP applications that use the SOAP protocol</span><br><span class="line">php71-php-sqlsrv.x86_64 : Microsoft Drivers for PHP for SQL Server</span><br><span class="line">php71-php-tarantool.x86_64 : PHP driver for Tarantool/Box</span><br><span class="line">php71-php-tidy.x86_64 : Standard PHP module provides tidy library support</span><br><span class="line">php71-php-xml.x86_64 : A module for PHP applications which use XML</span><br><span class="line">php71-php-xmlrpc.x86_64 : A module for PHP applications which use the XML-RPC protocol</span><br><span class="line"></span><br><span class="line">  名称和简介匹配 only，使用“search all”试试。</span><br></pre></td></tr></table></figure>
 
 <p>比如我们现在想要安装php-fpm扩展，我们可以执行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-fpm -y</span><br></pre></td></tr></table></figure>
@@ -287,7 +306,7 @@
 <p>其实如果不支持的话，我们也可以手动安装。但是需要执行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-devel -y</span><br></pre></td></tr></table></figure>
 
-<h2 id="php-fpm-命令管理"><a href="#php-fpm-命令管理" class="headerlink" title="php-fpm 命令管理"></a>php-fpm 命令管理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动</span></span><br><span class="line">systemctl start php-fpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止</span></span><br><span class="line">systemctl stop php-fpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重载</span></span><br><span class="line">systemctl reload php-fpm </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设置开机启动</span></span><br><span class="line">systemctl enable php-fpm </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">禁止开机启动</span></span><br><span class="line">systemctl disable php-pfm</span><br></pre></td></tr></table></figure>
+<h2 id="php-fpm-命令管理"><a href="#php-fpm-命令管理" class="headerlink" title="php-fpm 命令管理"></a>php-fpm 命令管理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动</span></span><br><span class="line">systemctl start php-fpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止</span></span><br><span class="line">systemctl stop php-fpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重载</span></span><br><span class="line">systemctl reload php-fpm </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">设置开机启动</span></span><br><span class="line">systemctl enable php-fpm </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">禁止开机启动</span></span><br><span class="line">systemctl disable php-pfm</span><br></pre></td></tr></table></figure>
 
 <h2 id="总结。"><a href="#总结。" class="headerlink" title="总结。"></a>总结。</h2><p>至此，我们的yum安装php已经讲解完毕。如果有什么问题，可以在下面给我留言，我会再进行补充。</p>
 
@@ -296,28 +315,26 @@
     
     
     
-        <div class="reward-container">
+
+    <footer class="post-footer">
+          <div class="reward-container">
   <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
+  <button>
+    赞赏
   </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信支付">
-        <p>微信支付</p>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="魔王卷子 微信">
+        <span>微信</span>
       </div>
-      
-      <div style="display: inline-block;">
+      <div>
         <img src="/images/alipay.jpg" alt="魔王卷子 支付宝">
-        <p>支付宝</p>
+        <span>支付宝</span>
       </div>
 
   </div>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/php/" rel="tag"># php</a>
               <a href="/tags/centos/" rel="tag"># centos</a>
@@ -326,184 +343,61 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2017/11/17/php-cli-change-font-color/" rel="prev" title="php-cli 改变输出的字体颜色">
-      <i class="fa fa-chevron-left"></i> php-cli 改变输出的字体颜色
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2017/11/17/php-singleton-mode/" rel="next" title="单例模式">
-      单例模式 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/11/17/php-cli-change-font-color/" rel="prev" title="php-cli 改变输出的字体颜色">
+                  <i class="fa fa-chevron-left"></i> php-cli 改变输出的字体颜色
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/11/17/php-singleton-mode/" rel="next" title="单例模式">
+                  单例模式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-          
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
     
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装epel"><span class="nav-number">1.</span> <span class="nav-text">安装epel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置默认安装的PHP版本"><span class="nav-number">2.</span> <span class="nav-text">设置默认安装的PHP版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PHP"><span class="nav-number">3.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php支持的扩展"><span class="nav-number">4.</span> <span class="nav-text">php支持的扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-fpm-命令管理"><span class="nav-number">5.</span> <span class="nav-text">php-fpm 命令管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结。"><span class="nav-number">6.</span> <span class="nav-text">总结。</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="魔王卷子"
-      src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">魔王卷子</p>
-  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">94</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">42</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">102</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/mowangjuanzi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mowangjuanzi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:baoguoxiao0538@hotmail.com" title="E-Mail → mailto:baoguoxiao0538@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-  <div class="beian"><a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
   </div>
 
 <div class="copyright">
-  
   &copy; 2015 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">魔王卷子</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script color='' opacity='' zIndex='' count='' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-<script src="/js/utils.js"></script>
+  
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
 
 
 
@@ -513,51 +407,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://www-baoguoxiao-com.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://www.baoguoxiao.com/2017/11/17/yum-install-php/";
-    this.page.identifier = "2017/11/17/yum-install-php/";
-    this.page.title = "yum 安装 php";
-    };
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://www-baoguoxiao-com.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
-</script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"www-baoguoxiao-com","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
 </html>
