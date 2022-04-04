@@ -6,7 +6,7 @@ footer:
 menu:
   home: / || fa fa-home
   archives: /archives/ || fa fa-archive
-  书籍: https://book.douban.com/people/119869986/ || fa fa-book
+  书籍: /books.html || fa fa-book
   about: /about.html || fa fa-user
   sitemap: /sitemap.xml || fa fa-sitemap
 scheme: Gemini

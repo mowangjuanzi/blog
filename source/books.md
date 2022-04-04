@@ -5,6 +5,8 @@ tags:
 ---
 ## 正在读的书
 
+- [TCP/IP详解 卷1：协议](https://book.douban.com/subject/26825411/)
+- [UNIX网络编程 卷1：套接字联网API](https://book.douban.com/subject/26434583/)
 - [C语言程序设计现代方法第二版](https://book.douban.com/subject/4279678/)
 
 ## 读过的书
