@@ -5,8 +5,7 @@ footer:
     icp: '鲁ICP备13027795号-1'
 menu:
   home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  书籍: /books.html || fa fa-book
+  Book: /books.html || fa fa-book
   about: /about.html || fa fa-user
   sitemap: /sitemap.xml || fa fa-sitemap
 scheme: Gemini
