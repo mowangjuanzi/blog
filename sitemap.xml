@@ -11,321 +11,6 @@
   </url>
   
   <url>
-    <loc>http://www.baoguoxiao.com/2018/11/15/mac-login-ali-cloud/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/02/24/math-set/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/mongodb-replica-set/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/mysql-replicate/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/mysql-reset-password/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/nginx-manager-command/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2019/02/17/nginx-statistics-request-time/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/11/16/open-file-or-folder-in-terminal-vscode/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2019/01/07/personal-income-tax-2019/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/10/08/php-chinese-characters-to-pinyin/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/php-cli-change-font-color/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/04/24/php-linked-list/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/php-singleton-mode/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/19/programmer-cry/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/10/08/programmer-must-read-books/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/python-3-6-install-scrapy/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/python-coding-error/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/python3-interaction-back-button/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/09/27/react-native-runs-project-first-time/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/redis-geo/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/11/13/sentry-android-sdk-adaptation/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/10/30/sentry-configuring-mail/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/10/29/sentry-install/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/11/07/sentry-note-1/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/simple-template-separation/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/soft-skills/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/07/14/sudo-password-free/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-ssh-remote-access/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-static-ip/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/11/11/ubuntu-apt-install-lrzsz/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/10/10/ubuntu-apt-install-php-zip/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.baoguoxiao.com/2018/06/03/ubuntu-install-elasticsearch/</loc>
-    
-    <lastmod>2022-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.baoguoxiao.com/2018/05/17/ubuntu-set-timezone/</loc>
     
     <lastmod>2022-04-05</lastmod>
@@ -777,6 +462,321 @@
   
   <url>
     <loc>http://www.baoguoxiao.com/2018/11/16/mac-build-web-environment/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/11/15/mac-login-ali-cloud/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/02/24/math-set/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/mongodb-replica-set/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/mysql-replicate/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/mysql-reset-password/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/nginx-manager-command/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2019/02/17/nginx-statistics-request-time/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/11/16/open-file-or-folder-in-terminal-vscode/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2019/01/07/personal-income-tax-2019/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/10/08/php-chinese-characters-to-pinyin/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/php-cli-change-font-color/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/04/24/php-linked-list/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/php-singleton-mode/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/19/programmer-cry/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/10/08/programmer-must-read-books/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/python-3-6-install-scrapy/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/python-coding-error/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/python3-interaction-back-button/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/09/27/react-native-runs-project-first-time/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/redis-geo/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/11/13/sentry-android-sdk-adaptation/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/10/30/sentry-configuring-mail/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/10/29/sentry-install/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/11/07/sentry-note-1/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/simple-template-separation/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/soft-skills/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/sql-sql-doubly-linked-list/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/sublime-text-3-install-package-control/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/07/14/sudo-password-free/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-ssh-remote-access/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2017/11/17/ubuntu-16-10-set-static-ip/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/11/11/ubuntu-apt-install-lrzsz/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/10/10/ubuntu-apt-install-php-zip/</loc>
+    
+    <lastmod>2022-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.baoguoxiao.com/2018/06/03/ubuntu-install-elasticsearch/</loc>
     
     <lastmod>2022-04-05</lastmod>
     
