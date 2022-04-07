@@ -14,7 +14,7 @@ tags:
 
 ## 关注博客
 
-本博客由 Hexo 生成。评论由 Disqus 支持（如果不翻墙，可能看不到评论框），如有问题可到 [Github](https://github.com/mowangjuanzi/blog) 提 [issue](https://github.com/mowangjuanzi/blog/issues) 。
+本博客由 Hexo 生成。如有问题可到 [Github](https://github.com/mowangjuanzi/blog) 提 [issue](https://github.com/mowangjuanzi/blog/issues) 。
 
 ## 联系我
 
