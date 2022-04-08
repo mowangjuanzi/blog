@@ -127,13 +127,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -186,6 +186,101 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/07/js-implements-jquery-chained-calls/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/07/07/js-implements-jquery-chained-calls/" class="post-title-link" itemprop="url">原生JS实现jQuery的链式调用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-07 22:37:52" itemprop="dateCreated datePublished" datetime="2018-07-07T22:37:52+08:00">2018-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>其实在我们学习使用jQuery的过程中，我们经常是这样使用的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;html&quot;</span>).<span class="title function_">css</span>();</span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/abc&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>发现特别好用，而我在前段时间处理webview的时候，也多次使用到js，并且对于使用原生JS感到稍有不便。所以想到将其封装成类库，然后供以后进行重复使用或者优化。</p>
+<p>那么如何去实现如何jQuery的方法呢。</p>
+<p>其实代码很简单，我也是门外汉，记录下来也是为我自己做一个学习的方式，希望如果有更好的方式可以跟我说。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">gc</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> gc.<span class="property">fn</span>.<span class="title function_">abc</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gc.<span class="property">fn</span> = gc.<span class="property"><span class="keyword">prototype</span></span> = &#123;</span><br><span class="line">    <span class="attr">abc</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">__proto__</span> = gc.<span class="property">fn</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">de</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;def&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">gc.<span class="property">aaa</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;aaa&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">gc</span>();</span><br><span class="line"><span class="title function_">gc</span>().<span class="title function_">de</span>();</span><br><span class="line">gc.<span class="title function_">aaa</span>();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/07/04/http-protocol-url-syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,7 +317,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -370,7 +465,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -467,7 +562,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -586,7 +681,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -688,7 +783,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -911,7 +1006,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1009,7 +1104,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1098,7 +1193,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1190,7 +1285,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1237,117 +1332,6 @@
 <p>第一个坑，是请求JAVA的服务器获取jsapi_ticket票据，提示操作失败。经过JAVA排查，发现是少设置了一个参数。好了，经过修改，能够正常获取jsapi_ticket了。</p>
 <p>第二个坑，则是测试这边换了JAVA配置中的appid的值的配置，结果access_token因为缓存起来了，结果还是存的之前的appid的access_token。接着获取的jsapi_ticket也是根据之前的access_token进行获取的。所以一直不成功，后来经过清除缓存。然后测试就ok了。</p>
 <p>好了。其实这个并没有按照教程的形式来介绍一下我的开发工作。主要是把我中间遇到的坑给解释一下。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/02/24/math-set/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/02/24/math-set/" class="post-title-link" itemprop="url">数学基础之集合</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-02-24 23:39:40" itemprop="dateCreated datePublished" datetime="2018-02-24T23:39:40+08:00">2018-02-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li>研究对象统称为元素。把一些元素组成的总体叫做集合（简称为集）。</li>
-<li>给定的集合必须是可确定的。也就是说给定一个集合，那么任何一个元素在不在这个集合中就确定了。</li>
-<li>一个集合中的元素是互为不同的。也就是说，集合中的元素是不重复出现的。</li>
-<li>只要构成两个集合的元素是相同的，那么这两个集合就是相等的。</li>
-<li>如果a是集合A的元素，就说a属于集合A，记作a∈A。如果a不是集合a中的元素，那就a不属于集合A，记作a∉A。</li>
-<li>全体非负整数组成的集合称为非负数整数集（或自然数集），记作N。</li>
-<li>所有正整数组成的集合称为正整数集，记作N*或N+。</li>
-<li>全体整数组成的集合称为整数集，记作Z。</li>
-<li>全体有理数组成的集合称为有理数集，记作Q。</li>
-<li>全体实数组合的集合称为实数集，记作R。</li>
-<li>列举法指的是将远远一一列举出来，并用花括号“{}”括起来表示集合的方法叫做列举法。例如：小于10的所有自然数组成的集合是{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}。</li>
-<li>对于使用列举法列举不完的，我们可以使用描述法。比如x-7&lt;3的解集我们可以使用D&#x3D;{x∈R|x&lt;10}。</li>
-<li>如果集合A中任意一个元素都是集合B中的元素，那么这两个集合有包含关系，成集合A为集合B的子集。记作A⊆B（或B⊇A），读作“A含于B”（或者“B包含A”）。</li>
-<li>在数学中，经常用在平台上封闭曲线的内部代表集合的图，被称为Venn图。</li>
-<li>如果集合A是集合B的子集，且结合B是集合A的子集，辞职集合A与集合B是相等的，那么集合A和集合B相等，记作A&#x3D;B。</li>
-<li>如果集合A⊆B，但是存在元素x∈B，且x∉A，我们称集合A是集合B的真子集，记作A⊊B（或B⊋A）。</li>
-<li>不包含任何元素的集合叫做空集，记作Ø，并规定，空集是任何集合的子集。</li>
-<li>由所有属于集合A或属于集合B的元素组成的集合，称为集合A与B的并集，记作A∪B，读作“A并B”，即A∪B&#x3D;{x|x∈A,或x∈B}。</li>
-<li>由属于集合A且属于集合B的所有元素组成的集合，称为A与B的交集，记作A∩B（读作“A交B”），即A∩B&#x3D;{x|x∈A，且x∈B}。</li>
-<li>如果一个集合含有所研究问题中设计的所有元素，那么就称为这个集合为全集，通常记作U。</li>
-<li>由全集U中不属于结合A的所有元素组成的集合称为集合A相对于全集U的补集，简称为集合A的补集，记作CuA。即CuA&#x3D;{x|x∈U, 且x∉A}。</li>
-</ol>
 
       
     </div>

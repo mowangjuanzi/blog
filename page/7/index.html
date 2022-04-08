@@ -127,13 +127,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -186,6 +186,117 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/25/kylin-firefox-prevent-access-sogou-site/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/25/kylin-firefox-prevent-access-sogou-site/" class="post-title-link" itemprop="url">我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-25 11:37:27" itemprop="dateCreated datePublished" datetime="2017-11-25T11:37:27+08:00">2017-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我的火狐浏览器默认主页是123.sogou.com 但是，我希望把我的首页变成百度。</p>
+<p>然后我按照以前的习惯，在设置里面将主页的链接设置成了baidu.com</p>
+<p>结果发现，后来还是会偷偷的给改成搜狗主页。</p>
+<p>居然这么流氓！！！</p>
+<p>这个时候我就发挥我的程序员能力了。</p>
+<p>我想到一个办法，就是将这个域名绑定到127.0.0.1，这样就不会给搜狗做推广了。</p>
+<p>然后发现还是有问题，就是不能直接访问网页，还需要输入一次。</p>
+<p>所以使用nginx的rewrite功能来重写URL，发现重写之后会带着get参数，这个时候，百度会自动跳转到错误页面，还是不行。</p>
+<p>于是我就想到编写一个php文件，当请求的时候，就使用header进行重定向。</p>
+<p>尝试了之后，发现非常ok。</p>
+<p>下面提供以下操作方法：</p>
+<p>首先修改<strong>hosts</strong>文件，增加以下内容:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	123.sogou.com</span><br></pre></td></tr></table></figure>
+
+<p>然后在**&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;<strong>增加</strong>123.sogou.conf**，文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80<span class="comment">;</span></span><br><span class="line">    server_name  123.sogou.com<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    charset utf-8<span class="comment">;</span></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line">    root   html<span class="comment">;</span></span><br><span class="line">    index  sogou.php<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#location ~ \.php$ &#123;</span></span><br><span class="line">    <span class="comment">#    proxy_pass   http://127.0.0.1;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   127.0.0.1:9000<span class="comment">;</span></span><br><span class="line">        fastcgi_index  index.php<span class="comment">;</span></span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name<span class="comment">;</span></span><br><span class="line">        include        fastcgi_params<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在**&#x2F;usr&#x2F;share&#x2F;html&#x2F;<strong>新增</strong>sogou.php**文件，内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: https://www.baidu.com&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>然后重启nginx。</p>
+<p>最后我们测试一下，在浏览器里面点击主页图标。我这里就直接跳转到baidu<br>首页了。</p>
+<p>完美！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/25/kylin-build-environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,7 +333,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -343,7 +454,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -446,7 +557,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -546,7 +657,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -655,7 +766,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -761,7 +872,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -887,7 +998,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -983,7 +1094,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1169,7 +1280,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
+      <time title="修改时间：2022-04-08 09:11:35" itemprop="dateModified" datetime="2022-04-08T09:11:35+08:00">2022-04-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1216,127 +1327,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ulimit -n</span><br><span class="line">65535</span><br></pre></td></tr></table></figure>
 
 <p>这样我们就能看到文件最大打开数量已经从1024变成65535了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/17/yum-install-nginx/" class="post-title-link" itemprop="url">yum 安装 nginx</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-17 16:32:19" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:19+08:00">2017-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-07 15:35:05" itemprop="dateModified" datetime="2022-04-07T15:35:05+08:00">2022-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">web服务器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>以下操作都是在root账户下进行的。系统版本是CentOS7</p>
-</blockquote>
-<p>我之前在nginx的官方文档中看到使用yum安装php方法。觉得如果有嫌编译麻烦的。可以尝试使用yum快速安装nginx。减少搭建环境之苦。</p>
-<h2 id="编辑yum源文件"><a href="#编辑yum源文件" class="headerlink" title="编辑yum源文件"></a>编辑yum源文件</h2><p>比如我的系统是CentOS7，那么将以下内容粘贴进入<code>/etc/yum.repos.d/nginx.repo</code>文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[nginx]</span></span><br><span class="line"><span class="attr">name</span>=nginx repo</span><br><span class="line"><span class="attr">baseurl</span>=http://nginx.org/packages/centos/<span class="number">7</span>/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">0</span></span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
-
-<h2 id="禁止更新"><a href="#禁止更新" class="headerlink" title="禁止更新"></a>禁止更新</h2><p>我们在安装之后，为了能够正常运行，我们一般会禁止Nginx进行更新。因为在yum更新了Nginx之后，Nginx会自动重启。这对于我们来说是没有必要的，所以我们可以屏蔽更新。我们可以这样，将下列指定放到你的<code>/etc/yum.conf</code>文件中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exclude=nginx</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新Nginx"><a href="#更新Nginx" class="headerlink" title="更新Nginx"></a>更新Nginx</h2><p>一般在生产环境，我们都是禁用更新的。所以说，这里只是作为一个参考。<br>我们需要执行的命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update nginx</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意： 在使用 yum 更新之后，Nginx会自动重启。</p>
-</blockquote>
-<h2 id="命令管理："><a href="#命令管理：" class="headerlink" title="命令管理："></a>命令管理：</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="测试配置文件语法是否正确"><a href="#测试配置文件语法是否正确" class="headerlink" title="测试配置文件语法是否正确"></a>测试配置文件语法是否正确</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
-
-<h3 id="重载配置文件"><a href="#重载配置文件" class="headerlink" title="重载配置文件"></a>重载配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动开机启动"><a href="#启动开机启动" class="headerlink" title="启动开机启动"></a>启动开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="禁止开机启动"><a href="#禁止开机启动" class="headerlink" title="禁止开机启动"></a>禁止开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl diasble nginx</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面实现了Nginx的安装，命令管理，屏蔽更新以及更新。希望能对大家有所帮助。</p>
 
       
     </div>
