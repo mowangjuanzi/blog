@@ -18,6 +18,8 @@ tags:
 
 ## 联系我
 
+- [E-Mail](mailto:baoguoxiao0538@hotmail.com)
+- [Github](https://github.com/mowangjuanzi)
 - [SegmentFault](https://segmentfault.com/u/jzdmwjz)
 - [腾讯云+社区](https://cloud.tencent.com/developer/user/1340976) 
 

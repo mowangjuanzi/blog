@@ -5,27 +5,7 @@ footer:
     icp: '鲁ICP备13027795号-1'
 menu:
   home: / || fa fa-home
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
   阅读: /books.html || fa fa-book
   about: /about.html || fa fa-user
-  sitemap: /sitemap.xml || fa fa-sitemap
-scheme: Gemini
-avatar:
-  url: /images/avatar.png
-  rounded: true
-  rotated: true
-sidebar:
-  position: right
-reward_settings:
-  enable: true
-reward:
-  wechatpay: /images/wechatpay.jpg
-  alipay: /images/alipay.jpg
-github_banner:
-  enable: true
-  permalink: https://github.com/mowangjuanzi/blog
-  title: 在 Github 上关注我
-social:
-  GitHub: https://github.com/mowangjuanzi || fab fa-github
-  E-Mail: mailto:baoguoxiao0538@hotmail.com || fa fa-envelope
-comments:
-  lazyload: true
