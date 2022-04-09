@@ -7,5 +7,4 @@ menu:
   home: / || fa fa-home
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
-  阅读: /books.html || fa fa-book
   about: /about.html || fa fa-user
