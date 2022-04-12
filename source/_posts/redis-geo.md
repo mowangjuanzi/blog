@@ -1,13 +1,15 @@
 ---
 title: Redis 的 GEO 特性
 date: 2017-11-17 16:14:41
+updated: 2022-04-12 23:48:00
 tags:
 - geo
 - redis
-- 数据库
+- 缓存
 categories:
-- 数据库
-- redis
+- 缓存
+- 服务器端
+- Redis
 ---
 今天看文档，无意中发现了 Redis 的一个新功能。
 Redis 在 3.2 版本实现了一个地理位置计算的特性。
