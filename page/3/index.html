@@ -125,13 +125,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -165,6 +165,96 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/11/15/view-local-ip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/15/view-local-ip/" class="post-title-link" itemprop="url">查看本机IP</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-15 11:08:12" itemprop="dateCreated datePublished" datetime="2018-11-15T11:08:12+08:00">2018-11-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>有时候，在登录到云服务器之后，可能需要在终端查询该服务器的ip。</p>
+<p>之前我都是用的 ip.cn ，但是感觉不行了。</p>
+<p>现在提供一些其他的可选择项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ curl ipinfo.io</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;ip&quot;</span>: <span class="string">&quot;60.205.205.243&quot;</span>,</span><br><span class="line">  <span class="string">&quot;city&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;region&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;country&quot;</span>: <span class="string">&quot;CN&quot;</span>,</span><br><span class="line">  <span class="string">&quot;loc&quot;</span>: <span class="string">&quot;34.7725,113.7270&quot;</span>,</span><br><span class="line">  <span class="string">&quot;org&quot;</span>: <span class="string">&quot;AS37963 Hangzhou Alibaba Advertising Co.,Ltd.&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">$ curl cip.cc</span><br><span class="line">IP	: 60.205.205.243</span><br><span class="line">地址	: 中国  北京</span><br><span class="line">运营商	: 阿里云/电信/联通/移动/铁通/教育网</span><br><span class="line"></span><br><span class="line">数据二	: 北京市 | 阿里云BGP服务器</span><br><span class="line"></span><br><span class="line">数据三	: 中国北京北京市 | 阿里云</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/60.205.205.243</span><br><span class="line">$ curl myip.ipip.net</span><br><span class="line">当前 IP：60.205.205.243  来自于：中国 北京 北京  阿里云/电信/联通/移动/铁通/教育网</span><br><span class="line"><span class="comment"># curl ifconfig.me</span></span><br><span class="line">60.205.205.243</span><br><span class="line">$ curl http://members.3322.org/dyndns/getip</span><br><span class="line">60.205.205.243</span><br></pre></td></tr></table></figure>
+
+<p>相信还有这么多的URL。估计哪一个不行了，都能找到可替代的了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -210,7 +300,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -318,7 +408,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -423,7 +513,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -535,7 +625,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -636,7 +726,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -737,7 +827,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -964,7 +1054,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1014,7 +1104,7 @@
 <tr>
 <td align="center">SENTRY_EMAIL_USER</td>
 <td align="center">登录的邮箱账号</td>
-<td align="center"><a href="mailto:&#101;&#120;&#x61;&#109;&#112;&#108;&#x65;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#101;&#120;&#x61;&#109;&#112;&#108;&#x65;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#64;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#64;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">SENTRY_EMAIL_PASSWORD</td>
@@ -1034,7 +1124,7 @@
 <tr>
 <td align="center">SENTRY_SERVER_EMAIL</td>
 <td align="center">发送的账户，跟<strong>SENTRY_EMAIL_USER</strong>相同</td>
-<td align="center"><a href="mailto:&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#64;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#64;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#101;&#x78;&#x61;&#109;&#x70;&#108;&#x65;&#64;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#101;&#x78;&#x61;&#109;&#x70;&#108;&#x65;&#64;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a></td>
 </tr>
 </tbody></table>
 <p>配置完成之后，需要重建服务。具体可以执行以下命令:</p>
@@ -1043,7 +1133,7 @@
 <p>然后稍等一分钟就可以正常访问web页面了。</p>
 <p>现在来测试一下。</p>
 <p>进入页面，在左上角的你的昵称位置单击，选择Admin。</p>
-<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#64;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#64;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
+<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
 <p>在配置问题中，如果有什么问题，可以过来跟我留言。</p>
 <p>毕竟这个邮件通知我折腾了一下午才搞定。</p>
 <p>哈哈</p>
@@ -1109,7 +1199,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1244,7 +1334,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1285,184 +1375,6 @@
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring">https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/10/08/programmer-must-read-books/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/08/programmer-must-read-books/" class="post-title-link" itemprop="url">程序员必读书籍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-08 16:13:33" itemprop="dateCreated datePublished" datetime="2018-10-08T16:13:33+08:00">2018-10-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>对于程序员来说，有哪些书籍是必读的呢？Stack Overflow 上有一个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read?page=1&tab=active#tab-top">问题</a>，虽然被关闭了，但是这是设置一个热门的问题。我看到里面推荐的书都是英文的。所以对照着找了找国内的中文版。但是也是有一些翻译的名字我确实没有找到或者暂时还没有出中文版。所以在其中有什么错误的地方，请大家评论告诉我，我立即去更新。</p>
-<h2 id="图书目录"><a href="#图书目录" class="headerlink" title="图书目录"></a>图书目录</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1477390/">代码大全（第2版）</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5387402/">程序员修炼之道</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1148282/">计算机程序的构造与解释</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1139336/">C程序设计语言</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/20432061/">算法导论（第3版）</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1052241/">设计模式</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4262627/">重构</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26358448/">人月神话</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1130500/">计算机程序设计艺术</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3296317/">编译原理</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1291204/">哥德尔、艾舍尔、巴赫</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5442024/">代码整洁之道</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5387403/">Effective C++</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5908727/">More Effective C++</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/20260928/">编码</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3227098/">编程珠玑</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/2248759/">修改代码的艺术</a></li>
-<li>Peopleware by Demarco and Lister</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5355285/">编程人生</a></li>
-<li>Surely You’re Joking, Mr. Feynman!</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3360807/">Effective Java</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4826290/">企业应用架构模式</a></li>
-<li>The Little Schemer</li>
-<li>The Seasoned Schemer</li>
-<li>Why’s (Poignant) Guide to Ruby</li>
-<li>The Inmates Are Running The Asylum: Why High Tech Products Drive Us Crazy and How to Restore the Sanity</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/11609943/">UNIX编程艺术</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25735501/">测试驱动开发</a></li>
-<li>Practices of an Agile Developer</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26313852/">点石成金</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/5348122/">敏捷软件开发</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26819666/">领域驱动设计</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26102860/">设计心理学</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1119904/">C++设计新思维</a></li>
-<li>Best Software Writing I by Joel Spolsky</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6524000/">程序设计实践</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26268555/">程序员思维修炼</a></li>
-<li>Software Estimation: Demystifying the Black Art by Steve McConnel</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4923179/">我编程，我快乐</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6860890/">黑客</a></li>
-<li>Algorithms + Data Structures &#x3D; Programs</li>
-<li>Writing Solid Code</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3590768/">JavaScript语言精粹</a></li>
-<li>Getting Real by 37 Signals</li>
-<li>Foundations of Programming by Karl Seguin</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1230412/">计算机图形学原理及实践:C语言描述(第2版)</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/2130190/">Java编程思想</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1998341/">计算机系统要素</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/20393327/">重构与模式</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/27096665/">现在操作系统(第4版)</a></li>
-<li>The Annotated Turing</li>
-<li>Things That Make Us Smart by Donald Norman</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1177969/">建筑的永恒之道</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1231972/">最后期限</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4604591/">C++程序设计语言</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26912767/">深入理解计算机系统(第3版)</a></li>
-<li>Agile Principles, Patterns, and Practices in C# by Robert C. Martin</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4910582/">测试驱动的面向对象软件开发</a></li>
-<li>Framework Design Guidelines by Brad Abrams</li>
-<li>Object Thinking by Dr. David West</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26790211/">UNIX环境高级编程</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25910539/">黑客与画家</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6851207/">新机器的灵魂</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26285940/">CLR via C#</a></li>
-<li>Design Patterns in C# by Steve Metsker</li>
-<li>Alice in Wonderland by Lewis Carol</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6811366/">禅与摩托车维修艺术</a></li>
-<li>About Face - The Essentials of Interaction Design</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3735295/">未来是湿的</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1899158/">编程之道</a></li>
-<li>Computational Beauty of Nature</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3406939/">编程精粹</a></li>
-<li>Philip and Alex’s Guide to Web Publishing</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/11509672/">面向对象分析与设计</a></li>
-<li>Computability by N. J. Cutland</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4719230/">编程之魂</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1059258/">道德经</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/4214142/">卓有成效的程序员</a></li>
-<li>The Art of Deception by Kevin Mitnick</li>
-<li>The Career Programmer: Guerilla Tactics for an Imperfect World by Christopher Duncan</li>
-<li>Paradigms of Artificial Intelligence Programming: Case studies in Common Lisp</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26642310/">DOOM启世录</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1239654/">单元测试之道C#版</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/6983584/">怎样解题</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/3608208/">牧羊少年奇幻之旅</a></li>
-<li>Smalltalk-80: The Language and its Implementation</li>
-<li>Writing Secure Code (2nd Edition) by Michael Howard</li>
-<li>Introduction to Functional Programming by Philip Wadler and Richard Bird</li>
-<li>No Bugs! by David Thielen</li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/30184215/">重来</a></li>
-<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1231231/">JUnit in Action</a></li>
 </ul>
 
       

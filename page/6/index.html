@@ -125,13 +125,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -165,6 +165,115 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/03/30/wechat-custom-share-title/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/30/wechat-custom-share-title/" class="post-title-link" itemprop="url">微信公众号自定义分享标题遇到的坑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-30 15:28:26" itemprop="dateCreated datePublished" datetime="2018-03-30T15:28:26+08:00">2018-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/%E5%BE%AE%E4%BF%A1/" itemprop="url" rel="index"><span itemprop="name">微信</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我们公司在微信认证服务号上开发一个小游戏。里面有个功能是用户分享到其他地方时使用自定义的标题和图标。我就这个功能记录一下中间遇到的坑。</p>
+<p>首先，我因为之前没有开发过微信分享的功能，这个时候首先要读取一下微信的<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115">分享文档</a>。</p>
+<p>为了方便开发，我这边是使用的微信的公众测试号。具体的申请地址可点击这里：mp.weixin.qq.com&#x2F;debug&#x2F;cgi-bin&#x2F;sandbox?t&#x3D;sandbox&#x2F;login</p>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>JS-SDK使用权限需要签名，也就是wx.ready中的signature值，所以该值只能在服务器端实现签名的逻辑。我想了一个办法，就是该JS文件使用PHP生成，然后前端使用script元素引入该URL。这样就解决了签名需要在服务器端生成的问题。</p>
+<p>具体到了签名生成的时候。appid和timestamp和nonceStr都好说。直接填写或者生成就好了。但是生成的signature这个值我中间碰到三个坑。第一个坑文章中正确介绍的签名的字符串的格式是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&amp;noncestr=Wm3WZYTPz0wzccnW×tamp=1414587457&amp;url=http://mp.weixin.qq.com?params=value</span><br></pre></td></tr></table></figure>
+
+<p>但是我这边是使用的数组。然后先排序然后使用http_build_query方法生成的参与签名的字符串。这样就不对了。所以对于该参与校验的值只能进行赋值。类似这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=&#123;$ticker&#125;&amp;noncestr=&#123;$nonceStr&#125;&amp;timestamp=&#123;$timestamp&#125;&amp;url=&#123;$url&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接对其中的值进行赋值，进行签名即可。</p>
+<p>下面说第二个坑。比如我们的活动地址是<a target="_blank" rel="noopener" href="https://m.abc.com/Activity/index">https://m.abc.com/Activity/index</a> 但是在微信中访问的时候，会在后面自定义添加参数。比如有时候地址会变成这样：<a target="_blank" rel="noopener" href="https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0%E3%80%82%E5%AF%B9%E4%BA%8E%E8%BF%99%E7%A7%8D%E7%AD%BE%E5%90%8D%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%8C%E5%BE%AE%E4%BF%A1%E6%98%AF%E9%9C%80%E8%A6%81%E6%8A%8A%E8%BF%99%E7%A7%8D%E8%87%AA%E5%B8%A6%E5%8F%82%E6%95%B0%E4%B9%9F%E5%B8%A6%E5%85%A5%E7%AD%BE%E5%90%8D%E3%80%82">https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。</a></p>
+<p>所以我想了这么一个办法。就是说把该JS文件携带URL地址请求我，我这边获取URL，并将URL加入到签名中。这样的话，前端将引入脚本写死就不好了。所以我和前端一块将加载js脚本给换成了下面这样:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	var script =document.createElement(&quot;script&quot;);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	var url = window.location.href;</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	script.src=&quot;/Static/wxShare?url=&quot; + encodeURIComponent(url);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	document.getElementsByTagName(<span class="symbol">&amp;#039;</span>body<span class="symbol">&amp;#039;</span>)[0].appendChild(script);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第三个坑，获取jsapi_ticket票据的值是JAVA实现的。但是在获取的时候并不能获取成功，经过跟JAVA沟通，发现是之前开发设置的测试的appid已经过期了。所以，失效了，重新设置了一下，就正常了。</p>
+<p>至此，开发联调就结束了。下面就提测进行测试阶段了。</p>
+<h2 id="测试环境。"><a href="#测试环境。" class="headerlink" title="测试环境。"></a>测试环境。</h2><p>测试环境一直分享失败。然后开启debug模式。发现也是提示sign值不可用。排查这个问题，遇到了两个坑。</p>
+<p>第一个坑，是请求JAVA的服务器获取jsapi_ticket票据，提示操作失败。经过JAVA排查，发现是少设置了一个参数。好了，经过修改，能够正常获取jsapi_ticket了。</p>
+<p>第二个坑，则是测试这边换了JAVA配置中的appid的值的配置，结果access_token因为缓存起来了，结果还是存的之前的appid的access_token。接着获取的jsapi_ticket也是根据之前的access_token进行获取的。所以一直不成功，后来经过清除缓存。然后测试就ok了。</p>
+<p>好了。其实这个并没有按照教程的形式来介绍一下我的开发工作。主要是把我中间遇到的坑给解释一下。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -210,7 +319,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,7 +430,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -460,7 +569,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -563,7 +672,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -712,7 +821,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -819,7 +928,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -925,7 +1034,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1028,7 +1137,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1122,7 +1231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-11 22:09:06" itemprop="dateModified" datetime="2022-04-11T22:09:06+08:00">2022-04-11</time>
+      <time title="修改时间：2022-04-12 23:49:28" itemprop="dateModified" datetime="2022-04-12T23:49:28+08:00">2022-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1196,155 +1305,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
 
 <p>好了，最开始的安装环境就已经搭建完成了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/01/01/ubuntu-set-static-ip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/01/ubuntu-set-static-ip/" class="post-title-link" itemprop="url">ubuntu 17.10 设置固态IP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-01-02T00:00:00+08:00">2018-01-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-02-09 08:15:56" itemprop="dateModified" datetime="2020-02-09T08:15:56+08:00">2020-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>设置了基本的环境之后，需要设置固定的ip，要不然每次启动都变IP，我每次调整IP都得疯了。</p>
-<p>在Ubuntu 17.10 中，使用了一种新的命令来配置静态IP。</p>
-<p>对此，我们需要修改的是 <strong>&#x2F;etc&#x2F;netplan&#x2F;01-netcfg.yaml</strong></p>
-<p>我们先看看该文件的内容和格式：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># For more information, see netplan(5).</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">networkd</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">ens33:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到这里设置的<strong>dhcp4</strong>为<strong>yes</strong>。表示是<strong>dhcp</strong>模式。</p>
-<p>好了，下面我们要进行修改了。下面是改好的格式：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># For more information, see netplan(5).</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">networkd</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">ens33:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">dhcp6:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.110</span><span class="number">.231</span><span class="string">/24</span>]</span><br><span class="line">      <span class="attr">gateway4:</span> <span class="number">192.168</span><span class="number">.110</span><span class="number">.1</span></span><br><span class="line">      <span class="attr">nameservers:</span></span><br><span class="line">          <span class="attr">addresses:</span> [<span class="number">114.114</span><span class="number">.114</span><span class="number">.114</span>, <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>]</span><br></pre></td></tr></table></figure>
-
-<p>现在我们解释一下修改的内容：</p>
-<ul>
-<li><strong>dhcp4</strong>：ipv4的自动分配，设置为<strong>no</strong>表示不进行ipv4地址的自动分配</li>
-<li><strong>dhcp6</strong>：ipv6的自动分配，设置为<strong>no</strong>表示不进行ipv6地址的自动分配</li>
-<li><strong>addresses</strong>：设置固定的ip。这里有个**&#x2F;24**，我们需要对这一块单独说下。</li>
-<li><strong>gateway4</strong>：网关地址。</li>
-<li><strong>nameservers</strong>: DNS服务器。<strong>addresses</strong>的数组表示可以设置多个。</li>
-</ul>
-<p>如果有人设置过windows的静态IP或者说之前的版本的ubuntu的静态ip的，可能会觉得少了一个东西，没错，就是子网掩码。</p>
-<p>这里就是说的**&#x2F;24**了。它其实就是设置的子网掩码。下面有前缀对应的ip，我们可以通过这个来进行响应的设置了。</p>
-<table>
-<thead>
-<tr>
-<th align="center">前缀大小</th>
-<th align="center">子网掩码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&#x2F;24</td>
-<td align="center">255.255.255.0</td>
-</tr>
-<tr>
-<td align="center">&#x2F;25</td>
-<td align="center">255.255.255.128</td>
-</tr>
-<tr>
-<td align="center">&#x2F;26</td>
-<td align="center">255.255.255.192</td>
-</tr>
-<tr>
-<td align="center">&#x2F;27</td>
-<td align="center">255.255.255.224</td>
-</tr>
-<tr>
-<td align="center">&#x2F;28</td>
-<td align="center">255.255.255.240</td>
-</tr>
-<tr>
-<td align="center">&#x2F;29</td>
-<td align="center">255.255.255.248</td>
-</tr>
-<tr>
-<td align="center">&#x2F;30</td>
-<td align="center">255.255.255.252</td>
-</tr>
-</tbody></table>
-<p>好了，我们把配置文件的内容按照实际情况修改好了之后。执行以下命令进行部署：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netplan apply</span><br></pre></td></tr></table></figure>
-
-<p>如果没有问题，固态ip就设置成功了。然后我们重新配置我们xshell登录的ip，重新就进行登录就可以了。</p>
-<p>好了，是不是非常简单呢？</p>
 
       
     </div>
