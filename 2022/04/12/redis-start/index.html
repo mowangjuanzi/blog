@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%81%9C%E6%9C%BA%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%8D%87%E7%BA%A7-Redis"><span class="nav-number">3.</span> <span class="nav-text">在不停机的情况下升级 Redis</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%81%9C%E6%9C%BA%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%8D%87%E7%BA%A7-Redis"><span class="nav-number">3.</span> <span class="nav-text">在不停机的情况下升级 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-cli"><span class="nav-number">4.</span> <span class="nav-text">redis-cli</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -274,12 +274,26 @@
 <p>日志目录：<code>/var/log/redis/redis-server.log</code></p>
 <p>PID 位置：<code>/run/redis/redis-server.pid</code></p>
 <p>DB 目录：<code>/var/lib/redis</code></p>
-<h2 id="在不停机的情况下升级-Redis"><a href="#在不停机的情况下升级-Redis" class="headerlink" title="在不停机的情况下升级 Redis"></a>在不停机的情况下升级 Redis</h2><ol>
+<h2 id="在不停机的情况下升级-Redis"><a href="#在不停机的情况下升级-Redis" class="headerlink" title="在不停机的情况下升级 Redis"></a>在不停机的情况下升级 Redis</h2><blockquote>
+<p>其实目前大部分都是使用云Redis实现。这个只有在自建 Redis 的时候才会使用。</p>
+</blockquote>
+<ol>
 <li>将新的 Redis 实例设置为当前 Redis 实例的副本。这里需要注意的是，需要有一台不同的服务器，或者当只有一台服务器的时候，需要内存足够大，以保证两台 Redis 可以同时运行。</li>
 <li>如果是使用的单台服务器，需要确保副本与主实例在不同的端口启动，否则副本实例则不能正常启动。</li>
 <li>等待复制初始化同步完成（检查副本集的日志文件）</li>
-<li>TODO <a target="_blank" rel="noopener" href="https://redis.io/docs/manual/admin/">https://redis.io/docs/manual/admin/</a></li>
+<li>使用 <a target="_blank" rel="noopener" href="https://redis.io/commands/info"><code>INFO</code></a>，确认主从有相同数量的 key。使用 <code>redis-cli</code> 确认从可以按照期望运行并回复命令。</li>
+<li>允许使用 <code>CONFIG SET slave-read-only no</code> 写入从。</li>
+<li>配置客户端使用新实例（从）。注意在切换期间，使用 <code>CLIENT PAUSE</code> 命令确保没有客户端可以写入旧的主数据库。</li>
+<li>一旦确认主数据库不再接受任何查询（使用 <code>MONITOR</code> 命令检查）。使用 <code>REPLICAOF NO ONE</code> 命令将从数据库设置为主数据库，然后关闭主数据库。</li>
 </ol>
+<h2 id="redis-cli"><a href="#redis-cli" class="headerlink" title="redis-cli"></a>redis-cli</h2><p>这是官方的命令行工具。用于发送命令和显示响应。</p>
+<p>如果需要连接远方 redis 服务器。可以像下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h xxx -p 6379</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-h</code> 用于指定远程地址，可以是域名也可以是 IP，默认是 <code>127.0.0.1</code>。</li>
+<li><code>-p</code> 用于制定远程端口，默认是 <code>6379</code>。</li>
+</ul>
 
     </div>
 
