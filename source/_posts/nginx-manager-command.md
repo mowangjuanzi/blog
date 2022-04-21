@@ -1,6 +1,7 @@
 ---
 title: nginx 设置管理命令
 date: 2017-11-17 16:28:36
+updated: 2017-11-17 16:28:36
 tags:
 - nginx
 - chkconfig
@@ -28,7 +29,7 @@ vim /etc/init.d/nginx
 # chkconfig: 2345 55 25
 # Description: Startup script for nginx webserver on Debian. Place in /etc/init.d and
 # run 'update-rc.d -f nginx defaults', or use the appropriate command on your
-# distro. For CentOS/Redhat run: 'chkconfig --add nginx'
+# distro. For CentOS/RedHat run: 'chkconfig --add nginx'
 
 ### BEGIN INIT INFO
 # Provides:          nginx

@@ -15,12 +15,12 @@ type: "post"
 
 ## 关注博客
 
-本博客由 Hexo 生成。如有问题可到 [Github](https://github.com/mowangjuanzi/blog) 提 [issue](https://github.com/mowangjuanzi/blog/issues) 。
+本博客由 Hexo 生成。如有问题可到 [GitHub](https://github.com/mowangjuanzi/blog) 提 [issue](https://github.com/mowangjuanzi/blog/issues) 。
 
 ## 联系我
 
 - [E-Mail](mailto:baoguoxiao0538@hotmail.com)
-- [Github](https://github.com/mowangjuanzi)
+- [GitHub](https://github.com/mowangjuanzi)
 - [SegmentFault](https://segmentfault.com/u/jzdmwjz)
 - [腾讯云+社区](https://cloud.tencent.com/developer/user/1340976) 
 

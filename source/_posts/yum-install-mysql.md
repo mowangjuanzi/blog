@@ -1,6 +1,7 @@
 ---
 title: yum 安装 mysql
 date: 2017-11-17 16:23:11
+updated: 2017-11-17 16:23:11
 tags:
 - yum
 - centos
@@ -23,7 +24,7 @@ yum -y remove mysql-server mysql mysql-libs
 
 ## 配置源
 
-首先我们需要获取分发源的地址（[点击此处](http://dev.mysql.com/downloads/repo/yum/)）。我现在提供 Red Hat/Centos 连接如下：
+首先我们需要获取分发源的地址（[点击此处](http://dev.mysql.com/downloads/repo/yum/)）。我现在提供 Red Hat/CentOS 连接如下：
 
 ````shell
 #Red Hat7/CentOS7
