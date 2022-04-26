@@ -1,6 +1,7 @@
 ---
 title: Laravel执行npm install失败
 date: 2018-08-19 00:16:13
+updated: 2018-08-19 00:16:13
 tags:
 - php
 - nodejs
@@ -20,7 +21,7 @@ categories:
 - Laravel 5.6
 - PHP 7.2.7
 - NodeJS 8.10.0
-- Npm 3.5.2
+- npm 3.5.2
 
 还原场景：
 

@@ -1,6 +1,7 @@
 ---
 title: 记一次js处理时间字符串转为时间戳的问题
 date: 2017-11-17 16:26:48
+updated: 2017-11-17 16:26:48
 tags:
 - javascript
 categories:
@@ -23,7 +24,7 @@ categories:
                 return Date.parse(new Date())/1000;
             },
             /**              
-             * 日期 转换为 Unix时间戳
+             * 日期 转换为 UNIX时间戳
              * @param <string> 2014-01-01 20:20:20  日期格式              
              * @return <int>        unix时间戳(秒)              
              */
