@@ -1,5 +1,5 @@
 ---
-title: redis-start
+title: redis 安装及其基础操作
 date: 2022-04-12 22:26:57
 updated: 2022-04-12 23:48:00
 tags:
@@ -81,6 +81,10 @@ sudo systemctl status redis-server
 PID 位置：`/run/redis/redis-server.pid`
 
 DB 目录：`/var/lib/redis`
+
+## GUI 推荐
+
+在 Linux 上推荐 [RESP.app](https://snapcraft.io/redis-desktop-manager)，该工具在 Linux 上免费，在其他平台上则是需要付费的。
 
 ## 在不停机的情况下升级 Redis
 
