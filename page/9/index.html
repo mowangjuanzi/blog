@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -310,7 +310,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,7 +552,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -622,256 +622,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/elasticsearch-install-centos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/17/elasticsearch-install-centos/" class="post-title-link" itemprop="url">Elasticsearch 教程（1）安装【CentOS版】</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-17 16:27:54" itemprop="dateCreated datePublished" datetime="2017-11-17T16:27:54+08:00">2017-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>本安装支持 SUSE 11和CentOS5。如果在这或者更老的系统上安装，请参考<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/zip-targz.html">.zip或者.tar.gz安装Elasticsearch</a>。</p>
-<p>我们首先要配置java环境，这个需要Java8或者更新的包。一般执行以下命令时可以看看Java版本是否符合：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Elasticsearch"><a href="#安装Elasticsearch" class="headerlink" title="安装Elasticsearch"></a>安装Elasticsearch</h2><p>首先编辑<code>/etc/yum.repos.d/elasticsearch.repo</code>文件：</p>
-<p>将以下内容放入到上面打开的文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[elasticsearch-5.x]</span></span><br><span class="line"><span class="attr">name</span>=Elasticsearch repository for <span class="number">5</span>.x packages</span><br><span class="line"><span class="attr">baseurl</span>=https://artifacts.elastic.co/packages/<span class="number">5</span>.x/yum</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://artifacts.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">autorefresh</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">type</span>=rpm-md</span><br></pre></td></tr></table></figure>
-
-<p><code>:wq</code>保存，然后执行以下安装命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>这样安装就完成了。</p>
-<h2 id="Elasticsearch命令管理"><a href="#Elasticsearch命令管理" class="headerlink" title="Elasticsearch命令管理"></a>Elasticsearch命令管理</h2><p>我们可以使用两种命令方式进行Elasticsearch进行管理</p>
-<h3 id="SysV-init"><a href="#SysV-init" class="headerlink" title="SysV init"></a>SysV <code>init</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add elasticsearch</span><br><span class="line">chkconfig elasticsearch on</span><br></pre></td></tr></table></figure>
-
-<p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
-
-<p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch stop</span><br></pre></td></tr></table></figure>
-
-<h3 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a><code>systemd</code></h3><p>设置开机启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start elasticsearch</span><br></pre></td></tr></table></figure>
-
-<p>关闭：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop elasticsearch</span><br></pre></td></tr></table></figure>
-
-<h2 id="记录的日志"><a href="#记录的日志" class="headerlink" title="记录的日志"></a>记录的日志</h2><p>日志消息记录位置是：**&#x2F;var&#x2F;log&#x2F;elasticsearch&#x2F;**。</p>
-<h2 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h2><p>首先我们要执行命令将其启动（如果已经启动了，那就不用执行下面的启动命令了）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure>
-
-<p>然后执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET &#x27;127.0.0.1:9200/?pretty&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>如果返回的数据如下所示，即表示安装成功了：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;shcGs0R&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cluster_name&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;elasticsearch&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cluster_uuid&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;k71Pk416RB6HTvdh9xuBFA&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;5.1.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build_hash&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;5395e21&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build_date&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;2016-12-06T12:36:15.409Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build_snapshot&quot;</span> <span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;lucene_version&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;6.3.0&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tagline&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;You Know, for Search&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：Elasticsearch需要启动一会。如果启动完成立马执行上面的命令，可以会提示拒绝连接，多试几次就好了。</p>
-</blockquote>
-<h2 id="配置-Elasticsearch"><a href="#配置-Elasticsearch" class="headerlink" title="配置 Elasticsearch"></a>配置 Elasticsearch</h2><p>Elasticsearch 默认情况下从 <strong>&#x2F;etc&#x2F;elasticsearch&#x2F;elasticsearch.yml</strong> 文件中加载它的配置。</p>
-<p>RPM也又一个系统配置文件（**&#x2F;etc&#x2F;sysconfig&#x2F;elasticsearch**），它允许你设置以下参数：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ES_USER</td>
-<td align="center">运行的用户，默认是<strong>elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">ES_GROUP</td>
-<td align="center">运行的组，默认是<strong>elasticsearch</strong></td>
-</tr>
-<tr>
-<td align="center">JAVA_HOME</td>
-<td align="center">设置要使用的自定义Java路径</td>
-</tr>
-<tr>
-<td align="center">MAX_OPEN_FILES</td>
-<td align="center">打开文件的最大数量，默认<strong>65536</strong></td>
-</tr>
-<tr>
-<td align="center">MAX_LOCKED_MEMORY</td>
-<td align="center">最大锁内存大小。如果你在<strong>elasticsearch.yml</strong>中使用<strong>bootstrap.memory_lock</strong>选项，请设置<strong>unlimited</strong></td>
-</tr>
-<tr>
-<td align="center">MAX_MAP_COUNT</td>
-<td align="center">进程可能拥有的内存映射区域的最大值。如果使用 mmapfs 作为索引存储类型，请确认将其设置为较高的值。请检查<a target="_blank" rel="noopener" href="https://github.com/torvalds/linux/blob/master/Documentation/sysctl/vm.txt">linux内核文档</a>关于<strong>max_map_count</strong>的更多信息。这是在elasticsearch启动之前通过<strong>sysctl</strong>设置的。默认是<strong>262144</strong></td>
-</tr>
-<tr>
-<td align="center">LOG_DIR</td>
-<td align="center">日志目录，默认为：**&#x2F;var&#x2F;log&#x2F;elasticsearch**</td>
-</tr>
-<tr>
-<td align="center">DATA_DIR</td>
-<td align="center">数据目录，默认为：**&#x2F;var&#x2F;lib&#x2F;elasticsearch**</td>
-</tr>
-<tr>
-<td align="center">CONF_DIR</td>
-<td align="center">配置文件目录（需要包含<strong>elasticsearch.yml</strong>和<strong>log4j2.properties</strong>文件），默认路径是：**&#x2F;etc&#x2F;elasticsearch**</td>
-</tr>
-<tr>
-<td align="center">ES_JAVA_OPTS</td>
-<td align="center">Any additional JVM system properties you may want to apply.</td>
-</tr>
-<tr>
-<td align="center">RESTART_ON_UPGRADE</td>
-<td align="center">配置软件包升级时将会重新启动，默认是<strong>false</strong>。这意味着你在安装软件包之后手动重启elasticsearch实例。这样做的原因是为了保障, 在集群中更新时，在高流量网络和减少你集群的响应时间的情况下导致分片的重新分配。</td>
-</tr>
-</tbody></table>
-<h2 id="RPM的目录布局"><a href="#RPM的目录布局" class="headerlink" title="RPM的目录布局"></a>RPM的目录布局</h2><table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">描述</th>
-<th align="center">默认路径</th>
-<th align="center">设置</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">home</td>
-<td align="center">Elasticsearch家目录或者**$ES_HOME**</td>
-<td align="center"><strong>&#x2F;usr&#x2F;share&#x2F;elasticsearch</strong></td>
-<td align="center">&amp;nbsp;</td>
-</tr>
-<tr>
-<td align="center">bin</td>
-<td align="center">二进制脚本，包括elasticsearch去启动一个节点和elasticsearch-plugin安装插件</td>
-<td align="center"><strong>&#x2F;usr&#x2F;share&#x2F;elasticsearch&#x2F;bin</strong></td>
-<td align="center">&amp;nbsp;</td>
-</tr>
-<tr>
-<td align="center">conf</td>
-<td align="center">配置文件，包含<strong>elasticsearch.yml</strong></td>
-<td align="center"><strong>&#x2F;etc&#x2F;elasticsearch</strong></td>
-<td align="center"><strong>path.conf</strong></td>
-</tr>
-<tr>
-<td align="center">conf</td>
-<td align="center">环境变量，包含 heap 大小，文件描述符。</td>
-<td align="center"><strong>&#x2F;etc&#x2F;sysconfig&#x2F;elasticsearch</strong></td>
-<td align="center">&amp;nbsp;</td>
-</tr>
-<tr>
-<td align="center">data</td>
-<td align="center">在节点上分配的每个索引&#x2F;分片的数据文件的位置。可以容纳多个位置。</td>
-<td align="center"><strong>&#x2F;var&#x2F;lib&#x2F;elasticsearch</strong></td>
-<td align="center"><strong>path.data</strong></td>
-</tr>
-<tr>
-<td align="center">logs</td>
-<td align="center">日志文件位置。</td>
-<td align="center"><strong>&#x2F;var&#x2F;log&#x2F;elasticsearch</strong></td>
-<td align="center"><strong>path.logs</strong></td>
-</tr>
-<tr>
-<td align="center">plugins</td>
-<td align="center">插件文件位置. 每个插件将包含在一个子目录中.</td>
-<td align="center"><strong>&#x2F;usr&#x2F;share&#x2F;elasticsearch&#x2F;plugins</strong></td>
-<td align="center">&amp;nbsp;</td>
-</tr>
-<tr>
-<td align="center">repo</td>
-<td align="center">共享文件系统存储库位置。可以容纳多个位置。文件系统存储库可以放置在指定目录中任何子目录中。</td>
-<td align="center">Not configured</td>
-<td align="center"><strong>path.repo</strong></td>
-</tr>
-<tr>
-<td align="center">script</td>
-<td align="center">脚本文件的位置。</td>
-<td align="center"><strong>&#x2F;etc&#x2F;elasticsearch&#x2F;scripts</strong></td>
-<td align="center"><strong>path.scripts</strong></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-shell-install-php-composer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -908,7 +658,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1035,7 +785,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1243,7 +993,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1353,7 +1103,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-21 10:58:21" itemprop="dateModified" datetime="2022-04-21T10:58:21+08:00">2022-04-21</time>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1399,6 +1149,108 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://packagecontrol.io/installation#st2">https://packagecontrol.io/installation#st2</a></li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/mysql-reset-password/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/17/mysql-reset-password/" class="post-title-link" itemprop="url">mysql 重置密码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-17 16:25:49" itemprop="dateCreated datePublished" datetime="2017-11-17T16:25:49+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-26 08:33:33" itemprop="dateModified" datetime="2022-04-26T08:33:33+08:00">2022-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>当我们安装了mysql或者mariadb的时候，一不小心，就把密码给忘记了。这个时候，我们不管怎么尝试密码，都是错误的，都会显示如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ28zkjw87oZ ~]<span class="comment"># mysql -uroot -p</span></span><br><span class="line">Enter password: </span><br><span class="line">ERROR 1045 (28000): Access denied <span class="keyword">for</span> user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> (using password: YES)</span><br></pre></td></tr></table></figure>
+
+<p>这个问题特别的头疼。<br>但是如果我们用如下方法就可以迎刃而解了。<br>首先我们先修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>mysqld</code>节中增加下面一行代码：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line">skip-grant-tables <span class="comment"># 这个是要加入的内容</span></span><br></pre></td></tr></table></figure>
+
+<p>然后重启mysql&#x2F;mariadb之后，就可以不用密码而直接进去了。<br>这个时候我们就可以执行命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> mysql.user <span class="keyword">SET</span> Password<span class="operator">=</span>PASSWORD(<span class="operator">&amp;</span>#<span class="number">039</span>;your password<span class="operator">&amp;</span>#<span class="number">039</span>;) <span class="keyword">WHERE</span> <span class="keyword">User</span><span class="operator">=</span><span class="operator">&amp;</span>#<span class="number">039</span>;root<span class="operator">&amp;</span>#<span class="number">039</span>;;</span><br></pre></td></tr></table></figure>
+<p>这样就把密码给修改了。修改之后。然后我们将<code>my.cnf</code>中的这行注释掉：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br></pre></td></tr></table></figure>
+<p>然后重启就可以了。<br>这样就实现了我们mysql&#x2F;mariadb的重置密码功能了。</p>
 
       
     </div>

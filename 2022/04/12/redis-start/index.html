@@ -22,7 +22,7 @@
 
     <meta name="description" content="下面介绍以下如何使用 apt 安装 redis 官方源">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis-start">
+<meta property="og:title" content="redis 安装及其基础操作">
 <meta property="og:url" content="http://www.baoguoxiao.com/2022/04/12/redis-start/index.html">
 <meta property="og:site_name" content="魔王卷子">
 <meta property="og:description" content="下面介绍以下如何使用 apt 安装 redis 官方源">
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/2022/04/12/redis-start/","path":"2022/04/12/redis-start/","title":"redis-start"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/2022/04/12/redis-start/","path":"2022/04/12/redis-start/","title":"redis 安装及其基础操作"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>redis-start | 魔王卷子</title>
+<title>redis 安装及其基础操作 | 魔王卷子</title>
   
 
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%81%9C%E6%9C%BA%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%8D%87%E7%BA%A7-Redis"><span class="nav-number">3.</span> <span class="nav-text">在不停机的情况下升级 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-cli"><span class="nav-number">4.</span> <span class="nav-text">redis-cli</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI-%E6%8E%A8%E8%8D%90"><span class="nav-number">3.</span> <span class="nav-text">GUI 推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%81%9C%E6%9C%BA%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%8D%87%E7%BA%A7-Redis"><span class="nav-number">4.</span> <span class="nav-text">在不停机的情况下升级 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-cli"><span class="nav-number">5.</span> <span class="nav-text">redis-cli</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -193,12 +193,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="redis-start | 魔王卷子">
+      <meta itemprop="name" content="redis 安装及其基础操作 | 魔王卷子">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          redis-start
+          redis 安装及其基础操作
         </h1>
 
         <div class="post-meta-container">
@@ -274,6 +274,7 @@
 <p>日志目录：<code>/var/log/redis/redis-server.log</code></p>
 <p>PID 位置：<code>/run/redis/redis-server.pid</code></p>
 <p>DB 目录：<code>/var/lib/redis</code></p>
+<h2 id="GUI-推荐"><a href="#GUI-推荐" class="headerlink" title="GUI 推荐"></a>GUI 推荐</h2><p>在 Linux 上推荐 <a target="_blank" rel="noopener" href="https://snapcraft.io/redis-desktop-manager">RESP.app</a>，该工具在 Linux 上免费，在其他平台上则是需要付费的。</p>
 <h2 id="在不停机的情况下升级-Redis"><a href="#在不停机的情况下升级-Redis" class="headerlink" title="在不停机的情况下升级 Redis"></a>在不停机的情况下升级 Redis</h2><blockquote>
 <p>其实目前大部分都是使用云Redis实现。这个只有在自建 Redis 的时候才会使用。</p>
 </blockquote>
@@ -316,6 +317,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/04/12/linux-appimage/" rel="next" title="ubuntu 不能启动 AppImage">
+                  ubuntu 不能启动 AppImage <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
