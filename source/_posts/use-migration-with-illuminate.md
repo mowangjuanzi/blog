@@ -3,10 +3,10 @@ title: 依托illuminate组件实现数据库迁移
 date: 2019-11-07 00:00:00
 updated: 2020-02-08 22:18:04
 tags:
-- 编程语言
 - laravel
 - php
 category:
+- 编程语言
 - php
 - laravel
 ---
