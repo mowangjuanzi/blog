@@ -3,12 +3,11 @@ title: ubuntu 不能启动 AppImage
 date: 2022-04-12 22:26:57
 updated: 2022-04-12 23:48:00
 tags:
-- redis
-- 缓存
+- linux
+- appimage
 categories:
-- 缓存
-- 服务器端
-- Redis
+- 操作系统
+- ubuntu
 ---
 
 在终端执行 `AppImage` 文件时提示如下错误：
