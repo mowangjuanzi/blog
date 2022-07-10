@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -165,115 +165,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/centos-max-file-open-number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/17/centos-max-file-open-number/" class="post-title-link" itemprop="url">centos修改文件的最大打开数量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-17 16:32:39" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:39+08:00">2017-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我的系统是<code>CentOS</code>。</p>
-<p>我们首先先看一下我们现在的限制：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ulimit -n</span><br><span class="line">1024</span><br></pre></td></tr></table></figure>
-
-<p>这肯定是不够的，所以我们要把这个数量给变成65535。</p>
-<p>首先我们一般查询到的方法是这个：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit –n 65535</span><br></pre></td></tr></table></figure>
-
-<p>但是这个只能在本次开机有效，重启之后就不行了。</p>
-<p>所以我们要使用另外一种办法，来实现开机启动之后文件打开数量也是65535。</p>
-<p>首先我们打开<code>/etc/security/limits.conf</code>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
-
-<p>然后添加如下内容到此文件的最后：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br><span class="line">* soft nproc 65535</span><br><span class="line">* hard nproc 65535</span><br></pre></td></tr></table></figure>
-
-<p>关闭文件之后，我们使用<code>reboot</code>对系统进行重新启动。</p>
-<p>启动成功后我们再次使用查看连接数的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]# ulimit -n</span><br><span class="line">65535</span><br></pre></td></tr></table></figure>
-
-<p>这样我们就能看到文件最大打开数量已经从1024变成65535了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -443,7 +334,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -470,7 +361,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>最新版可参考：<a href="/2018/01/01/ubuntu-set-static-ip/" title="ubuntu 17.10 设置固态IP">ubuntu 17.10 设置固态IP</a></p>
+<p>最新版可参考：<a href="#">Post not found: ubuntu-set-static-ip</a></p>
 </blockquote>
 <p>首先我们打开网卡配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
@@ -554,7 +445,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -688,7 +579,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -794,7 +685,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -918,7 +809,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1026,7 +917,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1135,7 +1026,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1236,7 +1127,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-06 15:28:32" itemprop="dateModified" datetime="2022-07-06T15:28:32+08:00">2022-07-06</time>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1288,6 +1179,106 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Django version 1.10.5, using settings &#x27;blog_python.settings&#x27;</span><br><span class="line">Starting development server at http://0.0.0.0:8001/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
 
 <p>这样就表示已经正常了。我们可以继续往下开发了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/simple-template-separation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/17/simple-template-separation/" class="post-title-link" itemprop="url">实现一个最简单的模板分离</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-17 16:28:51" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:51+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今天看到以前知乎上别人提问的关于模板和逻辑进行分离的问题。</p>
+<p>一直都没有回答过。</p>
+<p>今天终于回答了。我来记录以下：</p>
+<p>首先是模板文件，我定义他为<code>index.html</code>，内容如下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;<span class="meta">&lt;?=</span><span class="variable">$title</span><span class="meta">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">foreach</span>(<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$value</span>): <span class="meta">?&gt;</span></span><br><span class="line">        &lt;li&gt;<span class="meta">&lt;?=</span><span class="variable">$value</span><span class="meta">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们就不用自定义标签啊，之类的等等，我相信鸟哥的那句话，PHP本身就是一个非常好的模板引擎，我们没有必要再去造一个轮子。</p>
+<p>所以，我们直接来写PHP的解析：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模板解析</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$path</span>;</span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$vars</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$path</span>, <span class="variable">$vars</span> = []</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title function_ invoke__">is_file</span>(<span class="variable">$path</span>)) &#123;</span><br><span class="line">			<span class="variable language_">$this</span>-&gt;path = <span class="variable">$path</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable language_">$this</span>-&gt;vars = <span class="variable">$vars</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">		<span class="title function_ invoke__">ob_implicit_flush</span>(<span class="number">0</span>);</span><br><span class="line">		<span class="title function_ invoke__">extract</span>(<span class="variable">$this</span>-&gt;vars, EXTR_OVERWRITE);</span><br><span class="line">		<span class="keyword">require_once</span> <span class="variable language_">$this</span>-&gt;path;</span><br><span class="line">		<span class="keyword">return</span> <span class="title function_ invoke__">ob_get_clean</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$view</span> = <span class="keyword">new</span> <span class="title class_">View</span>(<span class="string">&#x27;./index.html&#x27;</span>, [<span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;list&#x27;</span> =&gt; [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$view</span>-&gt;<span class="title function_ invoke__">fetch</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>好了。直接运行一下，就能看到结果了。</p>
+<p>不写了。太晚了。晚安。</p>
 
       
     </div>
