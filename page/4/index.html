@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -165,110 +165,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/10/10/ubuntu-apt-install-php-zip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/10/ubuntu-apt-install-php-zip/" class="post-title-link" itemprop="url">ubuntu安装php-zip扩展失败</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-10 23:10:25" itemprop="dateCreated datePublished" datetime="2018-10-10T23:10:25+08:00">2018-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我在安装php-zip扩展的时候提示以下错误消息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Some packages could not be installed. This may mean that you have</span><br><span class="line">requested an impossible situation or <span class="keyword">if</span> you are using the unstable</span><br><span class="line">distribution that some required packages have not yet been created</span><br><span class="line">or been moved out of Incoming.</span><br><span class="line">The following information may <span class="built_in">help</span> to resolve the situation:</span><br><span class="line"></span><br><span class="line">The following packages have unmet dependencies:</span><br><span class="line"> php-zip : Depends: php7.2-zip but it is not going to be installed</span><br><span class="line">E: Unable to correct problems, you have held broken packages.</span><br></pre></td></tr></table></figure>
-
-<p>通过谷歌，发现解决错误的方式很简单。</p>
-<p>首先打开<code>vi /etc/apt/sources.list</code>，然后修改里面的内容如下所示：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deb http://archive.ubuntu.com/ubuntu bionic main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-security main universe</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu bionic-updates main universe</span><br></pre></td></tr></table></figure>
-
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update </span><br></pre></td></tr></table></figure>
-
-<p>然后执行安装命令就好了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install php-zip</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">The following additional packages will be installed:</span><br><span class="line">  libzip4 php7.2-zip</span><br><span class="line">The following NEW packages will be installed:</span><br><span class="line">  libzip4 php-zip php7.2-zip</span><br><span class="line">0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.</span><br><span class="line">Need to get 63.9 kB of archives.</span><br><span class="line">After this operation, 204 kB of additional disk space will be used.</span><br><span class="line">Do you want to <span class="built_in">continue</span>? [Y/n] y</span><br><span class="line">Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libzip4 amd64 1.1.2-1.1 [37.8 kB]</span><br><span class="line">Get:2 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php7.2-zip amd64 7.2.10-1+ubuntu18.04.1+deb.sury.org+1 [20.3 kB]</span><br><span class="line">Get:3 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 php-zip all 1:7.2+62+ubuntu18.04.1+deb.sury.org+3 [5,840 B]</span><br><span class="line">Fetched 63.9 kB <span class="keyword">in</span> 2s (39.4 kB/s)   </span><br><span class="line">Selecting previously unselected package libzip4:amd64.</span><br><span class="line">(Reading database ... 102709 files and directories currently installed.)</span><br><span class="line">Preparing to unpack .../libzip4_1.1.2-1.1_amd64.deb ...</span><br><span class="line">Unpacking libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Selecting previously unselected package php7.2-zip.</span><br><span class="line">Preparing to unpack .../php7.2-zip_7.2.10-1+ubuntu18.04.1+deb.sury.org+1_amd64.deb ...</span><br><span class="line">Unpacking php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Selecting previously unselected package php-zip.</span><br><span class="line">Preparing to unpack .../php-zip_1%3a7.2+62+ubuntu18.04.1+deb.sury.org+3_all.deb ...</span><br><span class="line">Unpacking php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line">Setting up libzip4:amd64 (1.1.2-1.1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span><br><span class="line">Setting up php7.2-zip (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br><span class="line"></span><br><span class="line">Creating config file /etc/php/7.2/mods-available/zip.ini with new version</span><br><span class="line">Setting up php-zip (1:7.2+62+ubuntu18.04.1+deb.sury.org+3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> php7.2-fpm (7.2.10-1+ubuntu18.04.1+deb.sury.org+1) ...</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring">https://askubuntu.com/questions/1064634/unable-to-install-php-mbstring</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -314,7 +210,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -492,7 +388,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -588,7 +484,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -692,7 +588,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -866,7 +762,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -984,7 +880,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1095,7 +991,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1298,7 +1194,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1363,6 +1259,111 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add public/vendor -f <span class="comment"># 强制加入git版本追踪</span></span><br></pre></td></tr></table></figure>
 
 <p>提交之后，让同事拉取代码，再去执行就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/08/09/xls-export-overflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/08/09/xls-export-overflow/" class="post-title-link" itemprop="url">xls数据导出会内存溢出</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-09 10:54:48" itemprop="dateCreated datePublished" datetime="2018-08-09T10:54:48+08:00">2018-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。</p>
+<p>那么应该如何解决呢？</p>
+<p>其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。</p>
+<p>PHP已经内置了对这个格式的处理。其中使用的函数就是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.fputcsv.php">fputcsv()</a></li>
+</ul>
+<p>其实使用方法很简单我就不用写范例了。就把php的示例搬过来吧。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$list</span> = <span class="keyword">array</span> (</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;aaa&#x27;</span>, <span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>, <span class="string">&#x27;dddd&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;123&#x27;</span>, <span class="string">&#x27;456&#x27;</span>, <span class="string">&#x27;789&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;&quot;aaa&quot;&#x27;</span>, <span class="string">&#x27;&quot;bbb&quot;&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable">$fp</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;file.csv&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$fields</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">fputcsv</span>(<span class="variable">$fp</span>, <span class="variable">$fields</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$fp</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出的内容如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span><br><span class="line">123,456,789</span><br><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面这种是写入文件的，评论第一的说的是如何直接进行输出。他的原理是写入到php的输出中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$out</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;php://output&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">fputcsv</span>(<span class="variable">$out</span>, <span class="keyword">array</span>(<span class="string">&#x27;this&#x27;</span>,<span class="string">&#x27;is some&#x27;</span>, <span class="string">&#x27;csv &quot;stuff&quot;, you know.&#x27;</span>));</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$out</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这么一看的话，导出xls是不是就简单了很多呢。</p>
 
       
     </div>

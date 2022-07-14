@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -165,115 +165,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2018/03/30/wechat-custom-share-title/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/30/wechat-custom-share-title/" class="post-title-link" itemprop="url">微信公众号自定义分享标题遇到的坑</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-03-30 15:28:26" itemprop="dateCreated datePublished" datetime="2018-03-30T15:28:26+08:00">2018-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/%E5%BE%AE%E4%BF%A1/" itemprop="url" rel="index"><span itemprop="name">微信</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们公司在微信认证服务号上开发一个小游戏。里面有个功能是用户分享到其他地方时使用自定义的标题和图标。我就这个功能记录一下中间遇到的坑。</p>
-<p>首先，我因为之前没有开发过微信分享的功能，这个时候首先要读取一下微信的<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115">分享文档</a>。</p>
-<p>为了方便开发，我这边是使用的微信的公众测试号。具体的申请地址可点击这里：mp.weixin.qq.com&#x2F;debug&#x2F;cgi-bin&#x2F;sandbox?t&#x3D;sandbox&#x2F;login</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>JS-SDK使用权限需要签名，也就是wx.ready中的signature值，所以该值只能在服务器端实现签名的逻辑。我想了一个办法，就是该JS文件使用PHP生成，然后前端使用script元素引入该URL。这样就解决了签名需要在服务器端生成的问题。</p>
-<p>具体到了签名生成的时候。appid和timestamp和nonceStr都好说。直接填写或者生成就好了。但是生成的signature这个值我中间碰到三个坑。第一个坑文章中正确介绍的签名的字符串的格式是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg&amp;noncestr=Wm3WZYTPz0wzccnW×tamp=1414587457&amp;url=http://mp.weixin.qq.com?params=value</span><br></pre></td></tr></table></figure>
-
-<p>但是我这边是使用的数组。然后先排序然后使用http_build_query方法生成的参与签名的字符串。这样就不对了。所以对于该参与校验的值只能进行赋值。类似这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsapi_ticket=&#123;$ticker&#125;&amp;noncestr=&#123;$nonceStr&#125;&amp;timestamp=&#123;$timestamp&#125;&amp;url=&#123;$url&#125;</span><br></pre></td></tr></table></figure>
-
-<p>直接对其中的值进行赋值，进行签名即可。</p>
-<p>下面说第二个坑。比如我们的活动地址是<a target="_blank" rel="noopener" href="https://m.abc.com/Activity/index">https://m.abc.com/Activity/index</a> 但是在微信中访问的时候，会在后面自定义添加参数。比如有时候地址会变成这样：<a target="_blank" rel="noopener" href="https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0%E3%80%82%E5%AF%B9%E4%BA%8E%E8%BF%99%E7%A7%8D%E7%AD%BE%E5%90%8D%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%8C%E5%BE%AE%E4%BF%A1%E6%98%AF%E9%9C%80%E8%A6%81%E6%8A%8A%E8%BF%99%E7%A7%8D%E8%87%AA%E5%B8%A6%E5%8F%82%E6%95%B0%E4%B9%9F%E5%B8%A6%E5%85%A5%E7%AD%BE%E5%90%8D%E3%80%82">https://m.abc.com/Activity/index.html?from=singlemessage&amp;isappinstalled=0。对于这种签名的规则，微信是需要把这种自带参数也带入签名。</a></p>
-<p>所以我想了这么一个办法。就是说把该JS文件携带URL地址请求我，我这边获取URL，并将URL加入到签名中。这样的话，前端将引入脚本写死就不好了。所以我和前端一块将加载js脚本给换成了下面这样:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	var script =document.createElement(&quot;script&quot;);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	var url = window.location.href;</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	script.src=&quot;/Static/wxShare?url=&quot; + encodeURIComponent(url);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">	document.getElementsByTagName(<span class="symbol">&amp;#039;</span>body<span class="symbol">&amp;#039;</span>)[0].appendChild(script);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>第三个坑，获取jsapi_ticket票据的值是JAVA实现的。但是在获取的时候并不能获取成功，经过跟JAVA沟通，发现是之前开发设置的测试的appid已经过期了。所以，失效了，重新设置了一下，就正常了。</p>
-<p>至此，开发联调就结束了。下面就提测进行测试阶段了。</p>
-<h2 id="测试环境。"><a href="#测试环境。" class="headerlink" title="测试环境。"></a>测试环境。</h2><p>测试环境一直分享失败。然后开启debug模式。发现也是提示sign值不可用。排查这个问题，遇到了两个坑。</p>
-<p>第一个坑，是请求JAVA的服务器获取jsapi_ticket票据，提示操作失败。经过JAVA排查，发现是少设置了一个参数。好了，经过修改，能够正常获取jsapi_ticket了。</p>
-<p>第二个坑，则是测试这边换了JAVA配置中的appid的值的配置，结果access_token因为缓存起来了，结果还是存的之前的appid的access_token。接着获取的jsapi_ticket也是根据之前的access_token进行获取的。所以一直不成功，后来经过清除缓存。然后测试就ok了。</p>
-<p>好了。其实这个并没有按照教程的形式来介绍一下我的开发工作。主要是把我中间遇到的坑给解释一下。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -319,7 +210,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -430,7 +321,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -569,7 +460,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -672,7 +563,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -921,7 +812,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1027,7 +918,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1130,7 +1021,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1224,7 +1115,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1298,6 +1189,117 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
 
 <p>好了，最开始的安装环境就已经搭建完成了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/25/kylin-firefox-prevent-access-sogou-site/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/25/kylin-firefox-prevent-access-sogou-site/" class="post-title-link" itemprop="url">我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-25 11:37:27" itemprop="dateCreated datePublished" datetime="2017-11-25T11:37:27+08:00">2017-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我的火狐浏览器默认主页是123.sogou.com 但是，我希望把我的首页变成百度。</p>
+<p>然后我按照以前的习惯，在设置里面将主页的链接设置成了baidu.com</p>
+<p>结果发现，后来还是会偷偷的给改成搜狗主页。</p>
+<p>居然这么流氓！！！</p>
+<p>这个时候我就发挥我的程序员能力了。</p>
+<p>我想到一个办法，就是将这个域名绑定到127.0.0.1，这样就不会给搜狗做推广了。</p>
+<p>然后发现还是有问题，就是不能直接访问网页，还需要输入一次。</p>
+<p>所以使用nginx的rewrite功能来重写URL，发现重写之后会带着get参数，这个时候，百度会自动跳转到错误页面，还是不行。</p>
+<p>于是我就想到编写一个php文件，当请求的时候，就使用header进行重定向。</p>
+<p>尝试了之后，发现非常ok。</p>
+<p>下面提供以下操作方法：</p>
+<p>首先修改<strong>hosts</strong>文件，增加以下内容:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	123.sogou.com</span><br></pre></td></tr></table></figure>
+
+<p>然后在**&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;<strong>增加</strong>123.sogou.conf**，文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80<span class="comment">;</span></span><br><span class="line">    server_name  123.sogou.com<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    charset utf-8<span class="comment">;</span></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line">    root   html<span class="comment">;</span></span><br><span class="line">    index  sogou.php<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#location ~ \.php$ &#123;</span></span><br><span class="line">    <span class="comment">#    proxy_pass   http://127.0.0.1;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   127.0.0.1:9000<span class="comment">;</span></span><br><span class="line">        fastcgi_index  index.php<span class="comment">;</span></span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name<span class="comment">;</span></span><br><span class="line">        include        fastcgi_params<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在**&#x2F;usr&#x2F;share&#x2F;html&#x2F;<strong>新增</strong>sogou.php**文件，内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: https://www.baidu.com&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>然后重启nginx。</p>
+<p>最后我们测试一下，在浏览器里面点击主页图标。我这里就直接跳转到baidu<br>首页了。</p>
+<p>完美！</p>
 
       
     </div>

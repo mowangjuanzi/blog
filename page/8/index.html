@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -165,130 +165,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/yum-install-nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/17/yum-install-nginx/" class="post-title-link" itemprop="url">yum 安装 nginx</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-17 16:32:19" itemprop="dateCreated datePublished" datetime="2017-11-17T16:32:19+08:00">2017-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-02 12:45:07" itemprop="dateModified" datetime="2022-05-02T12:45:07+08:00">2022-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web-%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">Web 服务器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web-%E6%9C%8D%E5%8A%A1%E5%99%A8/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>当前系统版本是 CentOS 8，其实该版本已经不维护了，我只是为了升级相关内容。</p>
-</blockquote>
-<p>我之前在 nginx 的官方文档中看到使用 yum 安装 php 方法。觉得如果有嫌编译麻烦的。可以尝试使用 yum 快速安装 nginx 。减少搭建环境之苦。</p>
-<h2 id="添加-yum-源文件"><a href="#添加-yum-源文件" class="headerlink" title="添加 yum 源文件"></a>添加 yum 源文件</h2><p>将以下内容粘贴进入 <code>/etc/yum.repos.d/nginx.repo</code> 文件中：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[nginx-stable]</span></span><br><span class="line"><span class="attr">name</span>=nginx stable repo</span><br><span class="line"><span class="attr">baseurl</span>=http://nginx.org/packages/centos/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://nginx.org/keys/nginx_signing.key</span><br><span class="line"><span class="attr">module_hotfixes</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[nginx-mainline]</span></span><br><span class="line"><span class="attr">name</span>=nginx mainline repo</span><br><span class="line"><span class="attr">baseurl</span>=http://nginx.org/packages/mainline/centos/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line"><span class="attr">gpgcheck</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">enabled</span>=<span class="number">0</span></span><br><span class="line"><span class="attr">gpgkey</span>=https://nginx.org/keys/nginx_signing.key</span><br><span class="line"><span class="attr">module_hotfixes</span>=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>默认安装的是稳定版本。如果是安装主线版本。需要执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils -y &amp;&amp; sudo yum-config-manager --<span class="built_in">enable</span> nginx-mainline</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-nginx"><a href="#安装-nginx" class="headerlink" title="安装 nginx"></a>安装 nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx -y</span><br></pre></td></tr></table></figure>
-
-<h2 id="禁止更新"><a href="#禁止更新" class="headerlink" title="禁止更新"></a>禁止更新</h2><p>我们在安装之后，为了能够正常运行，我们一般会禁止 nginx 进行更新。因为在 yum 更新了 nginx 之后，nginx 会自动重启。这对于我们来说是没有必要的，所以我们可以屏蔽更新。我们可以这样，将下列指定放到你的 <code>/etc/yum.conf</code> 文件中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exclude=nginx</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新-nginx"><a href="#更新-nginx" class="headerlink" title="更新 nginx"></a>更新 nginx</h2><p>一般在生产环境，我们都是禁用更新的。所以说，这里只是作为一个参考。我们需要执行的命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update nginx</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：在使用 yum 更新之后，nginx 会自动重启。</p>
-</blockquote>
-<h2 id="命令管理："><a href="#命令管理：" class="headerlink" title="命令管理："></a>命令管理：</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="测试配置文件语法是否正确"><a href="#测试配置文件语法是否正确" class="headerlink" title="测试配置文件语法是否正确"></a>测试配置文件语法是否正确</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br></pre></td></tr></table></figure>
-
-<h3 id="重载配置文件"><a href="#重载配置文件" class="headerlink" title="重载配置文件"></a>重载配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动开机启动"><a href="#启动开机启动" class="headerlink" title="启动开机启动"></a>启动开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable nginx</span><br></pre></td></tr></table></figure>
-
-<h3 id="禁止开机启动"><a href="#禁止开机启动" class="headerlink" title="禁止开机启动"></a>禁止开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl diasble nginx</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面实现了 nginx 的安装，命令管理，屏蔽更新以及更新。希望能对大家有所帮助。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -334,7 +210,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -445,7 +321,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -579,7 +455,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -685,7 +561,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -809,7 +685,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -917,7 +793,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1026,7 +902,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1127,7 +1003,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1241,7 +1117,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-10 16:15:02" itemprop="dateModified" datetime="2022-07-10T16:15:02+08:00">2022-07-10</time>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1279,6 +1155,149 @@
 
 <p>好了。直接运行一下，就能看到结果了。</p>
 <p>不写了。太晚了。晚安。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/2017/11/17/php-compile-pdo-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/17/php-compile-pdo-mysql/" class="post-title-link" itemprop="url">php编译pdo_mysql扩展记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-17 16:28:44" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:44+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-14 17:26:41" itemprop="dateModified" datetime="2022-07-14T17:26:41+08:00">2022-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这次作死，直接用默认配置安装了php。什么扩展都没有添加。结果一直在编译缺失的各种扩展。但是最后还是失败了，仅用做记录用。</p>
+<p>在编译到pdo_mysql扩展的时候，就搞不定了。</p>
+<p>在进行<code>make</code>操作的时候，出现了如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:27:34: 致命错误：ext/mysqlnd/mysqlnd.h：没有那个文件或目录</span><br><span class="line"> # include &quot;ext/mysqlnd/mysqlnd.h&quot;</span><br><span class="line">                                  ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="这是走的弯路"><a href="#这是走的弯路" class="headerlink" title="这是走的弯路"></a>这是走的弯路</h2><p>我以为是mysqlnd没有编译，我接着去编译mysqlnd扩展了。</p>
+<p>然后在<code>./configure</code>的时候，结果又提示我：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: Cannot find OpenSSL&#x27;s &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我以为是openssl-devel没有安装，我接着安装openssl-devel:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# yum install openssl openssl-devel</span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.bit.edu.cn</span><br><span class="line"> * epel: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * extras: mirror.bit.edu.cn</span><br><span class="line"> * updates: mirror.bit.edu.cn</span><br><span class="line">软件包 1:openssl-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">软件包 1:openssl-devel-1.0.1e-60.el7.x86_64 已安装并且是最新版本</span><br><span class="line">无须任何处理</span><br></pre></td></tr></table></figure>
+
+<p>结果提示我已经安装了，那我强行指定路径吧：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon mysqlnd]# ./configure --with-openssl=/usr/include/openssl</span><br><span class="line">configure: WARNING: unrecognized options: --with-openssl</span><br><span class="line">checking for grep that handles long lines and -e... /usr/bin/grep</span><br><span class="line">checking for egrep... /usr/bin/grep -E</span><br><span class="line">checking for a sed that does not truncate output... /usr/bin/sed</span><br><span class="line">checking for cc... cc</span><br><span class="line">checking whether the C compiler works... yes</span><br><span class="line">checking for C compiler default output file name... a.out</span><br><span class="line">checking for suffix of executables... </span><br><span class="line">checking whether we are cross compiling... no</span><br><span class="line">checking for suffix of object files... o</span><br><span class="line">checking whether we are using the GNU C compiler... yes</span><br><span class="line">checking whether cc accepts -g... yes</span><br><span class="line">checking for cc option to accept ISO C89... none needed</span><br><span class="line">checking how to run the C preprocessor... cc -E</span><br><span class="line">checking for icc... no</span><br><span class="line">checking for suncc... no</span><br><span class="line">checking whether cc understands -c and -o together... yes</span><br><span class="line">checking for system library directory... lib</span><br><span class="line">checking if compiler supports -R... no</span><br><span class="line">checking if compiler supports -Wl,-rpath,... yes</span><br><span class="line">checking build system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking host system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking target system type... x86_64-unknown-linux-gnu</span><br><span class="line">checking for PHP prefix... /usr/local/php</span><br><span class="line">checking for PHP includes... -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib</span><br><span class="line">checking for PHP extension directory... /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012</span><br><span class="line">checking for PHP installed headers prefix... /usr/local/php/include/php</span><br><span class="line">checking if debug is enabled... no</span><br><span class="line">checking if zts is enabled... no</span><br><span class="line">checking for re2c... no</span><br><span class="line">configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.</span><br><span class="line">checking for gawk... gawk</span><br><span class="line">checking whether to enable mysqlnd... yes, shared</span><br><span class="line">checking whether to disable compressed protocol support in mysqlnd... yes</span><br><span class="line">checking for the location of libz... no</span><br><span class="line">checking for DSA_get_default_method in -lssl... no</span><br><span class="line">checking for X509_free in -lcrypto... yes</span><br><span class="line">checking for pkg-config... /usr/bin/pkg-config</span><br><span class="line">configure: error: Cannot find OpenSSL&#x27;s &lt;evp.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结果还是不行，这下两边路都走不通了，我就去网上查询了。结果还是查询不到什么有用的资料</p>
+<h2 id="转回正道"><a href="#转回正道" class="headerlink" title="转回正道"></a>转回正道</h2><p>我后来想，我直接改源码试试看呢，把<code>include</code>加载文件写成绝对目录。</p>
+<p>说干就干</p>
+<p>我先看看这个报错的地方。</p>
+<p>文件在**&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;php_pdo_mysql_int.h:27:34**</p>
+<p>我打开该文件，修改第27行的内容：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="keyword">include</span> <span class="string">&quot;ext/mysqlnd/mysqlnd.h&quot;</span></span></span><br><span class="line"><span class="meta">#       <span class="keyword">include</span> <span class="string">&quot;ext/mysqlnd/mysqlnd_libmysql_compat.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>我的源代码的目录是**&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;**，于是我就改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#       <span class="keyword">include</span> <span class="string">&quot;/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd.h&quot;</span></span></span><br><span class="line"><span class="meta">#       <span class="keyword">include</span> <span class="string">&quot;/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_libmysql_compat.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>我再进行编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">In file included from /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:32:0:</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/php_pdo_mysql_int.h:69:39: 致命错误：ext/mysqlnd/mysqlnd_debug.h：没有那个文件或目录</span><br><span class="line"><span class="meta prompt_"> #</span><span class="language-bash">include <span class="string">&quot;ext/mysqlnd/mysqlnd_debug.h&quot;</span></span></span><br><span class="line">                                       ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<p>发现有效果，报错的地方变了，我接着改，这里提示报错的地方还是：**&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;php_pdo_mysql_int.h:69:39**，但是行数编程69了，我把69行改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_debug.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>继续，发现报错信息又变了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c:64:45: 致命错误：ext/mysqlnd/mysqlnd_reverse_api.h：没有那个文件或目录</span><br><span class="line"> #include &quot;ext/mysqlnd/mysqlnd_reverse_api.h&quot;</span><br><span class="line">                                             ^</span><br><span class="line">编译中断。</span><br><span class="line">make: *** [pdo_mysql.lo] 错误 1</span><br></pre></td></tr></table></figure>
+
+<p>我将文件**&#x2F;usr&#x2F;local&#x2F;src&#x2F;php-7.0.14&#x2F;ext&#x2F;pdo_mysql&#x2F;pdo_mysql.c:64:45**改成如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;/usr/local/src/php-7.0.14/ext/mysqlnd/mysqlnd_reverse_api.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>继续编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make clean</span><br><span class="line">find . -name \*.gcno -o -name \*.gcda | xargs rm -f</span><br><span class="line">find . -name \*.lo -o -name \*.o | xargs rm -f</span><br><span class="line">find . -name \*.la -o -name \*.a | xargs rm -f </span><br><span class="line">find . -name \*.so | xargs rm -f</span><br><span class="line">find . -name .libs -a -type d|xargs rm -rf</span><br><span class="line">rm -f libphp.la       modules/* libs/*</span><br><span class="line">[root@bogon pdo_mysql]# make </span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c -o pdo_mysql.lo </span><br><span class="line">mkdir .libs</span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/pdo_mysql.c  -fPIC -DPIC -o .libs/pdo_mysql.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c -o mysql_driver.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_driver.c  -fPIC -DPIC -o .libs/mysql_driver.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=compile cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c -o mysql_statement.lo </span><br><span class="line"> cc -I/usr/local/php/include/php/ext -I -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/usr/local/src/php-7.0.14/ext/pdo_mysql -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib -DHAVE_CONFIG_H -g -O2 -c /usr/local/src/php-7.0.14/ext/pdo_mysql/mysql_statement.c  -fPIC -DPIC -o .libs/mysql_statement.o</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=link cc -DPHP_ATOM_INC -I/usr/local/src/php-7.0.14/ext/pdo_mysql/include -I/usr/local/src/php-7.0.14/ext/pdo_mysql/main -I/usr/local/src/php-7.0.14/ext/pdo_mysql -I/usr/local/php/include/php -I/usr/local/php/include/php/main -I/usr/local/php/include/php/TSRM -I/usr/local/php/include/php/Zend -I/usr/local/php/include/php/ext -I/usr/local/php/include/php/ext/date/lib  -DHAVE_CONFIG_H  -g -O2   -o pdo_mysql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/local/src/php-7.0.14/ext/pdo_mysql/modules  pdo_mysql.lo mysql_driver.lo mysql_statement.lo </span><br><span class="line">cc -shared  .libs/pdo_mysql.o .libs/mysql_driver.o .libs/mysql_statement.o   -Wl,-soname -Wl,pdo_mysql.so -o .libs/pdo_mysql.so</span><br><span class="line">creating pdo_mysql.la</span><br><span class="line">(cd .libs &amp;&amp; rm -f pdo_mysql.la &amp;&amp; ln -s ../pdo_mysql.la pdo_mysql.la)</span><br><span class="line">/bin/sh /usr/local/src/php-7.0.14/ext/pdo_mysql/libtool --mode=install cp ./pdo_mysql.la /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">cp ./.libs/pdo_mysql.so /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.so</span><br><span class="line">cp ./.libs/pdo_mysql.lai /usr/local/src/php-7.0.14/ext/pdo_mysql/modules/pdo_mysql.la</span><br><span class="line">PATH=&quot;$PATH:/sbin&quot; ldconfig -n /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   /usr/local/src/php-7.0.14/ext/pdo_mysql/modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the `-LLIBDIR&#x27;</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the `LD_LIBRARY_PATH&#x27; environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the `LD_RUN_PATH&#x27; environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the `-Wl,--rpath -Wl,LIBDIR&#x27; linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to `/etc/ld.so.conf&#x27;</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don&#x27;t forget to run &#x27;make test&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功了。接下来我们就可以继续<code>make install</code>进行安装了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# make install</span><br><span class="line">Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/</span><br></pre></td></tr></table></figure>
+
+<p>我们修改一下配置文件，添加下面的内容到配置文件中：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=pdo_mysql.so</span><br></pre></td></tr></table></figure>
+
+<p>然后我们测试扩展是否安装成功了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon pdo_mysql]# php -m</span><br><span class="line">PHP Warning:  Module &#x27;PDO&#x27; already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module &#x27;PDO&#x27; already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library &#x27;/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so&#x27; - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: PHP Startup: Unable to load dynamic library &#x27;/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so&#x27; - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/pdo_mysql.so: undefined symbol: mysqlnd_allocator in Unknown on line 0</span><br></pre></td></tr></table></figure>
+
+<p>报错了。看来我们还需要mysqlnd扩展：</p>
+<p>然后还是提示找不到openssl的错误。</p>
+<p>我接着去网上搜了一下。</p>
+<p>还是找不到答案，我查了一下，这个好像是一个bug，一直没有修复。</p>
+<p>解决办法只能是重装php来解决了。</p>
 
       
     </div>
