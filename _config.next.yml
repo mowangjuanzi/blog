@@ -7,4 +7,6 @@ menu:
   home: / || fa fa-home
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
   about: /about.html || fa fa-user
+darkmode: true
