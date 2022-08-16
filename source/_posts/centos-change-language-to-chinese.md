@@ -42,7 +42,7 @@ locale -a
 | 标识符 | 注释 |
 |:---:|:---:|
 | language | [ISO 639-1](https://baike.baidu.com/item/ISO%20639-1) 语言代码。 |
-| language | [ISO 3166-1](https://baike.baidu.com/item/ISO%203166-1) 国家代码。|
+| territory | [ISO 3166-1](https://baike.baidu.com/item/ISO%203166-1) 国家代码。|
 | codeset | [字符集](https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81)或者编码标识符，像是 ISO-8859-1 或者 UTF-8 |
 
 ## 为当前会话设置区域
@@ -85,6 +85,8 @@ source ~/.bashrc
 ````ini
 LANG=zh_CN.UTF-8
 ````
+
+> 注意：该设置只有在重启后才有效。
 
 ## 参考
 
