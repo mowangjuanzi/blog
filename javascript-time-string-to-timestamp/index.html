@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="今天朋友问我，js应该如何将时间字符串转为时间戳。 我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455(function($) &amp;#123;    $.extend(&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次js处理时间字符串转为时间戳的问题">
+<meta property="og:url" content="http://www.baoguoxiao.com/javascript-time-string-to-timestamp/index.html">
+<meta property="og:site_name" content="魔王卷子">
+<meta property="og:description" content="今天朋友问我，js应该如何将时间字符串转为时间戳。 我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455(function($) &amp;#123;    $.extend(&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-17T08:26:48.000Z">
+<meta property="article:modified_time" content="2017-11-17T08:26:48.000Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.baoguoxiao.com/javascript-time-string-to-timestamp/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/javascript-time-string-to-timestamp/","path":"javascript-time-string-to-timestamp/","title":"记一次js处理时间字符串转为时间戳的问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记一次js处理时间字符串转为时间戳的问题 | 魔王卷子</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">魔王卷子</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/javascript-time-string-to-timestamp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="记一次js处理时间字符串转为时间戳的问题 | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记一次js处理时间字符串转为时间戳的问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-17 16:26:48" itemprop="dateCreated datePublished" datetime="2017-11-17T16:26:48+08:00">2017-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>今天朋友问我，js应该如何将时间字符串转为时间戳。</p>
+<p>我下意识就去百度，结果找到的，写法却是复杂无比，比如下面这个：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">$</span>) &#123;</span><br><span class="line">    $.<span class="title function_">extend</span>(&#123;</span><br><span class="line">        <span class="attr">myTime</span>: &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 当前时间戳</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@return</span> &lt;int&gt;        unix时间戳(秒)  </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="title class_">CurTime</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="keyword">new</span> <span class="title class_">Date</span>())/<span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 日期 转换为 UNIX时间戳</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> &lt;string&gt; 2014-01-01 20:20:20  日期格式              </span></span><br><span class="line"><span class="comment">             * <span class="doctag">@return</span> &lt;int&gt;        unix时间戳(秒)              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="title class_">DateToUnix</span>: <span class="keyword">function</span>(<span class="params">string</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> f = string.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>, <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">var</span> d = (f[<span class="number">0</span>] ? f[<span class="number">0</span>] : <span class="string">&#x27;&#x27;</span>).<span class="title function_">split</span>(<span class="string">&#x27;-&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">var</span> t = (f[<span class="number">1</span>] ? f[<span class="number">1</span>] : <span class="string">&#x27;&#x27;</span>).<span class="title function_">split</span>(<span class="string">&#x27;:&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">new</span> <span class="title class_">Date</span>(</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        (<span class="built_in">parseInt</span>(d[<span class="number">1</span>], <span class="number">10</span>) || <span class="number">1</span>) - <span class="number">1</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(d[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">0</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">1</span>], <span class="number">10</span>) || <span class="literal">null</span>,</span><br><span class="line">                        <span class="built_in">parseInt</span>(t[<span class="number">2</span>], <span class="number">10</span>) || <span class="literal">null</span></span><br><span class="line">                        )).<span class="title function_">getTime</span>() / <span class="number">1000</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/**              </span></span><br><span class="line"><span class="comment">             * 时间戳转换日期              </span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> &lt;int&gt; unixTime    待时间戳(秒)              </span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> &lt;bool&gt; isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              </span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> &lt;int&gt;  timeZone   时区              </span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="title class_">UnixToDate</span>: <span class="keyword">function</span>(<span class="params">unixTime, isFull, timeZone</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span> (timeZone) == <span class="string">&#x27;number&#x27;</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    unixTime = <span class="built_in">parseInt</span>(unixTime) + <span class="built_in">parseInt</span>(timeZone) * <span class="number">60</span> * <span class="number">60</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>(unixTime * <span class="number">1000</span>);</span><br><span class="line">                <span class="keyword">var</span> ymdhis = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                ymdhis += time.<span class="title function_">getUTCFullYear</span>() + <span class="string">&quot;-&quot;</span>;</span><br><span class="line">                ymdhis += (time.<span class="title function_">getUTCMonth</span>()+<span class="number">1</span>) + <span class="string">&quot;-&quot;</span>;</span><br><span class="line">                ymdhis += time.<span class="title function_">getUTCDate</span>();</span><br><span class="line">                <span class="keyword">if</span> (isFull === <span class="literal">true</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ymdhis += <span class="string">&quot; &quot;</span> + time.<span class="title function_">getUTCHours</span>() + <span class="string">&quot;:&quot;</span>;</span><br><span class="line">                    ymdhis += time.<span class="title function_">getUTCMinutes</span>() + <span class="string">&quot;:&quot;</span>;</span><br><span class="line">                    ymdhis += time.<span class="title function_">getUTCSeconds</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ymdhis;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+
+<p>看起来就非常的麻烦。于是我想到去官方文档去了一下，还真让我找到了。于是写了这么一个demo，这里我们并不需要将时间戳转化为字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间字符串转化为时间戳</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">str2time</span>(<span class="params">data</span>)&#123;</span><br><span class="line">	<span class="keyword">if</span> (data.<span class="property">length</span> == <span class="number">10</span>) &#123;</span><br><span class="line">		data += <span class="string">&#x27; 00:00:00&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(data);</span><br><span class="line">	<span class="keyword">return</span> (date.<span class="title function_">getTime</span>() / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这么一个简单的工作就完成了。</p>
+<p>在这里要注意的一个坑就是，注意服务器的时区是否跟浏览器的时区相同，如果不同，那么显示的时间跟服务器就会有几个小时的误差。具体的误差就看差着几个时区了。</p>
+<p>我这里对于这个也是抛砖引玉。</p>
+<p>具体复杂的，可以看看我列出的参考连接。就是在<code>new Date</code>注意看看传入的值就好了。</p>
+<blockquote>
+<p>参考文档：</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/jquery-form-input-to-object/" rel="prev" title="jq将form 表单数据转为object">
+                  <i class="fa fa-chevron-left"></i> jq将form 表单数据转为object
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/elasticsearch-php-sdk/" rel="next" title="Elasticsearch（2）PHP驱动">
+                  Elasticsearch（2）PHP驱动 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

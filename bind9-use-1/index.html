@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统bind9来搞一番。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bind9的初步使用（1）">
+<meta property="og:url" content="http://www.baoguoxiao.com/bind9-use-1/index.html">
+<meta property="og:site_name" content="魔王卷子">
+<meta property="og:description" content="前言周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统bind9来搞一番。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-16T14:28:02.000Z">
+<meta property="article:modified_time" content="2022-08-16T15:58:27.785Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="bing9">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.baoguoxiao.com/bind9-use-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/bind9-use-1/","path":"bind9-use-1/","title":"bind9的初步使用（1）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>bind9的初步使用（1） | 魔王卷子</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">魔王卷子</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">环境介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D"><span class="nav-number">5.</span> <span class="nav-text">配置域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95DNS%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">测试DNS效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%9C%AC%E6%9C%BADNS%E5%8F%AF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">设置默认本机DNS可用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/bind9-use-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="bind9的初步使用（1） | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bind9的初步使用（1）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-16 22:28:02" itemprop="dateCreated datePublished" datetime="2018-12-16T22:28:02+08:00">2018-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-16 23:58:27" itemprop="dateModified" datetime="2022-08-16T23:58:27+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/bind9/" itemprop="url" rel="index"><span itemprop="name">bind9</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统<a target="_blank" rel="noopener" href="https://www.isc.org/downloads/bind/">bind9</a>来搞一番。</p>
+<span id="more"></span>
+
+<h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><ul>
+<li>Ubuntu: 18.10 (ip: 192.168.1.230)</li>
+<li>bind9: 9.11.4</li>
+<li>Windows 10 (ip: 192.168.1.230)</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>其实安装非常简单，一条命令就搞定了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install bind9</span><br></pre></td></tr></table></figure>
+
+<h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start bind9</span><br></pre></td></tr></table></figure>
+
+<p>停止:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop bind9</span><br></pre></td></tr></table></figure>
+
+<p>重启：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart bind9</span><br></pre></td></tr></table></figure>
+
+<p>状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status bind9</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h2><p>举个例子，比如现在我们有个域名是：baoguoxiao.pro。现在我们要对这个域名进行虚拟映射。</p>
+<p>首先打开<code>/etc/bind/named.conf.local</code>，追加如下内容到文件尾部：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;baoguoxiao.pro&quot; &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/zones/baoguoxiao.pro.db&quot;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>那么现在这个文件的内容完整如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">// Do any local configuration here</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">// Consider adding the 1918 zones here, if they are not used in your</span><br><span class="line">// organization</span><br><span class="line">//include &quot;/etc/bind/zones.rfc1918&quot;;</span><br><span class="line"></span><br><span class="line">zone &quot;baoguoxiao.pro&quot; &#123;</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;/etc/bind/zones/baoguoxiao.pro.db&quot;; // 这个文件定义了文件地址</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>我们定义的地址是<code>/etc/bind/zones/baoguoxiao.pro.db</code>。但是我们的<code>/etc/bind/</code>并没有该目录。所以需要如下命令进行创建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/bind/</span><br><span class="line">sudo <span class="built_in">mkdir</span> zones</span><br></pre></td></tr></table></figure>
+
+<p>进入该目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> zones</span><br></pre></td></tr></table></figure>
+
+<p>然后创建该文件<code>baoguoxiao.pro.db</code>，并追加如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">; BIND data file for baoguoxiao.pro</span><br><span class="line">;</span><br><span class="line">$TTL 14400</span><br><span class="line">@ IN SOA ns1.baoguoxiao.pro. host.baoguoxiao.pro. (</span><br><span class="line">201006601 ; Serial</span><br><span class="line">7200 ; Refresh</span><br><span class="line">120 ; Retry</span><br><span class="line">2419200 ; Expire</span><br><span class="line">604800) ; Default TTL</span><br><span class="line">;</span><br><span class="line">baoguoxiao.pro. IN NS ns1.baoguoxiao.pro.</span><br><span class="line"> </span><br><span class="line">;baoguoxiao.pro. IN A 192.168.1.231</span><br><span class="line"> </span><br><span class="line">ns1 IN A 192.168.1.231</span><br><span class="line">www IN A 192.168.1.231</span><br></pre></td></tr></table></figure>
+
+<p>这样就设置完成了。然后我们将bind9进行重启。</p>
+<h2 id="测试DNS效果"><a href="#测试DNS效果" class="headerlink" title="测试DNS效果"></a>测试DNS效果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ dig @192.168.1.231 www.baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; @192.168.1.231 www.baoguoxiao.pro</span><br><span class="line">; (1 server found)</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- <span class="string">opcode: QUERY, status: NOERROR, id: 35630</span></span><br><span class="line"><span class="string">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; OPT PSEUDOSECTION:</span></span><br><span class="line"><span class="string">; EDNS: version: 0, flags:; udp: 4096</span></span><br><span class="line"><span class="string">; COOKIE: f077ba72f04b75a1ac9b27275c16148f4732abac11c21ce8 (good)</span></span><br><span class="line"><span class="string">;; QUESTION SECTION:</span></span><br><span class="line"><span class="string">;www.baoguoxiao.pro.			IN	A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ANSWER SECTION:</span></span><br><span class="line"><span class="string">www.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; AUTHORITY SECTION:</span></span><br><span class="line"><span class="string">baoguoxiao.pro.			14400	IN	NS	ns1.baoguoxiao.pro.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ADDITIONAL SECTION:</span></span><br><span class="line"><span class="string">ns1.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; Query time: 0 msec</span></span><br><span class="line"><span class="string">;; SERVER: 192.168.1.231#53(192.168.1.231)</span></span><br><span class="line"><span class="string">;; WHEN: Sun Dec 16 17:02:07 CST 2018</span></span><br><span class="line"><span class="string">;; MSG SIZE  rcvd: 117</span></span><br></pre></td></tr></table></figure>
+
+<p>好了，这样就表示已经配置成功了</p>
+<h2 id="设置默认本机DNS可用"><a href="#设置默认本机DNS可用" class="headerlink" title="设置默认本机DNS可用"></a>设置默认本机DNS可用</h2><p>之前的设置我们需要指定本机的DNS服务器才可以使用，如果我们不指定的话，那么查询该域名是没有效果的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ dig baoguoxiao.pro</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; baoguoxiao.pro</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- <span class="string">opcode: QUERY, status: NXDOMAIN, id: 52385</span></span><br><span class="line"><span class="string">;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; OPT PSEUDOSECTION:</span></span><br><span class="line"><span class="string">; EDNS: version: 0, flags:; udp: 65494</span></span><br><span class="line"><span class="string">;; QUESTION SECTION:</span></span><br><span class="line"><span class="string">;baoguoxiao.pro.			IN	A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; Query time: 274 msec</span></span><br><span class="line"><span class="string">;; SERVER: 127.0.0.53#53(127.0.0.53)</span></span><br><span class="line"><span class="string">;; WHEN: Sun Dec 16 17:03:59 CST 2018</span></span><br><span class="line"><span class="string">;; MSG SIZE  rcvd: 43</span></span><br></pre></td></tr></table></figure>
+
+<p>在ubuntu17.10之后，网卡配置已经更新为netplan。该配置文件的目录是<code>/etc/netplan/</code>。不过里面的文件不一定是相同的名字。我的文件打开是这样的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/netplan/50-cloud-init.yaml </span><br><span class="line"><span class="comment"># This file is generated from information provided by</span></span><br><span class="line"><span class="comment"># the datasource.  Changes to it will not persist across an instance.</span></span><br><span class="line"><span class="comment"># To disable cloud-init&#x27;s network configuration capabilities, write a file</span></span><br><span class="line"><span class="comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span></span><br><span class="line"><span class="comment"># network: &#123;config: disabled&#125;</span></span><br><span class="line">network:</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            addresses: [192.168.1.231/24]</span><br><span class="line">            dhcp4: <span class="literal">false</span></span><br><span class="line">            dhcp6: <span class="literal">false</span></span><br><span class="line">            gateway4: 192.168.1.1</span><br><span class="line">            nameservers:</span><br><span class="line">                addresses: [192.168.1.231,114.114.114.114]</span><br><span class="line">    version: 2</span><br></pre></td></tr></table></figure>
+
+<p>注意，我在倒数第二行的数组里面添加本机的服务器<code>192.168.1.231</code>。关于该文件的配置，可以查看我的另外一篇文章：<a href="#">Post not found: ubuntu-set-static-ip</a>。</p>
+<p>这样我们在本机就可以不指定dns服务器的基础上进行获取域名的ip了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ dig www.bgx.me</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; www.baoguoxiao.pro</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- <span class="string">opcode: QUERY, status: NOERROR, id: 58219</span></span><br><span class="line"><span class="string">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; OPT PSEUDOSECTION:</span></span><br><span class="line"><span class="string">; EDNS: version: 0, flags:; udp: 4096</span></span><br><span class="line"><span class="string">; COOKIE: 15d0881d8eed3292569558cd5c1623fa33a2d05212e7e662 (good)</span></span><br><span class="line"><span class="string">;; QUESTION SECTION:</span></span><br><span class="line"><span class="string">;www.baoguoxiao.pro.			IN	A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ANSWER SECTION:</span></span><br><span class="line"><span class="string">www.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; AUTHORITY SECTION:</span></span><br><span class="line"><span class="string">baoguoxiao.pro.			14400	IN	NS	ns1.baoguoxiao.pro.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ADDITIONAL SECTION:</span></span><br><span class="line"><span class="string">ns1.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; Query time: 0 msec</span></span><br><span class="line"><span class="string">;; SERVER: 192.168.1.231#53(192.168.1.231)</span></span><br><span class="line"><span class="string">;; WHEN: Sun Dec 16 18:07:54 CST 2018</span></span><br><span class="line"><span class="string">;; MSG SIZE  rcvd: 117</span></span><br></pre></td></tr></table></figure>
+
+<p>本篇文章就说到这里。下一篇讲如何配置可局域网访问。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/bing9/" rel="tag"># bing9</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/wordpress-upgrade-editor-can-not-be-used/" rel="prev" title="wordpress升级的编辑器不能用的问题">
+                  <i class="fa fa-chevron-left"></i> wordpress升级的编辑器不能用的问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apt-install-nginx/" rel="next" title="ubuntu 中使用 apt 安装 nginx">
+                  ubuntu 中使用 apt 安装 nginx <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

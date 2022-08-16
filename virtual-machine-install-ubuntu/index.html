@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 12sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机安装ubuntu">
+<meta property="og:url" content="http://www.baoguoxiao.com/virtual-machine-install-ubuntu/index.html">
+<meta property="og:site_name" content="魔王卷子">
+<meta property="og:description" content="公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。 好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。 开启ssh服务首先执行以下命令安装openssh 1sudo apt install openssh-server -y  启动服务并且设置开机启动 12sudo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-02T04:00:25.000Z">
+<meta property="article:modified_time" content="2022-08-16T15:58:27.789Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="openssh">
+<meta property="article:tag" content="apt">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.baoguoxiao.com/virtual-machine-install-ubuntu/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/virtual-machine-install-ubuntu/","path":"virtual-machine-install-ubuntu/","title":"虚拟机安装ubuntu"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>虚拟机安装ubuntu | 魔王卷子</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">魔王卷子</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AFssh%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">开启ssh服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BIP%EF%BC%8C%E5%B9%B6%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">查看IP，并使用xshell连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">修改源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">修改源为阿里源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E5%8C%85"><span class="nav-number">5.</span> <span class="nav-text">更新包</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/virtual-machine-install-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="虚拟机安装ubuntu | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虚拟机安装ubuntu
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-02 12:00:25" itemprop="dateCreated datePublished" datetime="2018-01-02T12:00:25+08:00">2018-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-16 23:58:27" itemprop="dateModified" datetime="2022-08-16T23:58:27+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。</p>
+<p>好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。</p>
+<h2 id="开启ssh服务"><a href="#开启ssh服务" class="headerlink" title="开启ssh服务"></a>开启ssh服务</h2><p>首先执行以下命令安装openssh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并且设置开机启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看IP，并使用xshell连接"><a href="#查看IP，并使用xshell连接" class="headerlink" title="查看IP，并使用xshell连接"></a>查看IP，并使用xshell连接</h2><p>查看ip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+
+<p>查看你的网卡信息，发现我的IP是192.168.110.128.</p>
+<p>因为直接使用虚拟机内部的终端并不好用，不能够进行复制粘贴啥的，所以我使用外部的终端程序。我在这里使用的是xshell。</p>
+<p>新建会话属性，输入主机ip（就是刚才我们获得的），在用户身份验证输入用户名和密码。</p>
+<p>然后点击最下面的连接。会出现一个弹出框，选择“接口并保存”。</p>
+<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><p>进入后第一件事就是修改<strong>apt</strong>源。</p>
+<p>在修改源之前，我们先安装VIM编辑器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，我们要编辑<strong>apt</strong>源文件去除cd源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>将第5行的配置进行注释：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改源为阿里源"><a href="#修改源为阿里源" class="headerlink" title="修改源为阿里源"></a>修改源为阿里源</h2><p>这是我从阿里云的帮助文件中复制到的源的内容。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>首先我们需要对该内容进行修改。</p>
+<p>我们查看版本信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 17.10</span><br><span class="line">Release:	17.10</span><br><span class="line">Codename:	artful</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<strong>codename</strong>的值是<strong>artful</strong></p>
+<p>我们可以把上面<strong>quantal</strong>全部替换为<strong>artful</strong>，替换完成如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>然后将替换好的内容添加到**&#x2F;etc&#x2F;apt&#x2F;sources.list**开头。</p>
+<p>这样就可以**:x**进行保存了。</p>
+<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><p>其实很简单。首先更新源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update </span><br></pre></td></tr></table></figure>
+
+<p>在输出的消息的最后一行会输出以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">&#x27;apt list --upgradable&#x27;</span> to see them.</span><br></pre></td></tr></table></figure>
+
+<p>这就表示我有46个包需要更新。那么就执行运行以下命令进行更新吧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
+
+<p>好了，最开始的安装环境就已经搭建完成了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/openssh/" rel="tag"># openssh</a>
+              <a href="/tags/apt/" rel="tag"># apt</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/kylin-firefox-prevent-access-sogou-site/" rel="prev" title="我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题">
+                  <i class="fa fa-chevron-left"></i> 我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/vim-set-tab-four-space/" rel="next" title="vim设置tab为四个空格">
+                  vim设置tab为四个空格 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
