@@ -1,40 +1,60 @@
 ---
-title: ubuntu安装lrzsz
+title: Linux 终端上传下载文件
 date: 2018-11-11 21:29:08
 tags:
-- lrzsz
-- ubuntu
-- linux
+- Ubuntu
+- Rocky
+- Linux
 categories:
 - 操作系统
-- ubuntu
+- Linux
 ---
-lrzsz命令是非常好用的一个命令。
 
-这个命令可以支持我们在xshell中进行文件的上传和下载操作。
+Linux 与客户端之间进行文件互传是一个非常常见的功能。办法有很多，很多都是借助第三方功能，但是如果要求不使用第三方工具，那么可选项就很少了。下面介绍两种办法：
 
-但是默认执行
+## `lrzsz`
 
-```bash
-$ sudo apt install lrzsz 
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-E: Unable to locate package lrzsz
-```
+其实我最钟意这个了。但是这个认终端。需要终端进行适配才可以。
 
-出现了找不到包的错误。
+> 该命令对文件大小有限制，最大不能超过 4GB。我想一般人碰到这么大的文件，早就去想其他办法了吧。
 
-发现解决的办法很简单。
+使用如下命令安装：
 
 ```bash
-sudo add-apt-repository universe
+dnf install lrzsz
 ```
 
-新增了这个源之后，我们重新执行安装命令之后就可以了。
+- 使用方法：
+
+上传文件：
+
+```
+rz
+```
+
+下载文件：
 
 ```bash
-sudo apt install lrzsz
+sz /path/file
 ```
 
-end.
+## `scp`
+
+这个其实就比 `lrzsz` 比较通用了。但是问题是每次我都得查询一下命令是啥。一般想不起来。
+
+下载文件从远程服务器到本地目录：
+
+```bash
+scp user@ip:/path/file /path
+```
+
+上传文件从本地目录到远程服务器：
+
+```bash
+scp /path/file user@ip:/path 
+```
+
+## 参考
+
+- [WebSSH 画龙点睛之 lrzsz 上传下载文件](https://www.cnblogs.com/37Y37/p/12020603.html)
+- [一文详解scp命令](https://cloud.tencent.com/developer/article/1849738)
