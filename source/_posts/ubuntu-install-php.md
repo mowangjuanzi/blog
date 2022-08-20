@@ -1,13 +1,14 @@
 ---
 title: Ubuntu 下安装 PHP
 date: 2021-03-28 18:06:19
-updated: 2021-03-28 18:06:19
+updated: 2022-08-21 07:36:07
 tags:
-- ubuntu
-- php
+- Linux
+- Ubuntu
+- PHP
 categories:
 - 操作系统
-- ubuntu
+- Linux
 excerpt: '在 Ubuntu 20.10 中使用 ppa:ondrej/php 安装 PHP 8.1 的记录'
 ---
 
@@ -17,66 +18,66 @@ excerpt: '在 Ubuntu 20.10 中使用 ppa:ondrej/php 安装 PHP 8.1 的记录'
 
 首先我们先安装一些依赖的包，以便后期进行安装处理：
 
-```
-sudo apt install ca-certificates apt-transport-https software-properties-common
+```bash
+sudo apt install ca-certificates software-properties-common
 ```
 
-首先我们执行以下命令安装PPA：
+首先我们执行以下命令安装 PPA：
 
-```
+```bash
 sudo add-apt-repository ppa:ondrej/php
 ```
 
 这里有个注意事项，就是执行到一半，出现以下文字是需要一个回车才可以继续执行的。
 
-```
+```bash
 Press [ENTER] to continue or Ctrl-c to cancel adding it.
 ```
 
-执行完成后，我们看下目前的PHP的默认版本变成了多少
+执行完成后，我们看下目前的 PHP 的默认版本变成了多少
 
-```
+```bash
 $ sudo apt show php
 Package: php
-Version: 2:8.0+85+ubuntu21.10.1+deb.sury.org+1
+Version: 2:8.1+92+ubuntu22.04.1+deb.sury.org+1
 Priority: optional
 Section: php
-Source: php-defaults (85+ubuntu21.10.1+deb.sury.org+1)
+Source: php-defaults (92+ubuntu22.04.1+deb.sury.org+1)
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 13.3 kB
-Depends: php8.0
-Download-Size: 6,926 B
-APT-Sources: http://ppa.launchpad.net/ondrej/php/ubuntu impish/main amd64 Packages
+Installed-Size: 14.3 kB
+Depends: php8.1
+Download-Size: 7,158 B
+APT-Sources: https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 Packages
 Description: server-side, HTML-embedded scripting language (default)
  PHP (递归缩写：Hypertext Preprocessor，超文本预处理器)，是一种广泛应用的 开源通用脚本语言，特别适用于网络开发并可嵌入
  HTML 中。
  .
  This package is a dependency package, which depends on latest stable PHP
- version (currently 8.0).
+ version (currently 8.1).
 
 N: 有 1 条附加记录。请加上 ‘-a’ 参数来查看它们
 ```
 
-可以看到默认的PHP版本已经从系统自带的7.4变成8.0了。
+可以看到默认的 PHP 版本已经变成 8.1 了。
 
-## 安装PHP
+## 安装 PHP
 
-但是我们可以安装最新的8.1。因为跟默认版本不相符，所以每次都要指定版本。
+但是我们可以安装最新的 8.1 。因为跟默认版本不相符，所以每次都要指定版本。
 
-执行以下命令安装8.1的PHP：
+执行以下命令安装 8.1 的 PHP：
 
-```
+```bash
 sudo apt install php8.1-fpm
 ```
 
 安装成功后可以执行命令查看下目前的版本：
 
-```
+```bash
 $ php -v
-PHP 8.1.0RC5 (cli) (built: Nov  4 2021 14:58:40) (NTS)
+PHP 8.1.9 (cli) (built: Aug 15 2022 09:40:11) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.1.0-dev, Copyright (c) Zend Technologies
-    with Zend OPcache v8.1.0RC5, Copyright (c), by Zend Technologies
+Zend Engine v4.1.9, Copyright (c) Zend Technologies
+    with Zend OPcache v8.1.9, Copyright (c), by Zend Technologies
 ```
 
 ## 可执行命令
@@ -89,13 +90,13 @@ Zend Engine v4.1.0-dev, Copyright (c) Zend Technologies
 - phpize
 - php-config
 - pear
-- 等等
+- ...
 
 ## 路径
 
 日志路径:
 
-```
+```bash
 $ ls /var/log/php*
 /var/log/php8.1-fpm.log
 ```
@@ -104,37 +105,37 @@ $ ls /var/log/php*
 
 启动：
 
-```
+```bash
 sudo systemctl start php8.1-fpm
 ```
 
 停止：
 
-```
+```bash
 sudo systemctl stop php8.1-fpm
 ```
 
 重新启动：
 
-```
+```bash
 sudo systemctl restart php8.1-fpm
 ```
 
 设置开机启动（默认已经设置）：
 
-```
+```bash
 sudo systemctl enable php8.1-fpm
 ```
 
 取消开机启动
 
-```
+```bash
 sudo systemctl disable php8.1-fpm
 ```
 
 查看运行状态
 
-```
+```bash
 sudo systemctl status php8.1-fpm
 ```
 
@@ -172,7 +173,7 @@ sudo pecl install seaslog
 
 ## 配置文件
 
-这里要介绍一下安装扩展的情况。因为PHP有两种运行方式，一种是FPM，一种是CLI。所以它可以控制一个扩展只在FPM加载，而不在CLI加载的方式。
+这里要介绍一下安装扩展的情况。因为PHP有两种运行方式，一种是 FPM，一种是 CLI。所以它可以控制一个扩展只在 FPM 加载，而不在 CLI 加载的方式。
 
 首先看下它的目录
 
@@ -183,11 +184,11 @@ cli  fpm  mods-available
 
 首先我们扩展的管理是存储到 `mods-available` 中的。
 
-然后如果我们要控制FPM加载这个某个配置，那么就要进行创建软链。
+然后如果我们要控制 FPM 加载这个某个配置，那么就要进行创建软链。
 
 我们查看下面的命令就了解了：
 
-```
+```bash
 $ ll /etc/php/8.1/fpm/conf.d/10-opcache.ini 
 lrwxrwxrwx 1 root root 39 11月  6 19:57 /etc/php/8.1/fpm/conf.d/10-opcache.ini -> /etc/php/8.1/mods-available/opcache.ini
 ```
@@ -196,34 +197,11 @@ lrwxrwxrwx 1 root root 39 11月  6 19:57 /etc/php/8.1/fpm/conf.d/10-opcache.ini 
 
 ## 安装 Composer
 
-首先执行如下命令获取安装脚本：
-
-```bash
-curl -L "https://getcomposer.org/installer" -o composer-setup.php
-```
-
-执行安装命令：
-
-```bash
-sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-```
-
-最后对其赋予执行权限：
-
-```bash
-sudo chmod +x /usr/local/composer
-```
-
-这样 Composer 就安装完成了。下面看下安装的版本：
-
-```bash
-$ composer -V
-Composer version 2.1.11 2021-11-02 12:10:25
-```
+参考 [Linux 下安装 Composer](/linux-install-composer/)
 
 ## 与 Nginx 配合
 
-首先是需要安装 Nginx。这里可以参考我的[Ubuntu 安装 Nginx](/_posts/ubuntu-install-nginx.md)。
+首先是需要安装 Nginx。这里可以参考我的[Linux 安装 Nginx](/ubuntu-install-nginx/)。
 
 首先我们先写入一个可以输出 `phpinfo()` 的文件。
 
