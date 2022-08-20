@@ -310,7 +310,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -380,7 +380,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/centos-shell-install-php-composer/">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/linux-install-composer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -398,7 +398,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/centos-shell-install-php-composer/" class="post-title-link" itemprop="url">shell 安装 composer</a>
+          <a href="/linux-install-composer/" class="post-title-link" itemprop="url">Linux 下安装 Composer</a>
         </h2>
 
         <div class="post-meta-container">
@@ -416,7 +416,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:10" itemprop="dateModified" datetime="2022-08-20T16:28:10+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -428,7 +428,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a>
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -442,26 +442,54 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>安装composer，最好需要有php的软连接。</p>
-<p>先执行一下以下命令查看是否<code>php</code>命令已经软连接好了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@68 ~]# which php</span><br><span class="line">/usr/bin/which: no php in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</span><br></pre></td></tr></table></figure>
+          <h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p>使用 Composer 需要先安装 PHP。</p>
+<p>可以参考如下几篇进行安装：</p>
+<ul>
+<li><a href="/centos-build-lnmp-environment/">如何搭建 LNMP 环境【编译版】</a></li>
+<li><a href="/yum-install-php/">DNF 安装 PHP</a></li>
+</ul>
+<h2 id="项目内"><a href="#项目内" class="headerlink" title="项目内"></a>项目内</h2><p>其实我们可以在项目根目录执行下列命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://getcomposer.org/download/latest-stable/composer.phar</span><br><span class="line">php composer.phar</span><br></pre></td></tr></table></figure>
 
-<p>如果是这样，表示并不能直接使用php。我们这个时候需要对<code>php</code>做软连接。</p>
-<p>我的<code>php</code>的路径在**&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin&#x2F;php**。所以命令就是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/local/php/bin/php /usr/local/bin/php</span><br></pre></td></tr></table></figure>
+<h2 id="全局手动安装"><a href="#全局手动安装" class="headerlink" title="全局手动安装"></a>全局手动安装</h2><p>将文件下载到 <code>/usr/local/bin</code> 并修改名称为 <code>composer</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /usr/local/bin/composer https://getcomposer.org/download/latest-stable/composer.phar</span><br></pre></td></tr></table></figure>
 
-<p>然后我再执行一下开头的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@68 bin]# which php</span><br><span class="line">/usr/local/bin/php</span><br></pre></td></tr></table></figure>
+<p>添加执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> +x /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
 
-<p>好了。这样就可以进行安装了。我们仅仅需要下面这一条命令就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer</span><br></pre></td></tr></table></figure>
+<p>就可以直接通过如下方式执行了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># composer -V</span></span><br><span class="line">Composer version 2.4.0 2022-08-16 16:10:48</span><br></pre></td></tr></table></figure>
 
-<p>当显示如下效果的时候，就表示安装完成了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">All settings correct for using Composer</span><br><span class="line">Downloading...</span><br><span class="line"></span><br><span class="line">Composer (version 1.3.0) successfully installed to: /usr/local/bin/composer</span><br><span class="line">Use it: php /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
+<h2 id="系统包管理安装"><a href="#系统包管理安装" class="headerlink" title="系统包管理安装"></a>系统包管理安装</h2><p>我个人不是很推荐，具体原因还是因为我使用 Ubuntu 的时候，会依赖一些 PHP 扩展，但是如果是使用第三方库安装的 PHP，那么安装 Composer 的扩展却不是自己能够控制的，以为很可能会依赖系统自带的 PHP 版本。</p>
+<p>下面就列一下命令：</p>
+<p>CentOS&#x2F;Rocky&#x2F;RedHat:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install composer</span><br></pre></td></tr></table></figure>
 
-<p>这样我们就可以使用composer进行类库安装了。</p>
-<h2 id="修改为国内镜像"><a href="#修改为国内镜像" class="headerlink" title="修改为国内镜像"></a>修改为国内镜像</h2><p>全局修改</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure>
+<p>Debian&#x2F;Ubuntu:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install composer</span><br></pre></td></tr></table></figure>
+
+<h2 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo composer self-update</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此内容仅手动安装的可以使用，因为包管理没有该命令。</p>
+</blockquote>
+<h2 id="修改镜像"><a href="#修改镜像" class="headerlink" title="修改镜像"></a>修改镜像</h2><p>全局设置腾讯云镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repos.packagist composer https://mirrors.tencent.com/composer/</span><br></pre></td></tr></table></figure>
+
+<p>全局设置阿里云镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</span><br></pre></td></tr></table></figure>
+
+<p>全局取消镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g --<span class="built_in">unset</span> repos.packagist</span><br></pre></td></tr></table></figure>
+
+<p>项目内设置腾讯云镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config repos.packagist composer https://mirrors.tencent.com/composer/</span><br></pre></td></tr></table></figure>
+
+<p>项目内设置阿里云镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config repo.packagist composer https://mirrors.aliyun.com/composer/</span><br></pre></td></tr></table></figure>
+
+<p>项目内取消镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g --<span class="built_in">unset</span> repos.packagist</span><br></pre></td></tr></table></figure>
 
 <h2 id="碰到的问题"><a href="#碰到的问题" class="headerlink" title="碰到的问题"></a>碰到的问题</h2><ul>
 <li><code>phar &quot;/usr/local/bin/composer&quot; has a broken signature</code> 错误:</li>
@@ -470,17 +498,17 @@
 
 <p><strong>解决办法</strong>：删除文件包，重新安装。</p>
 <ul>
-<li>php缺失<code>openssl</code>扩展:</li>
+<li>PHP 缺失 <code>openssl</code> 扩展:</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Some settings on your machine make Composer unable to work properly.</span><br><span class="line">Make sure that you fix the issues listed below and run this script again:</span><br><span class="line"></span><br><span class="line">The openssl extension is missing, which means that secure HTTPS transfers are impossible.</span><br><span class="line">If possible you should enable it or recompile php with --with-openssl</span><br></pre></td></tr></table></figure>
 
-<p><strong>解决办法</strong>: PHP安装<code>openssl</code>扩展。</p>
+<p><strong>解决办法</strong>: PHP 安装 <code>openssl</code> 扩展。</p>
 <ul>
-<li>php缺失<code>zlib</code>扩展:</li>
+<li>PHP 缺失 <code>zlib</code> 扩展:</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The zlib extension is not loaded, this can slow down Composer a lot.</span><br><span class="line">If possible, install it or recompile php with --with-zlib</span><br><span class="line"></span><br><span class="line">The php.ini used by your command-line PHP is: /usr/local/php/etc/php.ini</span><br><span class="line">If you can not modify the ini file, you can also run `php -d option=value` to modify ini values on the fly. You can use -d multiple times.</span><br></pre></td></tr></table></figure>
 
-<p><strong>解决办法</strong>: PHP安装<code>zlib</code>扩展。</p>
+<p><strong>解决办法</strong>: PHP 安装 <code>zlib</code> 扩展。</p>
 
       
     </div>
@@ -543,7 +571,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -751,7 +779,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -861,7 +889,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -969,7 +997,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1222,7 +1250,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1322,7 +1350,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1830,7 +1858,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-19 07:05:10" itemprop="dateModified" datetime="2022-08-19T07:05:10+08:00">2022-08-19</time>
+      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
