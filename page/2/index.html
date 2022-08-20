@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -137,7 +137,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-count">111</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -166,6 +166,187 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/mac-build-web-environment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mac-build-web-environment/" class="post-title-link" itemprop="url">mac搭建web环境</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-16 14:06:11" itemprop="dateCreated datePublished" datetime="2018-11-16T14:06:11+08:00">2018-11-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="homebrew"><a href="#homebrew" class="headerlink" title="homebrew"></a>homebrew</h2><p>在centos上有yum，ubuntu上有apt，而mac则是brew。这个并不是内置的。需要在终端执行命令进行安装。命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>安装之后就可以像是linux一样使用包管理了。包的列表可浏览 <a target="_blank" rel="noopener" href="https://formulae.brew.sh/formula/">https://formulae.brew.sh/formula/</a> 。</p>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+
+<p>启动nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start nginx</span><br></pre></td></tr></table></figure>
+
+<p>重启nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart nginx</span><br></pre></td></tr></table></figure>
+
+<p>停止nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services stop nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install php</span><br></pre></td></tr></table></figure>
+
+<p>启动php</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start php</span><br></pre></td></tr></table></figure>
+
+<p>重启php</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart php</span><br></pre></td></tr></table></figure>
+
+<p>停止php</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services stop php</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mysql</span><br></pre></td></tr></table></figure>
+
+<p>启动命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mysql</span><br></pre></td></tr></table></figure>
+
+<p>重启命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart mysql</span><br></pre></td></tr></table></figure>
+
+<p>停止命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services stop mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><p>首先启动mysql服务器，然后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<p>如果出现如下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VALIDATE PASSWORD COMPONENT can be used to <span class="built_in">test</span> passwords</span><br><span class="line">and improve security. It checks the strength of password</span><br><span class="line">and allows the <span class="built_in">users</span> to <span class="built_in">set</span> only those passwords <span class="built_in">which</span> are</span><br><span class="line">secure enough. Would you like to setup VALIDATE PASSWORD component?</span><br><span class="line"></span><br><span class="line">Press y|Y <span class="keyword">for</span> Yes, any other key <span class="keyword">for</span> No: </span><br></pre></td></tr></table></figure>
+
+<p>表示询问你是否需要安装密码验证插件，这里我输入<strong>y</strong>允许安装了。</p>
+<p>接下来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">There are three levels of password validation policy:</span><br><span class="line"></span><br><span class="line">LOW    Length &gt;= 8</span><br><span class="line">MEDIUM Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, and special characters</span><br><span class="line">STRONG Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, special characters and dictionary                  file</span><br><span class="line"></span><br><span class="line">Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG:</span><br></pre></td></tr></table></figure>
+
+<p>这里是要求制定密码强度，我这里选择是0，</p>
+<p>接下来就是让我输入两边密码了，</p>
+<p>因为我输入的密码比较简单，所以有了如下提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Estimated strength of the password: 50</span><br><span class="line">Do you wish to <span class="built_in">continue</span> with the password provided?(Press y|Y <span class="keyword">for</span> Yes, any other key <span class="keyword">for</span> No) :</span><br></pre></td></tr></table></figure>
+
+<p>提示说这个密码的强度不高，询问是否真的使用这类强度的密码呢？我选择使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove anonymous <span class="built_in">users</span>? (Press y|Y <span class="keyword">for</span> Yes, any other key <span class="keyword">for</span> No) :</span><br></pre></td></tr></table></figure>
+
+<p>是否移除匿名用户？肯定要移除啊。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Disallow root login remotely? (Press y|Y <span class="keyword">for</span> Yes, any other key <span class="keyword">for</span> No) :</span><br></pre></td></tr></table></figure>
+
+<p>是否禁用root远程登录呢？肯定要禁用啊。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove <span class="built_in">test</span> database and access to it? (Press y|Y <span class="keyword">for</span> Yes, any other key <span class="keyword">for</span> No) :</span><br></pre></td></tr></table></figure>
+
+<p>是否要移除test数据库(这是一个测试数据库)呢？肯定要移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reload privilege tables now? (Press y|Y for Yes, any other key for No) :</span><br></pre></td></tr></table></figure>
+
+<p>是否要重载权限表。嗯，要重载。</p>
+<p>然后设置就完成了。</p>
+<p>接下来我们就可以使用如下命令登录mysql了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<h3 id="登录验证插件"><a href="#登录验证插件" class="headerlink" title="登录验证插件"></a>登录验证插件</h3><p>这里有个小问题，就是mysql的身份验证插件从之前的<code>mysql_native_password</code>更新为<code>caching_sha2_password</code>。</p>
+<p>目前的PHP并不支持更新后的插件，所以可以参考我如下的文章使用之前的身份验证插件创建用户密码。</p>
+<p>具体可以参考我的这一篇文章《<a href="/upgrade-mysql-to-8-0/" title="数据库升级">数据库升级</a>》.</p>
+<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><p>安装完成后，其实nginx并不能直接和php进行通信。一般通信的方式有两种，一种是通过监听端口(默认9000)，一种是监听socket。这里我们使用监听端口的方式。</p>
+<p>因为php-fpm这边已经默认是监听127.0.0.1:9000端口了，所以这里只需要修改nginx配置即可。</p>
+<p>首先打开<code>/usr/local/etc/nginx/nginx.conf</code></p>
+<p>修改后的配置文件如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># server 部分修改如下</span><br><span class="line">server &#123;</span><br><span class="line">    listen       80; # 修改端口为80</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    charset utf-8; # 设置默认字符集为utf-8</span><br><span class="line"></span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    root   html;</span><br><span class="line">    index  index.php index.html index.htm; # 新增index.php</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name; // 修改`/script`为`$document_root`，该值为root定义的路径</span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开<code>/usr/local/var/www</code>目录，新增<code>index.php</code>文件，内容如下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">phpinfo</span>();</span><br></pre></td></tr></table></figure>
+
+<p>使用如下命令重启nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services restart nginx</span><br></pre></td></tr></table></figure>
+
+<p>最后访问<code>localhost</code>就可以看到phpinfo正确显示的网页了。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://brew.sh/">https://brew.sh/</a></li>
+<li><a target="_blank" rel="noopener" href="https://formulae.brew.sh/formula/">https://formulae.brew.sh/formula/</a></li>
+<li><a target="_blank" rel="noopener" href="https://mysqlserverteam.com/upgrading-to-mysql-8-0-default-authentication-plugin-considerations/">https://mysqlserverteam.com/upgrading-to-mysql-8-0-default-authentication-plugin-considerations/</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -211,7 +392,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,7 +482,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -409,7 +590,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -514,7 +695,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -626,7 +807,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -727,7 +908,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -843,7 +1024,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1070,7 +1251,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1120,7 +1301,7 @@
 <tr>
 <td align="center">SENTRY_EMAIL_USER</td>
 <td align="center">登录的邮箱账号</td>
-<td align="center"><a href="mailto:&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#64;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#64;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a></td>
+<td align="center"><a href="mailto:&#101;&#120;&#x61;&#109;&#112;&#x6c;&#x65;&#64;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#101;&#120;&#x61;&#109;&#112;&#x6c;&#x65;&#64;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a></td>
 </tr>
 <tr>
 <td align="center">SENTRY_EMAIL_PASSWORD</td>
@@ -1140,7 +1321,7 @@
 <tr>
 <td align="center">SENTRY_SERVER_EMAIL</td>
 <td align="center">发送的账户，跟<strong>SENTRY_EMAIL_USER</strong>相同</td>
-<td align="center"><a href="mailto:&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#x40;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#101;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;&#x40;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a></td>
+<td align="center"><a href="mailto:&#x65;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x65;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></td>
 </tr>
 </tbody></table>
 <p>配置完成之后，需要重建服务。具体可以执行以下命令:</p>
@@ -1149,7 +1330,7 @@
 <p>然后稍等一分钟就可以正常访问web页面了。</p>
 <p>现在来测试一下。</p>
 <p>进入页面，在左上角的你的昵称位置单击，选择Admin。</p>
-<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#64;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#64;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
+<p>然后在左侧选择<strong>Mail</strong>，然后在最下面有一个测试设置。点击“向<a href="mailto:&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>发送一封测试邮件”。如果收到的话，那么说明就配置成功了。</p>
 <p>在配置问题中，如果有什么问题，可以过来跟我留言。</p>
 <p>毕竟这个邮件通知我折腾了一下午才搞定。</p>
 <p>哈哈</p>
@@ -1215,7 +1396,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1350,7 +1531,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1454,7 +1635,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1632,7 +1813,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1728,7 +1909,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1832,7 +2013,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2006,7 +2187,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2124,7 +2305,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2235,7 +2416,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2438,7 +2619,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2503,111 +2684,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add public/vendor -f <span class="comment"># 强制加入git版本追踪</span></span><br></pre></td></tr></table></figure>
 
 <p>提交之后，让同事拉取代码，再去执行就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/xls-export-overflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/xls-export-overflow/" class="post-title-link" itemprop="url">xls数据导出会内存溢出</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-08-09 10:54:48" itemprop="dateCreated datePublished" datetime="2018-08-09T10:54:48+08:00">2018-08-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。</p>
-<p>那么应该如何解决呢？</p>
-<p>其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。</p>
-<p>PHP已经内置了对这个格式的处理。其中使用的函数就是：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.fputcsv.php">fputcsv()</a></li>
-</ul>
-<p>其实使用方法很简单我就不用写范例了。就把php的示例搬过来吧。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$list</span> = <span class="keyword">array</span> (</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;aaa&#x27;</span>, <span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>, <span class="string">&#x27;dddd&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;123&#x27;</span>, <span class="string">&#x27;456&#x27;</span>, <span class="string">&#x27;789&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;&quot;aaa&quot;&#x27;</span>, <span class="string">&#x27;&quot;bbb&quot;&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable">$fp</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;file.csv&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$fields</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">fputcsv</span>(<span class="variable">$fp</span>, <span class="variable">$fields</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$fp</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>输出的内容如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span><br><span class="line">123,456,789</span><br><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上面这种是写入文件的，评论第一的说的是如何直接进行输出。他的原理是写入到php的输出中。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$out</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;php://output&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">fputcsv</span>(<span class="variable">$out</span>, <span class="keyword">array</span>(<span class="string">&#x27;this&#x27;</span>,<span class="string">&#x27;is some&#x27;</span>, <span class="string">&#x27;csv &quot;stuff&quot;, you know.&#x27;</span>));</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$out</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这么一看的话，导出xls是不是就简单了很多呢。</p>
 
       
     </div>

@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -137,7 +137,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-count">111</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -166,6 +166,111 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/xls-export-overflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/xls-export-overflow/" class="post-title-link" itemprop="url">xls数据导出会内存溢出</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-09 10:54:48" itemprop="dateCreated datePublished" datetime="2018-08-09T10:54:48+08:00">2018-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我们在后台开发的时候，经常会碰到数据导出。我们一般都是试用xls格式进行导出。但是有个问题，就是使用类库对内存的占用特别的大。结果稍微复杂一些的数据就会导致内存溢出。</p>
+<p>那么应该如何解决呢？</p>
+<p>其实换个思路。也就是说，如果格式不复杂的话，我们可以导出csv格式的数据。</p>
+<p>PHP已经内置了对这个格式的处理。其中使用的函数就是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.fputcsv.php">fputcsv()</a></li>
+</ul>
+<p>其实使用方法很简单我就不用写范例了。就把php的示例搬过来吧。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$list</span> = <span class="keyword">array</span> (</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;aaa&#x27;</span>, <span class="string">&#x27;bbb&#x27;</span>, <span class="string">&#x27;ccc&#x27;</span>, <span class="string">&#x27;dddd&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;123&#x27;</span>, <span class="string">&#x27;456&#x27;</span>, <span class="string">&#x27;789&#x27;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;&quot;aaa&quot;&#x27;</span>, <span class="string">&#x27;&quot;bbb&quot;&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable">$fp</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;file.csv&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$fields</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">fputcsv</span>(<span class="variable">$fp</span>, <span class="variable">$fields</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$fp</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出的内容如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa,bbb,ccc,dddd</span><br><span class="line">123,456,789</span><br><span class="line">&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面这种是写入文件的，评论第一的说的是如何直接进行输出。他的原理是写入到php的输出中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$out</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;php://output&#x27;</span>, <span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">fputcsv</span>(<span class="variable">$out</span>, <span class="keyword">array</span>(<span class="string">&#x27;this&#x27;</span>,<span class="string">&#x27;is some&#x27;</span>, <span class="string">&#x27;csv &quot;stuff&quot;, you know.&#x27;</span>));</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$out</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这么一看的话，导出xls是不是就简单了很多呢。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -211,7 +316,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -310,7 +415,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -405,7 +510,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -553,7 +658,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -650,7 +755,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -769,7 +874,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -871,7 +976,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -969,7 +1074,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1058,7 +1163,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1150,7 +1255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1259,7 +1364,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1370,7 +1475,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1509,7 +1614,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1612,7 +1717,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1861,7 +1966,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1967,7 +2072,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2070,7 +2175,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2164,7 +2269,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
+      <time title="修改时间：2022-08-20 23:42:05" itemprop="dateModified" datetime="2022-08-20T23:42:05+08:00">2022-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2238,117 +2343,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
 
 <p>好了，最开始的安装环境就已经搭建完成了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/kylin-firefox-prevent-access-sogou-site/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kylin-firefox-prevent-access-sogou-site/" class="post-title-link" itemprop="url">我的电脑系统换成了linux之解决火狐浏览器首页按钮强制访问sogou主页的问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-25 11:37:27" itemprop="dateCreated datePublished" datetime="2017-11-25T11:37:27+08:00">2017-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-20 16:28:52" itemprop="dateModified" datetime="2022-08-20T16:28:52+08:00">2022-08-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我的火狐浏览器默认主页是123.sogou.com 但是，我希望把我的首页变成百度。</p>
-<p>然后我按照以前的习惯，在设置里面将主页的链接设置成了baidu.com</p>
-<p>结果发现，后来还是会偷偷的给改成搜狗主页。</p>
-<p>居然这么流氓！！！</p>
-<p>这个时候我就发挥我的程序员能力了。</p>
-<p>我想到一个办法，就是将这个域名绑定到127.0.0.1，这样就不会给搜狗做推广了。</p>
-<p>然后发现还是有问题，就是不能直接访问网页，还需要输入一次。</p>
-<p>所以使用nginx的rewrite功能来重写URL，发现重写之后会带着get参数，这个时候，百度会自动跳转到错误页面，还是不行。</p>
-<p>于是我就想到编写一个php文件，当请求的时候，就使用header进行重定向。</p>
-<p>尝试了之后，发现非常ok。</p>
-<p>下面提供以下操作方法：</p>
-<p>首先修改<strong>hosts</strong>文件，增加以下内容:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	123.sogou.com</span><br></pre></td></tr></table></figure>
-
-<p>然后在**&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;<strong>增加</strong>123.sogou.conf**，文件内容如下：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80<span class="comment">;</span></span><br><span class="line">    server_name  123.sogou.com<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    charset utf-8<span class="comment">;</span></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line">    root   html<span class="comment">;</span></span><br><span class="line">    index  sogou.php<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#location ~ \.php$ &#123;</span></span><br><span class="line">    <span class="comment">#    proxy_pass   http://127.0.0.1;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   127.0.0.1:9000<span class="comment">;</span></span><br><span class="line">        fastcgi_index  index.php<span class="comment">;</span></span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name<span class="comment">;</span></span><br><span class="line">        include        fastcgi_params<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后在**&#x2F;usr&#x2F;share&#x2F;html&#x2F;<strong>新增</strong>sogou.php**文件，内容如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: https://www.baidu.com&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>然后重启nginx。</p>
-<p>最后我们测试一下，在浏览器里面点击主页图标。我这里就直接跳转到baidu<br>首页了。</p>
-<p>完美！</p>
 
       
     </div>
