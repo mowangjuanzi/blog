@@ -30,10 +30,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.baoguoxiao.com/images/bing/2021-03-28.jpg">
 <meta property="article:published_time" content="2021-03-28T10:06:19.000Z">
-<meta property="article:modified_time" content="2021-03-28T10:06:19.000Z">
+<meta property="article:modified_time" content="2022-08-20T23:36:07.000Z">
 <meta property="article:author" content="魔王卷子">
-<meta property="article:tag" content="php">
-<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://www.baoguoxiao.com/images/bing/2021-03-28.jpg">
 
@@ -120,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%89%80%E9%9C%80%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">安装所需依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PHP"><span class="nav-number">2.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">可执行命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apt-%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95"><span class="nav-number">6.</span> <span class="nav-text">apt 安装扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95"><span class="nav-number">7.</span> <span class="nav-text">手动安装扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Composer"><span class="nav-number">9.</span> <span class="nav-text">安装 Composer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E-Nginx-%E9%85%8D%E5%90%88"><span class="nav-number">10.</span> <span class="nav-text">与 Nginx 配合</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%89%80%E9%9C%80%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">安装所需依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PHP"><span class="nav-number">2.</span> <span class="nav-text">安装 PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">可执行命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apt-%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95"><span class="nav-number">6.</span> <span class="nav-text">apt 安装扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95"><span class="nav-number">7.</span> <span class="nav-text">手动安装扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Composer"><span class="nav-number">9.</span> <span class="nav-text">安装 Composer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E-Nginx-%E9%85%8D%E5%90%88"><span class="nav-number">10.</span> <span class="nav-text">与 Nginx 配合</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,6 +217,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-21 07:36:07" itemprop="dateModified" datetime="2022-08-21T07:36:07+08:00">2022-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -224,7 +232,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -240,24 +248,24 @@
     <div class="post-body" itemprop="articleBody">
         <p><img src="/images/bing/2021-03-28.jpg"></p>
 <h2 id="安装所需依赖"><a href="#安装所需依赖" class="headerlink" title="安装所需依赖"></a>安装所需依赖</h2><p>首先我们先安装一些依赖的包，以便后期进行安装处理：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ca-certificates apt-transport-https software-properties-common</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ca-certificates software-properties-common</span><br></pre></td></tr></table></figure>
 
-<p>首先我们执行以下命令安装PPA：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure>
+<p>首先我们执行以下命令安装 PPA：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure>
 
 <p>这里有个注意事项，就是执行到一半，出现以下文字是需要一个回车才可以继续执行的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Press [ENTER] to continue or Ctrl-c to cancel adding it.</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Press [ENTER] to <span class="built_in">continue</span> or Ctrl-c to cancel adding it.</span><br></pre></td></tr></table></figure>
 
-<p>执行完成后，我们看下目前的PHP的默认版本变成了多少</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt show php</span><br><span class="line">Package: php</span><br><span class="line">Version: 2:8.0+85+ubuntu21.10.1+deb.sury.org+1</span><br><span class="line">Priority: optional</span><br><span class="line">Section: php</span><br><span class="line">Source: php-defaults (85+ubuntu21.10.1+deb.sury.org+1)</span><br><span class="line">Maintainer: Debian PHP Maintainers &lt;team+pkg-php@tracker.debian.org&gt;</span><br><span class="line">Installed-Size: 13.3 kB</span><br><span class="line">Depends: php8.0</span><br><span class="line">Download-Size: 6,926 B</span><br><span class="line">APT-Sources: http://ppa.launchpad.net/ondrej/php/ubuntu impish/main amd64 Packages</span><br><span class="line">Description: server-side, HTML-embedded scripting language (default)</span><br><span class="line"> PHP (递归缩写：Hypertext Preprocessor，超文本预处理器)，是一种广泛应用的 开源通用脚本语言，特别适用于网络开发并可嵌入</span><br><span class="line"> HTML 中。</span><br><span class="line"> .</span><br><span class="line"> This package is a dependency package, which depends on latest stable PHP</span><br><span class="line"> version (currently 8.0).</span><br><span class="line"></span><br><span class="line">N: 有 1 条附加记录。请加上 ‘-a’ 参数来查看它们</span><br></pre></td></tr></table></figure>
+<p>执行完成后，我们看下目前的 PHP 的默认版本变成了多少</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt show php</span><br><span class="line">Package: php</span><br><span class="line">Version: 2:8.1+92+ubuntu22.04.1+deb.sury.org+1</span><br><span class="line">Priority: optional</span><br><span class="line">Section: php</span><br><span class="line">Source: php-defaults (92+ubuntu22.04.1+deb.sury.org+1)</span><br><span class="line">Maintainer: Debian PHP Maintainers &lt;team+pkg-php@tracker.debian.org&gt;</span><br><span class="line">Installed-Size: 14.3 kB</span><br><span class="line">Depends: php8.1</span><br><span class="line">Download-Size: 7,158 B</span><br><span class="line">APT-Sources: https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy/main amd64 Packages</span><br><span class="line">Description: server-side, HTML-embedded scripting language (default)</span><br><span class="line"> PHP (递归缩写：Hypertext Preprocessor，超文本预处理器)，是一种广泛应用的 开源通用脚本语言，特别适用于网络开发并可嵌入</span><br><span class="line"> HTML 中。</span><br><span class="line"> .</span><br><span class="line"> This package is a dependency package, <span class="built_in">which</span> depends on latest stable PHP</span><br><span class="line"> version (currently 8.1).</span><br><span class="line"></span><br><span class="line">N: 有 1 条附加记录。请加上 ‘-a’ 参数来查看它们</span><br></pre></td></tr></table></figure>
 
-<p>可以看到默认的PHP版本已经从系统自带的7.4变成8.0了。</p>
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><p>但是我们可以安装最新的8.1。因为跟默认版本不相符，所以每次都要指定版本。</p>
-<p>执行以下命令安装8.1的PHP：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php8.1-fpm</span><br></pre></td></tr></table></figure>
+<p>可以看到默认的 PHP 版本已经变成 8.1 了。</p>
+<h2 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><p>但是我们可以安装最新的 8.1 。因为跟默认版本不相符，所以每次都要指定版本。</p>
+<p>执行以下命令安装 8.1 的 PHP：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>安装成功后可以执行命令查看下目前的版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ php -v</span><br><span class="line">PHP 8.1.0RC5 (cli) (built: Nov  4 2021 14:58:40) (NTS)</span><br><span class="line">Copyright (c) The PHP Group</span><br><span class="line">Zend Engine v4.1.0-dev, Copyright (c) Zend Technologies</span><br><span class="line">    with Zend OPcache v8.1.0RC5, Copyright (c), by Zend Technologies</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ php -v</span><br><span class="line">PHP 8.1.9 (cli) (built: Aug 15 2022 09:40:11) (NTS)</span><br><span class="line">Copyright (c) The PHP Group</span><br><span class="line">Zend Engine v4.1.9, Copyright (c) Zend Technologies</span><br><span class="line">    with Zend OPcache v8.1.9, Copyright (c), by Zend Technologies</span><br></pre></td></tr></table></figure>
 
 <h2 id="可执行命令"><a href="#可执行命令" class="headerlink" title="可执行命令"></a>可执行命令</h2><p>常用的有以下命令：</p>
 <ul>
@@ -267,28 +275,28 @@
 <li>phpize</li>
 <li>php-config</li>
 <li>pear</li>
-<li>等等</li>
+<li>…</li>
 </ul>
 <h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>日志路径:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls /var/log/php*</span><br><span class="line">/var/log/php8.1-fpm.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> /var/log/php*</span><br><span class="line">/var/log/php8.1-fpm.log</span><br></pre></td></tr></table></figure>
 
 <h2 id="管理命令"><a href="#管理命令" class="headerlink" title="管理命令"></a>管理命令</h2><p>启动：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>停止：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>重新启动：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>设置开机启动（默认已经设置）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>取消开机启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl disable php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">disable</span> php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <p>查看运行状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status php8.1-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status php8.1-fpm</span><br></pre></td></tr></table></figure>
 
 <h2 id="apt-安装扩展"><a href="#apt-安装扩展" class="headerlink" title="apt 安装扩展"></a>apt 安装扩展</h2><p>安装扩展可以执行以下命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php8.1-mbstring php8.1-dom php8.1-mysql</span><br></pre></td></tr></table></figure>
@@ -304,29 +312,18 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pecl install seaslog</span><br></pre></td></tr></table></figure>
 
 <p>这样就安装完成了。</p>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>这里要介绍一下安装扩展的情况。因为PHP有两种运行方式，一种是FPM，一种是CLI。所以它可以控制一个扩展只在FPM加载，而不在CLI加载的方式。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>这里要介绍一下安装扩展的情况。因为PHP有两种运行方式，一种是 FPM，一种是 CLI。所以它可以控制一个扩展只在 FPM 加载，而不在 CLI 加载的方式。</p>
 <p>首先看下它的目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls /etc/php/8.1/</span><br><span class="line">cli  fpm  mods-available</span><br></pre></td></tr></table></figure>
 
 <p>首先我们扩展的管理是存储到 <code>mods-available</code> 中的。</p>
-<p>然后如果我们要控制FPM加载这个某个配置，那么就要进行创建软链。</p>
+<p>然后如果我们要控制 FPM 加载这个某个配置，那么就要进行创建软链。</p>
 <p>我们查看下面的命令就了解了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ll /etc/php/8.1/fpm/conf.d/10-opcache.ini </span><br><span class="line">lrwxrwxrwx 1 root root 39 11月  6 19:57 /etc/php/8.1/fpm/conf.d/10-opcache.ini -&gt; /etc/php/8.1/mods-available/opcache.ini</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ll /etc/php/8.1/fpm/conf.d/10-opcache.ini </span><br><span class="line">lrwxrwxrwx 1 root root 39 11月  6 19:57 /etc/php/8.1/fpm/conf.d/10-opcache.ini -&gt; /etc/php/8.1/mods-available/opcache.ini</span><br></pre></td></tr></table></figure>
 
 <p>好了。基本上介绍就是这样了。</p>
-<h2 id="安装-Composer"><a href="#安装-Composer" class="headerlink" title="安装 Composer"></a>安装 Composer</h2><p>首先执行如下命令获取安装脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L <span class="string">&quot;https://getcomposer.org/installer&quot;</span> -o composer-setup.php</span><br></pre></td></tr></table></figure>
-
-<p>执行安装命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer</span><br></pre></td></tr></table></figure>
-
-<p>最后对其赋予执行权限：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> +x /usr/local/composer</span><br></pre></td></tr></table></figure>
-
-<p>这样 Composer 就安装完成了。下面看下安装的版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ composer -V</span><br><span class="line">Composer version 2.1.11 2021-11-02 12:10:25</span><br></pre></td></tr></table></figure>
-
-<h2 id="与-Nginx-配合"><a href="#与-Nginx-配合" class="headerlink" title="与 Nginx 配合"></a>与 Nginx 配合</h2><p>首先是需要安装 Nginx。这里可以参考我的<a href="/_posts/ubuntu-install-nginx.md">Ubuntu 安装 Nginx</a>。</p>
+<h2 id="安装-Composer"><a href="#安装-Composer" class="headerlink" title="安装 Composer"></a>安装 Composer</h2><p>参考 <a href="/linux-install-composer/">Linux 下安装 Composer</a></p>
+<h2 id="与-Nginx-配合"><a href="#与-Nginx-配合" class="headerlink" title="与 Nginx 配合"></a>与 Nginx 配合</h2><p>首先是需要安装 Nginx。这里可以参考我的<a href="/ubuntu-install-nginx/">Linux 安装 Nginx</a>。</p>
 <p>首先我们先写入一个可以输出 <code>phpinfo()</code> 的文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;&lt;?php\nphpinfo();&quot;</span> | sudo <span class="built_in">tee</span> /usr/share/nginx/html/index.php</span><br></pre></td></tr></table></figure>
 
@@ -343,8 +340,9 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/php/" rel="tag"># php</a>
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
           </div>
 
         
