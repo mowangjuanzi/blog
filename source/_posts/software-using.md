@@ -9,6 +9,8 @@ categories:
 
 我目前在家常用系统是 Ubuntu 22.04。下面记录一下我常用的软件。
 
+<!-- more -->
+
 ## 电子书阅读器
 
 - calibre

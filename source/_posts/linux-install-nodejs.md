@@ -17,6 +17,8 @@ categories:
 
 Node.js® 是一个基于 Chrome V8 引擎 的 JavaScript 运行时环境。
 
+<!-- more -->
+
 ## 安装 Node.js
 
 因为 Ubuntu 自带的 Node.js 版本实在是太低了，因为使用的最低版本至少要追上 LTS。所以使用官方推荐的源进行安装。
