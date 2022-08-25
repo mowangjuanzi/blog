@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,6 +175,142 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/virtual-machine-install-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/virtual-machine-install-ubuntu/" class="post-title-link" itemprop="url">虚拟机安装ubuntu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-02 12:00:25" itemprop="dateCreated datePublished" datetime="2018-01-02T12:00:25+08:00">2018-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。</p>
+<p>好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。</p>
+<h2 id="开启ssh服务"><a href="#开启ssh服务" class="headerlink" title="开启ssh服务"></a>开启ssh服务</h2><p>首先执行以下命令安装openssh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并且设置开机启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看IP，并使用xshell连接"><a href="#查看IP，并使用xshell连接" class="headerlink" title="查看IP，并使用xshell连接"></a>查看IP，并使用xshell连接</h2><p>查看ip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+
+<p>查看你的网卡信息，发现我的IP是192.168.110.128.</p>
+<p>因为直接使用虚拟机内部的终端并不好用，不能够进行复制粘贴啥的，所以我使用外部的终端程序。我在这里使用的是xshell。</p>
+<p>新建会话属性，输入主机ip（就是刚才我们获得的），在用户身份验证输入用户名和密码。</p>
+<p>然后点击最下面的连接。会出现一个弹出框，选择“接口并保存”。</p>
+<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><p>进入后第一件事就是修改<strong>apt</strong>源。</p>
+<p>在修改源之前，我们先安装VIM编辑器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，我们要编辑<strong>apt</strong>源文件去除cd源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>将第5行的配置进行注释：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改源为阿里源"><a href="#修改源为阿里源" class="headerlink" title="修改源为阿里源"></a>修改源为阿里源</h2><p>这是我从阿里云的帮助文件中复制到的源的内容。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>首先我们需要对该内容进行修改。</p>
+<p>我们查看版本信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 17.10</span><br><span class="line">Release:	17.10</span><br><span class="line">Codename:	artful</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<strong>codename</strong>的值是<strong>artful</strong></p>
+<p>我们可以把上面<strong>quantal</strong>全部替换为<strong>artful</strong>，替换完成如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>然后将替换好的内容添加到**&#x2F;etc&#x2F;apt&#x2F;sources.list**开头。</p>
+<p>这样就可以**:x**进行保存了。</p>
+<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><p>其实很简单。首先更新源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update </span><br></pre></td></tr></table></figure>
+
+<p>在输出的消息的最后一行会输出以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">&#x27;apt list --upgradable&#x27;</span> to see them.</span><br></pre></td></tr></table></figure>
+
+<p>这就表示我有46个包需要更新。那么就执行运行以下命令进行更新吧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
+
+<p>好了，最开始的安装环境就已经搭建完成了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/kylin-firefox-prevent-access-sogou-site/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -211,7 +347,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -322,7 +458,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -443,7 +579,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -546,7 +682,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -646,7 +782,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -755,7 +891,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1017,7 +1153,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1113,7 +1249,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1299,7 +1435,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1532,7 +1668,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1643,7 +1779,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1777,7 +1913,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1883,7 +2019,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2007,7 +2143,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2115,7 +2251,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2368,7 +2504,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2420,106 +2556,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Django version 1.10.5, using settings &#x27;blog_python.settings&#x27;</span><br><span class="line">Starting development server at http://0.0.0.0:8001/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
 
 <p>这样就表示已经正常了。我们可以继续往下开发了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/simple-template-separation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/simple-template-separation/" class="post-title-link" itemprop="url">实现一个最简单的模板分离</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-11-17 16:28:51" itemprop="dateCreated datePublished" datetime="2017-11-17T16:28:51+08:00">2017-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天看到以前知乎上别人提问的关于模板和逻辑进行分离的问题。</p>
-<p>一直都没有回答过。</p>
-<p>今天终于回答了。我来记录以下：</p>
-<p>首先是模板文件，我定义他为<code>index.html</code>，内容如下:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;<span class="meta">&lt;?=</span><span class="variable">$title</span><span class="meta">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">foreach</span>(<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$value</span>): <span class="meta">?&gt;</span></span><br><span class="line">        &lt;li&gt;<span class="meta">&lt;?=</span><span class="variable">$value</span><span class="meta">?&gt;</span>&lt;/li&gt;</span><br><span class="line">    <span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们就不用自定义标签啊，之类的等等，我相信鸟哥的那句话，PHP本身就是一个非常好的模板引擎，我们没有必要再去造一个轮子。</p>
-<p>所以，我们直接来写PHP的解析：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模板解析</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$path</span>;</span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$vars</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$path</span>, <span class="variable">$vars</span> = []</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title function_ invoke__">is_file</span>(<span class="variable">$path</span>)) &#123;</span><br><span class="line">			<span class="variable language_">$this</span>-&gt;path = <span class="variable">$path</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable language_">$this</span>-&gt;vars = <span class="variable">$vars</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">		<span class="title function_ invoke__">ob_implicit_flush</span>(<span class="number">0</span>);</span><br><span class="line">		<span class="title function_ invoke__">extract</span>(<span class="variable">$this</span>-&gt;vars, EXTR_OVERWRITE);</span><br><span class="line">		<span class="keyword">require_once</span> <span class="variable language_">$this</span>-&gt;path;</span><br><span class="line">		<span class="keyword">return</span> <span class="title function_ invoke__">ob_get_clean</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$view</span> = <span class="keyword">new</span> <span class="title class_">View</span>(<span class="string">&#x27;./index.html&#x27;</span>, [<span class="string">&#x27;title&#x27;</span> =&gt; <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;list&#x27;</span> =&gt; [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$view</span>-&gt;<span class="title function_ invoke__">fetch</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>好了。直接运行一下，就能看到结果了。</p>
-<p>不写了。太晚了。晚安。</p>
 
       
     </div>

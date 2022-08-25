@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="此文章使用的操作系统版本是 Ubuntu v22.04。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 支持 OneDrive">
+<meta property="og:url" content="http://www.baoguoxiao.com/linux-install-onedrive/index.html">
+<meta property="og:site_name" content="魔王卷子">
+<meta property="og:description" content="此文章使用的操作系统版本是 Ubuntu v22.04。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-19T23:43:19.000Z">
+<meta property="article:modified_time" content="2022-08-25T23:55:05.000Z">
+<meta property="article:author" content="魔王卷子">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Ubuntu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.baoguoxiao.com/linux-install-onedrive/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.baoguoxiao.com/linux-install-onedrive/","path":"linux-install-onedrive/","title":"Ubuntu 支持 OneDrive"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu 支持 OneDrive | 魔王卷子</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">魔王卷子</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about.html" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OneDrive-%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">OneDrive 更改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-%E8%B7%9F-Linux-%E4%BD%BF%E7%94%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">Windows 跟 Linux 使用同一个目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">魔王卷子</p>
+  <div class="site-description" itemprop="description">记录我的工作中碰到的坑</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/linux-install-onedrive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ubuntu 支持 OneDrive | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu 支持 OneDrive
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-20 07:43:19" itemprop="dateCreated datePublished" datetime="2021-10-20T07:43:19+08:00">2021-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-26 07:55:05" itemprop="dateModified" datetime="2022-08-26T07:55:05+08:00">2022-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>此文章使用的操作系统版本是 Ubuntu v22.04。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>关于包，使用的是 <a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive">abraunegg&#x2F;onedrive</a>。感谢前辈们的无私奉献。</p>
+<p>首先要介绍一下，该包没有 GUI，所以只能在命令行操作，如果对命令行不熟悉的话可能操作起来还是有点费劲的。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先添加源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/Release.key | gpg --dearmor | sudo <span class="built_in">tee</span> /usr/share/keyrings/obs-onedrive.gpg &gt; /dev/null</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/xUbuntu_22.04/ ./&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/onedrive.list</span><br></pre></td></tr></table></figure>
+
+<p>安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install onedrive</span><br></pre></td></tr></table></figure>
+
+<p>APT 就是如此的丝滑，这样就安装完成了。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>所以如果跟我一样可以直接按照下面的步骤操作，如果不同，请参考 <a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive/blob/master/docs/ubuntu-package-install.md">ubuntu-package-install.md</a> 进行操作。</p>
+<p>首先在命令行执行 <code>onedrive</code> 命令，会出现如下提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ onedrive </span><br><span class="line">Authorize this app visiting:</span><br><span class="line"></span><br><span class="line">https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=22c49a0d-d21c-4792-aed1-8f163c982546&amp;scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&amp;response_type=code&amp;redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient</span><br><span class="line"></span><br><span class="line">Enter the response uri: </span><br></pre></td></tr></table></figure>
+
+<p>这里我们在浏览器访问上面的给出的 URL， 然后按照提示输入邮箱地址，密码，以及允许第三方应用使用token。通过这三步之后，浏览器会出现一个空白页。然后地址栏的URL地址如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://login.microsoftonline.com/common/oauth2/nativeclient?code=&lt;redacted&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候我们把该地址复制到如上的命令行中，然后回车继续执行，那么执行如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ onedrive </span><br><span class="line">Authorize this app visiting:</span><br><span class="line"></span><br><span class="line">https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=22c49a0d-d21c-4792-aed1-8f163c982546&amp;scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&amp;response_type=code&amp;redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient</span><br><span class="line"></span><br><span class="line">Enter the response uri: https://login.microsoftonline.com/common/oauth2/nativeclient?code=&lt;redacted&gt;</span><br><span class="line"></span><br><span class="line">Application has been successfully authorised, however no additional command switches were provided.</span><br><span class="line"></span><br><span class="line">Please use --help for further assistance in regards to running this application.</span><br></pre></td></tr></table></figure>
+
+<p>这样 OneDrive 的访问 token 就设置完成了。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>我安装的 OneDrive 默认不带配置文件的。可以通过以下方式下载配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/abraunegg/onedrive/master/config -O ~/.config/onedrive/config</span><br></pre></td></tr></table></figure>
+
+<p>这样，就可以对其进行定制化了。</p>
+<p>执行以下命令查看相关配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ onedrive --display-config</span><br><span class="line">onedrive version                       = v2.4.10-1</span><br><span class="line">Config path                            = /home/baoguoxiao/.config/onedrive</span><br><span class="line">Config file found in config path       = false</span><br><span class="line">Config option &#x27;check_nosync&#x27;           = false</span><br><span class="line">Config option &#x27;sync_dir&#x27;               = /home/baoguoxiao/OneDrive</span><br><span class="line">Config option &#x27;skip_dir&#x27;               = </span><br><span class="line">Config option &#x27;skip_file&#x27;              = ~*|.~*|*.tmp</span><br><span class="line">Config option &#x27;skip_dotfiles&#x27;          = false</span><br><span class="line">Config option &#x27;skip_symlinks&#x27;          = false</span><br><span class="line">Config option &#x27;monitor_interval&#x27;       = 300</span><br><span class="line">Config option &#x27;min_notify_changes&#x27;     = 5</span><br><span class="line">Config option &#x27;log_dir&#x27;                = /var/log/onedrive/</span><br><span class="line">Config option &#x27;classify_as_big_delete&#x27; = 1000</span><br><span class="line">Config option &#x27;upload_only&#x27;            = false</span><br><span class="line">Config option &#x27;no_remote_delete&#x27;       = false</span><br><span class="line">Config option &#x27;remove_source_files&#x27;    = false</span><br><span class="line">Config option &#x27;sync_root_files&#x27;        = false</span><br><span class="line">Selective sync &#x27;sync_list&#x27; configured  = false</span><br><span class="line">Business Shared Folders configured     = false</span><br></pre></td></tr></table></figure>
+
+<p>如果对某些参数不了解，可以参考以下文档地址：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#configuration">Configuration</a></p>
+<p>如果对某些参数不合适，需要进行修改。那么可以在该配置文件 <code>~/.config/onedrive/config</code>中进行修改。</p>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>设置开机启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl --user <span class="built_in">enable</span> onedrive</span><br></pre></td></tr></table></figure>
+
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl --user start onedrive</span><br></pre></td></tr></table></figure>
+
+<p>这样设置成功后就可以不用管它了。后台作为一个服务自动处理。棒棒哒。</p>
+<h2 id="OneDrive-更改密码"><a href="#OneDrive-更改密码" class="headerlink" title="OneDrive 更改密码"></a>OneDrive 更改密码</h2><p>如果更改了 OneDrive 密码，那么客户端则不能继续进行同步，会提示如下错误：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: OneDrive returned a &#x27;HTTP 401 Unauthorized&#x27; - Cannot Initialize Sync Engine</span><br></pre></td></tr></table></figure>
+
+<p>要重新验证客户端，需要执行以下操作。</p>
+<ol>
+<li>停止正在运行的客户端程序，如果是服务，那么就停止服务。</li>
+<li>执行 <code>onedrive --logout</code> 命令，它将会清理之前的授权，并且按照提示进行重新授权。</li>
+<li>重新运行程序即可，如果是服务，则重新启动服务。</li>
+</ol>
+<h2 id="Windows-跟-Linux-使用同一个目录"><a href="#Windows-跟-Linux-使用同一个目录" class="headerlink" title="Windows 跟 Linux 使用同一个目录"></a>Windows 跟 Linux 使用同一个目录</h2><p>这里 Windows 的默认配置可能会导致 Linux 无法使用文件，因为 Windows 默认是按需下载，需要修改 Windows 的配置，让其完全下载，否则在 Linux 当前未下载的文件则无法使用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前只是实现了初步的功能，后续我再观察一下使用情况如何。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive">https://github.com/abraunegg/onedrive</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive/blob/master/docs/INSTALL.md">Installing or Upgrading using Distribution Packages or Building the OneDrive Client for Linux from source</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md">Configuration and Usage of the OneDrive Free Client</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ubuntu-install-php/" rel="prev" title="Ubuntu 下安装 PHP">
+                  <i class="fa fa-chevron-left"></i> Ubuntu 下安装 PHP
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/cs-binary/" rel="next" title="二进制">
+                  二进制 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备13027795号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">魔王卷子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

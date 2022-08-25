@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -232,41 +232,14 @@
     <div class="post-body" itemprop="articleBody">
           <p>虽然名字说的是 JavaScript。但是实际上这里所所的是 Node.js 运行时。</p>
 <p>Node.js® 是一个基于 Chrome V8 引擎 的 JavaScript 运行时环境。</p>
-<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>因为 Ubuntu 自带的 Node.js 版本实在是太低了，因为使用的最低版本至少要追上 LTS。所以使用官方推荐的源进行安装。</p>
-<p>首先添加源：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -</span><br></pre></td></tr></table></figure>
-
-<p>安装 NodeJS 和 Npm：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y nodejs</span><br></pre></td></tr></table></figure>
-
-<p>查看版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">v16.17.0</span><br><span class="line">$ npm -v</span><br><span class="line">8.15.0</span><br></pre></td></tr></table></figure>
-
-<p>可能你安装的时候 npm 不是最新版本，可以使用如下命令更新到最新版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install --location=global npm</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-yarn-及其其他的包管理"><a href="#安装-yarn-及其其他的包管理" class="headerlink" title="安装 yarn 及其其他的包管理"></a>安装 yarn 及其其他的包管理</h2><blockquote>
-<p>corepack 是包管理器的管理器。具体看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/408122100">废宅阿斗 NPM 即将被 Node.js 官方抛弃 → Corepack</a></p>
-</blockquote>
-<p>直接执行如下命令即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo corepack <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
-
-<p>查看版本（这里需要等一下，因为需要下载包）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn -v</span><br><span class="line">1.22.19</span><br></pre></td></tr></table></figure>
-
-<p>其实开启后不仅仅支持 Yarn。下面这些也都支持：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> /usr/lib/node_modules/corepack/dist/</span><br><span class="line">corepack.js  npm.js  npx.js  pnpm.js  pnpx.js  vcc.js  yarn.js  yarnpkg.js</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置镜像"><a href="#设置镜像" class="headerlink" title="设置镜像"></a>设置镜像</h2><p>这里需要注意的是，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/465424728">淘宝镜像即将停止解析</a> ，需要使用 <a target="_blank" rel="noopener" href="https://www.npmmirror.com/">npmmirror</a> 进行替换。</p>
-<ul>
-<li>npm</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Yarn</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/linux-install-nodejs/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -344,25 +317,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>我目前在家常用系统是 Ubuntu 22.04。下面记录一下我常用的软件。</p>
-<h2 id="电子书阅读器"><a href="#电子书阅读器" class="headerlink" title="电子书阅读器"></a>电子书阅读器</h2><ul>
-<li>calibre</li>
-</ul>
-<h2 id="企业沟通"><a href="#企业沟通" class="headerlink" title="企业沟通"></a>企业沟通</h2><ul>
-<li>slack</li>
-</ul>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><ul>
-<li>VirtualBox</li>
-</ul>
-<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
-<li>VSCode</li>
-</ul>
-<h2 id="Redis-GUI"><a href="#Redis-GUI" class="headerlink" title="Redis GUI"></a>Redis GUI</h2><ul>
-<li>RESP.app</li>
-</ul>
-<h2 id="PS-替代"><a href="#PS-替代" class="headerlink" title="PS 替代"></a>PS 替代</h2><ul>
-<li>GIMP</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/software-using/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -620,6 +582,104 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/cs-binary/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/linux-install-onedrive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/linux-install-onedrive/" class="post-title-link" itemprop="url">Ubuntu 支持 OneDrive</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-20 07:43:19" itemprop="dateCreated datePublished" datetime="2021-10-20T07:43:19+08:00">2021-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-26 07:55:05" itemprop="dateModified" datetime="2022-08-26T07:55:05+08:00">2022-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>此文章使用的操作系统版本是 Ubuntu v22.04。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/linux-install-onedrive/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1447,7 +1507,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1544,7 +1604,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1641,7 +1701,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1833,7 +1893,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1929,7 +1989,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
+      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1961,104 +2021,6 @@
 <p>我就尝试安装这个<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/classic-editor/">经典编辑器</a>了。</p>
 <p>嘿嘿，又能用了，真香。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/open-file-or-folder-in-terminal-vscode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/open-file-or-folder-in-terminal-vscode/" class="post-title-link" itemprop="url">在终端中使用vscode打开文件或者文件夹</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-11-16 15:03:13" itemprop="dateCreated datePublished" datetime="2018-11-16T15:03:13+08:00">2018-11-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-21 07:37:39" itemprop="dateModified" datetime="2022-08-21T07:37:39+08:00">2022-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在mac进行开发的时候，有时候项目的目录在访达中不好找到。在终端中进行查找的时候就比较方便，一个<code>cd</code>命令可以切到任何位置。</p>
-<p>但是将项目目录从加入到编辑器中就比较费劲了。</p>
-<p>目前发现了一个特别好玩的东西，就是vscode可以注入code命令，在终端使用code命令打开相应的目录或文件，非常方便。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/open-file-or-folder-in-terminal-vscode/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
