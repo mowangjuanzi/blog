@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,10 +16,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.baoguoxiao.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="前言周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统bind9来搞一番。">
 <meta property="og:type" content="article">
@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言周五把自己的电脑重装了一下，还是使用的经典的windows+vmware+ubuntu的经典方式（对我来说）。但是我不想每次都修改host文件来实现我的域名访问，所以我在想有没有一个更好的方式，可以让我实现域名映射。这个时候我想到了自己架设一个dns服务器。说干就干，我就准备用dns的开源系统bind9来搞一番。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-12-16T14:28:02.000Z">
-<meta property="article:modified_time" content="2022-08-25T23:58:00.911Z">
+<meta property="article:modified_time" content="2022-09-12T15:24:12.565Z">
 <meta property="article:author" content="魔王卷子">
 <meta property="article:tag" content="bing9">
 <meta name="twitter:card" content="summary">
@@ -44,6 +44,7 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>bind9的初步使用（1） | 魔王卷子</title>
   
+
 
 
 
@@ -141,7 +142,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-count">109</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -216,7 +217,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-26 07:58:00" itemprop="dateModified" datetime="2022-08-26T07:58:00+08:00">2022-08-26</time>
+      <time title="修改时间：2022-09-12 23:24:12" itemprop="dateModified" datetime="2022-09-12T23:24:12+08:00">2022-09-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,7 +292,7 @@
 <p>在ubuntu17.10之后，网卡配置已经更新为netplan。该配置文件的目录是<code>/etc/netplan/</code>。不过里面的文件不一定是相同的名字。我的文件打开是这样的。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/netplan/50-cloud-init.yaml </span><br><span class="line"><span class="comment"># This file is generated from information provided by</span></span><br><span class="line"><span class="comment"># the datasource.  Changes to it will not persist across an instance.</span></span><br><span class="line"><span class="comment"># To disable cloud-init&#x27;s network configuration capabilities, write a file</span></span><br><span class="line"><span class="comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span></span><br><span class="line"><span class="comment"># network: &#123;config: disabled&#125;</span></span><br><span class="line">network:</span><br><span class="line">    ethernets:</span><br><span class="line">        ens33:</span><br><span class="line">            addresses: [192.168.1.231/24]</span><br><span class="line">            dhcp4: <span class="literal">false</span></span><br><span class="line">            dhcp6: <span class="literal">false</span></span><br><span class="line">            gateway4: 192.168.1.1</span><br><span class="line">            nameservers:</span><br><span class="line">                addresses: [192.168.1.231,114.114.114.114]</span><br><span class="line">    version: 2</span><br></pre></td></tr></table></figure>
 
-<p>注意，我在倒数第二行的数组里面添加本机的服务器<code>192.168.1.231</code>。关于该文件的配置，可以查看我的另外一篇文章：<a href="#">Post not found: ubuntu-set-static-ip</a>。</p>
+<p>注意，我在倒数第二行的数组里面添加本机的服务器<code>192.168.1.231</code>。关于该文件的配置，可以查看我的另外一篇文章：<a href="/linux-static-ip/" title="Ubuntu 设置静态 IP">Ubuntu 设置静态 IP</a>。</p>
 <p>这样我们在本机就可以不指定dns服务器的基础上进行获取域名的ip了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ dig www.bgx.me</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-3ubuntu5-Ubuntu &lt;&lt;&gt;&gt; www.baoguoxiao.pro</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- <span class="string">opcode: QUERY, status: NOERROR, id: 58219</span></span><br><span class="line"><span class="string">;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; OPT PSEUDOSECTION:</span></span><br><span class="line"><span class="string">; EDNS: version: 0, flags:; udp: 4096</span></span><br><span class="line"><span class="string">; COOKIE: 15d0881d8eed3292569558cd5c1623fa33a2d05212e7e662 (good)</span></span><br><span class="line"><span class="string">;; QUESTION SECTION:</span></span><br><span class="line"><span class="string">;www.baoguoxiao.pro.			IN	A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ANSWER SECTION:</span></span><br><span class="line"><span class="string">www.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; AUTHORITY SECTION:</span></span><br><span class="line"><span class="string">baoguoxiao.pro.			14400	IN	NS	ns1.baoguoxiao.pro.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ADDITIONAL SECTION:</span></span><br><span class="line"><span class="string">ns1.baoguoxiao.pro.		14400	IN	A	192.168.1.231</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; Query time: 0 msec</span></span><br><span class="line"><span class="string">;; SERVER: 192.168.1.231#53(192.168.1.231)</span></span><br><span class="line"><span class="string">;; WHEN: Sun Dec 16 18:07:54 CST 2018</span></span><br><span class="line"><span class="string">;; MSG SIZE  rcvd: 117</span></span><br></pre></td></tr></table></figure>
 
