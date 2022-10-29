@@ -15,7 +15,14 @@ categories:
 ## 未分类
 
 - [calibre](https://calibre-ebook.com/) —— 电子书阅读
+
+## 社交
+
 - [Slack](https://slack.com/) —— 官方 Linux 版
+
+## 笔记
+
+- [有道云笔记](https://note.youdao.com/) —— 官方 Linux 版
 
 ## 图片和视频
 
@@ -23,6 +30,7 @@ categories:
 
 ## 开发
 
+- [Postman](https://www.postman.com/)—— SNAP 商店版
 - [VirtualBox](https://www.virtualbox.org/) —— 官方 Linux 版
 - [Visual Studio Code](https://code.visualstudio.com/) —— 官方 Linux 版
 - [GUI for Redis](https://resp.app/) —— Linux 下免费
