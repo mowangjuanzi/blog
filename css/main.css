@@ -475,6 +475,7 @@ kbd {
   white-space: nowrap;
 }
 figure.highlight {
+  overflow: auto;
   position: relative;
 }
 figure.highlight pre {
@@ -2630,7 +2631,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #34eb12;
+  background: #d5ffff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
