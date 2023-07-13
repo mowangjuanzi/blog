@@ -1,12 +1,12 @@
 ---
 title: Linux 下安装 Node.js
 date: 2022-08-20 23:38:58
-updated: 2022-08-20 23:38:58
+updated: 2023-07-13 08:12:07
 tags:
 - Linux
 - JavaScript
 - Node.js
-- Yarn
+- pnpm
 - npm
 categories:
 - 操作系统
@@ -50,7 +50,7 @@ $ npm -v
 sudo npm install --location=global npm
 ```
 
-## 安装 yarn 及其其他的包管理
+## 安装 pnpm 及其其他的包管理
 
 > corepack 是包管理器的管理器。具体看[废宅阿斗 NPM 即将被 Node.js 官方抛弃 → Corepack](https://zhuanlan.zhihu.com/p/408122100)
 
@@ -63,20 +63,20 @@ sudo corepack enable
 查看版本（这里需要等一下，因为需要下载包）：
 
 ```bash
-$ yarn -v
-1.22.19
+$ pnpm -v
+8.6.7
 ```
 
-其实开启后不仅仅支持 Yarn。下面这些也都支持：
+其实开启后不仅仅支持 pnpm。下面这些也都支持：
 
 ```bash
 $ ls /usr/lib/node_modules/corepack/dist/
-corepack.js  npm.js  npx.js  pnpm.js  pnpx.js  vcc.js  yarn.js  yarnpkg.js
+corepack.js  npm.js  npx.js  pnpm.js  pnpx.js  yarn.js  yarnpkg.js
 ```
 
 ## 设置镜像
 
-这里需要注意的是，[淘宝镜像即将停止解析](https://zhuanlan.zhihu.com/p/465424728) ，需要使用 [npmmirror](https://www.npmmirror.com/) 进行替换。
+这里需要注意的是，[淘宝镜像已停止解析](https://zhuanlan.zhihu.com/p/465424728) ，需要使用 [npmmirror](https://www.npmmirror.com/) 进行替换。
 
 - npm
 
@@ -84,8 +84,8 @@ corepack.js  npm.js  npx.js  pnpm.js  pnpx.js  vcc.js  yarn.js  yarnpkg.js
 sudo npm config set registry https://registry.npmmirror.com
 ```
 
-- Yarn
+- pnpm
 
 ```bash
-yarn config set registry https://registry.npmmirror.com
+pnpm config set registry https://registry.npmmirror.com
 ```
