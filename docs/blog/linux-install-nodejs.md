@@ -1,3 +1,6 @@
+---
+date: 2022-08-20 23:38:58
+---
 # Linux 下安装 Node.js
 
 虽然名字说的是 JavaScript。但是实际上这里所所的是 Node.js 运行时。

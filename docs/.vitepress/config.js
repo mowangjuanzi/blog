@@ -29,6 +29,8 @@ export default defineConfig({
             }, {
               text: "2019",
               items: [{
+                text: "PHP 密码函数", link: "/blog/php-password"
+              }, {
                 text: "PHP 之内置 Web 服务器", link: "/blog/php-built-in-web-server"
               }]
             }]
