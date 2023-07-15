@@ -1,23 +1,8 @@
----
-title: Linux 下安装 Node.js
-date: 2022-08-20 23:38:58
-updated: 2023-07-13 08:12:07
-tags:
-- Linux
-- JavaScript
-- Node.js
-- pnpm
-- npm
-categories:
-- 操作系统
-- Linux
----
+# Linux 下安装 Node.js
 
 虽然名字说的是 JavaScript。但是实际上这里所所的是 Node.js 运行时。
 
 Node.js® 是一个基于 Chrome V8 引擎 的 JavaScript 运行时环境。
-
-<!-- more -->
 
 ## 安装 Node.js
 

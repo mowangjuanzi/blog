@@ -21,6 +21,16 @@ export default defineConfig({
               items: [{
                 text: "APP webview 加载优化", link: "/blog/app-webview-optimization",
               }]
+            }, {
+              text: "2022",
+              items: [{
+                text: "Linux 下安装 Node.js", link: "/blog/linux-install-nodejs"
+              }]
+            }, {
+              text: "2019",
+              items: [{
+                text: "PHP 之内置 Web 服务器", link: "/blog/php-built-in-web-server"
+              }]
             }]
         }
       ]

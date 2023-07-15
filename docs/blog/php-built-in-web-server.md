@@ -1,14 +1,7 @@
 ---
-title: PHP之内置web服务器
 date: 2019-05-18 16:20:49
-updated: 2019-05-18 16:20:49
-tags:
-- web server
-- php
-categories:
-- 编程语言
-- php
 ---
+# PHP 之内置 Web 服务器
 
 ## 前言
 PHP从5.4开始，就提供了一个内置的web服务器。
