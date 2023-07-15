@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -137,7 +137,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -166,238 +166,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/laravel-run-npm-install-fail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/laravel-run-npm-install-fail/" class="post-title-link" itemprop="url">Laravel执行npm install失败</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-08-19 00:16:13" itemprop="dateCreated datePublished" datetime="2018-08-19T00:16:13+08:00">2018-08-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/laravel/" itemprop="url" rel="index"><span itemprop="name">laravel</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>首先介绍一下我的环境。</p>
-<p>我是在Windows10上进行开发。然后windows共享文件夹，ubuntu 18.04挂载共享文件夹。</p>
-<p>环境：</p>
-<ul>
-<li>Laravel 5.6</li>
-<li>PHP 7.2.7</li>
-<li>NodeJS 8.10.0</li>
-<li>npm 3.5.2</li>
-</ul>
-<p>还原场景：</p>
-<p>在linux环境中执行<code>npm install</code>方法。会出现如下错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">npm WARN optional Skipping failed optional dependency /chokidar/fsevents:</span><br><span class="line">npm WARN notsup Not compatible with your operating system or architecture: fsevents@1.2.4</span><br><span class="line">npm WARN ajv-keywords@3.2.0 requires a peer of ajv@^6.0.0 but none was installed.</span><br><span class="line">npm ERR! Linux 4.15.0-30-generic</span><br><span class="line">npm ERR! argv <span class="string">&quot;/usr/bin/node&quot;</span> <span class="string">&quot;/usr/bin/npm&quot;</span> <span class="string">&quot;install&quot;</span></span><br><span class="line">npm ERR! node v8.10.0</span><br><span class="line">npm ERR! npm  v3.5.2</span><br><span class="line">npm ERR! path ../acorn/bin/acorn</span><br><span class="line">npm ERR! code ENOTSUP</span><br><span class="line">npm ERR! errno -95</span><br><span class="line">npm ERR! syscall symlink</span><br><span class="line"></span><br><span class="line">npm ERR! nospc ENOTSUP: operation not supported on socket, symlink <span class="string">&#x27;../acorn/bin/acorn&#x27;</span> -&gt; <span class="string">&#x27;/home/baoguoxiao/windows/food/node_modules/.bin/acorn&#x27;</span></span><br><span class="line">npm ERR! nospc This is most likely not a problem with npm itself</span><br><span class="line">npm ERR! nospc and is related to insufficient space on your system.</span><br><span class="line"></span><br><span class="line">npm ERR! Please include the following file with any support request:</span><br><span class="line">npm ERR!     /home/baoguoxiao/windows/food/npm-debug.log</span><br></pre></td></tr></table></figure>
-
-<p>经过查询，发现是创建不能创建链接。经过查询，发现解决方法很简单。只要加上一个参数就好了。执行命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -no-bin-links</span><br></pre></td></tr></table></figure>
-
-<p>错误很复杂，解决的办法却是很简单。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37062847/npm-syscall-symlink-error-95-when-installing-node-sass-on-docker-for-windows">node.js - npm syscall symlink error -95 when installing node-sass on Docker for Windows - Stack Overflow</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/lumen-install-horizon/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="魔王卷子">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魔王卷子">
-      <meta itemprop="description" content="记录我的工作中碰到的坑">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 魔王卷子">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/lumen-install-horizon/" class="post-title-link" itemprop="url">lumen安装Horizon</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-08-14 11:10:23" itemprop="dateCreated datePublished" datetime="2018-08-14T11:10:23+08:00">2018-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php/lumen/" itemprop="url" rel="index"><span itemprop="name">lumen</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>昨天领导告诉我，要安装Horizon。但是我们使用的是lumen，官方的Horizon并不支持lumen。所以又去找第三方，结果发现已经八个月没有更新了。无奈尝试自己维护。发现一堆坑。根本填不完。今天早上想着去<a target="_blank" rel="noopener" href="https://packagist.org/">packagist</a>去淘淘。还真让我发现了一个正在维护的:<a target="_blank" rel="noopener" href="https://packagist.org/packages/kinsolee/horizon-lumen">horizon-lumen</a>。</p>
-<p>一切安装就按照README.md上面的步骤进行安装就好了。</p>
-<p>再此说下，中间碰到的坑。</p>
-<p>在执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">&quot;Laravel\Horizon\HorizonServiceProvider&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>出现如下错误：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In Facade.php line <span class="number">218</span>:</span><br><span class="line"></span><br><span class="line">  A facade root has not been set.</span><br></pre></td></tr></table></figure>
-
-<p>经过查询发现解决方案是在boorstrap&#x2F;app.php中的注释：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$app</span>-&gt;<span class="title function_ invoke__">withFacades</span>(); <span class="comment">// 去掉这一行的注释</span></span><br></pre></td></tr></table></figure>
-
-<p>我发现这一行已经开启了，但是还是出现这个错误。然后我发现这一块的代码几乎放在了该文件的最后，所以我将其提到了文件的最前面，如下所示：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$app</span>-&gt;<span class="title function_ invoke__">withEloquent</span>(); <span class="comment">// 这一行的下面</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$app</span>-&gt;<span class="title function_ invoke__">withFacades</span>(<span class="literal">true</span>,[</span><br><span class="line">    <span class="string">&#x27;Tymon\JWTAuth\Facades\JWTAuth&#x27;</span>             =&gt; <span class="string">&#x27;JWTAuth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Tymon\JWTAuth\Facades\JWTFactory&#x27;</span>          =&gt; <span class="string">&#x27;JWTFactory&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ZanySoft\Zip\ZipFacade&#x27;</span> =&gt; <span class="string">&#x27;Zip&#x27;</span>,</span><br><span class="line">    <span class="title class_">App\Providers\RongCloudServiceProvider</span>::<span class="variable language_">class</span> =&gt;  <span class="string">&#x27;RongCloud&#x27;</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>这样就能正常安装上了。</p>
-<p>还有一个问题是在访问仪表盘的时候，结果html代码是以文本来显示的。并没有使用html的方式展示内容。</p>
-<p>经过分析，发现返回的header中没有<code>Content-type</code>选项。</p>
-<p>所以写了一个中间件。代码如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * file path: app/Http/Middleware/HtmlMiddleware.php</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">App</span>\<span class="title class_">Http</span>\<span class="title class_">Middleware</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Closure</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HtmlMiddleware</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 运行请求过滤器</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Illuminate\Http\Request  $request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Closure  $next</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"><span class="variable">$request</span>, <span class="built_in">Closure</span> <span class="variable">$next</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$response</span> = <span class="variable">$next</span>(<span class="variable">$request</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">is_null</span>(<span class="variable">$response</span>-&gt;headers-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&quot;Content-Type&quot;</span>))) &#123; <span class="comment">// 当为空的时候才会添加header</span></span><br><span class="line">            <span class="variable">$response</span>-&gt;<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$response</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>因为我这边使用了dingo，所以加上如上判断。</p>
-<p>最后修改bootstrap&#x2F;app.php中的一处：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$app</span>-&gt;<span class="title function_ invoke__">middleware</span>([</span><br><span class="line">    <span class="title class_">\App\Http\Middleware\HtmlMiddleware</span>::<span class="variable language_">class</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>一切大功告成。</p>
-<p>后记：</p>
-<p>在分享给同事使用的时候，同事说出现这么一个错误：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Mix manifest does not exist</span><br></pre></td></tr></table></figure>
-
-<p>在我本地是正常啊，为啥同事就是不行呢。研究了半天。发现原因了。</p>
-<p>因为在public文件夹里面有vendor文件夹。但是正好.gitignore中有一条规则将vendor&#x2F;给忽略了。所以需要执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add public/vendor -f <span class="comment"># 强制加入git版本追踪</span></span><br></pre></td></tr></table></figure>
-
-<p>提交之后，让同事拉取代码，再去执行就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -443,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -548,7 +316,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -647,7 +415,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -742,7 +510,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -890,7 +658,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -987,7 +755,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1106,7 +874,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1208,7 +976,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1306,7 +1074,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1395,7 +1163,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1487,7 +1255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1596,7 +1364,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1707,7 +1475,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1846,7 +1614,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1949,7 +1717,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2198,7 +1966,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2304,7 +2072,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-13 08:12:42" itemprop="dateModified" datetime="2023-07-13T08:12:42+08:00">2023-07-13</time>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2345,6 +2113,236 @@
 <h2 id="原码，反码，补码"><a href="#原码，反码，补码" class="headerlink" title="原码，反码，补码"></a>原码，反码，补码</h2><p>原码是一种计算机对二进制数字的表示方式。其中最高位为符号位。符号位0表示正数，符号位1表示负数。</p>
 <p>反码是对原码进行取反。如果机器数是正数，那么反码与原码相同，如果是负数则对除符号位的其他位进行取反。</p>
 <p>补码则是如果机器数整数则补码和原码相同，如果是负数，那么补码就是对除符号位的其他位进行取反，并且在末位+1。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/vim-set-tab-four-space/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/vim-set-tab-four-space/" class="post-title-link" itemprop="url">vim设置tab为四个空格</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-06 00:06:08" itemprop="dateCreated datePublished" datetime="2018-01-06T00:06:08+08:00">2018-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>其实非常简单。</p>
+<p>首先我们编辑**~&#x2F;.vimrc**文件。新增以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set ts=4</span><br><span class="line">set expandtab</span><br></pre></td></tr></table></figure>
+
+<p>然后保存。</p>
+<p>重启之后使用tab就是四个空格了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.baoguoxiao.com/virtual-machine-install-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="魔王卷子">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魔王卷子">
+      <meta itemprop="description" content="记录我的工作中碰到的坑">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 魔王卷子">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/virtual-machine-install-ubuntu/" class="post-title-link" itemprop="url">虚拟机安装ubuntu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-02 12:00:25" itemprop="dateCreated datePublished" datetime="2018-01-02T12:00:25+08:00">2018-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-15 09:18:56" itemprop="dateModified" datetime="2023-07-15T09:18:56+08:00">2023-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/ubuntu/" itemprop="url" rel="index"><span itemprop="name">ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>公司的电脑是windows的。因为平常要用到linux的独有特性。比如swoole等等。所以，我在虚拟机中安装ubuntu。</p>
+<p>好了，废话不多说，我是使用的自动安装，在安装之前就已经设定了登录的账号密码。安装完成是没有安装ssh服务的。</p>
+<h2 id="开启ssh服务"><a href="#开启ssh服务" class="headerlink" title="开启ssh服务"></a>开启ssh服务</h2><p>首先执行以下命令安装openssh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server -y</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并且设置开机启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看IP，并使用xshell连接"><a href="#查看IP，并使用xshell连接" class="headerlink" title="查看IP，并使用xshell连接"></a>查看IP，并使用xshell连接</h2><p>查看ip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+
+<p>查看你的网卡信息，发现我的IP是192.168.110.128.</p>
+<p>因为直接使用虚拟机内部的终端并不好用，不能够进行复制粘贴啥的，所以我使用外部的终端程序。我在这里使用的是xshell。</p>
+<p>新建会话属性，输入主机ip（就是刚才我们获得的），在用户身份验证输入用户名和密码。</p>
+<p>然后点击最下面的连接。会出现一个弹出框，选择“接口并保存”。</p>
+<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><p>进入后第一件事就是修改<strong>apt</strong>源。</p>
+<p>在修改源之前，我们先安装VIM编辑器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim -y</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，我们要编辑<strong>apt</strong>源文件去除cd源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>将第5行的配置进行注释：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deb cdrom:[Ubuntu-Server 17.10 _Artful Aardvark_ - Release amd64 (20171017.1)]/ artful main restricted</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改源为阿里源"><a href="#修改源为阿里源" class="headerlink" title="修改源为阿里源"></a>修改源为阿里源</h2><p>这是我从阿里云的帮助文件中复制到的源的内容。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ quantal-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>首先我们需要对该内容进行修改。</p>
+<p>我们查看版本信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">baoguoxiao@ubuntu:~$ sudo lsb_release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 17.10</span><br><span class="line">Release:	17.10</span><br><span class="line">Codename:	artful</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<strong>codename</strong>的值是<strong>artful</strong></p>
+<p>我们可以把上面<strong>quantal</strong>全部替换为<strong>artful</strong>，替换完成如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>然后将替换好的内容添加到**&#x2F;etc&#x2F;apt&#x2F;sources.list**开头。</p>
+<p>这样就可以**:x**进行保存了。</p>
+<h2 id="更新包"><a href="#更新包" class="headerlink" title="更新包"></a>更新包</h2><p>其实很简单。首先更新源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update </span><br></pre></td></tr></table></figure>
+
+<p>在输出的消息的最后一行会输出以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">46 packages can be upgraded. Run <span class="string">&#x27;apt list --upgradable&#x27;</span> to see them.</span><br></pre></td></tr></table></figure>
+
+<p>这就表示我有46个包需要更新。那么就执行运行以下命令进行更新吧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
+
+<p>好了，最开始的安装环境就已经搭建完成了。</p>
 
       
     </div>
