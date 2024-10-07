@@ -1,0 +1,20 @@
+# https://github.com/vuejs/vitepress/blob/main/.gitignore a1ced36553cc9f5f6e321c460aee90865ac8bf38
+
+/coverage
+/src/client/shared.ts
+/src/node/shared.ts
+*.log
+*.tgz
+.DS_Store
+.idea
+.temp
+.vite_opt_cache
+.vscode
+dist
+cache
+temp
+examples-temp
+node_modules
+pnpm-global
+TODOs.md
+*.timestamp-*.mjs
