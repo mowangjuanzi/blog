@@ -11,12 +11,11 @@ commit-id: 40749f047e504786023457871deef9f2fa0d2ec8
 
 ## 新版 PHP 核心综述系列
 
-Today, we are trying a new format that we got rid of text that looked like a mere changelog, to a post highlighting the general momentum of PHP development. This also means we might not get to celebrate and mention all the contributions from the PHP Foundation members and the other contributors as we did in previous posts.
+今天，我们尝试了一种新编排格式，摆脱了看起来像是单纯的变更日志，转而发布一篇强调 PHP 开发总体势头的帖子。这也意味着我们可能无法像在以前的帖子中那样庆祝和提及 PHP 基金会成员和其他贡献者的所有贡献。
 
-Maintaining a mature, reliable, and widely used programming language that continues to get new features and improvements for almost 30 years involves a lot of work! Maintaining PHP documentation, php.net infrastructure, translations, triaging issues and security reports, bug fixes, mailing lists, reviewing RFCs, and packaging PHP only to name a few, we have PHP contributors and PHP Foundation members putting a commendable amount of effort into improving PHP!
+维护一种成熟、可靠且广泛使用的编程语言，并在近 30 年内不断获得新功能和改进，需要做大量工作！维护 PHP 文档、php.net 基础设施、翻译、分类问题和安全报告、错误修复、邮件列表、审查 RFC 和打包 PHP 等等，我们有 PHP 贡献者和 PHP 基金会成员为改进 PHP 付出了巨大的努力！
 
-While these PHP Core Roundup series may not write about these contributions often because we want to keep these posts exciting and resourceful, we want to spread love to all the contributors to the PHP ecosystem 💜.
-
+虽然这些 PHP 核心综述系列可能不会经常写这些贡献，因为我们希望这些帖子保持令人兴奋和资源丰富，但我们希望向 PHP 生态系统的所有贡献者传播爱💜。
 
 ## PHP 发布周期更新
 
