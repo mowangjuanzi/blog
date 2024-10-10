@@ -15,6 +15,7 @@ export default defineConfig({
         text: "PHP 基金会",
         link: "/php-foundation",
         items: [
+          {text: "PHP 基金会支持开源承诺", link: "/php-foundation/open-source-pledge.md"},
           {text: "PHP 核心综述 #19", link: "/php-foundation/php-core-roundup-19.md"}
         ]
       }
