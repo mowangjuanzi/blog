@@ -19,16 +19,16 @@ commit-id: 40749f047e504786023457871deef9f2fa0d2ec8
 
 ## PHP 发布周期更新
 
-In April, we voted and accepted an [RFC](https://wiki.php.net/rfc/release_cycle_update) to update our Release Cycle policy.
+四月份时，我们投票并接受了一份 [RFC](https://wiki.php.net/rfc/release_cycle_update)，以更新我们的发布周期政策。
 
-The PHP Core team provided two years of active support, followed by only one year of security fixes. We now have a new release cycle that, from PHP 8.1 (released in 2021 November), all PHP versions now get **two years of security fixes instead of one year**. The two-year active support period remains the same.
+PHP 核心团队提供了两年的积极支持，随后只提供了一年的安全修复。我们现在有了新的发布周期，自 PHP 8.1（2021 年 11 月发布）起，所有
+PHP 版本现在都获得**两年的安全修复，而不是一年**.。两年的积极支持期保持不变。
 
-Further, we have changed the active-support and End-Of-Life dates to align to December 31st of the calendar year. This makes the support and EOL dates more predictable.
+此外，我们已将积极支持和终止支持日期更改为与公历年的 12 月 31 日。这使得支持和终止支持日期更加可预测。
 
-Here are the updated active-support and EOL dates for the current line-up of PHP versions. Dates changed from the previously set dates are in bold.
+以下是当前 PHP 版本系列的最新积极支持和 EOL 日期。与之前设定的日期不同的日期以粗体显示。
 
-
-|PHP version|Release date|Active maintenance until|EOL date|
+|PHP 版本|发行日期|积极维护到|EOL 日期|
 |:--:|:--:|:--:|:--:|
 |PHP 8.1|2021-11-25|2023-11-25|**2025-12-31**|
 |PHP 8.2|2022-12-08|**2024-12-31**|**2026-12-31**|
@@ -39,9 +39,10 @@ Here are the updated active-support and EOL dates for the current line-up of PHP
 
 ## PHP 核心开发
 
-A few days ago, PHP 8.4 reached its feature-freeze. PHP 8.4 is slated to be released on November 21st of this year.
+几天前，PHP 8.4 功能冻结。PHP 8.4 预计将于今年 11 月 21 日发布。
 
-The first release candidate for PHP 8.4 is already out — they are not production-ready, but they are available to try out and test PHP application on, either by compiling from [source](https://github.com/php/php-src/tags), using [Windows binaries](https://windows.php.net/qa/), or in [Docker containers](https://hub.docker.com/_/php/tags?name=8.4-).
+PHP 8.4 的第一个 RC 版本已经发布 - 它们尚未生产，但可以通过从[源代码](https://github.com/php/php-src/tags)、使用 [Windows
+二进制文件](https://windows.php.net/qa/)或在 [Docker 容器](https://hub.docker.com/_/php/tags?name=8.4-)中试用和测试 PHP 应用程序。
 
 ### PHP 8.4 的亮点
 
