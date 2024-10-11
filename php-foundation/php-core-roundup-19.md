@@ -46,11 +46,11 @@ PHP 8.4 的第一个 RC 版本已经发布 - 它们尚未生产，但可以通�
 
 ### PHP 8.4 的亮点
 
-PHP 8.4 is an important release that brings major new features, several updates to the build dependencies and underlying libraries, and a fair bit of deprecations to iron out some of the legacy and undesirable behaviors and features in legacy PHP versions.
+PHP 8.4 是一个重要的版本，带来了重要的新功能、对编译依赖项和底层库的若干更新，以及相当多的弃用，以废弃了旧版 PHP 中一些遗留的和不良的行为和特性。
 
-Using various approaches, each PHP version brings a lot of performance improvements and security tightening too. In PHP 8.4, we continue this in this direction with several minor internal improvements as well as noticeable improvements in JIT, and PHP extensions such as mbstring, BCMath, XML extensions, PCRE, and more.
+使用各种方法，每个 PHP 版本都带来了许多性能改进和安全加强。在 PHP 8.4 中，我们继续朝着这个方向发展，进行了几项内部的小幅改进，以及 JIT 和 PHP 扩展（如 mbstring、BCMath、XML 扩展、PCRE 等）的显著改进。
 
-Further, PHP 8.4 unbundles IMAP, Pspell, OCI, and pdo_oci extensions. It means if you wanted to continue using them, you'll have to install via PECL.
+此外，PHP 8.4 不再捆绑 IMAP、Pspell、OCI 和 pdo_oci 扩展。这意味着如果想继续使用它们，必须通过 PECL 安装。
 
 ### 属性挂钩和不对称可见性
 
