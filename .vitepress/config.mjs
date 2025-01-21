@@ -7,11 +7,12 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "PHP 基金会", link: "/php-foundation"}
+      { text: "PHP 基金会", link: "/php-foundation" },
+      { text: "博客", link: "/blog" },
     ],
 
-    sidebar: [
-      {
+    sidebar: {
+      "/php-foundation": {
         text: "PHP 基金会",
         link: "/php-foundation",
         items: [
@@ -19,12 +20,19 @@ export default defineConfig({
           {text: "PHP 基金会支持开源承诺", link: "/php-foundation/open-source-pledge.md"},
           {text: "PHP 核心综述 #19", link: "/php-foundation/php-core-roundup-19.md"}
         ]
+      },
+      "/blog": {
+        text: "博客",
+        link: "/blog",
+        items: [
+          { text: "Ubuntu 安装 PHP", link: "/blog/ubuntu-apt-php.md" },
+        ]
       }
-    ],
+    },
 
     footer: {
       message: '<a href="https://beian.miit.gov.cn/">鲁ICP备13027795号-1</a>',
-      copyright: 'Copyright © 2015-2023 魔王卷子'
+      copyright: 'Copyright © 2015-2025 魔王卷子'
     },
 
     socialLinks: [
