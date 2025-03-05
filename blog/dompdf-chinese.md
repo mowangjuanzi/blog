@@ -76,6 +76,10 @@ php load_font.php "source_han_san" SourceHanSansSC-VF.ttf
 
 enjoy!
 
+## 清理
+
+确认正常显示后，就可以删除根目录下的 `load_font.php` 和 `SourceHanSansSC-VF.ttf` 即可。
+
 ## 参考
 
 - [Laravel 輸出中文 PDF](https://lynkishere.com/Backend/make-pdf-by-laravel/)
