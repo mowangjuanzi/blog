@@ -1,5 +1,12 @@
 # DOMPDF 输出 PDF & 中文乱码
 
+## 前言
+
+我需要解决输出PDF的问题。并且现在使用的版本是：
+
+- barryvdh/laravel-dompdf: v3.1.1
+- dompdf/dompdf: v3.1.0
+
 ## 安装
 
 ```bash
