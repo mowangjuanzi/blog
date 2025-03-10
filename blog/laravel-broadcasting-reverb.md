@@ -73,7 +73,9 @@ Broadcast::channel('resume.{id}', function ($user, $id) {
 ## 后台启动
 
 ```bash
-php artisan reverb:start
+php artisan reverb:start # 常规
+
+php artisan reverb:start --debug # 以调试模式启动
 ```
 
 ## 前台引入（常规频道和私有频道均可）
@@ -87,6 +89,8 @@ vue 项目引入，在 `src/main.js` 中
 ```javascript
 // websocket 支持
 window.Pusher = Pusher
+
+// 用于调试，不用可删除
 window.Pusher.logToConsole = true
 
 window.Echo = new Echo({
