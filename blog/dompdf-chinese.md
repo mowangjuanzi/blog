@@ -23,6 +23,10 @@ Route::get("/demo", function () {
 });
 ```
 
+## 避坑
+
+- 不支持 flex 排版，及其相关 css。只能使用之前的 float 浮动布局。
+
 ## 中文乱码
 
 - 下载你要用字体，放到 Laravel 根目录

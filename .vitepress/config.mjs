@@ -25,6 +25,7 @@ export default defineConfig({
         text: "博客",
         link: "/blog",
         items: [
+          { text: "Laravel 广播，使用 Reverb", link: "/blog/laravel-broadcasting-reverb.md" },
           { text: "DOMPDF 输出 PDF & 中文乱码", link: "/blog/dompdf-chinese.md" },
           { text: "Ubuntu 安装 PHP", link: "/blog/ubuntu-apt-php.md" },
         ]
